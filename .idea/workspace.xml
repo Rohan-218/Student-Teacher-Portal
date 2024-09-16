@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="" />
+    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/config/dbConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/config/dbConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/studentController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/studentController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/studentRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/studentRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/services/studentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/studentService.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,21 +61,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/rohan/Desktop/Student-Teacher-Portal/client/src/root files",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rohan/Desktop/Student-Teacher-Portal/client/src/root files&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rohan\Desktop\Student-Teacher-Portal\client\src\root files" />
@@ -118,6 +126,7 @@
       <workItem from="1726136348366" duration="1924000" />
       <workItem from="1726140485254" duration="721000" />
       <workItem from="1726141784775" duration="302000" />
+      <workItem from="1726478052265" duration="33000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
