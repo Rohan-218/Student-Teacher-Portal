@@ -31,3 +31,13 @@ exports.login = async (email, password) => {
         throw new Error('Login Service Error');
     }
 };
+
+exports.logout = async (token) => {
+    try {
+        return { success: true, message: 'Logged out successfully' };
+    } catch (error) {
+        console.error('Logout Service Error:', error);
+        throw new Error('Logout Service Error');
+    }
+};
+
