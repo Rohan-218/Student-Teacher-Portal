@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { getUserByEmail } = require('../models/userModel');  // Assuming you have a Sequelize user model
+const { getUserByEmail, isTokenBlacklisted, blacklistToken } = require('../models/userModel');
+const TokenBlacklist = require('../models/tokenBlacklistModel');  // Assuming you have a Sequelize user model
 require('dotenv').config({ path: 'src/.env' });
 
 // Login Service
@@ -34,10 +35,19 @@ exports.login = async (email, password) => {
 
 exports.logout = async (token) => {
     try {
-        return { success: true, message: 'Logged out successfully' };
+      // Check if the token is already blacklisted
+      const tokenExists = await isTokenBlacklisted(token);
+      if (tokenExists) {
+        return { success: false, message: 'Token already blacklisted' }; // Token is already blacklisted
+      }
+      
+      // Blacklist the token
+      const now = new Date(); // Current date and time
+      const expiresAt = new Date(now.getTime() + 30 * 60000); // Set expiration to 30 minutes from now
+      await blacklistToken(token, expiresAt); // Insert token into blacklist
+  
+      return { success: true, message: 'Logged out successfully' }; // Successful logout
     } catch (error) {
-        console.error('Logout Service Error:', error);
-        throw new Error('Logout Service Error');
+      throw new Error(`Logout Service Error: ${error.message}`); // Handle errors
     }
-};
-
+  };
