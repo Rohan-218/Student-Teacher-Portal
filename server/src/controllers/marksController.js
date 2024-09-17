@@ -1,4 +1,4 @@
-const { getStudentMarks, getStudentPerformance } = require('../services/studentService');
+const { getStudentMarks, getStudentPerformance } = require('../services/marksService');
 
 // Controller method to get student marks by student ID, subject ID, and exam ID
 exports.getStudentMarks = async (req, res) => {
