@@ -4,6 +4,7 @@ const express = require('express');
 const loginRoutes = require('./routes/loginRoutes');
 const studentProfileRoutes = require('./routes/studentProfileRoutes');
 const teacherProfileRoutes = require('./routes/teacherProfileRoutes');
+const studentAttendanceRoutes = require('./routes/studentAttendanceRoutes');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/login', loginRoutes);
 app.use('/api/student', studentProfileRoutes);
 app.use('/api/teacher', teacherProfileRoutes);
+app.use('/api/student', studentAttendanceRoutes);
 
 //Error handling middleware (optional)
 app.use((req, res, next) => {
