@@ -1,33 +1,19 @@
-// In your authService.js file
-const db = require('../config/dbConfig'); // Ensure you import the correct dbConfig
+// tokenBlacklistModel.js
+const sequelize = require('../config/dbConfig'); // Ensure correct path to your sequelize instance
 
-exports.logout = async (token) => {
+const isTokenBlacklisted = async (token) => {
+    const query = 'SELECT id FROM token_blacklist WHERE token = $1'; // SQL query to select a token from the blacklist
+    const values = [token]; // Token parameter
     try {
-        // Check if the token is already blacklisted
-        const [result] = await db.query(
-            'SELECT "id", "token", "expiresat" FROM "token_blacklist" WHERE "token" = $1',
-            {
-                bind: [token],
-                type: db.QueryTypes.SELECT
-            }
-        );
-
-        if (result.length > 0) {
-            return { success: false, message: 'Token already logged out' };
-        }
-
-        // Add token to the blacklist
-        await db.query(
-            'INSERT INTO "token_blacklist" ("token", "expiresat") VALUES ($1, $2)',
-            {
-                bind: [token, new Date()],
-                type: db.QueryTypes.INSERT
-            }
-        );
-
-        return { success: true, message: 'Logged out successfully' };
+        const result = await sequelize.query(query, {
+            bind: values, // Bind parameters to the query
+            type: sequelize.QueryTypes.SELECT // Specify the query type
+        }); // Execute the query
+        return result.length > 0; // Return true if the token is found, otherwise false
     } catch (error) {
-        console.error('Logout Service Error:', error);
-        throw new Error('Logout Service Error');
+        console.error(`Check Token Error: ${error.message}`); // Handle errors
+        throw new Error('Check Token Error');
     }
 };
+
+module.exports = { isTokenBlacklisted };

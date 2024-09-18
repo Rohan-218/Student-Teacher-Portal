@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const dotenv = require('dotenv');
+const {authenticate, isTokenBlacklisted} = require('./middleware/authMiddleware.js');
 
 // Initialize Express app
 const app = express();
@@ -28,6 +28,8 @@ const adminRoutes = require('./routes/adminRoutes.js');
 // // Use routes
 app.use('/api/auth', authRoutes);
 // app.use('/api/profile', profileRoutes);
+app.use(authenticate); 
+// Authenticate middleware;
 app.use('/api/students', studentRoutes);
 // app.use('/api/teachers', teacherRoutes);
 app.use('/api/admin', adminRoutes);
