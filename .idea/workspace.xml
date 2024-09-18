@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="">
+    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="Change name for marks API controller and service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/marksController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/studentMarksController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/marksModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/studentMarksModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/marksPerformanceModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/studentMarksPerformanceModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/studentRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/studentRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/services/marksService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/studentMarksService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +21,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;history&quot;: [

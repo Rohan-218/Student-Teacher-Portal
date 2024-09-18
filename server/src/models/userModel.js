@@ -1,22 +1,30 @@
 const sequelize = require('../config/dbConfig');  // Assuming dbConfig exports a sequelize instance
+const {secretKey} = require('../config/config.js');
 
-getUserByEmail = async (email) => {
-    try {
-        const query = `
-            SELECT user_id, email, password, user_type
-            FROM users
-            WHERE email = :email
-        `;
-        const [result] = await sequelize.query(query, {
-            replacements: { email },
-            type: sequelize.QueryTypes.SELECT
-        });
+const getUserByEmail = async (email) => {
+  try {
+      const query = `
+          SELECT 
+              user_id, 
+              email, 
+              pgp_sym_decrypt(password::BYTEA, :secretKey) AS decrypted_password, 
+              user_type
+          FROM 
+              users
+          WHERE 
+              email = :email
+      `;
+      const result = await sequelize.query(query, {
+          replacements: {email, secretKey: secretKey},
+          type: sequelize.QueryTypes.SELECT
+      });
 
-        return result;
-    } catch (error) {
-        throw new Error('Error fetching user by email: ' + error.message);
-    }
+      return result[0]; // Return the first row (user)
+  } catch (error) {
+      throw new Error('Error fetching user by email: ' + error.message);
+  }
 };
+
 
 
 // Function to add a token to the blacklist

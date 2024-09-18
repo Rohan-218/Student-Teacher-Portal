@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:server/src/controllers/studentMarksController.js
 const { getStudentMarks, getStudentPerformance } = require('../services/studentMarksService');
-========
-const { getStudentMarks, getStudentPerformance } = require('../services/marksService');
->>>>>>>> 9f09e082cf38a3a1d6443561eabc727d9741a86a:server/src/controllers/marksController.js
 
 // Controller method to get student marks by student ID, subject ID, and exam ID
 exports.getStudentMarks = async (req, res) => {
