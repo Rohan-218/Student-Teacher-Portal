@@ -1,4 +1,4 @@
-const app = require('./app');
+const app = require('./app.js');
 
 // Set the port
 const PORT = 5000;

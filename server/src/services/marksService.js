@@ -1,5 +1,5 @@
-const { getMarks} = require('../models/marksModel'); // Import the Marks model directly
-const { getMarksPerformance } = require('../models/marksPerformanceModel'); // Import the Performance model directly
+const { getMarks} = require('../models/studentMarksModel'); // Import the Marks model directly
+const { getMarksPerformance } = require('../models/studentMarksPerformanceModel'); // Import the Performance model directly
 
 // Service method to get student marks by student ID and subject ID
 exports.getStudentMarks = async (studentId, subjectId, examId) => {
