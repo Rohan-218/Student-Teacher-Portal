@@ -133,14 +133,14 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
           value={searchName} 
           onChange={(e) => setSearchName(e.target.value)} 
         />
-        <button onClick={handleSearch}>Search</button>
+        <button className="stu-sea"onClick={handleSearch}>Search</button>
         <Link to="/admin/add-student">
           <button className="add-student-btn">Add New Student</button>
         </Link>
       </div>
 
       <div className="filter-options">
-        <select value={selectedBranch} onChange={handleBranchChange}>
+        <select className="bra" value={selectedBranch} onChange={handleBranchChange}>
           <option value="">Branch</option>
           {branches.map((branch, index) => (
             <option key={index} value={branch}>
@@ -149,7 +149,7 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
           ))}
         </select>
         
-        <select value={selectedSemester} onChange={handleSemesterChange}>
+        <select className="sem" value={selectedSemester} onChange={handleSemesterChange}>
           <option value="">Semester</option>
           {[...Array(8).keys()].map(sem => (
             <option key={sem + 1} value={sem + 1}>{sem + 1}</option>
