@@ -111,6 +111,7 @@ import axios from 'axios';
 
 const DailyAttendanceRecord = () => {
   const [selectedSubject, setSelectedSubject] = useState('');
+  const [subjectID, setSubjectID] = useState(-1);
   const [subjectList, setSubjectList] = useState([]);
   const [studentList, setStudentList] = useState([]); // Define studentList state
   
@@ -141,6 +142,7 @@ const DailyAttendanceRecord = () => {
     console.log('Selected Subject:', subjectCode, 'Subject ID:', subjectId);
     
     setSelectedSubject(subjectCode); // Only subjectCode is stored in state
+    setSubjectID(subjectId); // Store subject ID in state
   
     try {
       const studentResponse = await axios.get(
@@ -196,7 +198,7 @@ const DailyAttendanceRecord = () => {
 
       {/* Attendance record table */}
       <div className="teacher-attendanceContent">
-        <DailyAttendanceRecordTable studentList={studentList} /> {/* Pass studentList as a prop */}
+        <DailyAttendanceRecordTable students={studentList} setStudents={setStudentList} subjectID={subjectID} /> {/* Pass studentList as a prop */}
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; 
-import './login.css';
-import loginLogo from '/src/assets/Portal/login/login-logo.png';
+import './Login.css';
+import loginLogo from '/src/assets/Portal/Login/login-logo.png';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye icons
 
 const Login = () => {

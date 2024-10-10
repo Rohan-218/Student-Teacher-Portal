@@ -10,7 +10,7 @@ import './StudentRecordTable.css'; // Link to the CSS file
 //   { sNo: 6, name: 'Surbhi', enrollmentNo: '006', classesAttended: 10, attendancePercent: '100%', midterm1: 25, midterm2: 27 },
 // ];
 
-const StudentRecordTable = ({ students = [] }) => {
+const StudentRecordTable = ({ students }) => {
 
   return (
     <div className="teacher-student-record-table">
@@ -33,10 +33,10 @@ const StudentRecordTable = ({ students = [] }) => {
                 <td>{index + 1}</td>
                 <td>{student.student_name || 'N/A'}</td>
                 <td>{student.enrollment_no || 'N/A'}</td>
-              <td>{student.classesAttended}</td>
-              <td>{student.attendancePercent}</td>
-              <td>{student.midterm1}</td>
-              <td>{student.midterm2}</td>
+              <td>{student.attended_lecture}</td>
+              <td>{Math.round(student.attendance_percentage*100)/100}</td>
+              <td>{student.midterm1_marks}</td>
+              <td>{student.midterm2_marks}</td>
               </tr>
           ))
         ) : (

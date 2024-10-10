@@ -192,6 +192,8 @@ const StudentRecord = () => {
         };
       });
 
+      console.log('Combined data:', combinedData);
+
       setStudentList(combinedData); // Update student list with combined data
     } catch (error) {
       console.error('Error fetching students or attendance/marks:', error);

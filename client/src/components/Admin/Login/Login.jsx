@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Importing eye icons
-import './login.css';
+import './Login.css';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');

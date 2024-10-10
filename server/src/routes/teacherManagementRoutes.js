@@ -1,6 +1,6 @@
 const express = require('express');
 const { getTeacherCount, getTeacherProfile, updateTeacherIsActive } = require('../controllers/teacherManagementController')
-const { getAllTeachers, getTeachersByBranchAndSemester, searchTeachersByName } = require('../controllers/adminTeacherlistController');
+const { getAllTeachers, getTeachersByBranchAndSemester, searchTeachersByName } = require('../controllers/adminTeacherListController');
 const createTeacherController = require('../controllers/createTeacherController');
 const  {updateTeacherDetails} = require('../controllers/updateTeacherDetailsController');
 

@@ -95,8 +95,8 @@ import React, { useState } from 'react';
 import axios from 'axios'; // Import axios to make API calls
 import './DailyAttReTable.css'; // Link to the CSS file
 
-const DailyAttendanceRecordTable = ({studentsList}) => {
-   const [students, setStudents] = useState(studentsList); // Set initial state to an empty array
+const DailyAttendanceRecordTable = ({students, setStudents, subjectID}) => {
+  // const [students, setStudents] = useState(students);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [dateColumns, setDateColumns] = useState([]);
@@ -127,7 +127,7 @@ const DailyAttendanceRecordTable = ({studentsList}) => {
     // Make API call to fetch attendance data
     try {
       const response = await axios.get(`http://localhost:3000/api/teachers/attendance/range`, {
-        params: { fromDate: fromDate, toDate: toDate }, // Send the date range as query params
+        params: { fromDate: fromDate, toDate: toDate, subjectID: subjectID }, // Send the date range as query params
         headers: {
           'Authorization': `Bearer ${token}`, // Include token in the request headers
           'Content-Type': 'application/json'
@@ -135,7 +135,24 @@ const DailyAttendanceRecordTable = ({studentsList}) => {
       });
 
       // Update the students state with the fetched data
-      setStudents(response.data); // Assuming the response contains an array of student records
+      console.log('Attendance data fetched:', response.data);
+      const students_copy = [...students];
+      for (const record of response.data) {
+        console.log('Processing record:', record);
+        let studentIndex = students_copy.findIndex(student => student.enrollment_no === record.enrollment_no);
+        if (studentIndex === -1) {
+          console.log('Student not found:', record.student_id);
+          continue;
+        }
+        if (!students_copy[studentIndex].attendance_arr) {
+          students_copy[studentIndex].attendance_arr = [];
+        }
+        students_copy[studentIndex].attendance_arr.push(record.attendance);
+        console.log('Updated student:', students_copy[studentIndex]);
+        // students[record.student_id].attendance.push(record.attendance);
+      }
+      console.log('Updated students:', students_copy);
+      setStudents(students_copy); // Assuming the response contains an array of student records
     } catch (error) {
       console.error('Error fetching attendance data:', error);
       setError('Failed to fetch attendance data. Please try again later.'); // Set error message
@@ -179,12 +196,12 @@ const DailyAttendanceRecordTable = ({studentsList}) => {
             students.map((student, index) => (
               <tr key={index}>
                 <td>{index + 1}</td> {/* Display index + 1 as S.No */}
-                <td>{student.name}</td>
-                <td>{student.enrollmentNo}</td>
-                <td>{student.percentage}</td>
+                <td>{student.student_name}</td>
+                <td>{student.enrollment_no}</td>
+                <td>{student.branch_id}</td>
                 {/* Check if attendance exists and is an array before using slice */}
-                {Array.isArray(student.attendance) && student.attendance.length > 0
-                  ? student.attendance.slice(0, dateColumns.length).map((att, idx) => (
+                {Array.isArray(student.attendance_arr) && student.attendance_arr.length > 0
+                  ? student.attendance_arr.slice(0, dateColumns.length).map((att, idx) => (
                     <td key={idx}>{att}</td>
                   ))
                   : dateColumns.map((_, idx) => <td key={idx}>N/A</td>) // Fallback for undefined attendance

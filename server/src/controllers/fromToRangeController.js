@@ -24,11 +24,11 @@ const AttendanceModel = require('../models/fromToRangeModel');
 
 // Controller to fetch attendance records between dates
 const getAttendanceByDateRange = async (req, res) => {
-  const { fromDate, toDate } = req.query;
+  const { fromDate, toDate, subjectID } = req.query;
 
   try {
     // Call the model's function to fetch attendance data
-    const attendanceData = await AttendanceModel.fetchAttendanceBetweenDates(fromDate, toDate);
+    const attendanceData = await AttendanceModel.fetchAttendanceBetweenDates(fromDate, toDate, subjectID);
 
     if (!attendanceData.length) {
       return res.status(404).json({ message: 'No attendance data found for the given date range' });
