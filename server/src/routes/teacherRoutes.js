@@ -8,6 +8,10 @@ const marksController = require('../controllers/marksBelowController');
 const teacherUpdateMarksController = require('../controllers/teacherUpdateMarksController');
 const teachUpdateAttendanceController = require('../controllers/teachUpdateAttendanceController');
 const  {getAttendanceByDateRange}  = require('../controllers/fromToRangeController');
+const { fetchAttendanceAndMarks } = require('../controllers/attenMarksController');
+
+// Define the route to get attendance and marks based on subject
+router.get('/atten/marks', fetchAttendanceAndMarks);
 
 
 
