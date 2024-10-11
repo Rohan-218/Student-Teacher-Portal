@@ -24,14 +24,14 @@ exports.uploadAttendance = async (subjectCode, lecture, attendanceDate, attendan
   
       // Loop through the attendance list and insert records
       for (const entry of attendanceList) {
-        const { enrollment_no, status } = entry;
-        const studentId = await attendanceModel.getStudentIdByEnrollmentNo(enrollment_no);
+        const { enrollmentNo, newAttendance } = entry;
+        const studentId = await attendanceModel.getStudentIdByEnrollmentNo(enrollmentNo);
   
         if (!studentId) {
-          return { success: false, error: `Student with enrollment number ${enrollment_no} not found` };
+          return { success: false, error: `Student with enrollment number ${enrollmentNo} not found` };
         }
   
-        await attendanceModel.insertAttendanceRecord(studentId, attendanceRecordId, status, subjectId);
+        await attendanceModel.insertAttendanceRecord(studentId, attendanceRecordId, newAttendance, subjectId);
       }
   
       return { success: true };

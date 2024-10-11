@@ -112,58 +112,80 @@ const TeacherAttendance = () => {
     fetchAttendance();
   }, [selectedSubject, date, lecture, token, studentList, dataFetched]);
 
-  // Toggle attendance status for a student
-  const toggleStudentAttendance = (enrollmentNo) => {
-    setAttendanceList((prevAttendanceList) => {
-      return prevAttendanceList.map((student) => {
-        if (student.enrollment_no === enrollmentNo) {
-          const newStatus = student.status === 'Present' ? 'Absent' : 'Present';
-          return { ...student, status: newStatus }; // Toggle and update status
-        }
-        return student;
-      });
+ // Toggle attendance status for a student, but only mark as modified when it's changed manually
+const toggleStudentAttendance = (enrollmentNo) => {
+  setAttendanceList((prevAttendanceList) => {
+    return prevAttendanceList.map((student) => {
+      if (student.enrollment_no === enrollmentNo) {
+        const newStatus = student.status === 'Present' ? 'Absent' : 'Present';
+        return {
+          ...student,
+          status: newStatus, // Toggle the attendance status
+          modified: true, // Mark this record as modified
+        };
+      }
+      return student;
     });
-  };
+  });
+};
 
   // Handle attendance submission
-  const handleAttendanceSubmit = async () => {
-    if (!attendanceList || !Array.isArray(attendanceList)) {
-      alert("Attendance list is missing or not in the correct format.");
-      return;
-    }
+  // Handle attendance submission or update
+// Handle attendance submission or update
+const handleAttendanceSubmit = async () => {
+  if (!attendanceList || !Array.isArray(attendanceList)) {
+    alert("Attendance list is missing or not in the correct format.");
+    return;
+  }
 
-    // Ensure the attendance list contains both enrollment_no and status for each student
-    const formattedAttendanceList = attendanceList.map((student) => ({
-      enrollment_no: student.enrollment_no,
-      status: student.status === 'Present' ? true : false, // Convert 'Present'/'Absent' to boolean
+  // Ensure the attendance list contains both enrollment_no and status for each student
+  // Only include modified students for the update
+  const formattedAttendanceList = attendanceList
+    .filter(student => isUpdating ? student.modified : true) // For update, send only modified records
+    .map((student) => ({
+      enrollmentNo: student.enrollment_no,
+      newAttendance: student.status === 'Present' ? true : false, // Ensure correct boolean conversion
     }));
 
-    try {
-      const response = await fetch('http://localhost:3000/api/teachers/attendance/upload', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // Include the auth token
-        },
-        body: JSON.stringify({
-          subjectCode: selectedSubject, // The selected subject
-          lecture: lecture, // The selected lecture
-          attendanceDate: date, // The selected date
-          attendanceList: formattedAttendanceList, // Send formatted attendance list
-        }),
-      });
+  if (isUpdating && formattedAttendanceList.length === 0) {
+    alert("No changes to update.");
+    return;
+  }
 
-      const data = await response.json();
+  const url = isUpdating
+    ? 'http://localhost:3000/api/teachers/attendance/update'
+    : 'http://localhost:3000/api/teachers/attendance/upload';
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to upload attendance');
-      }
-
-      alert('Attendance uploaded successfully!');
-    } catch (error) {
-      alert(`Failed to upload attendance: ${error.message}`);
-    }
+  const body = {
+    subjectCode: selectedSubject, // The selected subject
+    lecture: lecture, // The selected lecture
+    attendanceDate: date, // The selected date
+    attendanceList: formattedAttendanceList, // Send formatted attendance list
   };
+
+  try {
+    const response = await fetch(url, {
+      method: isUpdating ? 'PUT' : 'POST', // Use PUT for update, POST for new upload
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`, // Include the auth token
+      },
+      body: JSON.stringify(body),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to process attendance');
+    }
+
+    alert(`Attendance ${isUpdating ? 'updated' : 'uploaded'} successfully!`);
+  } catch (error) {
+    alert(`Failed to ${isUpdating ? 'update' : 'upload'} attendance: ${error.message}`);
+  }
+};
+
+
 
   return (
     <div className="teacher-attendance-container">
