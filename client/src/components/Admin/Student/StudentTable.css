@@ -124,7 +124,7 @@
 @media screen and (max-width: 767px) {
 .student-table th,
 .student-table td {
-  font-size: 9px;
+  font-size: 0.7rem;
 
 }
 
