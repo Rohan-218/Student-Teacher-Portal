@@ -1,10 +1,35 @@
-const teachUpdateAttendanceModel = require('../models/teachUpdateAttendanceModel');
+// attendanceService.js
 
-// Service to update attendance for a student
-async function updateAttendance(attendance_record_id, student_id, attendance, attended_lecture) {
-    await teachUpdateAttendanceModel.updateAttendance(attendance_record_id, student_id, attendance, attended_lecture);
-}
-
-module.exports = {
+const {
+    getSubjectIdByCode,
     updateAttendance,
-};
+    getStudentIdByEnrollmentNo,
+  } = require('../models/teachUpdateAttendanceModel');
+  
+  const updateMultipleAttendance = async (subjectCode, date, lecture, attendanceRecords) => {
+    const subjectId = await getSubjectIdByCode(subjectCode);
+  
+    if (!subjectId) {
+      throw new Error('Subject not found');
+    }
+  
+    // Loop through each attendance record to update
+    for (const record of attendanceRecords) {
+      const { enrollmentNo, newAttendance } = record;
+      const studentId = await getStudentIdByEnrollmentNo(enrollmentNo);
+  
+      if (!studentId) {
+        throw new Error(`Student with enrollment number ${enrollmentNo} not found`);
+      }
+  
+      // Assuming `newAttendance` can only be "Present" or "Absent"
+      await updateAttendance(subjectId, studentId, newAttendance, lecture, date);
+    }
+  
+    return { message: 'Attendance updated successfully' };
+  };
+  
+  module.exports = {
+    updateMultipleAttendance,
+  };
+  
