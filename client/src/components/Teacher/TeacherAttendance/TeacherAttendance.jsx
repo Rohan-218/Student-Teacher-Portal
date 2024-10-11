@@ -14,6 +14,7 @@ const TeacherAttendance = () => {
   const [attendanceList, setAttendanceList] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
   const [buttonText, setButtonText] = useState('Save');
+  const [dataFetched, setDataFetched] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -62,7 +63,7 @@ const TeacherAttendance = () => {
   // Fetch attendance only when all fields are filled
   useEffect(() => {
     const fetchAttendance = async () => {
-      if (selectedSubject && date && lecture) {
+      if (selectedSubject && date && lecture && !dataFetched) {
         try {
           const response = await axios.get(
             `http://localhost:3000/api/teachers/attendance/get?subjectCode=${selectedSubject}&date=${date}&lecture=${lecture}`,
@@ -86,13 +87,21 @@ const TeacherAttendance = () => {
             setStudentList(updatedStudents); // Update student list with attendance data
             setAttendanceList(response.data); // Prefill attendance data
             setIsUpdating(true); // Set to update mode
-            setButtonText('Edit'); // Change button text to 'Edit'
+            setButtonText('Update'); // Change button text to 'Update'
             alert('Attendance data fetched for the selected date and lecture.');
           } else {
-            setAttendanceList([]); // No data means fresh attendance
+            // Initialize attendance records based on student list
+            const freshAttendanceList = studentList.map((student) => ({
+              enrollment_no: student.enrollment_no,
+              status: '', // Mark attendance status as empty for fresh entry
+            }));
+
+            setAttendanceList(freshAttendanceList); // Initialize attendance list
             setIsUpdating(false); // Not in update mode
             setButtonText('Save'); // Reset button text to 'Save'
+            alert('No attendance data found. You can now mark attendance.');
           }
+          setDataFetched(true); // Mark data as fetched to prevent continuous alert
         } catch (error) {
           console.error('Error fetching attendance data:', error);
           alert('Error fetching attendance data.');
@@ -101,55 +110,58 @@ const TeacherAttendance = () => {
     };
 
     fetchAttendance();
-  }, [selectedSubject, date, lecture, token]); // Remove studentList from dependencies
+  }, [selectedSubject, date, lecture, token, studentList, dataFetched]);
 
-  // Handle attendance submission on Save/Edit button click
+  // Toggle attendance status for a student
+  const toggleStudentAttendance = (enrollmentNo) => {
+    setAttendanceList((prevAttendanceList) => {
+      return prevAttendanceList.map((student) => {
+        if (student.enrollment_no === enrollmentNo) {
+          const newStatus = student.status === 'Present' ? 'Absent' : 'Present';
+          return { ...student, status: newStatus }; // Toggle and update status
+        }
+        return student;
+      });
+    });
+  };
+
+  // Handle attendance submission
   const handleAttendanceSubmit = async () => {
-    if (!selectedSubject || !date || !lecture || attendanceList.length === 0) {
-      alert('Please fill in all fields and mark attendance.');
+    if (!attendanceList || !Array.isArray(attendanceList)) {
+      alert("Attendance list is missing or not in the correct format.");
       return;
     }
 
-    const attendanceData = {
-      subjectCode: selectedSubject,
-      lecture: Number(lecture),
-      attendanceDate: date,
-      attendanceList,
-    };
+    // Ensure the attendance list contains both enrollment_no and status for each student
+    const formattedAttendanceList = attendanceList.map((student) => ({
+      enrollment_no: student.enrollment_no,
+      status: student.status === 'Present' ? true : false, // Convert 'Present'/'Absent' to boolean
+    }));
 
     try {
-      const response = await axios.post(
-        'http://localhost:3000/api/teachers/attendance/upload',
-        attendanceData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await fetch('http://localhost:3000/api/teachers/attendance/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // Include the auth token
+        },
+        body: JSON.stringify({
+          subjectCode: selectedSubject, // The selected subject
+          lecture: lecture, // The selected lecture
+          attendanceDate: date, // The selected date
+          attendanceList: formattedAttendanceList, // Send formatted attendance list
+        }),
+      });
 
-      console.log('API Response:', response.data);
-      alert(isUpdating ? 'Attendance updated successfully!' : 'Attendance uploaded successfully!');
+      const data = await response.json();
 
-      // Reset attendance list, date, lecture, and trigger reset in the table
-      setAttendanceList([]); // Completely reset the attendance list
-      setDate(''); // Clear the date field
-      setLecture(''); // Clear the lecture field
-      setIsUpdating(false); // Exit update mode if applicable
-      setButtonText('Save'); // Reset button text
-      navigate('/teacher-dashboard'); // You can navigate as intended
-    } catch (error) {
-      if (error.response) {
-        console.error('Error uploading attendance:', error.response.data);
-        alert(`Failed to upload attendance: ${error.response.data.message || 'Unknown error'}`);
-      } else if (error.request) {
-        console.error('No response received from the server:', error.request);
-        alert('Failed to upload attendance: No response from server');
-      } else {
-        console.error('Error in uploading attendance:', error.message);
-        alert(`Failed to upload attendance: ${error.message}`);
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to upload attendance');
       }
+
+      alert('Attendance uploaded successfully!');
+    } catch (error) {
+      alert(`Failed to upload attendance: ${error.message}`);
     }
   };
 
@@ -177,7 +189,10 @@ const TeacherAttendance = () => {
             type="date"
             id="date"
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={(e) => {
+              setDate(e.target.value);
+              setDataFetched(false); // Reset the data fetched flag when date changes
+            }}
           />
         </div>
 
@@ -187,7 +202,10 @@ const TeacherAttendance = () => {
             type="number"
             id="lecture"
             value={lecture}
-            onChange={(e) => setLecture(e.target.value)}
+            onChange={(e) => {
+              setLecture(e.target.value);
+              setDataFetched(false); // Reset the data fetched flag when lecture changes
+            }}
             placeholder="Enter lecture number"
             min="0"
           />
@@ -196,8 +214,10 @@ const TeacherAttendance = () => {
         {/* Pass attendance props and the submit handler */}
         <AttendanceTable
           students={studentList}
+          attendanceList={attendanceList}
           onSave={handleAttendanceSubmit}
-          isUpdating={isUpdating} // Pass the update state
+          isUpdating={isUpdating}
+          onToggleAttendance={toggleStudentAttendance} // Pass the toggle function
         />
       </div>
     </div>

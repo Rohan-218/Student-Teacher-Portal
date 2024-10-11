@@ -42,17 +42,22 @@ const createAttendanceRecord = async (subjectId, lecture, attendanceDate) => {
 
 // Get student_id using enrollment_no
 const getStudentIdByEnrollmentNo = async (enrollmentNo) => {
+  console.log('Querying for student with enrollment number:', enrollmentNo); // Log the enrollment number received
+
   const query = `
     SELECT student_id FROM student WHERE enrollment_no = :enrollmentNo;
   `;
 
   const result = await sequelize.query(query, {
-    replacements: { enrollmentNo },
+    replacements: { enrollmentNo }, // Corrected: make sure this object has the exact key `enrollmentNo`
     type: sequelize.QueryTypes.SELECT,
   });
 
-  return result.length ? result[0].student_id : null; // Return student_id if found
+  console.log('Query result for student_id:', result); // Log the query result
+
+  return result.length ? result[0].student_id : null;
 };
+
 
 // Insert attendance record for a student
 const insertAttendanceRecord = async (studentId, attendanceRecordId, attendance, subjectId) => {
