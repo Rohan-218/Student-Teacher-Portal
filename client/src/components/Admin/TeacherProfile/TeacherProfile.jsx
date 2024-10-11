@@ -143,14 +143,14 @@ const TeacherProfile = () => {
               </button>
             </div>
           </div>
-          <div className="profile-actions">
+          {/* <div className="profile-actions">
             <Link to="/admin/attendance-record">
               <button className="action-button">Attendance Record</button>
             </Link>
             <Link to="/admin/student-record">
               <button className="action-button">Student Record</button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
