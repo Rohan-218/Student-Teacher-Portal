@@ -6,23 +6,46 @@ const AttendanceModel = {
   fetchAttendanceBetweenDates: async (fromDate, toDate, subjectID) => {
     try {
       const attendanceData = await sequelize.query(
-        `select student_name, attendance, date, enrollment_no from (select a.student_id, b.date, sum(b.lecture)\
-         as attendance FROM attendance_record b inner join attendance a on b.attendance_record_id = a.attendance_record_id \
-         WHERE date between :fromDate and :toDate and b.subject_id = :subjectID group by (a.student_id, b."date") \
-         order by b."date") query1 join (select student_name, student_id, enrollment_no from \
-         student) s on s.student_id = query1.student_id; `,
+        `
+        WITH date_series AS (
+          SELECT generate_series(:fromDate::date, :toDate::date, '1 day') AS date
+        )
+        SELECT 
+            s.student_name, 
+            COALESCE(
+                CASE 
+                    WHEN a.attended_lecture = 1 THEN 'P' 
+                    WHEN a.attended_lecture IS NULL THEN 'No Lecture' 
+                    ELSE 'A' 
+                END, 
+                'N/A'
+            ) AS attendance,
+            ds.date,
+            s.enrollment_no 
+        FROM 
+            date_series ds
+        LEFT JOIN 
+            attendance_record b ON ds.date = b.date AND b.subject_id = :subjectID
+        LEFT JOIN 
+            attendance a ON b.attendance_record_id = a.attendance_record_id 
+        LEFT JOIN 
+            student s ON s.student_id = a.student_id 
+        ORDER BY 
+            ds.date, s.student_name;
+        `,
         {
           replacements: { fromDate, toDate, subjectID },
-          type: sequelize.QueryTypes.SELECT
+          type: sequelize.QueryTypes.SELECT,
         }
       );
-      console.log("Query result: ", attendanceData);
+
+      console.log('Query result:', attendanceData);
       return attendanceData;
     } catch (error) {
       console.error('Database query error:', error);
       throw error;
     }
-  }
+  },
 };
 
 module.exports = AttendanceModel;
