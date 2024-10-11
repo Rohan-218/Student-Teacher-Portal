@@ -4,7 +4,7 @@ import AboutUs from './about-us/AboutUs.jsx';
 import Contact from './contact-us/Contact.jsx';
 import Navbar from '../Common/navbar/Navbar.jsx';  // Import the Navbar component
 import './index.css';
-
+import profile from '/src/assets/AdminHeader/home.jpg';
 const Index = () => {
   const aboutRef = useRef(null);  // Ref for About Us section
   const contactRef = useRef(null);
@@ -48,7 +48,7 @@ const Index = () => {
 
         <div className="right-section">
           <img 
-            src="https://ww2.kqed.org/app/uploads/sites/23/2021/02/iStock-1227150854-1020x583.jpg" 
+            src={profile}
             alt="University" 
             className="background-image" 
           />
