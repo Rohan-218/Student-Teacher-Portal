@@ -35,7 +35,7 @@
 .teacher-profile-section {
   padding: 15px;
   max-width: 800px; /* Max width for profile section */
-  margin: 0 auto 30px auto; /* Center align the profile section */
+  margin: 0 22% 30px 22%; /* Center align the profile section */
   background-color: var(--section-bg-color);
    border-radius: 8px; 
   box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
