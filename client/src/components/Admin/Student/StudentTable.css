@@ -15,11 +15,12 @@
 .student-table th {
   background-color: #f2f2f2;
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .student-table th, .student-table td {
-  padding: 3px 7px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
+  padding: 8px;
   text-align: center;
 }
 

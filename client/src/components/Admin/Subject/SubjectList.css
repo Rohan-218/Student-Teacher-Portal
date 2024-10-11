@@ -1,7 +1,7 @@
 /* Subject Table Styles */
 .subject-table {
   margin-top: 20px;
-    overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the width */
+  overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the width */
 }
 
 .subject-table table {

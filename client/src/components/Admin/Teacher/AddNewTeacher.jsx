@@ -117,10 +117,11 @@ const AddNewTeacher = () => {
   };
 
   return (
-    <div className="add-teacher-container">
+    <>
       <Header />
       <Sidebar />
-      <main className="teaform-container">
+    <div className="add-teacher-container">
+     <main className="teaform-container">
         <h2>Add New Teacher</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -210,6 +211,7 @@ const AddNewTeacher = () => {
         </form>
       </main>
     </div>
+    </>
   );
 };
 

@@ -95,6 +95,7 @@
     }
 
     .adcard {
+        margin-left: -8%;
         font-size: 16px; /* Reduce card font size */
     }
 }

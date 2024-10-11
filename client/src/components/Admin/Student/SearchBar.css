@@ -9,14 +9,14 @@
   
   /* Search input and button side by side */
   .search-input-container input {
-    flex-grow: 1; /* Grow the input to take up available space */
+    flex-grow:1; /* Grow the input to take up available space */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-right: 10px;
   }
   
-  .search-input-container button {
+  .Stu-sea {
     padding: 8px 16px;
     background-color: #007bff;
     color: white;
@@ -24,6 +24,7 @@
     border-radius: 4px;
     cursor: pointer;
     margin-right: 10px;
+    max-width:35%;
   }
   
   .search-input-container .add-student-btn {

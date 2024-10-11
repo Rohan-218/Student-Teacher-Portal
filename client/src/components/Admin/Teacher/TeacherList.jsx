@@ -4,7 +4,7 @@ import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
 import SearchBar from './SearchBar'; 
 import TeacherTable from './TeacherTable'; 
-import './TeacherList.css';  // Import specific styles for TeacherList
+ import './TeacherList.css';  // Import specific styles for TeacherList
 
 const TeacherList = () => {
   const [teachers, setTeachers] = useState([]);
