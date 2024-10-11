@@ -1,22 +1,27 @@
 /* Teacher Table Styles */
 .teacher-table {
   margin-top: 20px;
+  overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the width */
 }
 
 .teacher-table table {
   width: 100%;
   border-collapse: collapse;
 }
-
 .teacher-table th, .teacher-table td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: center;
+  text-align:center;
 }
+
 
 .teacher-table th {
   background-color: #f2f2f2;
   font-weight: bold;
+  font-size: 0.9rem;
+}
+.teacher-table td {
+  font-size: 0.7rem;
 }
 
 .teacher-table tr:nth-child(even) {
@@ -27,22 +32,21 @@
  .teacher-table tr:hover {
   background-color: #f1f1f1;
 }
-
-.teacher-table .view-btn {
+/* .teacher-table .view-btn {
   background-color: #2a81dd;
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
+}  */
 
-.teacher-table .delete-btn {
+  .teacher-table .delete-btn {
   background-color: rgb(250, 67, 67);
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
+}  
 
 .teacher-table .add-btn {
   background-color:rgb(41, 117, 238);  /* Blue color for Add button */
@@ -89,7 +93,6 @@
 
   .main-content {
     margin-left: 0;
-    width: 150%;
   }
 
   .search-bar {
@@ -100,4 +103,9 @@
     width: 100%;
     margin-bottom: 10px;
   }
+}
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 20px;
 }

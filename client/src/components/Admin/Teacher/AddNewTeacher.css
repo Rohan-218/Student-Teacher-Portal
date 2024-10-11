@@ -1,7 +1,6 @@
-.add-teacher-container {
-    margin-left: 10%;  /* Sidebar width */
-    margin-top: 20px;  
-    padding: 20px;
+.add-teacher-container {  
+    padding-top:3%;
+    padding-bottom: 2%;
     display: flex;
     flex-direction: column;
     height: auto;
@@ -9,7 +8,7 @@
     
   .teaform-container {
     margin-left: 23%; 
-    margin-top: 35px;
+    margin-top: 40px;
     margin-right: 15%;
     padding: 20px;
     flex-grow: 1;
@@ -96,4 +95,32 @@
 .select__menu-list {
   max-height: 150px; /* Limits the height of the dropdown */
   overflow-y: auto;  /* Adds scrolling for long lists */
+}
+ /* Media Query for tablets */
+ @media only screen and (max-width: 1024px) {
+  .teaform-container {
+    padding-top: 7%;  
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .btn {
+    width: 25%;
+  }
+}
+
+/* Media Query for smaller mobile devices (small screens) */
+@media only screen and (max-width: 480px) {
+  .teaform-container {
+    margin-top: 25%;
+    padding-top: 0%;
+    margin-left: 0%;
+   width: 93%;
+
+  }
+  .add-teacher-container{
+    margin-left: 0%;
+  }
 }
