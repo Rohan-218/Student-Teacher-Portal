@@ -73,19 +73,23 @@ const TeacherAttendance = () => {
               },
             }
           );
-
+  
           if (response.data.length > 0) {
             const updatedStudents = studentList.map((student) => {
               const attendanceData = response.data.find((attendance) => attendance.enrollment_no === student.enrollment_no);
               return {
                 ...student,
-                status: attendanceData ? (attendanceData.attendance ? 'Present' : 'Absent') : '',
+                // Set status based on attendance data, or initialize as neutral
+                status: attendanceData ? (attendanceData.attendance ? 'Present' : 'Absent') : '', // Use '' for neutral
                 percentage: attendanceData ? attendanceData.percentage : 'N/A',
               };
             });
-
+  
             setStudentList(updatedStudents); // Update student list with attendance data
-            setAttendanceList(response.data); // Prefill attendance data
+            setAttendanceList(updatedStudents.map(student => ({
+              enrollment_no: student.enrollment_no,
+              status: student.status, // Maintain the neutral or attendance status
+            }))); // Prefill attendance data
             setIsUpdating(true); // Set to update mode
             setButtonText('Update'); // Change button text to 'Update'
             alert('Attendance data fetched for the selected date and lecture.');
@@ -95,7 +99,7 @@ const TeacherAttendance = () => {
               enrollment_no: student.enrollment_no,
               status: '', // Mark attendance status as empty for fresh entry
             }));
-
+  
             setAttendanceList(freshAttendanceList); // Initialize attendance list
             setIsUpdating(false); // Not in update mode
             setButtonText('Save'); // Reset button text to 'Save'
@@ -108,10 +112,10 @@ const TeacherAttendance = () => {
         }
       }
     };
-
+  
     fetchAttendance();
   }, [selectedSubject, date, lecture, token, studentList, dataFetched]);
-
+  
  // Toggle attendance status for a student, but only mark as modified when it's changed manually
 const toggleStudentAttendance = (enrollmentNo) => {
   setAttendanceList((prevAttendanceList) => {
@@ -180,6 +184,14 @@ const handleAttendanceSubmit = async () => {
     }
 
     alert(`Attendance ${isUpdating ? 'updated' : 'uploaded'} successfully!`);
+
+   
+
+    setDate(''); // Clear date input
+    setLecture(''); // Clear lecture input
+    setAttendanceList([]); // Clear the attendance list 
+    setSelectedSubject(''); // Optionally reset the subject selection if desired
+    setDataFetched(false); // Reset the data fetched flag for new data fetch
   } catch (error) {
     alert(`Failed to ${isUpdating ? 'update' : 'upload'} attendance: ${error.message}`);
   }

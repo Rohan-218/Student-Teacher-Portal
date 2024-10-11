@@ -30,7 +30,7 @@ const AttendanceTable = ({ students = [], attendanceList = [], onSave, isUpdatin
               const attendanceRecord = attendanceList.find(
                 (att) => att.enrollment_no === student.enrollment_no
               ) || {};
-              const status = attendanceRecord.status || student.status || 'Absent'; // Default to Absent
+              const status = attendanceRecord.status || student.status || 'MARK'; // Default to Absent
 
               return (
                 <tr key={student.enrollment_no}>
