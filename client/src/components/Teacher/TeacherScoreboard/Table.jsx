@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Table.css'; // Link to the CSS file
 
-const StudentTable = ({ students = [], setStudents, onSave }) => {
+const StudentTable = ({ students = [], setStudents, onSave, buttonText }) => {
   // Function to handle input change for marks
   const handleInputChange = (index, value) => {
     // Ensure the input is a valid number or empty
@@ -68,9 +68,11 @@ const StudentTable = ({ students = [], setStudents, onSave }) => {
       </table>
 
       <div className="teacher-marks-bottom-buttons">
-        {/* Use the onSave prop for saving marks */}
-        <button className="teacher-marks-save-btn" onClick={onSave}>
-          Save
+        {/* Dynamically set button text */}
+        <button className="teacher-marks-save-btn" onClick={() => {
+          onSave();
+        }}>
+          {buttonText}
         </button>
       </div>
     </div>
@@ -78,4 +80,3 @@ const StudentTable = ({ students = [], setStudents, onSave }) => {
 };
 
 export default StudentTable;
-
