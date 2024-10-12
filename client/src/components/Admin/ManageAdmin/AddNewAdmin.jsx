@@ -54,8 +54,8 @@ const AddNewAdmin = () => {
   };
 
   return (
-    <div className="add-admin-container">
-      <main className="form-container">
+    <div className="add-newadmin-container">
+      <main className="new-form-container">
         <h2>Add New Admin</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -92,8 +92,8 @@ const AddNewAdmin = () => {
             />
           </div>
           <div className="form-buttons">
-            <button className="btn" type="button" onClick={handleCancel}>Cancel</button>
-            <button className="btn" type="submit">Submit</button>
+            <button className="btn-new" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn-new" type="submit">Submit</button>
           </div>
         </form>
       </main>

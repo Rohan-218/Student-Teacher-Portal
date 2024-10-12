@@ -66,12 +66,13 @@ const ChangePassword = () => {
     };
 
     return (
-        <div className="changepassword-list">
-            <Header />
+        <>
+         <Header />
             <Sidebar />
+        <div className="changepassword-list">
             <div className="main-content">
                 <div className="container">
-                    <main className="form-container">
+                    <main className="c-form-container">
                         <h2>Change Password</h2>
                         {error && <div className="error-message">{error}</div>}
                         {successMessage && <div className="success-message">{successMessage}</div>}
@@ -110,14 +111,15 @@ const ChangePassword = () => {
                                 />
                             </div>
                             <div className="form-buttons">
-                                <button className="btn" type="button" onClick={handleCancel}>Cancel</button>
-                                <button className="btn" type="submit">Submit</button>
+                                <button className="btn-c" type="button" onClick={handleCancel}>Cancel</button>
+                                <button className="btn-c" type="submit">Submit</button>
                             </div>
                         </form>
                     </main>
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

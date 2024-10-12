@@ -1,6 +1,7 @@
 /* admin Table Styles */
 .admin-table {
     margin-top: 20px;
+     overflow-x: scroll; 
   }
   
   .admin-table table {
@@ -73,6 +74,8 @@
     .main-content {
       margin-left: 0;
     }
-
+    .admin-table th, .admin-table td {
+      font-size: 0.9rem; 
+    }
   }
-  
+ 
