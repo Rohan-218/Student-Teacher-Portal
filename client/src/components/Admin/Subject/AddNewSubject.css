@@ -1,5 +1,5 @@
 .add-subject-container {
-    margin-left: 30%;  /* Sidebar width */
+    margin-left: 20%;  /* Sidebar width */
     margin-top: 80px;  
     padding: 20px;
     display: flex;
@@ -8,9 +8,10 @@
   }
     
   .subform-container {
-    margin-left: 30%; 
-    margin-top: 60px;
+    margin-left: 25%; 
+    margin-top: 7%;
     margin-right: 15%;
+    margin-bottom: 2%;
     padding: 20px;
     flex-grow: 1;
     border: 0.5px solid;
@@ -43,11 +44,86 @@
     width: 96%;
   }
 
-  .btn{
+  .btn-s{
     background-color: black;
     color: white;
-    width: 25%;
+     width: 25%; 
     padding: 6px;
     border-radius: 10px;
     margin-top: 8px;
+    cursor: pointer;
   }
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+  /* For tablets and smaller laptops */
+  .subform-container {
+    width: 65%;
+    margin-left: 25%;
+    margin-top: 10%;
+    margin-bottom: 3%;
+  }
+
+  .btn-s {
+    width: 30%;  /* Slightly wider buttons on smaller screens */
+  }
+
+  .input, .select {
+    width: 100%;  /* Ensure full width for inputs and selects */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* For tablets */
+ 
+  .subform-container {
+    width: 80%;
+    margin-left: 8%;
+    margin-top: 13%;
+    /* margin-bottom: 3%; */
+    padding: 15px;
+  }
+
+  /* .form-buttons {
+    flex-direction: column;
+    gap: 10px;
+  } */
+
+  .btn-s {
+    width: 30%;  /* Full width buttons for smaller screens */
+  }
+
+  .input, .select {
+    width: 100%;  /* Full width inputs and selects */
+    padding: 8px;  /* Adjust padding for smaller devices */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* For small tablets and mobile screens */
+  .subform-container {
+    width: 75%;
+    margin-top: 20%;
+    margin-left: 10%;
+    padding: 10px;
+  }
+/* 
+  .form-buttons {
+    flex-direction: column;
+    justify-content: space-between;
+  } */
+
+  .input, .select {
+    width: 100%;
+    padding: 10px;  /* Increased padding for touch devices */
+  }
+
+  .btn-s {
+    width: 35%;
+    margin-top: 10px;  /* Separate buttons vertically */
+  }
+
+  h2 {
+    font-size: 1.5em;  /* Adjust heading size for smaller screens */
+  }
+}

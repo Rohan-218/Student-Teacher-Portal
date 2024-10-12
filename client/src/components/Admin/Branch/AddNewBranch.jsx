@@ -60,10 +60,11 @@ const AddNewBranch = () => {
   };
 
   return (
-    <div className="add-branch-container">
-         <Header />
-         <Sidebar />
-      <main className="form-container">
+    <>
+      <Header />
+      <Sidebar />
+    <div className="add-branch-container">  
+      <main className="form-container-b">
         <h2>Add New Branch</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -71,12 +72,13 @@ const AddNewBranch = () => {
             <input className="input" type="text" name="Branchname" value={formData.Branchname} onChange={handleChange} required />
           </div>
           <div className="form-buttons">
-            <button className="btn" type="button" onClick={handleCancel}>Cancel</button>
-            <button className="btn" type="submit">Submit</button>
+            <button className="btn-b" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn-b" type="submit">Submit</button>
           </div>
         </form>
       </main>
     </div>
+    </>
   );
 };
 

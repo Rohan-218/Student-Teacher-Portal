@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AddNewExam.css';
+ import './AddNewExam.css';
 
 const AddNewExam = () => {
   const [formData, setFormData] = useState({
@@ -63,7 +63,7 @@ const AddNewExam = () => {
 
   return (
     <div className="add-exam-container">
-      <main className="form-container">
+      <main className="form-container-e">
         <h2>Add New Exam</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -89,8 +89,8 @@ const AddNewExam = () => {
             />
           </div>
           <div className="form-buttons">
-            <button className="btn" type="button" onClick={handleCancel}>Cancel</button>
-            <button className="btn" type="submit">Submit</button>
+            <button className="btn-e" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn-e" type="submit">Submit</button>
           </div>
         </form>
       </main>

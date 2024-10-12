@@ -1,6 +1,7 @@
 /* branch Table Styles */
 .branch-table {
     margin-top: 20px;
+    overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the width */
   }
   
   .branch-table table {
@@ -17,6 +18,10 @@
   .branch-table th {
     background-color: #f2f2f2;
     font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .branch-table td {
+    font-size: 0.7rem;
   }
 
   .branch-table tr:nth-child(even) {

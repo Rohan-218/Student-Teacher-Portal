@@ -29,7 +29,7 @@ const SearchBar = ({ onFilter }) => {
       <div className="search-input-container">
         <input
           type="text"
-          placeholder="Search Branch Name"
+          placeholder="Search"
           name="branch_name"
           value={filters.branch_name}
           onChange={handleChange}

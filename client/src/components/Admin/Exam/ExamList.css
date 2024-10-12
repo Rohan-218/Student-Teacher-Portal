@@ -1,6 +1,7 @@
 /* exam Table Styles */
 .exam-table {
     margin-top: 20px;
+     overflow-x: scroll; 
   }
   
   .exam-table table {
@@ -64,15 +65,8 @@
   
   /* Responsive styles */
   @media (max-width: 768px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-  
-    .main-content {
-      margin-left: 0;
-    }
-
+    .exam-table {
+      margin-top: 2%;
+      }
   }
-  
+ 

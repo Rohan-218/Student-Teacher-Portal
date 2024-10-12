@@ -155,9 +155,10 @@ const AddNewSubject = () => {
   }, []);
 
   return (
+    <>
+     <Header />
+     <Sidebar />
     <div className="add-Subject-container">
-      <Header />
-      <Sidebar />
       <main className="subform-container">
         <h2>Add New Subject</h2>
         <form onSubmit={handleSubmit}>
@@ -200,12 +201,13 @@ const AddNewSubject = () => {
             </select>
           </div>
           <div className="form-buttons">
-            <button className="btn" type="button" onClick={handleCancel}>Cancel</button>
-            <button className="btn" type="submit">Submit</button>
+            <button className="btn-s" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn-s" type="submit">Submit</button>
           </div>
         </form>
       </main>
     </div>
+    </>
   );
 };
 

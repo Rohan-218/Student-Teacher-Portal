@@ -57,9 +57,10 @@ const BranchList = () => {
   };
 
   return (
-    <div className="branch-list">
+    <>
       <Header />
       <Sidebar />
+    <div className="branch-list">
       <div className="main-content">
         <div className="container">
           <SearchBar onFilter={handleFilter} />
@@ -69,6 +70,7 @@ const BranchList = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
