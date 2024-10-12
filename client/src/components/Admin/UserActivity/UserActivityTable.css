@@ -1,6 +1,7 @@
 /* Table Styles */
 .user-activity-table {
     margin-top: 20px;
+    overflow-x: scroll;
   }
   
   .user-activity-table table {

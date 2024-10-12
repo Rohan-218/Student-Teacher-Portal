@@ -62,9 +62,6 @@
     }
   }
   @media (max-width: 344px){
-    body{
-      background-color: blanchedalmond;
-    }
     .btn-e{
       width: 37%;
     }
