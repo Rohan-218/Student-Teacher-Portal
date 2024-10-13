@@ -8,7 +8,7 @@ const getTotalLecturesBySubjectId = async (subjectId) => {
             SELECT total_lectures 
             FROM attendance_record 
             WHERE subject_id = :subjectId
-            ORDER BY updated_last DESC 
+            ORDER BY total_lectures DESC 
             LIMIT 1
         `, {
             replacements: { subjectId }, // Using named replacements
