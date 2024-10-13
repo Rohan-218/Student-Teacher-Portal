@@ -11,6 +11,9 @@ const teachUpdateAttendanceController = require('../controllers/teachUpdateAtten
 const { getAttendanceByDateRange } = require('../controllers/fromToRangeController');
 const { fetchAttendanceAndMarks } = require('../controllers/attenMarksController');
 const { getTotalLectures, getUpdatedLast } = require('../controllers/totalLectureController');  // Import the total lecture controller
+const attendanceController = require('../controllers/attendanceBelowController');
+
+router.get('/attendance/below-threshold', attendanceController.getStudentsBelowAttendanceThreshold);
 
 // Define the route to get attendance and marks based on subject
 router.get('/atten/marks', fetchAttendanceAndMarks);

@@ -23,10 +23,10 @@ exports.getSubjectCount = async () => {
     }
 };
 
-  exports.registerSubject = async ( subjectName, subjectCode, subjectInitials, branchName, semester, teacherName) => {
+  exports.registerSubject = async ( subjectName, subjectCode, subjectInitials, branchName, semester) => {
     try {
         // Call the model function to create a user and admin
-        const result = await createSubject( subjectName, subjectCode, subjectInitials, branchName, semester, teacherName);
+        const result = await createSubject( subjectName, subjectCode, subjectInitials, branchName, semester);
 
         return result;
     } catch (error) {

@@ -37,7 +37,7 @@ exports.getSubjectCount= async (req, res) => {
 };
 
 exports.createSubject = async (req, res) => {
-    const { subjectName, subjectCode, subjectInitials, branchName, semester, teacherName} = req.body;
+    const { subjectName, subjectCode, subjectInitials, branchName, semester} = req.body;
 
     try {
         // Check if the user is an admin (user_type 0 or 3)
@@ -47,7 +47,7 @@ exports.createSubject = async (req, res) => {
         }
 
         // Call the service to create the subject
-        const result = await registerSubject( subjectName, subjectCode, subjectInitials, branchName, semester, teacherName);
+        const result = await registerSubject( subjectName, subjectCode, subjectInitials, branchName, semester);
 
         // Return success response
         return res.status(201).json({

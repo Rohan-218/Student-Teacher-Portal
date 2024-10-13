@@ -97,3 +97,17 @@
     border: none;
     border-radius: 4px;
 }
+
+.attendanceBelow-Dropdown {
+    position: absolute;  
+    right: 140px;            
+    top: 215px;          /* Increased top value to move it further down */
+    padding: 4px;
+    background-color: #35393b; /* Optional styling for background */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.3rem;  
+}
+
+

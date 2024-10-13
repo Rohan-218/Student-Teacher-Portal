@@ -9,9 +9,7 @@ const AddNewSubject = () => {
     subjectcode: '',
     abbsubname: '',
     branch: '',
-    semester: '',
-    teacher: '',
-    contactNo: ''  // Ensure to add this if it's included in your form
+    semester: ''
   });
 
   const handleChange = (e) => {
@@ -27,8 +25,7 @@ const AddNewSubject = () => {
       subjectCode: formData.subjectcode,
       subjectInitials: formData.abbsubname,
       branchName: formData.branch,
-      semester: formData.semester,
-      teacherName: formData.teacher
+      semester: formData.semester
     };
   
     try {
@@ -58,8 +55,6 @@ const AddNewSubject = () => {
         abbsubname: '',
         branch: '',
         semester: '',
-        teacher: '',
-        contactNo: '',
       });
   
     } catch (error) {
@@ -77,8 +72,6 @@ const AddNewSubject = () => {
       abbsubname: '',
       branch: '',
       semester: '',
-      teacher: '',
-      contactNo: '',
     });
   };
 
@@ -120,39 +113,6 @@ const AddNewSubject = () => {
     fetchBranches();
   }, []);
 
-  // Fetch teachers
-  useEffect(() => {
-    const fetchTeachers = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const res = await fetch('http://localhost:3000/api/admin/teachers', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const data = await res.json();
-
-        // Only extract teacher names
-        if (Array.isArray(data)) {
-          const teacherNames = data.map(teacher => teacher.teacher_name);
-          setTeachers(teacherNames);
-        } else {
-          console.error('Unexpected data format:', data);
-        }
-      } catch (error) {
-        console.error('Error fetching teachers:', error);
-      }
-    };
-
-    fetchTeachers();
-  }, []);
 
   return (
     <>
@@ -188,17 +148,6 @@ const AddNewSubject = () => {
           <div className="form-group">
             <label>Semester:</label>
             <input className="input" type="text" name="semester" value={formData.semester} onChange={handleChange}  min="1" max="8" required />
-          </div>
-          <div className="form-group">
-            <label>Teacher:</label>
-            <select className="select" name="teacher" value={formData.teacher} onChange={handleChange} required>
-              <option value="">Select Teacher</option>
-              {teachers.map((teacher, index) => (
-                <option key={index} value={teacher}>
-                  {teacher}
-                </option>
-              ))}
-            </select>
           </div>
           <div className="form-buttons">
             <button className="btn-s" type="button" onClick={handleCancel}>Cancel</button>
