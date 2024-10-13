@@ -13,6 +13,8 @@
     align-items: center;
     text-align: center;
 }
+
+
 /* Back button styles */
 .Teacher-back-button {
     position: absolute;
@@ -36,10 +38,7 @@
     align-items: center;
     
 }
-.Teacher-Drop-down {
-    /* position: relative; */
 
-}
 
 /* Record details section */
 .teacher-recordDetails {
@@ -98,7 +97,18 @@
     border-radius: 4px;
 }
 
+.sub-drop{
+    display: flex;
+}
+
+.teacherSub-Dropdown {
+    /* position: relative; */
+    display: flex;
+
+}
+
 .attendanceBelow-Dropdown {
+    display: flex;
     position: absolute;  
     right: 140px;            
     top: 215px;          /* Increased top value to move it further down */

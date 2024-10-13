@@ -1,4 +1,9 @@
+.debarred {
+
+    color: rgb(247, 65, 65); /* Optional: change text color for better visibility */
+}
 /* Container */
+
 .teacher-daily-attendance-record-table {
     width: 100%;
     margin: 20px auto;

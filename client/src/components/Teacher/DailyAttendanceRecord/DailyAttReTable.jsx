@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './DailyAttReTable.css';
 
-const DailyAttendanceRecordTable = ({ subjectID }) => {
+const DailyAttendanceRecordTable = ({ subjectID, attendanceFilter }) => {
   const [students, setStudents] = useState([]); // Initialize with an empty array
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -107,39 +107,42 @@ const DailyAttendanceRecordTable = ({ subjectID }) => {
           </tr>
         </thead>
         <tbody>
-          {students.length > 0 ? (
-            students.map((student, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td> {/* Display index as S.No */}
-                <td>{student.student_name}</td> {/* Student name from fetched data */}
-                <td>{student.enrollment_no}</td> {/* Enrollment number */}
-                <td>{student.percentage || 'N/A'}</td> {/* Show percentage if available */}
+                {students.length > 0 ? (
+                    students.map((student, index) => {
+                        const isDebarred = (attendanceFilter === '75' && student.percentage < 75) || 
+                                           (attendanceFilter === '50' && student.percentage < 50);
 
-                {/* Attendance data for each date */}
-                {dateColumns.map((date, idx) => {
-                  const attendanceRecords = student.attendance_records[date]; // Get attendance records for the date
-                  return (
-                    <td key={idx}>
-                      {attendanceRecords ? (
-                        attendanceRecords.map((att, recordIdx) => (
-                          <div key={recordIdx}>
-                            {att === 'P' ? 'Present' : att === 'A' ? 'Absent' : 'No Lecture'}
-                          </div>
-                        ))
-                      ) : (
-                        'N/A' // Show 'N/A' if no attendance record for that date
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={4 + dateColumns.length}>No students found for the selected date range.</td>
-            </tr>
-          )}
-        </tbody>
+                        return (
+                            <tr key={index} className={isDebarred ? 'debarred' : ''}>
+                                <td>{index + 1}</td>
+                                <td>{student.student_name}</td>
+                                <td>{student.enrollment_no}</td>
+                                <td>{student.percentage || 'N/A'}</td>
+                                {dateColumns.map((date, idx) => {
+                                    const attendanceRecords = student.attendance_records[date];
+                                    return (
+                                        <td key={idx}>
+                                            {attendanceRecords ? (
+                                                attendanceRecords.map((att, recordIdx) => (
+                                                    <div key={recordIdx}>
+                                                        {att === 'P' ? 'Present' : att === 'A' ? 'Absent' : 'No Lecture'}
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                'N/A'
+                                            )}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })
+                ) : (
+                    <tr>
+                        <td colSpan={4 + dateColumns.length}>No students found for the selected date range.</td>
+                    </tr>
+                )}
+            </tbody>
       </table>
     </div>
   );

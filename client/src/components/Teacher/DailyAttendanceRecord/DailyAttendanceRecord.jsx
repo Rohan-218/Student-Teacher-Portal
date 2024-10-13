@@ -61,19 +61,24 @@ const DailyAttendanceRecord = () => {
     const selectedValue = e.target.value;
     setSelectedAttendanceBelow(selectedValue);
 
+    // Show alert for debarred students
+    if (selectedValue) {
+        alert('Debarred Students are shown in red.');
+    }
+
     // Filter the student list based on selected attendance percentage
     const filteredStudents = studentList.filter(student => {
-      const attendancePercentage = student.attendance_percentage || 0;
-      if (selectedValue === '75') {
-        return attendancePercentage < 75;
-      } else if (selectedValue === '50') {
-        return attendancePercentage < 50;
-      }
-      return true; // If no filter is applied, show all students
+        const attendancePercentage = student.attendance_percentage || 0;
+        if (selectedValue === '75') {
+            return attendancePercentage < 75;
+        } else if (selectedValue === '50') {
+            return attendancePercentage < 50;
+        }
+        return true; // If no filter is applied, show all students
     });
 
     setStudentList(filteredStudents); // Update student list with filtered data
-  };
+};
 
   return (
     <div className="teacher-dailyAttendanceContainer">
@@ -82,6 +87,7 @@ const DailyAttendanceRecord = () => {
       </Link>
       <h1 className="Daily-att">Daily Attendance Record</h1>
 
+      <div className='sub-drop'>
       {/* Subject Dropdown */}
       <div className="teacherSub-Dropdown">
         <select
@@ -122,10 +128,11 @@ const DailyAttendanceRecord = () => {
           <option value="50">Below 50%</option>
         </select>
       </div>
+    </div>
 
       {/* Attendance record table */}
       <div className="teacher-attendanceContent">
-        <DailyAttendanceRecordTable students={studentList} setStudents={setStudentList} subjectID={subjectID} /> {/* Pass studentList as a prop */}
+        <DailyAttendanceRecordTable students={studentList} setStudents={setStudentList} subjectID={subjectID}  attendanceFilter={selectedAttendanceBelow}/> {/* Pass studentList as a prop */}
       </div>
     </div>
   );
