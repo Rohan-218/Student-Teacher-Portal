@@ -10,6 +10,12 @@ exports.getStudentMarks = async (req, res) => {
   }
 
   try {
+
+    const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
+        }
+
     const marks = await getStudentMarks(userId, examId);
 
     if (marks) {
@@ -33,6 +39,12 @@ exports.getStudentPerformance = async (req, res) => {
   }
 
   try {
+
+    const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
+        }
+        
     const performance = await getStudentPerformance(userId);
 
     if (performance) {

@@ -6,7 +6,10 @@ const getStudentAttendance = async (req, res) => {
     try {
         const { userId } = req.params;
 
-
+        const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
+        }
         // Fetch the student_id from the student table using user_id with replacements
         const [studentResult] = await sequelize.query(
             `SELECT student_id FROM student WHERE user_id = :userId`,
@@ -37,7 +40,10 @@ const getStudentAttendanceTrend = async (req, res) => {
     try {
         const { user_id } = req.params; // Extract user_id and user_type from the decoded JWT
 
-
+        const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
+        }
         // Fetch the student_id from the student table using user_id
         const [studentResult] = await sequelize.query(
             `SELECT student_id FROM student WHERE user_id = :user_id`,
@@ -68,7 +74,11 @@ const getStudentDailyAttendance = async (req, res) => {
     try {
         const { user_id } = req.params;
 
-
+        const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
+        }
+        
         const [studentResult] = await sequelize.query(
             `SELECT student_id FROM student WHERE user_id = :user_id`,
             { 
