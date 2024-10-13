@@ -44,9 +44,9 @@ const AttendanceModel = {
           ds.date,
           COALESCE(
             CASE 
-              WHEN a.attended_lecture = 1 THEN 'P' 
-              WHEN a.attended_lecture IS NULL THEN 'No Lecture' 
-              ELSE 'A' 
+             WHEN a.attendance = true THEN 'P'      -- Present when attendance is true
+            WHEN a.attendance = false THEN 'A'     -- Absent when attendance is false
+            WHEN a.attendance IS NULL THEN 'No Lecture' -- No lecture if attendance is NULL
             END, 
             'N/A'
           ) AS attendance,
