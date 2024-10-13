@@ -49,17 +49,11 @@ exports.createTeacher = async (name, designation, userId, contactNo) => {
 };
 
 // Get subject_id by subject_code
-exports.getSubjectIdByCode = async (subjectNameWithCode) => {
+exports.getSubjectIdByCode = async (subjectCode) => {
   try {
-    const subjectCodeMatch = subjectNameWithCode.match(/\(([^)]+)\)/); // Extract code inside parentheses
-    if (!subjectCodeMatch) {
-      throw new Error('Invalid subject format, expected format "Subject Name (code)"');
-    }
-    const code = subjectCodeMatch[1]; // Extracted code
-
     const query = 'SELECT subject_id FROM subject WHERE subject_code = :subjectCode';
     const result = await sequelize.query(query, {
-      replacements: { subjectCode: code },
+      replacements: { subjectCode: subjectCode },
       type: sequelize.QueryTypes.SELECT
     });
 
