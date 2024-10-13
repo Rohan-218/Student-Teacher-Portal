@@ -11,7 +11,7 @@
   padding-top: 5%;
   display: flex;
   height: 100vh; /* Full viewport height */
-  border: 1px solid red;
+  /* border: 1px solid red; */
   overflow: auto;
   margin-left: 20%;
   transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
@@ -23,7 +23,7 @@
   flex-direction: column; /* Stack sections vertically */
   gap: 5%; /* Space between sections */
   box-sizing: border-box;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   overflow: auto;
   overflow-x: hidden;
 }
