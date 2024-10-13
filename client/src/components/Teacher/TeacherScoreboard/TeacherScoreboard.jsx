@@ -245,6 +245,7 @@ const handleSaveMarks = async () => {
           setStudents={setStudentList} 
           onSave={handleSaveMarks} // Pass handleSaveMarks function
           buttonText={isUpdateMode ? 'Update Marks' : 'Save Marks'} // Change button text
+          maxMarks={maxMarks}
         />
       )}
     </div>

@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import './Table.css'; // Link to the CSS file
 
-const StudentTable = ({ students = [], setStudents, onSave, buttonText }) => {
+const StudentTable = ({ students = [], setStudents, onSave, buttonText ,maxMarks}) => {
   // Function to handle input change for marks
   const handleInputChange = (index, value) => {
     // Ensure the input is a valid number or empty
     if (value === '' || /^\d+$/.test(value)) {
+
+      // Check if entered marks exceed maxMarks
+      if (value !== '' && parseInt(value, 10) > maxMarks) {
+        alert(`Marks entered should be less than or equal to ${maxMarks}.`);
+        return; // Do not update if marks exceed maxMarks
+      }
+
       const updatedStudents = [...students];
       updatedStudents[index].Marks_Obtained = value;
       setStudents(updatedStudents); // Update the students prop with the new marks
