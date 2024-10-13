@@ -17,7 +17,9 @@
   font-weight: bold;
   font-size: 0.9rem;
 }
-
+.student-table td {
+  font-size: 0.7rem;
+}
 .student-table th, .student-table td {
   border: 1px solid #ddd;
   padding: 8px;
