@@ -46,7 +46,7 @@ function TeacherDashboard() {
        <Sidebar handleScrollToSection={handleScrollToSection} /> 
       <div className="teacher-content">
         <div id="teacher-dashboard" className="teacher-section">
-          <h2>Dashboard</h2>
+          <h1>Dashboard</h1>
           {/* Add dashboard content here */}
         </div>
         <div className="teacher-profile-section">
@@ -58,19 +58,19 @@ function TeacherDashboard() {
         </div>
         
         <div id="teacher-scoreboard" className="teacher-section">
-          <h2>Scoreboard</h2>
+          <h1>Scoreboard</h1>
         </div>
         <div className='teacher-table-container'>
           <TeacherScoreboard />
         </div>
         <div id="teacher-attendance" className="teacher-section">
-          <h2>Attendance</h2>
+          <h1>Attendance</h1>
         </div>
         <div className='teacher-table-container'>
           <TeacherAttendance />
         </div>
         <div id="teacher-student-record" className="teacher-section">
-          <h2>Student Record</h2>
+          <h1>Student Record</h1>
         </div>
         <div className='teacher-table-container'>
           <StudentRecord />

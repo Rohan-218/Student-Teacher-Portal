@@ -1,5 +1,5 @@
 :root {
-  --navbar-height: 35px;  /* Height of the navbar */
+  --navbar-height: 30%;  /* Height of the navbar */
   --sidebar-width: 20%;   /* Sidebar width */
   --main-bg-color: #e9ecef; /* Main background color */
   --section-bg-color: #f9f9f9; /* Section background color */
@@ -7,21 +7,25 @@
 }
 
 .teacher-dashboard {
-  width: 97%;
-  padding-top:5% ;
+  width: 77%;
+  padding-top: 5%;
   display: flex;
   height: 100vh; /* Full viewport height */
-  border: 1px solid var(--border-color);}
+  border: 1px solid red;
+  overflow: auto;
+  margin-left: 20%;
+  transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
+}
 
 .teacher-content {
-  flex: 1; /* Allow content to take remaining width after sidebar */
-   margin-left: 20vw; /*Match this with the sidebar width */
   padding: 20px;
   display: flex;
   flex-direction: column; /* Stack sections vertically */
   gap: 5%; /* Space between sections */
   box-sizing: border-box;
-  /* overflow-x: auto; Allow horizontal scrolling if needed */
+  border: 2px solid blue;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .teacher-section {
@@ -33,50 +37,49 @@
 }
 
 .teacher-profile-section {
-  padding: 15px;
+  padding: 2%;
   max-width: 800px; /* Max width for profile section */
   margin: 0 22% 30px 22%; /* Center align the profile section */
   background-color: var(--section-bg-color);
-   border-radius: 8px; 
+  border-radius: 8px; 
   box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
 }
 
-/* Flexbox for main content to display sections in a column */
 .teacher-main-content {
   display: flex;
   flex-direction: column; /* Stack sections vertically */
   gap: 20px; /* Space between main sections */
 }
 
- /* Media query for responsiveness 
- @media (max-width: 1200px) {
-  :root {
-    --sidebar-width: 20%;  Adjust sidebar width for medium screens 
+/* Media Query for tablets (between 768px and 1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .teacher-dashboard {
+    margin-left: 0; /* Remove margin to fill the space when sidebar is hidden */
+    width: 100%; /* Make the dashboard full width */
   }
 
+  .teacher-sidebar {
+    display: none;
+  }
 
-@media (max-width: 768px) {
-  :root {
-    --sidebar-width: 25%; Adjust sidebar width for smaller screens 
-  }
   .teacher-content {
-    padding: 15px;  Adjust padding 
-  }
-  .teacher-profile-section {
-    width: 100%;  Full width on smaller screens 
-    padding: 10px;  Adjust padding 
-  }
-} */
-/* Adjust margins for responsiveness */
-@media (max-width: 1024px) {
-  .teacher-content {
-    margin-left: 25vw; /* Adjust according to smaller sidebar width */
+    margin-left: 0;
+    width: 100%; /* Fill the width */
   }
 }
 
+/* Media Query for mobile devices (below 768px) */
 @media (max-width: 768px) {
+  .teacher-sidebar {
+    display: none;
+  }
+
+  .teacher-dashboard {
+    width: 100%;
+    margin: 0; /* Remove any margin */
+  }
+
   .teacher-content {
-    margin-left: 30vw; /* Adjust according to smaller screen sizes */
-    padding: 15px; /* Adjust padding for smaller screens */
+    width: 100%; /* Full width for mobile */
   }
 }
