@@ -186,7 +186,7 @@ const handleSaveMarks = async () => {
     setBranchName(''); // Clear branch name
     setSemester(''); // Clear semester
     setIsUpdateMode(false); // Reset update mode
-    
+
   } catch (error) {
     console.error(isUpdateMode ? 'Error updating marks:' : 'Error uploading marks:', error);
   }
@@ -254,7 +254,7 @@ const handleSaveMarks = async () => {
           students={studentList} 
           setStudents={setStudentList} 
           onSave={handleSaveMarks} // Pass handleSaveMarks function
-          buttonText={isUpdateMode ? 'Update Marks' : 'Save Marks'} // Change button text
+          buttonText={isUpdateMode ? 'Update' : 'Save'} // Change button text
           maxMarks={maxMarks}
         />
       )}

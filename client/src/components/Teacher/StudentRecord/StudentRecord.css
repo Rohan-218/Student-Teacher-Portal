@@ -55,7 +55,7 @@
     justify-content: space-between; /* Space between "Updated Last" and "Total Lecture" */
     align-items: center; /* Center align items vertically */
     margin-top: auto; /* Adjusted margin to fit the layout better */
-    width: 100%; /* Ensure the div takes the full width */
+    width: 98%; /* Ensure the div takes the full width */
     padding-right: 4%; /* Adjust as needed to move "Total Lecture" more towards the right */
 }
 

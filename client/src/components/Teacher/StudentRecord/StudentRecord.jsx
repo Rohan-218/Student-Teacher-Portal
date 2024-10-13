@@ -83,6 +83,7 @@ const StudentRecord = () => {
           attendance_percentage: attenMarks.attendance_percentage || 0,
           midterm1_marks: attenMarks.midterm1_marks || 0,
           midterm2_marks: attenMarks.midterm2_marks || 0,
+          finals_marks: attenMarks.finals_marks || 0,
         };
       });
 

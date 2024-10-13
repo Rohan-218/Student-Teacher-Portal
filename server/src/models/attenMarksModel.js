@@ -19,7 +19,7 @@ const AttenMarksModel = {
         LEFT JOIN attendance_record AS ar ON a.attendance_record_id = ar.attendance_record_id AND ar.subject_id = :subjectId
         LEFT JOIN marks AS m1 ON s.student_id = m1.student_id AND m1.subject_id = :subjectId 
         LEFT JOIN marks AS m2 ON s.student_id = m2.student_id AND m2.subject_id = :subjectId
-        LEFT JOIN marks AS f ON s.student_id = m2.student_id AND f.subject_id = :subjectId
+        LEFT JOIN marks AS f ON s.student_id = f.student_id AND f.subject_id = :subjectId
         WHERE ar.subject_id = :subjectId
         GROUP BY s.student_id, s.student_name;
       `, {
