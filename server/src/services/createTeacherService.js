@@ -9,14 +9,14 @@ exports.createTeacher = async (name, email, password, designation, contactNo, su
     const teacherId = await createTeacherModel.createTeacher(name, designation, userId, contactNo);
 
     // Insert teacher and subject mappings in subject_teacher table
-    for (const subjectNameWithCode of subjects) {
-      const subjectId = await createTeacherModel.getSubjectIdByCode(subjectNameWithCode);
+    for (const subjectCode of subjects) { // subjects is now an array of subject codes
+      const subjectId = await createTeacherModel.getSubjectIdByCode(subjectCode); // Pass subjectCode directly
       if (subjectId) {
         console.log(`Assigning subject ID ${subjectId} to teacher ID ${teacherId}`);
         await createTeacherModel.assignSubjectToTeacher(teacherId, subjectId);
       } else {
-        console.error(`Subject with name/code ${subjectNameWithCode} not found.`);
-        throw new Error(`Subject with name/code ${subjectNameWithCode} not found.`);
+        console.error(`Subject with code ${subjectCode} not found.`);
+        throw new Error(`Subject with code ${subjectCode} not found.`);
       }
     }
 
