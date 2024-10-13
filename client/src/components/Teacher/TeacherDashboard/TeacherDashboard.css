@@ -18,9 +18,9 @@
 }
 
 .teacher-content {
-  padding: 20px;
   display: flex;
   flex-direction: column; /* Stack sections vertically */
+  width:100%;
   gap: 5%; /* Space between sections */
   box-sizing: border-box;
   /* border: 2px solid blue; */
@@ -39,7 +39,7 @@
 .teacher-profile-section {
   padding: 2%;
   max-width: 800px; /* Max width for profile section */
-  margin: 0 22% 30px 22%; /* Center align the profile section */
+  margin: 0 15% 3% 15%; /* Center align the profile section */
   background-color: var(--section-bg-color);
   border-radius: 8px; 
   box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
@@ -81,5 +81,12 @@
 
   .teacher-content {
     width: 100%; /* Full width for mobile */
+  }
+
+  .teacher-profile-section {
+    padding: 1%;
+    margin: 0 5% 3% 5%; 
+    border-radius: 10%; 
+    box-shadow: 0 3px 4px 20%; /* Light shadow for depth */
   }
 }
