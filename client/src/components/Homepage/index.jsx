@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import AboutUs from './about-us/AboutUs.jsx';
 import Contact from './contact-us/Contact.jsx';
 import Navbar from '../Common/navbar/Navbar.jsx';  // Import the Navbar component
+import {jwtDecode} from 'jwt-decode'; // Import jwtDecode
 import './index.css';
 import profile from '/src/assets/AdminHeader/home.jpg';
+
 const Index = () => {
   const aboutRef = useRef(null);  // Ref for About Us section
   const contactRef = useRef(null);
@@ -12,33 +14,59 @@ const Index = () => {
   const [button, setButton] = useState('LOGIN');  // Default button text
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Token state management
 
-  // Set button text based on token presence
+  // Check token and set button text based on user type
   useEffect(() => {
     const token = localStorage.getItem('token');
+    
     if (token) {
-      setButton('GO TO PROFILE');
-      setIsLoggedIn(true);
+      try {
+        const decodedToken = jwtDecode(token);
+        const { user_type } = decodedToken; // Extract user_type from token
+
+        // If user_type is 1 or 2, show "GO TO PROFILE" button
+        if (user_type === 1 || user_type === 2) {
+          setButton('GO TO PROFILE');
+          setIsLoggedIn(true);
+        } else {
+          // If user_type is not 1 or 2, show "LOGIN" button
+          setButton('LOGIN');
+          setIsLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Invalid token", error);
+        setButton('LOGIN');  // Set to LOGIN in case of any error
+        setIsLoggedIn(false);
+      }
     } else {
       setButton('LOGIN');
       setIsLoggedIn(false);
     }
-  }, [isLoggedIn]);  // Run whenever `isLoggedIn` changes
+  }, [isLoggedIn]);
 
+  // Handle button click for navigation
   const handleLoginClick = () => {
     const token = localStorage.getItem('token');
+    
     if (token) {
-      // Redirect to student dashboard if token exists
-      navigate('/student-dashboard');
+      const decodedToken = jwtDecode(token);
+      const { user_type } = decodedToken;
+
+      if (user_type === 1) {
+        navigate('/student-dashboard');  // Navigate to student dashboard
+      } else if (user_type === 2) {
+        navigate('/teacher-dashboard');  // Navigate to teacher dashboard
+      } else {
+        // If user_type is invalid, navigate to login
+        navigate('/login');
+      }
     } else {
-      // Navigate to login page if no token
-      navigate('/login');
+      navigate('/login');  // Navigate to login if no token
     }
   };
 
   return (
     <div id="top" className="homepage-container">
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> {/* Pass state */}
-      {/* New wrapper for flex layout */}
       <div className="homepage-content">
         <div className="left-section">
           <h1 className="large-text">Welcome to</h1>
