@@ -42,12 +42,11 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
   }, [location, setIsLoggedIn]);
 
   return (
-    <nav className='snav'>
-      <ul className='sul'>
-        <li className="snavlogo-sli">XYZ UNIVERSITY</li>
-        
+    <div className='snav'>
+       <div  className="snavlogo-sli">XYZ UNIVERSITY</div>
+      <div className='sul'>
         {isHomePage && (
-          <li className="sli">
+          <div className="sli">
             <RouterLink to="/admin/admin-login" className="snav-link">
             <img 
                 src={account}
@@ -56,10 +55,10 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
               />
               Admin Login
             </RouterLink>
-          </li>
+          </div>
         )}
 
-        <li className='sli'>
+        <div className='sli'>
           {isHomePage ? (
             <ScrollLink to="top" smooth={true} duration={500} className="snav-link">
               <img 
@@ -79,15 +78,15 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
               Home
             </RouterLink>
           )}
-        </li>
+        </div>
 
-        <li className='sli'>
+        <div className='sli'>
           {isHomePage ? (
             <ScrollLink to="about-us" smooth={true} duration={500} className="snav-link">
               <img 
                 src={info} 
                 alt="About Us Icon" 
-                className="icon1" 
+                className="icon4" 
               />
               About Us
             </ScrollLink>
@@ -101,9 +100,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
               About Us
             </RouterLink>
           )}
-        </li>
+        </div>
 
-        <li className='sli'>
+        <div className='sli'>
           {isHomePage ? (
             <ScrollLink to="contact" smooth={true} duration={500} className="snav-link">
               <img 
@@ -123,9 +122,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
               Contact
             </RouterLink>
           )}
-        </li>
+        </div>
 
-        <li className="snavprofile-container sli" onClick={toggleLogout}>
+        <div className="snavprofile-container sli" onClick={toggleLogout}>
           <img
             src={profile}
             alt="Profile"
@@ -141,9 +140,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
               Login
             </RouterLink>
           )}
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </div>
+    </div>
   );
 }; 
 export default Navbar;
