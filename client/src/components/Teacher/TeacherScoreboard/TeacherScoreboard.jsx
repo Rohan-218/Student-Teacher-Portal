@@ -177,6 +177,16 @@ const handleSaveMarks = async () => {
     // Alert on successful upload or update
     alert(isUpdateMode ? 'Marks updated successfully!' : 'Marks uploaded successfully!');
 
+
+    // Reset state after successful save or update
+    setStudentList([]); // Clear student list
+    setSelectedSubject(''); // Reset selected subject
+    setSelectedExam(''); // Reset selected exam
+    setMaxMarks(null); // Reset maximum marks
+    setBranchName(''); // Clear branch name
+    setSemester(''); // Clear semester
+    setIsUpdateMode(false); // Reset update mode
+    
   } catch (error) {
     console.error(isUpdateMode ? 'Error updating marks:' : 'Error uploading marks:', error);
   }
