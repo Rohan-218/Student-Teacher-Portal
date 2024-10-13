@@ -66,7 +66,7 @@ const Index = () => {
 
   return (
     <div id="top" className="homepage-container">
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> {/* Pass state */}
+      {/* <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> Pass state */}
       <div className="homepage-content">
         <div className="left-section">
           <h1 className="large-text">Welcome to</h1>
