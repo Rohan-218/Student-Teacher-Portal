@@ -13,6 +13,8 @@
     align-items: center;
     text-align: center;
 }
+
+
 /* Back button styles */
 .Teacher-back-button {
     position: absolute;
@@ -36,10 +38,7 @@
     align-items: center;
     
 }
-.Teacher-Drop-down {
-    /* position: relative; */
 
-}
 
 /* Record details section */
 .teacher-recordDetails {
@@ -98,15 +97,28 @@
     border-radius: 4px;
 }
 
+.sub-drop{
+    display: flex;
+    justify-content: space-between;
+}
+
+.teacherSub-Dropdown {
+    /* position: relative; */
+    display: flex;
+   justify-content: start;
+}
+
 .attendanceBelow-Dropdown {
-    position: absolute;  
+    display: flex;
+    justify-content:end;
+    width: fit-content;
     right: 140px;            
     top: 215px;          /* Increased top value to move it further down */
-    padding: 4px;
+    /* padding: 4px; */
     background-color: #35393b; /* Optional styling for background */
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 1.3rem;  
 }
 
