@@ -16,6 +16,7 @@ const StudentRecordTable = ({ students }) => {
             <th>Attendance %</th>
             <th>Midterm-1</th>
             <th>Midterm-2</th>
+            <th>Finals</th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@ const StudentRecordTable = ({ students }) => {
               <td>{Math.round(student.attendance_percentage*100)/100}</td>
               <td>{student.midterm1_marks}</td>
               <td>{student.midterm2_marks}</td>
+              <td>{student.finals_marks}</td>
               </tr>
           ))
         ) : (
