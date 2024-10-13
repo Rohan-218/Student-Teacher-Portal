@@ -185,8 +185,6 @@ const handleAttendanceSubmit = async () => {
 
     alert(`Attendance ${isUpdating ? 'updated' : 'uploaded'} successfully!`);
 
-   
-
     setDate(''); // Clear date input
     setLecture(''); // Clear lecture input
     setAttendanceList([]); // Clear the attendance list 

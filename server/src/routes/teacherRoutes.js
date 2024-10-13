@@ -1,3 +1,4 @@
+// routes.js
 const express = require('express');
 const router = express.Router();
 const { getTeacherProfile, uploadAttendance, getUploadedAttendance } = require('../controllers/teacherController.js');
@@ -7,13 +8,18 @@ const teacherMarksController = require('../controllers/teacherMarksController.js
 const marksController = require('../controllers/marksBelowController');
 const teacherUpdateMarksController = require('../controllers/teacherUpdateMarksController');
 const teachUpdateAttendanceController = require('../controllers/teachUpdateAttendanceController');
-const  {getAttendanceByDateRange}  = require('../controllers/fromToRangeController');
+const { getAttendanceByDateRange } = require('../controllers/fromToRangeController');
 const { fetchAttendanceAndMarks } = require('../controllers/attenMarksController');
+const { getTotalLectures, getUpdatedLast } = require('../controllers/totalLectureController');  // Import the total lecture controller
 
 // Define the route to get attendance and marks based on subject
 router.get('/atten/marks', fetchAttendanceAndMarks);
 
+// Define the route to get total lectures by subject ID
+router.get('/total-lectures', getTotalLectures); // Include subjectId in the route
 
+// Define the route to get updated_last by subject ID
+router.get('/updated-last', getUpdatedLast);
 
 // Teacher profile route
 router.get('/profile', getTeacherProfile);
