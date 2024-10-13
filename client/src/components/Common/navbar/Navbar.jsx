@@ -44,7 +44,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
   return (
     <nav className='snav'>
       <ul className='sul'>
-        <li className="snavlogo sli">XYZ UNIVERSITY</li>
+        <li className="snavlogo-sli">XYZ UNIVERSITY</li>
         
         {isHomePage && (
           <li className="sli">
