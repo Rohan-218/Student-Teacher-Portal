@@ -135,10 +135,15 @@ const StudentRecord = () => {
 
       {/* Record details below buttons */}
       <div className="teacher-RecordDetails">
-        <span className="teacher-UpdatedLast">Updated Last: {updatedLast}</span>
-        <span className="teacher-TotalLecture">Total Lecture: {totalLectures}</span>
-      </div>
-
+  <span className="teacher-UpdatedLast">
+    <strong>Updated Last: </strong>
+    <span className="normal-text">{updatedLast}</span>
+  </span>
+  <span className="teacher-TotalLecture">
+    <strong>Total Lecture: </strong>
+    <span className="normal-text">{totalLectures}</span>
+  </span>
+</div>
       {/* Student Record Table */}
       <StudentRecordTable students={studentList} />
     </div>

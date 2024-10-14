@@ -39,15 +39,6 @@
     transition: background-color 0.3s ease; /* Smooth transition effect */
 }
 
-
-/* Record details styling */
-.teacher-RecordDetails {
-    display: flex;
-    /* justify-content: space-between; Space between the two items */
-    align-items: left; /* Center align items vertically */
-    margin-top: 20px; /* Adjusted margin to fit the layout better */
-}
-
 /* Updated Last styling */
 /* Record details styling */
 .teacher-RecordDetails {
@@ -59,19 +50,15 @@
     padding-right: 4%; /* Adjust as needed to move "Total Lecture" more towards the right */
 }
 
-/* Updated Last styling */
-.teacher-UpdatedLast {
-    font-weight: 700;
-    font-size: larger;
-}
-
-/* Total Lecture styling */
+/* Updated Last and Total Lecture styling */
 .teacher-TotalLecture {
     font-weight: 700;
     font-size: larger;
     text-align: right; /* Align text to the right */
 }
-
+.normal-text {
+    font-weight: normal;
+}
 .PortalSelect option{
     background-color:#ddd ;
     color: black;
