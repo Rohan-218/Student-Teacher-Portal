@@ -137,11 +137,11 @@ const StudentRecord = () => {
       <div className="teacher-RecordDetails">
   <span className="teacher-UpdatedLast">
     <strong>Updated Last: </strong>
-    <span className="normal-text">{updatedLast}</span>
+    <span >{updatedLast}</span>
   </span>
   <span className="teacher-TotalLecture">
     <strong>Total Lecture: </strong>
-    <span className="normal-text">{totalLectures}</span>
+    <span>{totalLectures}</span>
   </span>
 </div>
       {/* Student Record Table */}

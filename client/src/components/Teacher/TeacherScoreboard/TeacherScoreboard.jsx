@@ -239,15 +239,14 @@ const handleSaveMarks = async () => {
       </div>
 
       <div className="teacher-info-row">
-        <span>Branch: {branchName || 'N/A'}</span>
-        <span>Semester: {semester || 'N/A'}</span>
+        <span><strong>Branch: </strong>{branchName || 'N/A'}</span>
+        <span><strong>Semester: </strong>{semester || 'N/A'}</span>
         {/* <span>Subject: {selectedSubject}</span> */}
-        
       </div>
 
       <div className="teacher-maxmarks">
-        <span>Exam: {examList.find(exam => exam.exam_id === Number(selectedExam))?.exam_name || 'N/A'}</span>
-        <span>Maximum marks: {maxMarks ? maxMarks : 'N/A'}</span>
+        <span><strong>Exam: </strong>{examList.find(exam => exam.exam_id === Number(selectedExam))?.exam_name || 'N/A'}</span>
+        <span><strong>Max marks: </strong>{maxMarks ? maxMarks : 'N/A'}</span>
       </div>
 
       {selectedSubject && (

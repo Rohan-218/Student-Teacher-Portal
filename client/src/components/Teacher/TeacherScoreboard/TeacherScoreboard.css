@@ -7,6 +7,7 @@
   .teacher-top-buttons {
     display: flex;
     margin-bottom: 20px;
+    justify-content: space-between;
   }
  /* Info row styling */
   .teacher-info-row {
@@ -15,8 +16,8 @@
     gap: 20px;
     padding: 10px;
     padding-left: 7%;
-    font-size: 20px;
-    font-weight:bold ;
+    font-size: 18px;
+    /* font-weight:bold ; */
   }
   
   .teacher-info-row span {
@@ -26,8 +27,8 @@
   .teacher-maxmarks{
     padding-top: 10px;
     padding-left: 7%;
-    font-size: 20px;
-    font-weight:bold ;
+    font-size: 18px;
+    /* font-weight:bold ; */
     display: flex;
     justify-content: space-between;
 

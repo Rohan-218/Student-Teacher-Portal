@@ -80,8 +80,13 @@ const StudentDashboard = () => {
           <h1 className='sh1'> Dashboard</h1>
           <div className="student-details">
             <div className="student-profile">
-              <img src="https://i.pinimg.com/564x/3f/9f/5b/3f9f5b8c9f31ce16c79d48b9eeda4de0.jpg" alt="Profile" className="profile-photo" />
-              <p>{studentData.student_name}</p>
+                <span className="student-logo-circle">
+                  {studentData.student_name.charAt(0).toUpperCase()}
+                </span>
+                <div className='student-name'>
+              <h1 className='student-welcome'>WELCOME</h1>
+              <h1 className='student-welcome'>{studentData.student_name}</h1>
+              </div>
             </div>
             <p><strong>Enrollment No: </strong>{studentData.enrollment_no}</p>
             <p><strong>Branch: </strong>{studentData.branch_name}</p>
