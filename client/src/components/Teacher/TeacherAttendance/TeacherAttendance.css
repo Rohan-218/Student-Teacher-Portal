@@ -71,6 +71,11 @@
   padding-left: 7%;
 }
 
+.atten-input{
+  display: flex;
+  justify-content: space-between;
+}
+
 /* Input row styling */
 .teacher-input-row {
   display: flex;

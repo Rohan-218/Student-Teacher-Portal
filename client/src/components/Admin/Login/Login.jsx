@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
@@ -10,7 +10,24 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [alertMessage, setAlertMessage] = useState(''); // New state for session expiration alert
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const expirationTime = localStorage.getItem('tokenExpiration');
+    const currentTime = new Date().getTime();
+
+    if (expirationTime && currentTime < expirationTime) {
+      const timeRemaining = expirationTime - currentTime;
+      const timeoutId = setTimeout(() => {
+        checkTokenExpiration();
+      }, timeRemaining);
+
+      return () => clearTimeout(timeoutId); // Cleanup on unmount
+    } else {
+      checkTokenExpiration(); // Immediately check if token is expired
+    }
+  }, []);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -25,17 +42,16 @@ const AdminLogin = () => {
       });
 
       const result = await response.json();
-      console.log(result); // Log the entire response for inspection
 
       if (response.ok) {
         const token = result.token;
-        console.log('Token:', token);
 
         if (token) {
           localStorage.setItem('token', token);
+          const expirationTime = new Date().getTime() + 60 * 60 * 1000; // Token expiration in 1 hour
+          localStorage.setItem('tokenExpiration', expirationTime);
+
           const decodedToken = jwtDecode(token);
-          console.log('User ID:', decodedToken.user_id);
-          console.log('User Type:', decodedToken.user_type);
 
           if (decodedToken.user_type === 0 || decodedToken.user_type === 3) {
             setMessage('Login successful!');
@@ -55,6 +71,22 @@ const AdminLogin = () => {
       console.error(err.message);
       setMessage('An error occurred during login.');
     }
+  };
+
+  const checkTokenExpiration = () => {
+    const expirationTime = localStorage.getItem('tokenExpiration');
+    const currentTime = new Date().getTime();
+
+    if (expirationTime && currentTime > expirationTime) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('tokenExpiration');
+      setAlertMessage('Session expired. Please log in again.');
+      setTimeout(() => navigate('/login'), 1000); // Redirect after 1 second
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prev => !prev); // Toggle password visibility
   };
 
   return (
@@ -95,7 +127,7 @@ const AdminLogin = () => {
               <label className="adinput-label">Password:</label>
               <div className="Password-Input-Container">
                 <input
-                  type={showPassword ? 'text' : 'password'} // Toggle between text and password
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -103,7 +135,7 @@ const AdminLogin = () => {
                 />
                 <span
                   className="Password-Icon"
-                  onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+                  onClick={togglePasswordVisibility} // Toggle password visibility
                 >
                   {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
                 </span>
@@ -112,6 +144,13 @@ const AdminLogin = () => {
             <button type="submit" className="adlogin-button">Login</button>
           </form>
           {message && <p className={message.includes('successful') ? 'adsuccess-message' : 'aderror-message'}>{message}</p>}
+          
+          {/* Alert box for session expiration */}
+          {alertMessage && (
+            <div className="alert-box">
+              {alertMessage}
+            </div>
+          )}
         </div>
       </div>
     </div>
