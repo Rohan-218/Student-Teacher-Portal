@@ -59,6 +59,9 @@
     display: flex;
 }
 
+.normal-text{
+    font-weight: 600;
+}
 /* Left side for Updated Last */
 .teacher-leftSide {
     text-align: left;
