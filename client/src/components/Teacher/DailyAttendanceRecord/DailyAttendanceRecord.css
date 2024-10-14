@@ -41,11 +41,22 @@
 
 
 /* Record details section */
-.teacher-recordDetails {
+.daily-teacher-RecordDetails {
     display: flex;
     justify-content: space-between; /* Aligns Updated Last and Total Lecture on opposite sides */
     align-items: center;
     margin-top: 20px;
+    width: 100%;
+    font-weight: 700;
+    font-size: larger;
+}
+
+.daily-teacher-UpdatedLast{
+    display: flex;
+}
+
+.daily-teacher-TotalLecture{
+    display: flex;
 }
 
 /* Left side for Updated Last */
