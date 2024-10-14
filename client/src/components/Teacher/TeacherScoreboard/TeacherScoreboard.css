@@ -20,7 +20,7 @@
   }
   
   .teacher-info-row span {
-    flex: 1;
+    /* flex: 1; */
     text-align: left;
   }
   .teacher-maxmarks{
@@ -28,6 +28,8 @@
     padding-left: 7%;
     font-size: 20px;
     font-weight:bold ;
+    display: flex;
+    justify-content: space-between;
 
   }
   .portal-select{
