@@ -109,3 +109,8 @@
   .teacher-save-btn:hover{
   background-color:#5d9160;
   }
+  @media (max-width:1000px){
+    .teacher-attendance-table{
+        width: 110%;
+    }
+}
