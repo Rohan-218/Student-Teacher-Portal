@@ -246,7 +246,7 @@ const handleSaveMarks = async () => {
 
       <div className="teacher-maxmarks">
         <span><strong>Exam: </strong>{examList.find(exam => exam.exam_id === Number(selectedExam))?.exam_name || 'N/A'}</span>
-        <span><strong>Maximum marks: </strong>{maxMarks ? maxMarks : 'N/A'}</span>
+        <span><strong>Max marks: </strong>{maxMarks ? maxMarks : 'N/A'}</span>
       </div>
 
       {selectedSubject && (

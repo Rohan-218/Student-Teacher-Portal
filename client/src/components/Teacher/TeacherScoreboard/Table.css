@@ -62,11 +62,11 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px; /* Adds spacing between the buttons and table */
-    padding-left: 70%;
+    padding-left: 74%;
   }
   
   .teacher-marks-save-btn {
-    padding: 1.5% 2.6%;
+    padding: 3% 4%;
     background-color:  #35393b; /* Green background */
     color: white;
     border: none;
