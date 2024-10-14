@@ -14,7 +14,19 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkTokenExpiration();
+    const expirationTime = localStorage.getItem('tokenExpiration');
+    const currentTime = new Date().getTime();
+
+    if (expirationTime && currentTime < expirationTime) {
+      const timeRemaining = expirationTime - currentTime;
+      const timeoutId = setTimeout(() => {
+        checkTokenExpiration();
+      }, timeRemaining);
+      
+      return () => clearTimeout(timeoutId); // Cleanup on unmount or token change
+    } else {
+      checkTokenExpiration(); // Immediately check if token is expired
+    }
   }, []);
 
   const onSubmitForm = async (e) => {
@@ -48,7 +60,6 @@ const Login = () => {
       localStorage.setItem('tokenExpiration', expirationTime);
 
       const decodedToken = jwtDecode(token);
-      console.log('User ID:', decodedToken.user_id);
       
       if (decodedToken.user_type === 1) {
         setMessage('Login successful!'); // Student
