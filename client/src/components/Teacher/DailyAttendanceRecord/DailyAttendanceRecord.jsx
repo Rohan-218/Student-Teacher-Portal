@@ -306,8 +306,14 @@ const DailyAttendanceRecord = () => {
 
        {/* Record details below buttons */}
        <div className="daily-teacher-RecordDetails">
-          <span className="daily-teacher-UpdatedLast">Updated Last: {updatedLast}</span>
-          <span className="daily-teacher-TotalLecture">Total Lecture: {totalLectures}</span>
+          <span className="daily-teacher-UpdatedLast">
+            <strong>Updated Last: </strong>
+            <span className="normal-text">{updatedLast}</span>
+          </span>
+          <span className="daily-teacher-TotalLecture">
+            <strong>Total Lecture: </strong>
+            <span className="normal-text">{totalLectures}</span>
+          </span>
         </div>
 
 
