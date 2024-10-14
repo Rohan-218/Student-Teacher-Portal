@@ -23,6 +23,6 @@ exports.updateUserpassword = async (req, res) => {
         }
     } catch (error) {
         console.error('Login Error:', error);  // Log the error
-        res.status(500).json({ message: 'Internal Server Error', error });
+        res.status(500).json({ message: error.message, error });
     }
 };

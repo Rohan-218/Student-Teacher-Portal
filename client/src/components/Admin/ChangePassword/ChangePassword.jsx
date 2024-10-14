@@ -48,10 +48,14 @@ const ChangePassword = () => {
             setSuccessMessage(data.message || 'Password changed successfully');
             setError(''); // Clear any previous errors
 
+            // Display success message in alert box
+            window.alert(data.message || 'Password changed successfully');
             // Reset the form after successful submission
             handleCancel();
         } catch (err) {
             setError(err.message);
+            // Display error message in alert box
+            window.alert(err.message);
         }
     };
 
