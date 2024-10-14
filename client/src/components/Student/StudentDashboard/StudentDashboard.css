@@ -73,6 +73,28 @@
   margin: 0 auto;  /* Center the chart */
 }
 
+.student-logo-circle {
+  width: 95px; /* Adjust size as needed */
+  height: 95px;
+  border-radius: 50%;
+  background-color: #212224; /* Change color as needed */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px; /* Adjust font size as needed */
+  margin: 20px; /* Space between logo and welcome message */
+ 
+}
+.student-name{
+  font-size: 27px;
+  margin: 0px 0px;
+}
+
+.student-welcome{
+  margin: 0px;
+}
+
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 800px) {
   .content {
