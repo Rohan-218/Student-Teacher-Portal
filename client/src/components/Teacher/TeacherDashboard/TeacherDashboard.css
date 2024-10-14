@@ -6,13 +6,13 @@
   --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color */
 }
 
-.teacher-dashboard {
+.teacher-dashboard {margin-top: 2%;
   width: 77%;
   padding-top: 5%;
   display: flex;
   height: 100vh; /* Full viewport height */
   /* border: 1px solid red; */
-  overflow: auto;
+  /* overflow: auto; */
   margin-left: 20%;
   transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
 }
@@ -20,19 +20,20 @@
 .teacher-content {
   display: flex;
   flex-direction: column; /* Stack sections vertically */
-  width:100%;
+  width:90%;
   gap: 5%; /* Space between sections */
   box-sizing: border-box;
   /* border: 2px solid blue; */
-  overflow: auto;
-  overflow-x: hidden;
+   /* overflow: auto;  
+   overflow-x: hidden;  */
+   
 }
 
 .teacher-section {
   background-color: var(--main-bg-color);
   border-radius: 5px;
   padding: 20px;
-  width: 100%; /* Full width for all sections */
+  width: 110%; /* Full width for all sections */
   box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
 }
 

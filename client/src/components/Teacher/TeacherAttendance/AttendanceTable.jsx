@@ -14,6 +14,7 @@ const AttendanceTable = ({ students = [], attendanceList = [], onSave, isUpdatin
   return (
     <div className="teacher-attendance-table">
       <h3>Mark Attendance</h3>
+      <div className='att-table'>
       <table>
         <thead>
           <tr>
@@ -58,6 +59,7 @@ const AttendanceTable = ({ students = [], attendanceList = [], onSave, isUpdatin
           )}
         </tbody>
       </table>
+      </div>
       <div className="teacher-bottom-buttons">
         <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>
           Daily Attendance Record
