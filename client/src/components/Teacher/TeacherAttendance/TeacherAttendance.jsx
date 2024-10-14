@@ -15,6 +15,7 @@ const TeacherAttendance = () => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [buttonText, setButtonText] = useState('Save');
   const [dataFetched, setDataFetched] = useState(false);
+  
 
   const token = localStorage.getItem('token');
 
@@ -215,7 +216,6 @@ const handleAttendanceSubmit = async () => {
       </div>
 
       <div className="teacher-attendance-details">
-        <div className='atten-input'>
         <div className="teacher-input-row">
           <label htmlFor="date">Date: </label>
           <input
@@ -242,7 +242,6 @@ const handleAttendanceSubmit = async () => {
             placeholder="Enter lecture number"
             min="0"
           />
-        </div>
         </div>
 
         {/* Pass attendance props and the submit handler */}
