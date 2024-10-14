@@ -47,8 +47,7 @@
     align-items: center;
     margin-top: 20px;
     width: 100%;
-    font-weight: 700;
-    font-size: larger;
+    font-size: 18px;
 }
 
 .daily-teacher-UpdatedLast{
@@ -74,16 +73,14 @@
 
 /* Styling for Updated Last */
 .teacher-Updated-Last {
-    font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 10px;
     display: block;
 }
 
 /* Styling for Total Lecture */
 .teacher-Total-Lecture {
-    font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 10px;
     display: block;
 }
