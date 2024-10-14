@@ -52,7 +52,7 @@
 }
 
 /* Media Query for tablets (between 768px and 1024px) */
-@media (max-width: 1024px) and (min-width: 768px) {
+@media (max-width: 1024px) {
   .teacher-dashboard {
     margin-left: 0; /* Remove margin to fill the space when sidebar is hidden */
     width: 100%; /* Make the dashboard full width */
@@ -67,7 +67,15 @@
     width: 100%; /* Fill the width */
   }
 }
-
+@media (max-width: 1070px) {
+  .teacher-section{
+    width:109%;
+  }
+  .teacher-dashboard {
+    padding-left: 2%;
+    width:85%;
+  }
+}
 /* Media Query for mobile devices (below 768px) */
 @media (max-width: 768px) {
   .teacher-sidebar {
@@ -75,17 +83,17 @@
   }
 
   .teacher-dashboard {
-    width: 100%;
+    width: 90%;
     margin: 0; /* Remove any margin */
   }
 
   .teacher-content {
-    width: 100%; /* Full width for mobile */
+    width: 90%; /* Full width for mobile */
   }
 
   .teacher-profile-section {
     padding: 1%;
-    margin: 0 5% 3% 5%; 
+    margin: 0 2% 3% 10%; 
     border-radius: 10%; 
     box-shadow: 0 3px 4px 20%; /* Light shadow for depth */
   }

@@ -100,3 +100,8 @@
 .teacher-Dropdown:hover .teacher-DropdownContent {
     display: block;
 }
+@media (max-width:1000px){
+    .teacher-student-record-table{
+        width: 110%;
+    }
+}

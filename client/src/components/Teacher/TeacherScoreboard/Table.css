@@ -78,5 +78,9 @@
   .teacher-marks-save-btn:hover{
   background-color:#5d9160;
   }
-  
+  @media (max-width:1000px){
+    .teacher-student-table{
+        width: 130%;
+    }
+}
   
