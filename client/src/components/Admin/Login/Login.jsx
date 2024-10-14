@@ -81,7 +81,7 @@ const AdminLogin = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('tokenExpiration');
       setAlertMessage('Session expired. Please log in again.');
-      setTimeout(() => navigate('admin/admin-login'), 1000); // Redirect after 1 second
+      setTimeout(() => navigate('/'), 1000); // Redirect after 1 second
     }
   };
 
