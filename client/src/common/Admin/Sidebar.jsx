@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';  // Import specific styles for Sidebar
 import dashboard from '/src/assets/AdminSiderbar_icons/dashboard.png'
@@ -17,6 +17,19 @@ const Sidebar = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);  // Toggle sidebar visibility
   };
+useEffect(() => {
+  const handleOutsideClick = (event) => {
+    if (!event.target.closest('.sidebar') && isOpen) {
+      setIsOpen(false);  // Close the sidebar if click is outside
+    }
+  };
+
+  document.addEventListener('mousedown', handleOutsideClick);
+
+  return () => {
+    document.removeEventListener('mousedown', handleOutsideClick);
+  };
+}, [isOpen]);
 
   return (
     <div>

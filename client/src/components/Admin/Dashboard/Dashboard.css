@@ -53,17 +53,47 @@
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 1200px) {
+@media (max-width: 1050px) {
     .adgraph-wrapper {
-        height: 400px; /* Reduce height for smaller screens */
+        margin-top: 9%;
+        height: 370px; /* Reduce height for smaller screens */
+    }
+    .adcards-container {
+       max-width: 30%;
     }
 }
+@media (max-width: 970px){
+    .adgraph-wrapper {
+        margin-top: 12%;
+        height: 300px; /* Reduce height for smaller screens */
+}
+.adcards-container {
+    max-width: 30%;
+    margin-left: 4%;
+ }
+ .adcard {
+    width: 230px;
+ }
+}
+@media (max-width: 900px){
+    .adgraph-wrapper {
+        margin-top: 12%;
+        margin-left: 20% ;
+        height: 300px; /* Reduce height for smaller screens */
+}
+.adcards-container {
+    max-width: 20%;
+    margin-left: 7%;
 
+ }
+ .adcard {
+    width: 200px;
+ }
+}
 @media (max-width: 768px) {
     .addashboard {
         padding: 10px;    /* Reduce padding */
        padding-left: 10%;
-       
     }
 
     h1 {
@@ -81,7 +111,8 @@
     .adgraph-wrapper {
         height: 300px; /* Adjust height for smaller screens */
         width: 100%;
-       padding-right: 30%;
+       padding-right: 20%;
+       margin-right: 45%;
     }
 }
 
@@ -95,7 +126,13 @@
     }
 
     .adcard {
-        margin-left: -8%;
+        margin-left: 5%;
         font-size: 16px; /* Reduce card font size */
     }
+    .adgraph-wrapper {
+        margin-top: 9%;
+        height: 300px; /* Reduce height for smaller screens */
+        width: 100%;
+        padding-left: 20%;
+}
 }

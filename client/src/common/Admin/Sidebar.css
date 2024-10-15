@@ -16,13 +16,14 @@
   .sidebar {
     transform: translateX(-100%); /* Hide sidebar */
     width: 0; /* Collapse width when hidden */
-    display: none;;
+    display: none;
   }
 
   .sidebar.open {
     transform: translateX(0); /* Show sidebar when open */
-    width: 160%; /* Sidebar width when visible */
+    width: 100%; /* Sidebar width when visible */
     display: block;
+     /* position: absolute;  */
   }
 }
 
