@@ -1,5 +1,5 @@
 const app = require('./app.js');
-
+require('dotenv').config();
 // Set the port
 const PORT = 3000;
 
