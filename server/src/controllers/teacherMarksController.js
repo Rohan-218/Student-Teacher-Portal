@@ -46,7 +46,7 @@ const uploadMarks = async (req, res) => {
      console.log('Fetched student emails:', studentEmails);
  
      // Now that we have student emails, we can send them notifications
-     const emailList = studentEmails.map(student => student.email); // Extract email list
+     const emailList = studentEmails
 
    // Now that we have student emails, we can send them notifications
    try {

@@ -44,22 +44,6 @@ const saveMarks = async (marksData) => {
     // Insert the marks into the teacherPostMarksModel
     await teacherPostMarksModel.insertMarks(marksData);
 
-    // Fetch the email for each student_id in marksData
-    const studentId = marksData.map(mark => mark.student_id);
-
-    const emailsQuery = `
-      SELECT u.email FROM users u JOIN student s ON u.user_id = s.user_id
-      WHERE s.student_id = ANY(:studentId)
-    `;
-
-    const emails = await sequelize.query(emailsQuery, {
-      replacements: { studentId },
-      type: sequelize.QueryTypes.SELECT
-    });
-
-    console.log('Emails fetched:', emails);
-    console.log('Marks saved successfully');
-
   } catch (error) {
     console.error('Error saving marks:', error.message);
     throw error; // Propagate error to the controller
@@ -82,33 +66,42 @@ const getStudentEmails = async (studentIds) => {
     if (!studentIds || studentIds.length === 0) {
       throw new Error('No student IDs provided');
     }
+    
+    const allResults = []; // Array to hold results for all student IDs
 
-    // SQL query with the correct IN syntax
-    const query = `
-      SELECT s.student_id, u.email 
-      FROM student s 
-      JOIN users u ON s.user_id = u.user_id 
-      WHERE s.student_id IN (:studentIds);
-    `;
+    for (const Id of studentIds) {
+      console.log(Id); // Log the current student ID
 
-    // Execute the query
-    const [results, metadata] = await sequelize.query(query, {
-      replacements: { studentIds }, // This will replace :studentIds with the array
-      type: sequelize.QueryTypes.SELECT,
-    });
+      // SQL query with the correct syntax
+      const query = `
+        SELECT s.student_id, u.email 
+        FROM student s 
+        JOIN users u ON s.user_id = u.user_id 
+        WHERE s.student_id = :Id;
+      `;
 
-    console.log('Raw query results:', results); // Log the raw results
+      // Execute the query
+      const results = await sequelize.query(query, {
+        replacements: { Id }, // This will replace :Id with the current student ID
+        type: sequelize.QueryTypes.SELECT,
+      });
 
-    if (results.length === 0) {
-      throw new Error('No emails found for the provided student IDs');
+      console.log('Raw query results:', results); // Log the raw results
+
+      if (results.length === 0) {
+        throw new Error(`No emails found for student ID: ${Id}`);
+      }
+
+      allResults.push(...results); // Accumulate results in the array
     }
 
-    return results; // Return the fetched emails
+    return allResults; // Return all results after the loop
   } catch (error) {
     console.error('Error fetching student emails:', error);
     throw error;
   }
 };
+
 
 
 
