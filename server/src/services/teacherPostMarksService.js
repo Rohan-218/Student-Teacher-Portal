@@ -21,6 +21,7 @@ const prepareMarksData = async (marks, examId) => {
       marksData.push({
         student_id: mark.student_id,
         subject_id: subjectDetails.subject_id,
+        subject_name: subjectDetails.subject_name,
         exam_id: examId,
         marks_obtained: mark.marks_obtained,
       });
@@ -61,6 +62,7 @@ const getMarksForSubject = async (subjectCode) => {
   return marksData;
 };
 
+
 const getStudentEmails = async (studentIds) => {
   try {
     if (!studentIds || studentIds.length === 0) {
@@ -70,9 +72,7 @@ const getStudentEmails = async (studentIds) => {
     const allResults = []; // Array to hold results for all student IDs
 
     for (const Id of studentIds) {
-      console.log(Id); // Log the current student ID
-
-      // SQL query with the correct syntax
+      
       const query = `
         SELECT u.email 
         FROM student s 
@@ -85,8 +85,6 @@ const getStudentEmails = async (studentIds) => {
         replacements: { Id }, // This will replace :Id with the current student ID
         type: sequelize.QueryTypes.SELECT,
       });
-
-      console.log('Raw query results:', results); // Log the raw results
 
       if (results.length === 0) {
         throw new Error(`No emails found for student ID: ${Id}`);
@@ -101,8 +99,6 @@ const getStudentEmails = async (studentIds) => {
     throw error;
   }
 };
-
-
 
 
 module.exports = {

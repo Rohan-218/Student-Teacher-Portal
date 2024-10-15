@@ -3,7 +3,7 @@ const sequelize = require('../config/dbConfig');
 // Get subject details (subject_id, branch_id, semester) from Subject and BranchSemSub tables
 const getSubjectDetails = async (subjectCode) => {
   const query = `
-    SELECT s.subject_id, b.branch_id, b.semester
+    SELECT s.subject_id, b.branch_id, b.semester, s.subject_name
     FROM subject s
     JOIN branch_sem_sub b ON s.subject_id = b.subject_id
     WHERE s.subject_code = :subjectCode;

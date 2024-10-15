@@ -35,6 +35,8 @@ const uploadMarks = async (req, res) => {
 
     // Save marks in the database
     await teacherPostMarksService.saveMarks(marksData);
+    const subjectName = marksData.map(mark => mark.subject_name );
+    
 
      const studentIds = marks.map(mark => mark.student_id);
 
@@ -48,7 +50,7 @@ const uploadMarks = async (req, res) => {
 
    // Now that we have student emails, we can send them notifications
    try {
-    const emailResponse = await sendEmailNotification(emailList);
+    const emailResponse = await sendEmailNotification(emailList, subjectName);
     if (emailResponse) {
       console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
     }
