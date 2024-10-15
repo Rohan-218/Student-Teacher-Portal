@@ -39,9 +39,9 @@ const saveMarks = async (marksData) => {
     if (!marksData || marksData.length === 0) {
       throw new Error('No marks data provided to save');
     }
-
     await teacherPostMarksModel.insertMarks(marksData);
     console.log('Marks saved successfully');
+
   } catch (error) {
     console.error('Error saving marks:', error.message);
     throw error; // Propagate error to the controller
