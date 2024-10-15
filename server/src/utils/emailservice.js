@@ -1,12 +1,12 @@
 const {sgMail} = require('../congif/config');
 
 // Function to send email notification
-const sendEmailNotification = (recipientEmail, studentName, subject, marks) => {
+const sendEmailNotification = (recipientEmail, studentName, subject) => {
   const message = {
     to: recipientEmail,  // recipient's email address
     from: 'surbhi1102@gmail.com',  // verified sender email
     subject: 'New Marks Added!',
-    text: `Dear ${studentName},\n\nNew marks for the subject ${subject} have been added. Your marks: ${marks}.\n\nRegards,\nXYZ University`,
+    text: `Dear ${studentName},\n\nNew marks for the subject ${subject} have been added.\n\nRegards,\nXYZ University`,
   };
 
   sgMail

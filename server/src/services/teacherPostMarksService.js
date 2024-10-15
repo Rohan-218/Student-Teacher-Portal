@@ -39,7 +39,24 @@ const saveMarks = async (marksData) => {
     if (!marksData || marksData.length === 0) {
       throw new Error('No marks data provided to save');
     }
+
+    // Insert the marks into the teacherPostMarksModel
     await teacherPostMarksModel.insertMarks(marksData);
+
+    // Fetch the email for each student_id in marksData
+    const studentId = marksData.map(mark => mark.student_id);
+
+    const emailsQuery = `
+      SELECT u.email FROM users u JOIN student s ON u.user_id = s.user_id
+      WHERE s.student_id = ANY(:studentId)
+    `;
+
+    const emails = await sequelize.query(emailsQuery, {
+      replacements: { studentId },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    console.log('Emails fetched:', emails);
     console.log('Marks saved successfully');
 
   } catch (error) {
@@ -47,6 +64,7 @@ const saveMarks = async (marksData) => {
     throw error; // Propagate error to the controller
   }
 };
+
 
 // Get marks for a specific subject
 const getMarksForSubject = async (subjectCode) => {
