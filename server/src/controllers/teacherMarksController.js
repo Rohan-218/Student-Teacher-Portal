@@ -1,5 +1,5 @@
 const teacherPostMarksService = require('../services/teacherPostMarksService');
-
+const sendEmailNotification = require('../utils/emailservice');
 // Controller function to upload marks
 const uploadMarks = async (req, res) => {
   try {
@@ -35,6 +35,30 @@ const uploadMarks = async (req, res) => {
 
     // Save marks in the database
     await teacherPostMarksService.saveMarks(marksData);
+
+     // Extract all student IDs from the marks data
+     const studentIds = marks.map(mark => mark.student_id);
+    console.log(studentIds);
+     // Fetch student emails using the service function
+     const studentEmails = await teacherPostMarksService.getStudentEmails(studentIds);
+ 
+     // Log the fetched emails (for debugging purposes)
+     console.log('Fetched student emails:', studentEmails);
+ 
+     // Now that we have student emails, we can send them notifications
+     const emailList = studentEmails.map(student => student.email); // Extract email list
+
+   // Now that we have student emails, we can send them notifications
+   try {
+    const emailResponse = await sendEmailNotification(emailList);
+    if (emailResponse) {
+      console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
+    }
+  } catch (error) {
+    // Log detailed error from SendGrid
+    console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
+    return res.status(500).json({ message: 'Error sending email notifications' });
+  }
 
     res.status(200).json({ message: 'Marks uploaded successfully' });
   } catch (error) {
