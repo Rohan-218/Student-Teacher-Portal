@@ -74,7 +74,7 @@ const getStudentEmails = async (studentIds) => {
 
       // SQL query with the correct syntax
       const query = `
-        SELECT s.student_id, u.email 
+        SELECT u.email 
         FROM student s 
         JOIN users u ON s.user_id = u.user_id 
         WHERE s.student_id = :Id;

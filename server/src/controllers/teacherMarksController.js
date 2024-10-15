@@ -36,17 +36,15 @@ const uploadMarks = async (req, res) => {
     // Save marks in the database
     await teacherPostMarksService.saveMarks(marksData);
 
-     // Extract all student IDs from the marks data
      const studentIds = marks.map(mark => mark.student_id);
-    console.log(studentIds);
-     // Fetch student emails using the service function
+
      const studentEmails = await teacherPostMarksService.getStudentEmails(studentIds);
  
      // Log the fetched emails (for debugging purposes)
      console.log('Fetched student emails:', studentEmails);
  
      // Now that we have student emails, we can send them notifications
-     const emailList = studentEmails
+     const emailList = studentEmails.map(student => student.email);
 
    // Now that we have student emails, we can send them notifications
    try {
