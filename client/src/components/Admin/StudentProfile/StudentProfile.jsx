@@ -97,7 +97,7 @@ const StudentProfile = () => {
             </Link>
             <div className="stprofile-picture">
               {/* Profile picture placeholder */}
-              <span className="stprofile-icon">👤</span>
+              <span className="stprofile-icon">{student.name.charAt(0).toUpperCase()}</span>
             </div>
             <div className="stprofile-info">
               <p><strong>Name:</strong> 

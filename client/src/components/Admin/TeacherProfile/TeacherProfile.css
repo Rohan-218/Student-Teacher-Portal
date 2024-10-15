@@ -63,7 +63,7 @@
 .profile-picture {
   width: 120px;
   height: 120px;
-  background-color: #e6e6e6;
+  background-color: #8facbf;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@
 
 /* Profile info */
 .profile-info {
-  background-color: #f2f9ff;
+  background-color: #9bbace61;
   padding: 20px;
   border-radius: 8px;
   width: 40%;
