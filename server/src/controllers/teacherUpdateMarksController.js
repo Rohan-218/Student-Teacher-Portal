@@ -1,5 +1,5 @@
 const teacherUpdateMarksService = require('../services/teacherUpdateMarksService');
-const teacherPostMarksService = require('../services/teacherPostMarksService');
+const getUserId = require('../services/userService');
 const sendEmailNotification = require('../utils/emailservice');
 
 // Update marks
@@ -41,7 +41,7 @@ const updateMarks = async (req, res) => {
 
     await teacherUpdateMarksService.updateMarks(marksData);
 
-    const studentEmails = await teacherPostMarksService.getUserId(studentIds);
+    const studentEmails = await getUserId(studentIds);
     console.log('Fetched student emails:', studentEmails);
  
      // Now that we have student emails, we can send them notifications
