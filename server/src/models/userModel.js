@@ -52,8 +52,47 @@ const storeToken = async (user_id, token, expires_at, created_at, is_blacklisted
 };
   
 
+const getUserEmails = async (userIds) => {
+    try {
+      
+      if (!userIds || userIds.length === 0) {
+        throw new Error('No User IDs provided');
+      }
+      
+      const allResults = []; // Array to hold results for all student IDs
+  
+      for (const obj of userIds) {
+        const { user_id } = obj;
+        
+        const query = `
+          SELECT email FROM users
+          WHERE user_id = :user_id;
+        `;
+  
+        // Execute the query
+        const results = await sequelize.query(query, {
+          replacements: { user_id }, // Use the extracted user_id
+          type: sequelize.QueryTypes.SELECT,
+        });
+  
+        if (results.length === 0) {
+          throw new Error(`No emails found for User ID: ${user_id}`);
+        }
+  
+        allResults.push(...results); // Accumulate results in the array
+      }
+  
+      return allResults; // Return all results after the loop
+    } catch (error) {
+      console.error('Error fetching user emails:', error);
+      throw error;
+    }
+  };
+  
+
 module.exports = {
     getUserByEmail,
     blacklistToken,
-    storeToken
+    storeToken,
+    getUserEmails
 };

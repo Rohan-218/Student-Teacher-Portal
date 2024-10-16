@@ -40,7 +40,7 @@ const uploadMarks = async (req, res) => {
 
      const studentIds = marks.map(mark => mark.student_id);
 
-     const studentEmails = await teacherPostMarksService.getStudentEmails(studentIds);
+     const studentEmails = await teacherPostMarksService.getUserId(studentIds);
  
      // Log the fetched emails (for debugging purposes)
      console.log('Fetched student emails:', studentEmails);
@@ -50,7 +50,8 @@ const uploadMarks = async (req, res) => {
 
    // Now that we have student emails, we can send them notifications
    try {
-    const emailResponse = await sendEmailNotification(emailList, subjectName);
+    const text = `Dear Student,\n\nMarks for ${subjectName[0]} have been added.\n\nRegards,\nXYZ University`;
+    const emailResponse = await sendEmailNotification(emailList, text);
     if (emailResponse) {
       console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
     }
