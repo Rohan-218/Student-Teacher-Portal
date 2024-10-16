@@ -231,7 +231,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           <img src={profile} alt="Profile" className="snavprofile-img" />
           {showDropdown && (
             <div className="profile-dropdown">
-              <p>Hello User!!!</p>
+              <p>Hello User!</p>
               {isLoggedIn ? (
                 <button onClick={handleLogout} className="snavbutton slogout-button">Logout</button>
               ) : (

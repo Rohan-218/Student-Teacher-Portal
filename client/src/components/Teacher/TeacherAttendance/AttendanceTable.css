@@ -111,6 +111,6 @@
   }
   @media (max-width:1000px){
     .teacher-attendance-table{
-        width: 110%;
+        width: 100%;
     }
 }

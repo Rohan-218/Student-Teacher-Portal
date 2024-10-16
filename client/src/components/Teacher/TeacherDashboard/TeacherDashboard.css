@@ -93,7 +93,7 @@
 
   .teacher-profile-section {
     padding: 1%;
-    margin: 0 2% 3% 10%; 
+    /* margin: 0 2% 3% 10%;  */
     border-radius: 10%; 
     box-shadow: 0 3px 4px 20%; /* Light shadow for depth */
   }
