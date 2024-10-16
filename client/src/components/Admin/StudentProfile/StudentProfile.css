@@ -163,7 +163,7 @@
     }
   
     .stprofile-info {
-      width: 80%;
+      width: 90%;
       flex-grow: 0;
     }
   
@@ -182,33 +182,47 @@
     }
   }
   @media (max-width: 540px){
-  
+    .stprofile-info{
+      width: 120%;
+      
+    }
   .stprofile-header{
-    margin-left: 15%;
+    margin-left: 3%;
   }
   .staction-button {
     margin-left: 35%;
     max-width: 35%;
    font-size: 1rem;
-   text-align: left;
+   text-align: center;
    padding-left:2%;
   }
   .edit-button{
     padding-left: 5%;
     max-width: 40%;
   }
+  .student-main-content{
+    padding: 0%;
+  }
+  .stprofile-container{
+    padding: 0%;
+  }
   }
   @media (max-width: 400px){
     .stprofile-info{
-      width: 133%;
-      
+      width: 120%;
+      padding-left: 5%;
     }
     .stprofile-header{
-      margin-left:-4%;
-      
+      /* margin-left:-4%; */
     }
     .staction-button {
       max-width: 40%;
       margin-left: 30%;
+    }
+    .student-main-content{
+      padding: 0%;
+    }
+    .stprofile-container{
+      padding: 0%;
     }
   }
