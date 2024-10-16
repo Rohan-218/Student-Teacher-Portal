@@ -40,7 +40,7 @@ const uploadMarks = async (req, res) => {
 
      const studentIds = marks.map(mark => mark.student_id);
 
-     const studentEmails = await teacherPostMarksService.getStudentEmails(studentIds);
+     const studentEmails = await teacherPostMarksService.getUserId(studentIds);
  
      // Log the fetched emails (for debugging purposes)
      console.log('Fetched student emails:', studentEmails);

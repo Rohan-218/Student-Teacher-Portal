@@ -1,4 +1,5 @@
 const teacherPostMarksModel = require('../models/teacherPostMarksModel');
+const userModel  = require('../models/userModel');
 const sequelize = require('../config/dbConfig');
 
 // Prepare marks data by fetching subject details
@@ -62,22 +63,20 @@ const getMarksForSubject = async (subjectCode) => {
   return marksData;
 };
 
-
-const getStudentEmails = async (studentIds) => {
+const getUserId = async (studentIds) => {
   try {
     if (!studentIds || studentIds.length === 0) {
       throw new Error('No student IDs provided');
     }
     
-    const allResults = []; // Array to hold results for all student IDs
+    const Ids = []; // Array to hold results for all student IDs
 
     for (const Id of studentIds) {
       
       const query = `
-        SELECT u.email 
-        FROM student s 
-        JOIN users u ON s.user_id = u.user_id 
-        WHERE s.student_id = :Id;
+        SELECT user_id
+        FROM student 
+        WHERE student_id = :Id;
       `;
 
       // Execute the query
@@ -90,8 +89,10 @@ const getStudentEmails = async (studentIds) => {
         throw new Error(`No emails found for student ID: ${Id}`);
       }
 
-      allResults.push(...results); // Accumulate results in the array
+      Ids.push(...results); // Accumulate results in the array
     }
+
+    const allResults = await userModel.getUserEmails(Ids);
 
     return allResults; // Return all results after the loop
   } catch (error) {
@@ -105,5 +106,5 @@ module.exports = {
   prepareMarksData,
   saveMarks,
   getMarksForSubject,
-  getStudentEmails,
+  getUserId
 };
