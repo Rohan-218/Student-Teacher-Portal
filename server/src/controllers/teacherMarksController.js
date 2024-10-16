@@ -53,7 +53,8 @@ const uploadMarks = async (req, res) => {
    // Now that we have student emails, we can send them notifications
    try {
     const text = `Dear Student,\n\nMarks for ${subjectName[0]} have been added.\n\nRegards,\nXYZ University`;
-    const emailResponse = await sendEmailNotification(emailList, text);
+    const subject = `New Marks Added!`;
+    const emailResponse = await sendEmailNotification(emailList, text, subject);
     if (emailResponse) {
       console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
     }

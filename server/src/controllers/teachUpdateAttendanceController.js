@@ -29,8 +29,9 @@ const updateAttendance = async (req, res) => {
 
    // Now that we have student emails, we can send them notifications
    try {
-    const text = `Dear Student,\n\nAttendance for subject have been updated.\n\nRegards,\nXYZ University`;
-    const emailResponse = await sendEmailNotification(emailList, text);
+    const text = `Dear Student,\n\nAttendance for subject code - ${subjectCode} have been updated.\n\nRegards,\nXYZ University`;
+    const subject = `Attendance Updated!`;
+    const emailResponse = await sendEmailNotification(emailList, text, subject);
     if (emailResponse) {
       console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
     }
