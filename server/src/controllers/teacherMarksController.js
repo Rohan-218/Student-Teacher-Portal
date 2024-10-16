@@ -1,4 +1,5 @@
 const teacherPostMarksService = require('../services/teacherPostMarksService');
+const userService = require('../services/userService');
 const sendEmailNotification = require('../utils/emailservice');
 // Controller function to upload marks
 const uploadMarks = async (req, res) => {
@@ -35,12 +36,13 @@ const uploadMarks = async (req, res) => {
 
     // Save marks in the database
     await teacherPostMarksService.saveMarks(marksData);
+    
     const subjectName = marksData.map(mark => mark.subject_name );
     
 
      const studentIds = marks.map(mark => mark.student_id);
 
-     const studentEmails = await teacherPostMarksService.getUserId(studentIds);
+     const studentEmails = await userService.getUserId(studentIds);
  
      // Log the fetched emails (for debugging purposes)
      console.log('Fetched student emails:', studentEmails);

@@ -1,5 +1,4 @@
 // attendanceService.js
-
 const {
     getSubjectIdByCode,
     updateAttendance,
@@ -29,7 +28,10 @@ const {
     return { message: 'Attendance updated successfully' };
   };
   
+  
+  
   module.exports = {
     updateMultipleAttendance,
+
   };
   
