@@ -41,7 +41,7 @@ const uploadMarks = async (req, res) => {
     
 
      const studentIds = marks.map(mark => mark.student_id);
-
+    console.log('hello',studentIds);
      const studentEmails = await userService.getUserId(studentIds);
  
      // Log the fetched emails (for debugging purposes)
