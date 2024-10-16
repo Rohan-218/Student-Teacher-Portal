@@ -1,15 +1,14 @@
 const { sgMail } = require('../config/config');
 
 // Function to send email notification
-const sendEmailNotification = async (recipientEmails, subject) => {
-  console.log(subject[0]);
+const sendEmailNotification = async (recipientEmails, text) => {
   try {
     for (const recipientEmail of recipientEmails) {
       const message = {
         to: recipientEmail,  // recipient's email address
         from: 'surbhi1102gupta@gmail.com',  // verified sender email
         subject: 'New Marks Added!',
-        text: `Dear Student,\n\nMarks for ${subject[0]} have been added.\n\nRegards,\nXYZ University`,
+        text: text
       };
 
       await sgMail.send(message); // Await the send operation
