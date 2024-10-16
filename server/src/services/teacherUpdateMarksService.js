@@ -19,6 +19,7 @@ const prepareMarksData = async (marks, examId) => {
       marksData.push({
         student_id: mark.student_id,
         subject_id: subjectDetails.subject_id,
+        subject_name: subjectDetails.subject_name,
         exam_id: examId,
         marks_obtained: mark.marks_obtained,
       });

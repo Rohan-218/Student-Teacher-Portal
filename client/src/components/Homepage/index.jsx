@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AboutUs from './about-us/AboutUs.jsx';
 import Contact from './contact-us/Contact.jsx';
-import Navbar from '../Common/navbar/Navbar.jsx';  // Import the Navbar component
+// import Navbar from '../Common/navbar/Navbar.jsx';   Import the Navbar component
 import {jwtDecode} from 'jwt-decode'; // Import jwtDecode
 import './index.css';
 import profile from '/src/assets/AdminHeader/home.jpg';
