@@ -33,7 +33,7 @@ app.use('/api/auth', authRoutes);
 app.use(authenticate);
 // Authenticate middleware;
 app.use('/api/students', studentRoutes);
-app.use('/api/teachers', teacherRoutes);  // All teacher-related routes, including /marks/upload
+app.use('/api/teachers', teacherRoutes); 
 app.use('/api/admin', adminRoutes);
 app.use('/api/admin/students', studentManagementRoutes);
 app.use('/api/admin/teachers', teacherManagementRoutes);
