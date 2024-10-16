@@ -14,10 +14,12 @@ const updateAttendance = async (req, res) => {
 
     await attendanceService.updateMultipleAttendance(subjectCode, attendanceDate, lecture, attendanceList);
     
-    const studentData = await attendanceService.getStudentId(attendanceList); 
-    const studentIds = studentData.map(student => student.studentId);
+    const studentIds = await attendanceService.getStudentId(attendanceList);
+    const extractedStudentIds = studentIds.map(student => student.student_id);
 
-    const studentEmails = await userService.getUserId(studentIds);
+    console.log('Extracted Student IDs:', extractedStudentIds); // Output will be [26, 27]
+
+    const studentEmails = await userService.getUserId(extractedStudentIds); 
     // Log the fetched emails (for debugging purposes)
     console.log('Fetched student emails:', studentEmails);
 
