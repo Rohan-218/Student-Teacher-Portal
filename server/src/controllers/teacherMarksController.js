@@ -35,6 +35,7 @@ const uploadMarks = async (req, res) => {
 
     // Save marks in the database
     await teacherPostMarksService.saveMarks(marksData);
+    
     const subjectName = marksData.map(mark => mark.subject_name );
     
 
