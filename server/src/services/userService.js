@@ -1,7 +1,7 @@
 const userModel  = require('../models/userModel');
 const sequelize = require('../config/dbConfig');
 
-exports.getUserId = async (studentIds) => {
+const getUserId = async (studentIds) => {
     try {
       if (!studentIds || studentIds.length === 0) {
         throw new Error('No student IDs provided');
@@ -38,3 +38,5 @@ exports.getUserId = async (studentIds) => {
       throw error;
     }
   };
+
+  module.exports = { getUserId };
