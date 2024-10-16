@@ -1,5 +1,6 @@
 // attendanceController.js
 const sendEmailNotification = require('../utils/emailservice');
+const userService = require('../services/userService');
 const attendanceService = require('../services/teachUpdateAttendanceService');
 
 const updateAttendance = async (req, res) => {
@@ -13,7 +14,7 @@ const updateAttendance = async (req, res) => {
 
     await attendanceService.updateMultipleAttendance(subjectCode, attendanceDate, lecture, attendanceList);
 
-    const studentEmails = await attendanceService.getUserId(attendanceList);
+    const studentEmails = await userService.getUserId(attendanceList);
     // Log the fetched emails (for debugging purposes)
     console.log('Fetched student emails:', studentEmails);
 
