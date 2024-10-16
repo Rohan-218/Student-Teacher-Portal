@@ -100,7 +100,7 @@ const StudentAttendance = () => {
                   <p>Updated Till: {subject.updatedTill}</p>
                   {subject.percentage < 75 && (
                     <p className="Debarred-Message" style={{ color: 'red' }}>
-                      You are debarred in this subject.
+                      Attendance is less than 75%.
                     </p>
                   )}
                 </div>
