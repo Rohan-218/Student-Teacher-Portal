@@ -2,20 +2,13 @@
 .teacher-attendance-container {
   position: relative;
   width: 100%;
-  padding: 10px 0px;
+  padding: 3%;
   box-sizing: border-box;
-}
-
-/* Top buttons styling */
-.teacher-top-buttons {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
 }
 
 /* Dropdown button styling */
 .portalselect{
-    padding: 10px 10px;
+    padding: 1% 2%;
     border: none;
     background-color: #35393b; /* Dark gray background for the dropdown */
     color: white; /* White text color */
@@ -26,7 +19,7 @@
     transition: background-color 0.3s ease; /* Smooth transition effect */
 }
 .teacher-subject-dropdown{
-  padding-left: 7%;
+  padding: 2%;
 }
 
 /* Dropdown container */
@@ -68,7 +61,6 @@
 .teacher-attendance-details {
   font-weight: bold;
   margin-top: 20px;
-  padding-left: 7%;
 }
 
 .atten-input{
@@ -123,4 +115,10 @@
 .teacher-updated-last {
   font-weight: 700;
   font-size: larger;
+}
+
+@media (max-width : 760px) {
+  .atten-input {
+    flex-direction: column;
+  }
 }

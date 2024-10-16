@@ -1,11 +1,11 @@
 .teacher-attendance-table {
     width: 100%; /* Use full width of the container */
-   
-    padding:10px 0px;
+    padding:1% 0px;
 }
 .att-table{
     overflow-x: auto; /* Enable horizontal scrolling if needed */
 }
+
 .teacher-attendance-table table {
     width: 100%; /* Use full width of the parent */
     border-collapse: collapse;
