@@ -88,7 +88,7 @@ const TeacherProfile = () => {
               {/* Profile picture placeholder */}
               <span className="profile-icon">{teacher.teacher_name.charAt(0).toUpperCase()}</span>
             </div>
-            <div className="stprofile-info">
+            <div className="teaprofile-info">
               <p><strong>Name:</strong> 
                 {isEditing ? (
                   <input

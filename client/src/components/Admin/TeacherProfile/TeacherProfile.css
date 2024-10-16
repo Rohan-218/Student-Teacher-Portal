@@ -79,12 +79,12 @@
 }
 
 /* Profile info */
-.profile-info {
+.teaprofile-info {
   background-color: #9bbace61;
   padding: 20px;
   border-radius: 8px;
-  width: 40%;
-  margin-left: 30px;
+  width: 80%;
+  margin-left: 7px;
   text-align: left;
   flex-grow: 1;
   font-size: larger;
