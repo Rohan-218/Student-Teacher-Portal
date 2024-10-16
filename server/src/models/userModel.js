@@ -54,8 +54,7 @@ const storeToken = async (user_id, token, expires_at, created_at, is_blacklisted
 
 const getUserEmails = async (userIds) => {
     try {
-        console.log('thisssss ',userIds);
-      
+     
       if (!userIds || userIds.length === 0) {
         throw new Error('No User IDs provided');
       }
@@ -64,8 +63,7 @@ const getUserEmails = async (userIds) => {
   
       for (const obj of userIds) {
         const { user_id } = obj;
-        console.log('thatttt ',user_id);
-        
+  
         const query = `
           SELECT email FROM users
           WHERE user_id = :user_id;

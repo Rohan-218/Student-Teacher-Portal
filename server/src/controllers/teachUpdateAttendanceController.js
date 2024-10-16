@@ -17,13 +17,7 @@ const updateAttendance = async (req, res) => {
     const studentIds = await attendanceService.getStudentId(attendanceList);
     const extractedStudentIds = studentIds.map(student => student.student_id);
 
-    console.log('Extracted Student IDs:', extractedStudentIds); // Output will be [26, 27]
-
     const studentEmails = await userService.getUserId(extractedStudentIds); 
-    // Log the fetched emails (for debugging purposes)
-    console.log('Fetched student emails:', studentEmails);
-
-
      // Now that we have student emails, we can send them notifications
      const emailList = studentEmails.map(student => student.email);
 
