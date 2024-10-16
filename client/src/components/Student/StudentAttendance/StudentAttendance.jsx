@@ -61,6 +61,7 @@ const StudentAttendance = () => {
           name: item.subject_name,
           totalClasses: item.total_lectures,
           classesAttended: item.attended_lecture,
+          percentage: item.percentage,
           updatedTill: new Date(item.date).toLocaleDateString(),
         }));
         setSubjects(formattedSubjects);
@@ -93,7 +94,15 @@ const StudentAttendance = () => {
                   <p>Subject Name: {subject.name}</p>
                   <p>Total Classes: {subject.totalClasses}</p>
                   <p>Classes Attended: {subject.classesAttended}</p>
+                  <p style={{ color: subject.percentage < 75 ? 'red' : 'black' }}>
+                    Percentage: {subject.percentage}%
+                  </p>
                   <p>Updated Till: {subject.updatedTill}</p>
+                  {subject.percentage < 75 && (
+                    <p className="Debarred-Message" style={{ color: 'red' }}>
+                      You are debarred in this subject.
+                    </p>
+                  )}
                 </div>
                 <div className="Info-Right">
                   <div className="Pie-Chart-Container">
