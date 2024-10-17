@@ -98,7 +98,7 @@ const StudentScoreboard = () => {
         {/* Exam Dropdown */}
         <div className="student-exam-dropdown">
           <select id="student-exam-select" value={exam} onChange={handleExamChange}>
-            <option value="">Select Exam</option>
+            <option value=""> Exam</option>
             {exams.map((examOption) => (
               <option key={examOption.exam_id} value={examOption.exam_name}>
                 {examOption.exam_name}

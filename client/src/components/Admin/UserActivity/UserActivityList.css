@@ -72,17 +72,17 @@
   margin-top: 20px;
 }
 
-table {
+.user-activity-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-table th, table td {
+.user-activity-table th, .user-activity-table td {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-table th {
+.user-activity-table th {
   background-color: #f2f2f2;
   text-align: left;
 }

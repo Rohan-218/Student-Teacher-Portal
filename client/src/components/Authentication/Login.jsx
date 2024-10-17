@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; 
 import './Login.css';
-import loginLogo from '/src/assets/Portal/Login/login-logo.png';
+import loginLogo from '/src/assets/Portal/Login/login-logo.jpg';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye icons
 
 const Login = () => {
@@ -86,7 +86,7 @@ const Login = () => {
     if (expirationTime && currentTime > expirationTime) {
       localStorage.removeItem('token');
       localStorage.removeItem('tokenExpiration');
-      setAlertMessage('Session expired. Please log in again.'); // Set alert message
+      setMessage('Session expired. Please log in again.'); // Set alert message
       setTimeout(() => navigate('/login'), 1000); // Redirect user after 1 second
     }
   };
