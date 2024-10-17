@@ -1,4 +1,6 @@
 const adminService = require('../services/adminService');
+const userModel = require('../models/userModel');
+const { insertActivity } = require('../utils/activityService');
 
 // Controller to handle fetching all admins
 const getAdmins = async (req, res) => {
@@ -28,14 +30,14 @@ const createAdmin = async (req, res) => {
 
   try {
     // Check if the user is a super admin (user_type 0)
-    const userType = req.user.user_type;
-    if (userType !== 0) {
+    const { user_type, user_id } = req.user;
+    if (user_type !== 0) {
       return res.status(403).json({ message: 'Access denied. Only super admins can create admins.' });
     }
 
     // Call the service to create the user and admin
     const result = await adminService.registerAdmin(name, email, password);
-
+    insertActivity( user_id, 'New Admin Created', `New Admin - ( ${name} ) have been created.`);
     // Return success response
     return res.status(201).json({
       message: 'Admin created successfully',
@@ -56,6 +58,8 @@ const updateAdminIsActive = async (req, res) => {
   try {
     // Check if the user is a super admin (user_type 0)
     const userType = req.user.user_type;
+    const userId = req.user.user_id;
+
     if (userType !== 0) {
       return res.status(403).json({ message: 'Access denied. Only super admins can update admin status.' });
     }
@@ -66,6 +70,10 @@ const updateAdminIsActive = async (req, res) => {
     // Call the service to update the status
     const result = await adminService.changeAdminStatus(user_id, is_active);
 
+    const status = is_active ? 'active' : 'inactive';
+    const userData = await userModel.getUserData(user_id);
+    const name = userData.map(user => user.name);
+    insertActivity( userId, 'Admin status updated', `Status of Admin - ${name} have been set to ${status}.`);
     // Return success response
     return res.status(200).json({
       message: 'Admin status updated successfully',
