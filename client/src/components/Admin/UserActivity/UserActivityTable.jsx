@@ -16,6 +16,9 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
                 } else if (tableType === 'activity') {
                     // API for User Activity 
                     url = 'http://localhost:3000/api/admin/user-activity'; 
+                } else if (tableType === 'email') {
+                    // API for Email Activity
+                    url = 'http://localhost:3000/api/admin/email-activity'; 
                 }
 
                 const response = await fetch(url, {
@@ -39,28 +42,13 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
         fetchActivities();
     }, [tableType]);
 
-    const filteredActivities = activities.filter((activity) => {
-        let isUserTypeMatch = true;
-        if (userType === 'Teacher') {
-            isUserTypeMatch = activity.user_type === 2;
-        } else if (userType === 'Admin') {
-            isUserTypeMatch = activity.user_type === 0 || activity.user_type === 3;
-        } else if (userType === 'Student') {
-            isUserTypeMatch = activity.user_type === 1;
-        }
-
-        let isDateMatch = true;
-        if (date) {
-            const activityDate = new Date(activity.timestamp).toISOString().split('T')[0];
-            isDateMatch = activityDate === date;
-        }
-
-        return isUserTypeMatch && isDateMatch;
-    });
-
     return (
         <div className="user-activity-table">
-            <h3>{tableType === 'log' ? 'User Logs' : 'User Activity'}</h3>
+            <h3>
+                {tableType === 'log' && 'User Logs'}
+                {tableType === 'activity' && 'User Activity'}
+                {tableType === 'email' && 'Email Activity'}
+            </h3>
 
             {/* Arrow buttons above the table headers */}
             <div className="arrow-container">
@@ -76,20 +64,31 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
                 <thead>
                     <tr>
                         <th>S. No</th>
-                        <th>Name</th>
+                        {tableType === 'email' ? <th>Email</th> : <th>Name</th>}
                         <th>Timestamp</th>
-                        <th>Event Type</th>
+                        {tableType === 'email' ? <th>Email Subject</th> : <th>Event Type</th>}
                         {tableType === 'activity' && <th>Message</th>}
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredActivities.map((activity, index) => (
+                    {activities.map((activity, index) => (
                         <tr key={activity.id}>
                             <td>{index + 1}</td>
-                            <td>{activity.user_name}</td>
-                            <td>{new Date(activity.timestamp).toLocaleString()}</td>
-                            <td>{activity.action}</td>
-                            {tableType === 'activity' && <td>{activity.message}</td>} {/* New Message column */}
+                            {tableType === 'email' ? (
+                                <>
+                                    <td>{activity.email}</td>
+                                    <td>{new Date(activity.timestamp).toLocaleString()}</td>
+                                    <td>{activity.subject}</td>
+                                    <td>{activity.message}</td>
+                                </>
+                            ) : (
+                                <>
+                                    <td>{activity.user_name}</td>
+                                    <td>{new Date(activity.timestamp).toLocaleString()}</td>
+                                    <td>{activity.action}</td>
+                                    {tableType === 'activity' && <td>{activity.message}</td>} 
+                                </>
+                            )}
                         </tr>
                     ))}
                 </tbody>
