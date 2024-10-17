@@ -21,42 +21,6 @@
 .teacher-subject-dropdown{
   padding: 2%;
 }
-
-/* Dropdown container */
-.teacher-dropdown {
-  position: relative;
-}
-
-/* Dropdown content */
-.teacher-dropdown-content {
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0 8px 16px black;
-  z-index: 1;
-  display: none;
-  flex-direction: column;
-}
-
-/* Show dropdown content on focus */
-.teacher-dropdown-btn:focus + .teacher-dropdown-content,
-.teacher-dropdown-content:hover {
-  display: flex;
-}
-
-/* Dropdown links */
-.teacher-dropdown-content a {
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  color: #333;
-}
-
-/* Hover effect on dropdown links */
-.teacher-dropdown-content a:hover {
-  background-color: #ddd;
-}
-
 /* Attendance details */
 .teacher-attendance-details {
   font-weight: bold;
@@ -90,31 +54,10 @@
   width: 169px;
   font-size: 14px;
 }
-.teacher-record-details-div {
-  display: flex;
-  justify-content: space-between; /* Aligns Updated Last to the left and Total Lecture to the right */
-  align-items: center; /* Centers items vertically */
-  width: 100%;
-  padding-bottom: 1%; /* Add some margin to create spacing from the other elements */
-}
-
-
-/* Align Total Lecture to the right */
-.teacher-total-lecture {
-  font-weight: 700;
-  font-size: larger;
-  text-align: right;
-}
 
 /* Add spacing between inputs */
 .teacher-input-row input:not(:first-child) {
   margin-left: 10px;
-}
-
-/* Updated Last text */
-.teacher-updated-last {
-  font-weight: 700;
-  font-size: larger;
 }
 
 @media (max-width : 760px) {
