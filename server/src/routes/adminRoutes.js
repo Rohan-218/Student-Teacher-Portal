@@ -1,6 +1,6 @@
 const express = require('express');
 const {getAdmins, createAdmin, updateAdminIsActive} = require('../controllers/adminController');
-const {getUserLogs, getUserActivity} = require('../controllers/activityController');
+const {getUserLogs, getUserActivity, getEmailActivity} = require('../controllers/activityController');
 const {updateUserpassword} = require('../controllers/updatePasswordController');
 const router = express.Router();
 
@@ -15,5 +15,6 @@ router.put('/reset-password', updateUserpassword)
 // Define the route to get user activity
 router.get('/user-logs', getUserLogs);
 router.get('/user-activity', getUserActivity);
+router.get('/user-email', getEmailActivity);
 
 module.exports = router;
