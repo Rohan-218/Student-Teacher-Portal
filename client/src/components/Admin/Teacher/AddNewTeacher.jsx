@@ -202,7 +202,7 @@ const AddNewTeacher = () => {
 
           <div className="form-buttons">
             <button className="btn" type="button" onClick={handleCancel}>
-              Cancel
+              Clear
             </button>
             <button className="btn" type="submit">
               Submit

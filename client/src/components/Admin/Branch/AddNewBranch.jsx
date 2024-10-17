@@ -72,7 +72,7 @@ const AddNewBranch = () => {
             <input className="input" type="text" name="Branchname" value={formData.Branchname} onChange={handleChange} required />
           </div>
           <div className="form-buttons">
-            <button className="btn-b" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn-b" type="button" onClick={handleCancel}>Clear</button>
             <button className="btn-b" type="submit">Submit</button>
           </div>
         </form>

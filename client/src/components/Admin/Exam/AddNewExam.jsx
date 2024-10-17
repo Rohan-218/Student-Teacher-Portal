@@ -89,7 +89,7 @@ const AddNewExam = () => {
             />
           </div>
           <div className="form-buttons">
-            <button className="btn-e" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn-e" type="button" onClick={handleCancel}>Clear</button>
             <button className="btn-e" type="submit">Submit</button>
           </div>
         </form>

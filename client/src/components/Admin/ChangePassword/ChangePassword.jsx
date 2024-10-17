@@ -115,7 +115,7 @@ const ChangePassword = () => {
                                 />
                             </div>
                             <div className="form-buttons">
-                                <button className="btn-c" type="button" onClick={handleCancel}>Cancel</button>
+                                <button className="btn-c" type="button" onClick={handleCancel}>Clear</button>
                                 <button className="btn-c" type="submit">Submit</button>
                             </div>
                         </form>
