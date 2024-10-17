@@ -1,9 +1,9 @@
 const { updateTeacher } = require('../services/updateTeacherDetailsService');
-
+const { insertActivity } = require('../utils/activityService');
 exports.updateTeacherDetails = async (req, res) => {
   try {
     const { teacher_name, user_id, designation, contact_no, email } = req.body;
-
+    const userId  = req.user.user_id;
     // Call the service to update teacher details
     const result = await updateTeacher(user_id, {
       teacher_name,
@@ -11,6 +11,8 @@ exports.updateTeacherDetails = async (req, res) => {
       contact_no,
       email,
     });
+
+    insertActivity( userId, 'Teacher Details Updated', `Details of ${teacher_name} have been updated.`);
 
     if (!result.success) {
       return res.status(404).json({ message: 'Teacher not found or no changes detected' });

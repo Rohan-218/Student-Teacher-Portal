@@ -2,7 +2,7 @@
 const sendEmailNotification = require('../utils/emailservice');
 const userService = require('../services/userService');
 const attendanceService = require('../services/teachUpdateAttendanceService');
-const { insertActivity } = require('../utils/activityService');
+const { insertActivity, insertEmailActivity } = require('../utils/activityService');
 
 const updateAttendance = async (req, res) => {
   try {
@@ -33,6 +33,7 @@ const updateAttendance = async (req, res) => {
       const subject = `Attendance Updated!`;
       insertActivity( user_id, 'Attendance updated', `Attendance of ${student} in ${subjectName} for ${attendanceDate} lecture- ${lecture} have been updated.`);
       const emailResponse = await sendEmailNotification(emailList, text, subject);
+      insertEmailActivity(emailList, subject, `Attendance for ${subjectName} have been updated.`);
       if (emailResponse) {
         console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
       }
