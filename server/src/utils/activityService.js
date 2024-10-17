@@ -20,4 +20,26 @@ const insertActivity = async (userId, eventType, message) => {
   }
 };
 
-module.exports = { insertActivity };
+const insertEmailActivity = async (emails, email_subject, message) => {
+  const query = `
+    INSERT INTO email_log (email, timestamp, email_subject, message)
+    VALUES (:email, NOW(), :email_subject, :message)
+  `;
+
+  try {
+    for (const email of emails) {
+      await sequelize.query(query, {
+        replacements: {
+          email: email,
+          email_subject: email_subject,
+          message: message,
+        },
+      });
+    }
+    console.log('Email activities inserted successfully');
+  } catch (error) {
+    console.error('Error inserting email activities:', error);
+  }
+};
+
+module.exports = { insertActivity , insertEmailActivity};

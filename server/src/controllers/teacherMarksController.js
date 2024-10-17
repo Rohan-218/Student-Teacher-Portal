@@ -1,7 +1,7 @@
 const teacherPostMarksService = require('../services/teacherPostMarksService');
 const userService = require('../services/userService');
 const sendEmailNotification = require('../utils/emailservice');
-const { insertActivity } = require('../utils/activityService');
+const { insertActivity ,insertEmailActivity } = require('../utils/activityService');
 // Controller function to upload marks
 const uploadMarks = async (req, res) => {
   try {
@@ -54,6 +54,7 @@ const uploadMarks = async (req, res) => {
     const subject = `New Marks Added!`;
     insertActivity( user_id, 'Marks uploaded', `Marks for ${subjectName[0]} have been added.`);
     const emailResponse = await sendEmailNotification(emailList, text, subject);
+    insertEmailActivity(emailList, subject, `Marks for ${subjectName[0]} have been added.`);
     if (emailResponse) {
       console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
     }
