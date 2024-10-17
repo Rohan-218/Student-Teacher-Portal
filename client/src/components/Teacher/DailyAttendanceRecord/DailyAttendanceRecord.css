@@ -132,5 +132,22 @@
     border-radius: 8px;
     font-size: 1.3rem;  
 }
-
+@media(max-width:768px){
+    .Teacher-back-button{
+        top: 5%;
+    }
+    .Daily-att{
+        margin-top: 10%;
+        font-size: 2rem;
+    }
+}
+@media(max-width:420px){
+    .Daily-att{
+        margin-top: 20%;
+        font-size: 2rem;
+    }
+    .Teacher-back-button{
+        top: 4%;
+    }
+}
 
