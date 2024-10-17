@@ -70,3 +70,25 @@ exports.updateExamStatus = async (exam_id, is_active) => {
       throw new Error('Error updating exam status: ' + error.message);
     }
   };
+
+  exports.getExamById = async (examId) => {
+    try {
+      const examName = await sequelize.query(
+        `SELECT exam_name FROM exam_type WHERE exam_id = :examId`,
+        {
+          replacements: { examId },
+          type: sequelize.QueryTypes.SELECT,
+        }
+      );
+  
+      // Check if no subject found
+      if (examName.length === 0) {
+        throw new Error(`No exam found with id ${examId}`);
+      }
+  
+      return examName[0].exam_name; // Return the subject name
+    } catch (error) {
+      console.error('Error fetching exam name:', error);
+      throw error;
+    }
+};
