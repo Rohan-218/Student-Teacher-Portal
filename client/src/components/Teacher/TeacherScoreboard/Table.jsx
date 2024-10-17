@@ -35,6 +35,7 @@ const StudentTable = ({ students = [], setStudents, onSave, buttonText ,maxMarks
 
   return (
     <div className="teacher-student-table">
+     <div className="tea-table">
       <table>
         <thead>
           <tr>
@@ -73,7 +74,7 @@ const StudentTable = ({ students = [], setStudents, onSave, buttonText ,maxMarks
           )}
         </tbody>
       </table>
-
+      </div>
       <div className="teacher-marks-bottom-buttons">
         {/* Dynamically set button text */}
         <button className="teacher-marks-save-btn" onClick={() => {
