@@ -13,12 +13,9 @@ const UserActivityList = () => {
         setUserType(e.target.value);
     };
 
-    const handleNextTable = () => {
-        setActiveTable((prev) => (prev === 0 ? 1 : 0)); // Toggle between 0 and 1
-    };
-
-    const handlePrevTable = () => {
-        setActiveTable((prev) => (prev === 0 ? 1 : 0)); // Toggle between 0 and 1
+    // Toggle between User Logs and User Activity
+    const toggleTable = () => {
+        setActiveTable((prev) => (prev === 0 ? 1 : 0)); // Switch between 0 and 1
     };
 
     return (
@@ -46,23 +43,13 @@ const UserActivityList = () => {
                     </div>
 
                     {/* Render User Logs or User Activity based on activeTable */}
-                    {activeTable === 0 ? (
-                        <UserActivityTable
-                            userType={userType}
-                            date={date}
-                            tableType="log"
-                            onPrev={handlePrevTable}
-                            onNext={handleNextTable}
-                        />
-                    ) : (
-                        <UserActivityTable
-                            userType={userType}
-                            date={date}
-                            tableType="activity"
-                            onPrev={handlePrevTable}
-                            onNext={handleNextTable}
-                        />
-                    )}
+                    <UserActivityTable
+                        userType={userType}
+                        date={date}
+                        tableType={activeTable === 0 ? "log" : "activity"}
+                        onPrev={toggleTable}
+                        onNext={toggleTable}
+                    />
                 </div>
             </div>
         </div>

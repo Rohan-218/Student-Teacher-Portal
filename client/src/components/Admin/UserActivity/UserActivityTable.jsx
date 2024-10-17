@@ -12,10 +12,10 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
                 let url = '';
                 if (tableType === 'log') {
                     // API for User Logs
-                    url = 'http://localhost:3000/api/admin/user';
+                    url = 'http://localhost:3000/api/admin/user-logs';
                 } else if (tableType === 'activity') {
-                    // API for User Activity (replace this with the new API when added)
-                    url = 'http://localhost:3000/api/admin/user'; 
+                    // API for User Activity 
+                    url = 'http://localhost:3000/api/admin/user-activity'; 
                 }
 
                 const response = await fetch(url, {
