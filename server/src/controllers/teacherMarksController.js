@@ -1,13 +1,14 @@
 const teacherPostMarksService = require('../services/teacherPostMarksService');
 const userService = require('../services/userService');
 const sendEmailNotification = require('../utils/emailservice');
+const { insertActivity } = require('../utils/activityService');
 // Controller function to upload marks
 const uploadMarks = async (req, res) => {
   try {
     const { exam_id, marks } = req.body;
-    const usertype = req.user.user_type;
+    const {user_type, user_id } = req.user;
 
-    if (usertype !== 2) {
+    if (user_type !== 2) {
         return res.status(403).json({ message: 'Unauthorized: Not a teacher!' });
     }
     // Validate marks
@@ -54,6 +55,7 @@ const uploadMarks = async (req, res) => {
    try {
     const text = `Dear Student,\n\nMarks for ${subjectName[0]} have been added.\n\nRegards,\nXYZ University`;
     const subject = `New Marks Added!`;
+    insertActivity( user_id, 'Marks uploaded', `Marks for ${subjectName[0]} have been added.`);
     const emailResponse = await sendEmailNotification(emailList, text, subject);
     if (emailResponse) {
       console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
@@ -75,9 +77,9 @@ const uploadMarks = async (req, res) => {
 const getMarks = async (req, res) => {
   try {
     let { subjectCode } = req.query;
-    const usertype = req.user.user_type;
+    const user_type = req.user.user_type;
 
-    if (usertype !== 2) {
+    if (user_type !== 2) {
         return res.status(403).json({ message: 'Unauthorized: Not a teacher!' });
     }
     // Trim the subjectCode to handle extra spaces
