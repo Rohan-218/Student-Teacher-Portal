@@ -5,8 +5,8 @@ const getUserByEmail = async (email) => {
   try {
       const query = `
           SELECT 
-              user_id, 
-              email, 
+              user_id,
+              email,
               pgp_sym_decrypt(password::BYTEA, :secretKey) AS decrypted_password, 
               user_type
           FROM 
@@ -65,8 +65,8 @@ const getUserEmails = async (userIds) => {
         const { user_id } = obj;
   
         const query = `
-          SELECT email FROM users
-          WHERE user_id = :user_id;
+          SELECT u.email, s.student_name FROM users u JOIN student s ON u.user_id = s.user_id
+          WHERE u.user_id = :user_id;
         `;
   
         // Execute the query
