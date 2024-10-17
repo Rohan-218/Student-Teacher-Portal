@@ -86,7 +86,7 @@ const Login = () => {
     if (expirationTime && currentTime > expirationTime) {
       localStorage.removeItem('token');
       localStorage.removeItem('tokenExpiration');
-      setAlertMessage('Session expired. Please log in again.'); // Set alert message
+      setMessage('Session expired. Please log in again.'); // Set alert message
       setTimeout(() => navigate('/login'), 1000); // Redirect user after 1 second
     }
   };
