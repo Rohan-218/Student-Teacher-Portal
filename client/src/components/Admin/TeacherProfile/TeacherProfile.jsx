@@ -89,7 +89,7 @@ const TeacherProfile = () => {
               <span className="profile-icon">{teacher.teacher_name.charAt(0).toUpperCase()}</span>
             </div>
             <div className="teaprofile-info">
-              <p><strong>Name:</strong> 
+              <p><strong>Name : </strong> 
                 {isEditing ? (
                   <input
                     type="text"
@@ -101,7 +101,7 @@ const TeacherProfile = () => {
                   teacher.teacher_name
                 )}
               </p>
-              <p><strong>Designation:</strong> 
+              <p><strong>Designation : </strong> 
                 {isEditing ? (
                   <input
                     type="text"
@@ -113,7 +113,7 @@ const TeacherProfile = () => {
                   teacher.designation
                 )}
               </p>
-              <p><strong>Email Id:</strong> 
+              <p><strong>Email Id : </strong> 
                 {isEditing ? (
                   <input
                     type="email"
@@ -125,7 +125,7 @@ const TeacherProfile = () => {
                   teacher.email
                 )}
               </p>
-              <p><strong>Contact No.:</strong> 
+              <p><strong>Contact No. : </strong> 
                 {isEditing ? (
                   <input
                     type="text"
@@ -137,7 +137,7 @@ const TeacherProfile = () => {
                   teacher.contact_no
                 )}
               </p>
-              <p><strong>Subjects:</strong> {teacher.subjects.join(', ')}</p> {/* Display subjects as read-only */}
+              <p><strong>Subjects :</strong> {teacher.subjects.join(', ')}</p> {/* Display subjects as read-only */}
               <button className="edit-button" onClick={isEditing ? handleSave : handleEdit}>
                 {isEditing ? 'Save' : 'Edit'}
               </button>
