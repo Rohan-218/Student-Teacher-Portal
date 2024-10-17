@@ -70,9 +70,8 @@ exports.updateSubjectIsActive = async (req, res) => {
   
     try {
       // Check if the user is a super admin (user_type 0)
-      const userType = req.user.user_type;
-      const userId = req.user.user_id;
-      if (userType !== 0 && userType !== 3) {
+      const {user_id, user_type} = req.user;
+      if (user_type !== 0 && user_type !== 3) {
         return res.status(403).json({ message: 'Access denied. Only admins can update subject status.' });
       }
   
@@ -81,7 +80,7 @@ exports.updateSubjectIsActive = async (req, res) => {
   
       const status = is_active ? 'active' : 'inactive';
       const name = await getSubjectById(subject_id);
-      insertActivity( userId, 'Subject status updated', `Status of Subject - ${name} have been set to ${status}.`);
+      insertActivity( user_id, 'Subject status updated', `Status of Subject - ${name} have been set to ${status}.`);
       
       return res.status(200).json({
         message: 'Subject status updated successfully',

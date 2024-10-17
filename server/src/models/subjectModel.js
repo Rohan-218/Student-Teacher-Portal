@@ -95,4 +95,4 @@ exports.getSubjectById = async (subjectId) => {
       console.error('Error fetching subject name:', error);
       throw error;
     }
-  };
+};
