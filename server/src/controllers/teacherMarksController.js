@@ -43,17 +43,14 @@ const uploadMarks = async (req, res) => {
 
      const studentIds = marks.map(mark => mark.student_id);
     console.log('hello',studentIds);
-     const studentEmails = await userService.getUserId(studentIds);
- 
-     // Log the fetched emails (for debugging purposes)
-     console.log('Fetched student emails:', studentEmails);
+     const studentData = await userService.getUserId(studentIds);
  
      // Now that we have student emails, we can send them notifications
-     const emailList = studentEmails.map(student => student.email);
+     const emailList = studentData.map(student => student.email);
 
    // Now that we have student emails, we can send them notifications
    try {
-    const text = `Dear Student,\n\nMarks for ${subjectName[0]} have been added.\n\nRegards,\nXYZ University`;
+    const text = `Dear student,\n\nMarks for ${subjectName[0]} have been added.\n\nRegards,\nXYZ University`;
     const subject = `New Marks Added!`;
     insertActivity( user_id, 'Marks uploaded', `Marks for ${subjectName[0]} have been added.`);
     const emailResponse = await sendEmailNotification(emailList, text, subject);

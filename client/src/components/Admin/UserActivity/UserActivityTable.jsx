@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './UserActivityTable.css'; // Custom CSS for User Activity Table
 
-const UserActivityTable = ({ userType, date }) => {
+const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
     const [activities, setActivities] = useState([]);
 
     useEffect(() => {
         const fetchActivities = async () => {
             try {
                 const token = localStorage.getItem('token');
+                
+                let url = '';
+                if (tableType === 'log') {
+                    // API for User Logs
+                    url = 'http://localhost:3000/api/admin/user';
+                } else if (tableType === 'activity') {
+                    // API for User Activity (replace this with the new API when added)
+                    url = 'http://localhost:3000/api/admin/user'; 
+                }
 
-                const response = await fetch('http://localhost:3000/api/admin/user', {
+                const response = await fetch(url, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -23,15 +32,14 @@ const UserActivityTable = ({ userType, date }) => {
                     setActivities(result.data);
                 }
             } catch (error) {
-                console.error('Error fetching user activities:', error);
+                console.error(`Error fetching ${tableType} data:`, error);
             }
         };
 
         fetchActivities();
-    }, []);
+    }, [tableType]);
 
     const filteredActivities = activities.filter((activity) => {
-        // Filter by user type
         let isUserTypeMatch = true;
         if (userType === 'Teacher') {
             isUserTypeMatch = activity.user_type === 2;
@@ -41,19 +49,29 @@ const UserActivityTable = ({ userType, date }) => {
             isUserTypeMatch = activity.user_type === 1;
         }
 
-        // Filter by date
         let isDateMatch = true;
         if (date) {
-            const activityDate = new Date(activity.timestamp).toISOString().split('T')[0]; // Get date in YYYY-MM-DD format
+            const activityDate = new Date(activity.timestamp).toISOString().split('T')[0];
             isDateMatch = activityDate === date;
         }
 
-        return isUserTypeMatch && isDateMatch; // Return true if both filters match
+        return isUserTypeMatch && isDateMatch;
     });
 
     return (
         <div className="user-activity-table">
-            <h3>User Type: {userType}</h3>
+            <h3>{tableType === 'log' ? 'User Logs' : 'User Activity'}</h3>
+
+            {/* Arrow buttons above the table headers */}
+            <div className="arrow-container">
+                <button className="prev-arrow" onClick={onPrev}>
+                    &#9664;
+                </button>
+                <button className="next-arrow" onClick={onNext}>
+                    &#9654;
+                </button>
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -61,6 +79,7 @@ const UserActivityTable = ({ userType, date }) => {
                         <th>Name</th>
                         <th>Timestamp</th>
                         <th>Event Type</th>
+                        {tableType === 'activity' && <th>Message</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -70,6 +89,7 @@ const UserActivityTable = ({ userType, date }) => {
                             <td>{activity.user_name}</td>
                             <td>{new Date(activity.timestamp).toLocaleString()}</td>
                             <td>{activity.action}</td>
+                            {tableType === 'activity' && <td>{activity.message}</td>} {/* New Message column */}
                         </tr>
                     ))}
                 </tbody>
