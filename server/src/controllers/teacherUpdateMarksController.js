@@ -1,6 +1,7 @@
 const teacherUpdateMarksService = require('../services/teacherUpdateMarksService');
 const userService = require('../services/userService');
 const sendEmailNotification = require('../utils/emailservice');
+const { insertActivity } = require('../utils/activityService');
 
 // Update marks
 const updateMarks = async (req, res) => {
@@ -48,8 +49,9 @@ const updateMarks = async (req, res) => {
      const student = studentData.map(student => student.student_name);
       // Now that we have student emails, we can send them notifications
       try {
-        const text = `Dear ${student},\n\nMarks for ${subjectName[0]} have been updated.\n\nRegards,\nXYZ University`;
+        const text = `Dear student,\n\nMarks for ${subjectName[0]} have been updated.\n\nRegards,\nXYZ University`;
         const subject = `Marks Updated!`;
+        insertActivity( user_id, 'Marks updated', `Marks of ${student} in ${subjectName[0]} have been updated.`);
         const emailResponse = await sendEmailNotification(emailList, text, subject);
         if (emailResponse) {
           console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
