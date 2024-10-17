@@ -1,6 +1,6 @@
 /* Container */
 .teacher-scoreboard-container {
-    padding: 1%;
+    padding: 3%;
   }
   
   /* Top buttons styling */
@@ -9,13 +9,16 @@
     margin-bottom: 20px;
     justify-content: space-between;
   }
+  .teacher-exam-dropdown{
+   /* margin-top:13px; */
+   align-self: center;
+  }
  /* Info row styling */
   .teacher-info-row {
     display: flex;
     justify-content: space-between;
     gap: 20px;
     padding: 10px;
-    padding-left: 7%;
     font-size: 18px;
     /* font-weight:bold ; */
   }
@@ -26,7 +29,7 @@
   }
   .teacher-maxmarks{
     padding-top: 10px;
-    padding-left: 7%;
+    padding-left: 1%;
     font-size: 18px;
     /* font-weight:bold ; */
     display: flex;
