@@ -1,4 +1,6 @@
 const { getSubjects, registerSubject, getSubjectCount, changeSubjectStatus } = require('../services/subjectService');
+const { getSubjectById } = require('../models/subjectModel');
+const { insertActivity } = require('../utils/activityService');
 
 exports.getSubjects = async (req, res) => {
     try {
@@ -69,6 +71,7 @@ exports.updateSubjectIsActive = async (req, res) => {
     try {
       // Check if the user is a super admin (user_type 0)
       const userType = req.user.user_type;
+      const userId = req.user.user_id;
       if (userType !== 0 && userType !== 3) {
         return res.status(403).json({ message: 'Access denied. Only admins can update subject status.' });
       }
@@ -76,7 +79,10 @@ exports.updateSubjectIsActive = async (req, res) => {
       // Call the service to update the status
       const result = await changeSubjectStatus(subject_id, is_active);
   
-      // Return success response
+      const status = is_active ? 'active' : 'inactive';
+      const name = await getSubjectById(subject_id);
+      insertActivity( userId, 'Subject status updated', `Status of Subject - ${name} have been set to ${status}.`);
+      
       return res.status(200).json({
         message: 'Subject status updated successfully',
         data: result
@@ -87,4 +93,4 @@ exports.updateSubjectIsActive = async (req, res) => {
         message: 'Failed to update subject status'
       });
     }
-  };
+};
