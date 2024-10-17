@@ -9,13 +9,6 @@
   padding: 20px;
   transition: margin-left 0.3s ease; /* Smooth transition for margin */
 }
-
-@media (max-width: 768px) {
-  .teachermain-content {
-    margin-left: 0; /* Full width when sidebar is hidden */
-  }
-}
-
 /* Profile container */
 .profile-container {
   background-color: #fff;
@@ -35,21 +28,13 @@
   justify-content: flex-start;
   align-items: center;
   width: 70%;
-  margin-top: 70px;
+  margin-top: 20px;
   margin-left: 150px;
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
-@media (max-width: 1024px) {
-  .profile-header {
-    margin-left: 0;
-    width: 100%;
-    justify-content: center;
-  }
-}
-
 /* Back button */
-.back-button {
+.Back-button {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -121,6 +106,21 @@
   cursor: pointer;
   font-size: 20px;
 }
+
+@media (max-width: 768px) {
+  .teachermain-content {
+    margin-left: 0; /* Full width when sidebar is hidden */
+  }
+}
+
+@media (max-width: 1024px) {
+  .profile-header {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 
 /* Responsive design for medium-sized screens */
 @media (max-width: 1024px) {

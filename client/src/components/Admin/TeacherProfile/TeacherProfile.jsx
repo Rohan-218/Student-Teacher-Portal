@@ -82,7 +82,7 @@ const TeacherProfile = () => {
         <div className="profile-container">
           <div className="profile-header">
             <Link to="/admin/teachers">
-              <button className="back-button">←</button>
+              <button className="Back-button">←</button>
             </Link>
             <div className="profile-picture">
               {/* Profile picture placeholder */}

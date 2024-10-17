@@ -93,7 +93,7 @@ const StudentProfile = () => {
         <div className="stprofile-container">
           <div className="stprofile-header">
             <Link to="/admin/students">
-              <button className="back-button">←</button>
+              <button className="back-Button">←</button>
             </Link>
             <div className="stprofile-picture">
               {/* Profile picture placeholder */}
