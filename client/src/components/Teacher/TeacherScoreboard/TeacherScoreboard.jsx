@@ -79,53 +79,52 @@ const TeacherScoreboard = () => {
   };
 
   // Fetch marks data when selectedExam is present
-  // Fetch marks data when selectedExam is present
-useEffect(() => {
-  const fetchMarksData = async () => {
-    if (!selectedExam || studentList.length === 0) return; // Early return if no exam or students
+  useEffect(() => {
+    const fetchMarksData = async () => {
+      if (!selectedExam || studentList.length === 0) return; // Early return if no exam or students
 
-    try {
-      const marksResponse = await fetch(
-        `http://localhost:3000/api/teachers/marks?subjectCode=${selectedSubject}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const marksData = await marksResponse.json();
-
-      // Check if marks data is returned and update studentList accordingly
-      const updatedStudents = studentList.map((student) => {
-        const studentMarks = marksData.find(
-          (mark) => mark.student_id === student.student_id && mark.exam_id === Number(selectedExam)
+      try {
+        const marksResponse = await fetch(
+          `http://localhost:3000/api/teachers/marks?subjectCode=${selectedSubject}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
+        const marksData = await marksResponse.json();
 
-        return {
-          ...student,
-          Marks_Obtained: studentMarks ? studentMarks.marks_obtained : undefined,
-          percentage: studentMarks ? studentMarks.percentage : undefined,
-        };
-      });
+        // Check if marks data is returned and update studentList accordingly
+        const updatedStudents = studentList.map((student) => {
+          const studentMarks = marksData.find(
+            (mark) => mark.student_id === student.student_id && mark.exam_id === Number(selectedExam)
+          );
 
-      // Update studentList with marks data
-      setStudentList(updatedStudents);
+          return {
+            ...student,
+            Marks_Obtained: studentMarks ? studentMarks.marks_obtained : undefined,
+            originalMarks: studentMarks ? studentMarks.marks_obtained : undefined, // Track original marks
+            percentage: studentMarks ? studentMarks.percentage : undefined,
+          };
+        });
 
-      // Check if any student has marks already entered and switch to update mode
-      const hasExistingMarks = updatedStudents.some(student => student.Marks_Obtained !== undefined);
-      if (hasExistingMarks) {
-        setIsUpdateMode(true); // Switch to update mode if marks exist
-      } else {
-        setIsUpdateMode(false); // Stay in save mode if no marks exist
+        // Update studentList with marks data
+        setStudentList(updatedStudents);
+
+        // Check if any student has marks already entered and switch to update mode
+        const hasExistingMarks = updatedStudents.some(student => student.Marks_Obtained !== undefined);
+        if (hasExistingMarks) {
+          setIsUpdateMode(true); // Switch to update mode if marks exist
+        } else {
+          setIsUpdateMode(false); // Stay in save mode if no marks exist
+        }
+      } catch (error) {
+        console.error("Error fetching marks data:", error);
       }
-    } catch (error) {
-      console.error("Error fetching marks data:", error);
-    }
-  };
+    };
 
-  fetchMarksData();
-}, [selectedExam, selectedSubject, token, studentList.length]);
-
+    fetchMarksData();
+  }, [selectedExam, selectedSubject, token, studentList.length]);
 
   // Handle exam selection and update maximum marks
   const handleExamSelect = (examId) => {
@@ -138,60 +137,61 @@ useEffect(() => {
   };
 
   // Save or update marks
- // Save or update marks
-const handleSaveMarks = async () => {
-  const payload = {
-    exam_id: Number(selectedExam),
-    marks: studentList.map((student) => ({
+  const handleSaveMarks = async () => {
+    // Filter the students to only send those who have marks entered or have updated marks
+    const studentsToUpdate = studentList.filter(student => 
+      student.Marks_Obtained !== undefined && student.Marks_Obtained !== student.originalMarks
+    ).map(student => ({
       student_id: student.student_id,
       enrollment_no: student.enrollment_no,
       marks_obtained: student.Marks_Obtained,
       subject_code: selectedSubject
-    })).filter(item => item.marks_obtained !== undefined && item.student_id)
+    }));
+
+    // Early return if no changes or no valid marks
+    if (studentsToUpdate.length === 0) {
+      alert("No changes to upload.");
+      return;
+    }
+
+    const payload = {
+      exam_id: Number(selectedExam),
+      marks: studentsToUpdate
+    };
+
+    try {
+      const url = isUpdateMode
+        ? 'http://localhost:3000/api/teachers/marks/update' // Use PUT for updating marks
+        : 'http://localhost:3000/api/teachers/marks/upload'; // Use POST for saving marks
+
+      const method = isUpdateMode ? 'PUT' : 'POST'; // Change method based on mode
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      console.log(isUpdateMode ? 'Marks updated successfully:' : 'Marks uploaded successfully:', result);
+
+      alert(isUpdateMode ? 'Marks updated successfully!' : 'Marks uploaded successfully!');
+
+      // Reset state after successful save or update
+      setStudentList([]); // Clear student list
+      setSelectedExam(''); // Reset selected exam
+      setMaxMarks(null); // Reset maximum marks
+      setBranchName(''); // Clear branch name
+      setSemester(''); // Clear semester
+      setIsUpdateMode(false); // Reset update mode
+
+    } catch (error) {
+      console.error(isUpdateMode ? 'Error updating marks:' : 'Error uploading marks:', error);
+    }
   };
-
-  if (payload.marks.length === 0) {
-    alert("No valid marks to upload.");
-    return;
-  }
-
-  try {
-    const url = isUpdateMode
-      ? 'http://localhost:3000/api/teachers/marks/update' // Use PUT for updating marks
-      : 'http://localhost:3000/api/teachers/marks/upload'; // Use POST for saving marks
-
-    const method = isUpdateMode ? 'PUT' : 'POST'; // Change method based on mode
-
-    const response = await fetch(url, {
-      method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload)
-    });
-
-    const result = await response.json();
-    console.log(isUpdateMode ? 'Marks updated successfully:' : 'Marks uploaded successfully:', result);
-
-    // Alert on successful upload or update
-    alert(isUpdateMode ? 'Marks updated successfully!' : 'Marks uploaded successfully!');
-
-
-    // Reset state after successful save or update
-    setStudentList([]); // Clear student list
-    setSelectedSubject(''); // Reset selected subject
-    setSelectedExam(''); // Reset selected exam
-    setMaxMarks(null); // Reset maximum marks
-    setBranchName(''); // Clear branch name
-    setSemester(''); // Clear semester
-    setIsUpdateMode(false); // Reset update mode
-
-  } catch (error) {
-    console.error(isUpdateMode ? 'Error updating marks:' : 'Error uploading marks:', error);
-  }
-};
-
 
   return (
     <div className="teacher-scoreboard-container">
@@ -241,7 +241,6 @@ const handleSaveMarks = async () => {
       <div className="teacher-info-row">
         <span><strong>Branch: </strong>{branchName || 'N/A'}</span>
         <span><strong>Semester: </strong>{semester || 'N/A'}</span>
-        {/* <span>Subject: {selectedSubject}</span> */}
       </div>
 
       <div className="teacher-maxmarks">
@@ -255,7 +254,7 @@ const handleSaveMarks = async () => {
           setStudents={setStudentList} 
           onSave={handleSaveMarks} // Pass handleSaveMarks function
           buttonText={isUpdateMode ? 'Update' : 'Save'} // Change button text
-          maxMarks={maxMarks}
+          maxMarks={maxMarks} 
         />
       )}
     </div>

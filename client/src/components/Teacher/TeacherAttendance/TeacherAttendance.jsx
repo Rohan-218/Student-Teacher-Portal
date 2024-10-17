@@ -134,8 +134,6 @@ const toggleStudentAttendance = (enrollmentNo) => {
   });
 };
 
-  // Handle attendance submission
-  // Handle attendance submission or update
 // Handle attendance submission or update
 const handleAttendanceSubmit = async () => {
   if (!attendanceList || !Array.isArray(attendanceList)) {
