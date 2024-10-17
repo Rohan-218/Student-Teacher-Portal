@@ -93,7 +93,7 @@ const DailyAttendanceRecordTable = ({ subjectID, attendanceFilter }) => {
         </div>
         {error && <p className="error-message">{error}</p>} {/* Display error message */}
       </div>
-
+     <div className="record-table">
       <table>
         <thead>
           <tr>
@@ -144,6 +144,7 @@ const DailyAttendanceRecordTable = ({ subjectID, attendanceFilter }) => {
                 )}
             </tbody>
       </table>
+      </div>
     </div>
   );
 };

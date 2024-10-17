@@ -181,6 +181,7 @@ const TeacherScoreboard = () => {
       alert(isUpdateMode ? 'Marks updated successfully!' : 'Marks uploaded successfully!');
 
       // Reset state after successful save or update
+      setSelectedSubject('');
       setStudentList([]); // Clear student list
       setSelectedExam(''); // Reset selected exam
       setMaxMarks(null); // Reset maximum marks
@@ -217,7 +218,7 @@ const TeacherScoreboard = () => {
             )}
           </select>
         </div>
-
+  
         <div className="teacher-exam-dropdown">
           <select
             className='portal-select'
@@ -237,28 +238,27 @@ const TeacherScoreboard = () => {
           </select>
         </div>
       </div>
-
+  
       <div className="teacher-info-row">
         <span><strong>Branch: </strong>{branchName || 'N/A'}</span>
         <span><strong>Semester: </strong>{semester || 'N/A'}</span>
       </div>
-
+  
       <div className="teacher-maxmarks">
         <span><strong>Exam: </strong>{examList.find(exam => exam.exam_id === Number(selectedExam))?.exam_name || 'N/A'}</span>
         <span><strong>Max marks: </strong>{maxMarks ? maxMarks : 'N/A'}</span>
       </div>
-
-      {selectedSubject && (
-        <StudentTable 
-          students={studentList} 
-          setStudents={setStudentList} 
-          onSave={handleSaveMarks} // Pass handleSaveMarks function
-          buttonText={isUpdateMode ? 'Update' : 'Save'} // Change button text
-          maxMarks={maxMarks} 
-        />
-      )}
+  
+      {/* Always render StudentTable, passing studentList */}
+      <StudentTable 
+        students={studentList} 
+        setStudents={setStudentList} 
+        onSave={handleSaveMarks} 
+        buttonText={isUpdateMode ? 'Update' : 'Save'}
+        maxMarks={maxMarks} 
+      />
     </div>
-  );
+  );  
 };
 
 export default TeacherScoreboard;

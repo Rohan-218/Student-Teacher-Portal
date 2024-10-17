@@ -122,7 +122,7 @@ const DailyAttendance = () => {
                   <tr>
                     <th>Date</th>
                     <th>Total Lectures</th>
-                    <th>Percentage (%)</th>
+                    {/* <th>Percentage (%)</th> */}
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -132,7 +132,7 @@ const DailyAttendance = () => {
                       <tr key={recordIndex}>
                         <td>{record.date || 'N/A'}</td>
                         <td>{record.total_lectures !== null ? record.total_lectures : 'N/A'}</td>
-                        <td>{record.percentage || 'N/A'}</td>
+                        {/* <td>{record.percentage || 'N/A'}</td> */}
                         <td>{record.status || 'N/A'}</td>
                       </tr>
                     ))

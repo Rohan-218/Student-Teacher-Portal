@@ -1,7 +1,5 @@
 const teacherPostMarksModel = require('../models/teacherPostMarksModel');
 
-// Prepare marks data by fetching subject details
-// Prepare marks data by fetching subject details
 const prepareMarksData = async (marks, examId) => {
   try {
     const marksData = [];
