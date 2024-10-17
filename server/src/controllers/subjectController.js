@@ -41,14 +41,15 @@ exports.createSubject = async (req, res) => {
 
     try {
         // Check if the user is an admin (user_type 0 or 3)
-        const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
+        const  { user_id, user_type } = req.user;
+        if (user_type !== 0 && user_type !== 3) {
             return res.status(403).json({ message: 'Access denied. Only admins can create subjects.' });
         }
 
         // Call the service to create the subject
         const result = await registerSubject( subjectName, subjectCode, subjectInitials, branchName, semester);
 
+        insertActivity( user_id, 'New Subject Added', `New Subject - ( ${subjectName} ) have been added.`);
         // Return success response
         return res.status(201).json({
             message: 'Subject created successfully',
