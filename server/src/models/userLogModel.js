@@ -1,7 +1,7 @@
 const sequelize = require('../config/dbConfig');
 
 exports.logUserLogin = async (userId, timestamp) => {
-    const query = 'INSERT INactivity (user_id, action, timestamp) VALUES ($1, $2, $3)';
+    const query = 'INSERT INTO user_logs  (user_id, action, timestamp) VALUES ($1, $2, $3)';
     const values = [userId, 'login', timestamp];
     try {
         await sequelize.query(query, { bind: values });
