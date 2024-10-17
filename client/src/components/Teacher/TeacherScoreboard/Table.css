@@ -2,9 +2,11 @@
     width: 100%;
     margin: 3% auto;
   }
-  
+  .tea-table{
+    overflow-x: scroll;
+  }
   .teacher-student-table table {
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
   }
@@ -64,21 +66,36 @@
   }
   
   .teacher-marks-save-btn {
-    padding: 3% 4%;
+    padding: 4% 6%;
     background-color:  #35393b; /* Green background */
     color: white;
     border: none;
     border-radius:5px;
     cursor: pointer;
     font-size: 1.3rem;
-    margin-right: 1%;
+    margin-left: 50%;
+    margin-top: 2%;
   }
   .teacher-marks-save-btn:hover{
   background-color:#5d9160;
   }
   @media (max-width:1000px){
     .teacher-student-table{
-        width: 130%;
+        width: 100%;
+    }
+    .teacher-marks-save-btn {
+      padding: 4% 6%;
     }
 }
-  
+@media (max-width:645px){
+  .teacher-marks-save-btn{
+    margin-left: 40%;
+    padding: 5% 7%;
+  }
+}
+@media (max-width:420px){
+  .teacher-marks-save-btn{
+  margin-left: 20%;
+  padding: 6% 8%;
+  }
+}

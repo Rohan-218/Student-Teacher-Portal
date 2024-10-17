@@ -20,7 +20,7 @@ const updateAttendance = async (req, res) => {
     const studentEmails = await userService.getUserId(extractedStudentIds); 
      // Now that we have student emails, we can send them notifications
      const emailList = studentEmails.map(student => student.email);
-
+   
    // Now that we have student emails, we can send them notifications
    try {
     const text = `Dear Student,\n\nAttendance for subject code - ${subjectCode} have been updated.\n\nRegards,\nXYZ University`;
