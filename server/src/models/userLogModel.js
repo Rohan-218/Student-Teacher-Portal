@@ -79,3 +79,21 @@ exports.getUserActivity = async () => {
         throw new Error('Get All Logs With User Names Error');
     }
 };
+
+exports.getEmailActivity = async () => {
+    const query = `
+        SELECT 
+            log_id, email, email_subject as subject , message, timestamp
+        FROM email_log 
+    `; // Query to fetch logs with names based on user_type
+
+    try {
+        const logs = await sequelize.query(query, {
+            type: sequelize.QueryTypes.SELECT // Specify query type
+        });
+        return logs; // Return logs with user names
+    } catch (error) {
+        console.error(`Get All Logs With User Names Error: ${error.message}`);
+        throw new Error('Get All Logs With User Names Error');
+    }
+};

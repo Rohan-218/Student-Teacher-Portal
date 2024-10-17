@@ -1,4 +1,4 @@
-const { getUserLogs,getUserActivity} = require('../models/userLogModel');
+const { getUserLogs,getUserActivity,getEmailActivity } = require('../models/userLogModel');
 
 exports.fetchUserLogs = async () => {
     try {
@@ -21,5 +21,16 @@ exports.fetchUserActivity = async () => {
     } catch (error) {
         console.error(`Fetch User Activity info With Names Service Error: ${error.message}`);
         throw new Error('Fetch User Activity info With Names Service Error');
+    }
+};
+
+exports.fetchEmailActivity = async () => {
+    try {
+        const emailActivity = await getEmailActivity();
+
+        return emailActivity;
+    } catch (error) {
+        console.error(`Fetch User Email Activity info With Names Service Error: ${error.message}`);
+        throw new Error('Fetch User Email Activity info With Names Service Error');
     }
 };
