@@ -8,7 +8,9 @@
     width: 100%;
     margin: 20px auto;
 }
-
+.record-table{
+    overflow-x: scroll;
+}
 /* Top buttons styling */
 .teacher-topButtons {
     display: flex;
@@ -114,3 +116,13 @@
 /* .teacher-Show-dates{
     padding-left: 0px;
 } */
+ @media(max-width:768px){
+    .teacher-date-selection{
+     flex-direction: column; 
+     margin-bottom: 10%;
+     gap:30px;
+    }
+    .daily-teacher-RecordDetails{
+        padding: 2% 0%;
+    }
+ }
