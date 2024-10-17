@@ -8,7 +8,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const StudentScoreboard = () => {
   const [subjects, setSubjects] = useState([]);
   const [openSubjects, setOpenSubjects] = useState({});
-  const [examId, setExamId] = useState(1);
+  const [examId, setExamId] = useState(0);
   const [exam, setExam] = useState(''); // Initially no exam selected
   const [exams, setExams] = useState([]); // State to hold fetched exams
 
