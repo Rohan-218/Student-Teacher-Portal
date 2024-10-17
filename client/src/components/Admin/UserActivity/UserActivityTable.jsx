@@ -18,7 +18,7 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
                     url = 'http://localhost:3000/api/admin/user-activity'; 
                 } else if (tableType === 'email') {
                     // API for Email Activity
-                    url = 'http://localhost:3000/api/admin/email-activity'; 
+                    url = 'http://localhost:3000/api/admin/user-email'; 
                 }
 
                 const response = await fetch(url, {
@@ -67,7 +67,7 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
                         {tableType === 'email' ? <th>Email</th> : <th>Name</th>}
                         <th>Timestamp</th>
                         {tableType === 'email' ? <th>Email Subject</th> : <th>Event Type</th>}
-                        {tableType === 'activity' && <th>Message</th>}
+                        {(tableType === 'activity' || tableType === 'email') && <th>Message</th>}
                     </tr>
                 </thead>
                 <tbody>
