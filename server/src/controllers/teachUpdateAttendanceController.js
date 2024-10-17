@@ -21,6 +21,7 @@ const updateAttendance = async (req, res) => {
     
     const studentIds = await attendanceService.getStudentId(attendanceList);
     const extractedStudentIds = studentIds.map(student => student.student_id);
+    const subjectName = await attendanceService.getSubjectNameByCode(subjectCode);
 
     const studentData = await userService.getUserId(extractedStudentIds); 
      // Now that we have student emails, we can send them notifications
@@ -28,9 +29,9 @@ const updateAttendance = async (req, res) => {
     const student = studentData.map(student => student.student_name);
     // Now that we have student emails, we can send them notifications
     try {
-      const text = `Dear Student,\n\nAttendance for subject code - ${subjectCode} have been updated.\n\nRegards,\nXYZ University`;
+      const text = `Dear Student,\n\nAttendance for ${subjectName} have been updated.\n\nRegards,\nXYZ University`;
       const subject = `Attendance Updated!`;
-      insertActivity( user_id, 'Attendance updated', `Attendance of ${student} in ${subjectCode} for ${attendanceDate} lecture- ${lecture} have been updated.`);
+      insertActivity( user_id, 'Attendance updated', `Attendance of ${student} in ${subjectName} for ${attendanceDate} lecture- ${lecture} have been updated.`);
       const emailResponse = await sendEmailNotification(emailList, text, subject);
       if (emailResponse) {
         console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
