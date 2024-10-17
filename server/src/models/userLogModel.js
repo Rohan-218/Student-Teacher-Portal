@@ -54,7 +54,7 @@ exports.getUserLogs = async () => {
 exports.getUserActivity = async () => {
     const query = `
         SELECT 
-            ua.id, ua.user_id, ua.event_type, ua.message, u.user_type, ua.timestamp,
+            ua.activity_id, ua.user_id, ua.event_type as action, ua.message, u.user_type, ua.timestamp,
             CASE 
                 WHEN u.user_type = 0 OR u.user_type = 3 THEN a.name
                 WHEN u.user_type = 1 THEN s.student_name
