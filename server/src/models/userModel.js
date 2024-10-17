@@ -96,14 +96,14 @@ const getUserData = async (userIds) => {
       } else if (user_type === 1) {
         // Fetch from student table
         query = `
-          SELECT u.email, s.student_name FROM users u
+          SELECT u.email, s.student_name as name FROM users u
           JOIN student s ON u.user_id = s.user_id
           WHERE u.user_id = :user_id;
         `;
       } else if (user_type === 2) {
         // Fetch from teacher table
         query = `
-          SELECT u.email, t.teacher_name FROM users u
+          SELECT u.email, t.teacher_name as name FROM users u
           JOIN teacher t ON u.user_id = t.user_id
           WHERE u.user_id = :user_id;
         `;

@@ -1,5 +1,7 @@
 const { getStudentCount, changeStudentStatus } = require('../services/studentManagementService');
 const { getStudentProfile } = require('../services/studentService');
+const userModel = require('../models/userModel');
+const { insertActivity } = require('../utils/activityService');
 
 const sendErrorResponse = (res, statusCode, message) => {
     return res.status(statusCode).json({ message });
@@ -49,13 +51,19 @@ exports.updateStudentIsActive = async (req, res) => {
     try {
       // Check if the user is a super admin (user_type 0)
       const userType = req.user.user_type;
+      const userId = req.user.user_id;
+
       if (userType !== 0 && userType !== 3) {
         return res.status(403).json({ message: 'Access denied. Only admins can update student status.' });
       }
   
       // Call the service to update the status
       const result = await changeStudentStatus(user_id, is_active);
-  
+      
+      const status = is_active ? 'active' : 'inactive';
+      const userData = await userModel.getUserData(user_id);
+      const name = userData.map(user => user.name);
+      insertActivity( userId, 'Student status updated', `Status of Student - ${name} have been set to ${status}.`);
       // Return success response
       return res.status(200).json({
         message: 'Student status updated successfully',
@@ -68,6 +76,3 @@ exports.updateStudentIsActive = async (req, res) => {
       });
     }
   };
-
-
-  
