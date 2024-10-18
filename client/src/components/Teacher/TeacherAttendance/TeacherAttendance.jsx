@@ -16,7 +16,7 @@ const TeacherAttendance = () => {
   const [buttonText, setButtonText] = useState('Save');
   const [dataFetched, setDataFetched] = useState(false);
   
-
+ 
   const token = localStorage.getItem('token');
 
   // Fetch subjects on mount

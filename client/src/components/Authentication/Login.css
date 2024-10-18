@@ -39,22 +39,22 @@
   align-items: center;
   background-color: #c4dcf3;
   padding: 20px;
-  width: 55%;
+  width: 50%;
 }
 
 .login-h1 {
   font-size: 2rem;
   margin-bottom: 30px;
   color: #4d87c1;
-  margin-top: 5%;
-  margin-left: 40%;
+  margin-top: 0%;
+  text-align: center;
 }
 
-.input-group {
-  margin-bottom: 15px;
-  width: 100%;
-  padding: 10px;
-}
+ .input-group {
+   margin-bottom: 15px;
+   width: 100%;
+  padding: 7px;
+} 
 
 .slabel {
   font-weight: 400;
@@ -68,13 +68,14 @@
    margin-top: 40px; 
   background-color: rgb(255, 255, 255);
  border-radius: 5px ;
-  width: 100%; /* Full width on larger screens */
+  width: 50%; /* Full width on larger screens */
   max-width: 400px; /* Set a maximum width for the form */
 }
 
 .input {
   padding: 10px;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
+  height: 30px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -88,14 +89,17 @@
 }
 
 .auth-login-button {
-  padding: 10px 30px;
+  padding: 10px 20px;
   background-color:  #4d87c1;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
-  margin-left: 40%;
+  margin-left: 2%;
+  width: 97%;
+  font-size: 14px;
+  margin-top: 3%;
 }
 
 .auth-login-button:hover {

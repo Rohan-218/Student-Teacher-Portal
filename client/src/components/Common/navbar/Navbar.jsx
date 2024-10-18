@@ -65,7 +65,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <div className='snav'>
-      <div className="snavlogo-sli">XYZ UNIVERSITY</div>
+      <div className="snavlogo-sli"  onClick={() => handleNavigateAndScroll('top')}>
+        XYZ UNIVERSITY
+        </div>
       <div className='sul'>
         {isHomePage && (
           <div className="sli">
@@ -76,12 +78,12 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           </div>
         )}
 
-        <div className='sli'>
+        {/* <div className='sli'>
           <span className="snav-link" onClick={() => handleNavigateAndScroll('top')}>
             <img src={home} alt="Home Icon" className="icon1" />
             Home
           </span>
-        </div>
+        </div> */}
 
         <div className='sli'>
           <span className="snav-link" onClick={() => handleNavigateAndScroll('about-us')}>

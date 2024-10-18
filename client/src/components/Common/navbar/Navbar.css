@@ -13,10 +13,11 @@
 }
 
 .snavlogo-sli {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
   margin-left: 0.5%; /* Adds some space from the left side */
+  cursor: pointer;
 }
 
 .sul {
@@ -29,6 +30,7 @@
   list-style-type: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .snav-link {
@@ -115,11 +117,11 @@
 
 .profile-dropdown p {
   margin: 0;
-  padding: 0;
+  padding: 0; 
   font-size: 1.2rem;
   font-weight: bold;
   color: rgb(92, 120, 238); /* Make the text stand out */
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
 }
 
 .snavbutton {
