@@ -71,6 +71,7 @@ const Index = () => {
         <div className="left-section">
           <h1 className="large-text">Welcome to</h1>
           <h1 className="text">XYZ UNIVERSITY</h1>
+            <p className="motto">"Together We Learn, Together We Succeed."</p> {/* Motto example */}
           <button className="button" onClick={handleLoginClick}>{button}</button>
         </div>
 
