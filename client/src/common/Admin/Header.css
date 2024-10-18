@@ -18,7 +18,7 @@
 .navbar h2 {
   margin: 0;
   font-size: 24px;
-  color: #333;
+  color: white;
 }
 
 .navbar-right {
@@ -58,7 +58,7 @@
 
 .menu-options a.navbar-btn {
   font-weight: normal;
-  color: #333;  /* Default link color */
+  color: white;  /* Default link color */
   text-decoration: none;
 }
 

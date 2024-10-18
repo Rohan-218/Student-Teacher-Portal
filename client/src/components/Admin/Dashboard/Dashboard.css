@@ -5,13 +5,13 @@
 }
 
 .adadmin-highlight {
-    color: #7cbbff;
+    color: #6a8996;
 }
 
 .adcards-container {
     width: 50%;
-    margin-left: 10%; 
     margin-right: 10%;
+    margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -21,7 +21,7 @@
 }
 
  .adcard {
-    background-color: #d9edf7;
+    background-color: #a2c9da;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -31,9 +31,6 @@
 } 
 
 .adgraph-container {
-    /* margin-top: 40px;
-    margin-left: 10%;
-    margin-right: 10%; */
     padding-top: 2%;
     display: flex;
     justify-content: center; /* Center the graph */
@@ -46,10 +43,6 @@
     height: 300px; /* Set a fixed height */
     padding: 15px; /* Add padding for spacing */
    
-}
-
-.adwelcome {
-    margin-left: 10%; 
 }
 
 /* Media Queries for Responsiveness */
