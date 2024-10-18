@@ -5,7 +5,7 @@
   left: 0;
   width: 20%;
   background-color: #9bbace;
-  height: calc(100vh - 60px); /* Full height minus header */
+  height: 100dvh; /* Full height minus header */
   padding-top: 20px;
   z-index: 999; /* Ensure it stays below the header but on top of other content */
   overflow-y: auto; /* Allow scrolling if content overflows */

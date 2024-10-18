@@ -52,47 +52,90 @@ const storeToken = async (user_id, token, expires_at, created_at, is_blacklisted
 };
   
 
-const getUserEmails = async (userIds) => {
-    try {
-     
-      if (!userIds || userIds.length === 0) {
-        throw new Error('No User IDs provided');
+const getUserData = async (userIds) => {
+  try {
+    // Check if a single user_id is sent and convert it to an array of objects
+    if (!Array.isArray(userIds)) {
+      userIds = [{ user_id: userIds }]; // Convert single user_id to array
+    }
+
+    if (!userIds || userIds.length === 0) {
+      throw new Error('No User IDs provided');
+    }
+
+    const allResults = []; // Array to hold results for all user IDs
+
+    for (const obj of userIds) {
+      const { user_id } = obj;
+
+      // Step 1: Fetch the user_type from the users table
+      const userTypeQuery = `
+        SELECT user_type FROM users WHERE user_id = :user_id;
+      `;
+
+      const userTypeResult = await sequelize.query(userTypeQuery, {
+        replacements: { user_id },
+        type: sequelize.QueryTypes.SELECT,
+      });
+
+      if (userTypeResult.length === 0) {
+        throw new Error(`No user found for User ID: ${user_id}`);
       }
-      
-      const allResults = []; // Array to hold results for all student IDs
-  
-      for (const obj of userIds) {
-        const { user_id } = obj;
-  
-        const query = `
-          SELECT u.email, s.student_name FROM users u JOIN student s ON u.user_id = s.user_id
+
+      const user_type = userTypeResult[0].user_type;
+
+      // Step 2: Run different queries based on user_type
+      let query = '';
+      if (user_type === 0 || user_type === 3) {
+        // Fetch from admin table
+        query = `
+          SELECT u.email, a.name FROM users u
+          JOIN admin a ON u.user_id = a.user_id
           WHERE u.user_id = :user_id;
         `;
-  
-        // Execute the query
-        const results = await sequelize.query(query, {
-          replacements: { user_id }, // Use the extracted user_id
-          type: sequelize.QueryTypes.SELECT,
-        });
-  
-        if (results.length === 0) {
-          throw new Error(`No emails found for User ID: ${user_id}`);
-        }
-  
-        allResults.push(...results); // Accumulate results in the array
+      } else if (user_type === 1) {
+        // Fetch from student table
+        query = `
+          SELECT u.email, s.student_name as name FROM users u
+          JOIN student s ON u.user_id = s.user_id
+          WHERE u.user_id = :user_id;
+        `;
+      } else if (user_type === 2) {
+        // Fetch from teacher table
+        query = `
+          SELECT u.email, t.teacher_name as name FROM users u
+          JOIN teacher t ON u.user_id = t.user_id
+          WHERE u.user_id = :user_id;
+        `;
+      } else {
+        throw new Error(`Invalid user type for User ID: ${user_id}`);
       }
-  
-      return allResults; // Return all results after the loop
-    } catch (error) {
-      console.error('Error fetching user emails:', error);
-      throw error;
+
+      // Step 3: Execute the corresponding query
+      const results = await sequelize.query(query, {
+        replacements: { user_id },
+        type: sequelize.QueryTypes.SELECT,
+      });
+
+      if (results.length === 0) {
+        throw new Error(`No data found for User ID: ${user_id}`);
+      }
+
+      allResults.push(...results); // Accumulate results in the array
     }
-  };
+
+    return allResults; // Return all results after the loop
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    throw error;
+  }
+};
+
   
 
 module.exports = {
     getUserByEmail,
     blacklistToken,
     storeToken,
-    getUserEmails
+    getUserData
 };

@@ -1,5 +1,7 @@
 const { getTeacherCount, changeTeacherStatus } = require('../services/teacherManagementService')
 const { getTeacherProfile } = require('../services/teacherService');
+const userModel = require('../models/userModel');
+const { insertActivity } = require('../utils/activityService');
 
 exports.getTeacherCount= async (req, res) => {
     try {
@@ -44,6 +46,7 @@ exports.updateTeacherIsActive = async (req, res) => {
     try {
       // Check if the user is a super admin (user_type 0)
       const userType = req.user.user_type;
+      const userId = req.user.user_id;
       if (userType !== 0 && userType !== 3) {
         return res.status(403).json({ message: 'Access denied. Only admins can update Teacher status.' });
       }
@@ -51,6 +54,10 @@ exports.updateTeacherIsActive = async (req, res) => {
       // Call the service to update the status
       const result = await changeTeacherStatus(user_id, is_active);
   
+      const status = is_active ? 'active' : 'inactive';
+      const userData = await userModel.getUserData(user_id);
+      const name = userData.map(user => user.name);
+      insertActivity( userId, 'Teacher status updated', `Status of Teacher - ${name} have been set to ${status}.`);
       // Return success response
       return res.status(200).json({
         message: 'Teacher status updated successfully',

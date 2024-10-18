@@ -150,7 +150,7 @@ const AddNewSubject = () => {
             <input className="input" type="text" name="semester" value={formData.semester} onChange={handleChange}  min="1" max="8" required />
           </div>
           <div className="form-buttons">
-            <button className="btn-s" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn-s" type="button" onClick={handleCancel}>Clear</button>
             <button className="btn-s" type="submit">Submit</button>
           </div>
         </form>

@@ -1,4 +1,5 @@
 const { updateUserPassword }= require('../services/updatePasswordService');
+const { insertActivity } = require('../utils/activityService');
 
 // Login Controller
 exports.updateUserpassword = async (req, res) => {

@@ -1,4 +1,6 @@
 const { getBranch, registerBranch, getBranchStudentCount, getBranchCount, changeBranchStatus } = require('../services/branchService');
+const { insertActivity } = require('../utils/activityService');
+const { getBranchById } = require('../models/branchModel');
 
 exports.getBranch = async (req, res) => {
     try {
@@ -52,14 +54,15 @@ exports.createBranch = async (req, res) => {
 
     try {
         // Check if the user is an admin (user_type 0 or 3)
-        const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
+        const { user_type, user_id } = req.user.user_type;
+        if (user_type !== 0 && user_type !== 3) {
             return res.status(403).json({ message: 'Access denied. Only admins can add branch.' });
         }
 
         // Call the service to create the subject
         const result = await registerBranch( branchName );
 
+        insertActivity( user_id, 'New Branch Added', `New Branch - ( ${branchName} ) have been added.`);
         // Return success response
         return res.status(201).json({
             message: 'Branch added successfully',
@@ -78,14 +81,17 @@ exports.updateBranchIsActive = async (req, res) => {
   
     try {
       // Check if the user is a super admin (user_type 0)
-      const userType = req.user.user_type;
-      if (userType !== 0 && userType !== 3) {
+      const {user_id, user_type} = req.user;
+      if (user_type !== 0 && user_type !== 3) {
         return res.status(403).json({ message: 'Access denied. Only admins can update branch status.' });
       }
   
-      // Call the service to update the status
       const result = await changeBranchStatus(branch_id, is_active);
-  
+      
+      const status = is_active ? 'active' : 'inactive';
+      const name = await getBranchById(branch_id);
+      insertActivity( user_id, 'Branch status updated', `Status of Branch - ${name} have been set to ${status}.`);
+
       // Return success response
       return res.status(200).json({
         message: 'Branch status updated successfully',

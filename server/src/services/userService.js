@@ -30,7 +30,7 @@ const getUserId = async (studentIds) => {
         Ids.push(...results); // Accumulate results in the array
       }
   
-      const allResults = await userModel.getUserEmails(Ids);
+      const allResults = await userModel.getUserData(Ids);
   
       return allResults; // Return all results after the loop
     } catch (error) {

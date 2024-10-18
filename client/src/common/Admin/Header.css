@@ -10,7 +10,7 @@
   align-items: center;
   padding: 10px 20px;
   z-index: 1000; /* Ensure it stays on top */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   box-sizing: border-box; 
   height: 50px;
 }

@@ -92,7 +92,7 @@ const AddNewAdmin = () => {
             />
           </div>
           <div className="form-buttons">
-            <button className="btn-new" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn-new" type="button" onClick={handleCancel}>Clear</button>
             <button className="btn-new" type="submit">Submit</button>
           </div>
         </form>

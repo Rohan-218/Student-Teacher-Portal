@@ -74,3 +74,25 @@ exports.getSubjectCount= async () => {
       });
       return result[0].count;
 };
+
+exports.getSubjectById = async (subjectId) => {
+    try {
+      const subjectName = await sequelize.query(
+        `SELECT subject_name FROM subject WHERE subject_id = :subjectId`,
+        {
+          replacements: { subjectId },
+          type: sequelize.QueryTypes.SELECT,
+        }
+      );
+  
+      // Check if no subject found
+      if (subjectName.length === 0) {
+        throw new Error(`No subject found with id ${subjectId}`);
+      }
+  
+      return subjectName[0].subject_name; // Return the subject name
+    } catch (error) {
+      console.error('Error fetching subject name:', error);
+      throw error;
+    }
+};

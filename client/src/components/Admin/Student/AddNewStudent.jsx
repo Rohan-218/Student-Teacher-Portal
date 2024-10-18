@@ -148,7 +148,7 @@ const AddNewStudent = () => {
             <input className="input" type="tel" name="contactNo" maxLength="10" value={formData.contactNo} onChange={handleChange} required />
           </div>
           <div className="form-buttons">
-            <button className="btn" type="button" onClick={handleCancel}>Cancel</button>
+            <button className="btn" type="button" onClick={handleCancel}>Clear</button>
             <button className="btn" type="submit">Submit</button>
           </div>
         </form>

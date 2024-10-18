@@ -78,3 +78,24 @@ exports.getBranchStudentCount= async () => {
       });
       return result;
 };
+
+exports.getBranchById = async (branchId) => {
+    try {
+      const branchName = await sequelize.query(
+        `SELECT branch_name FROM branch WHERE branch_id = :branchId`,
+        {
+          replacements: { branchId },
+          type: sequelize.QueryTypes.SELECT,
+        }
+      );
+
+      if (branchName.length === 0) {
+        throw new Error(`No branch found with id ${branchId}`);
+      }
+  
+      return branchName[0].branch_name;
+    } catch (error) {
+      console.error('Error fetching branch name:', error);
+      throw error;
+    }
+};

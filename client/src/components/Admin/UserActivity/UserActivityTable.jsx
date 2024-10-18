@@ -42,6 +42,28 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
         fetchActivities();
     }, [tableType]);
 
+    // Filtering logic based on userType and date (for logs and activity tables)
+    const filteredActivities = activities.filter((activity) => {
+        let isUserTypeMatch = true;
+        if (tableType !== 'email') {
+            if (userType === 'Teacher') {
+                isUserTypeMatch = activity.user_type === 2;
+            } else if (userType === 'Admin') {
+                isUserTypeMatch = activity.user_type === 0 || activity.user_type === 3;
+            } else if (userType === 'Student') {
+                isUserTypeMatch = activity.user_type === 1;
+            }
+        }
+
+        let isDateMatch = true;
+        if (date) {
+            const activityDate = new Date(activity.timestamp).toISOString().split('T')[0]; // YYYY-MM-DD format
+            isDateMatch = activityDate === date;
+        }
+
+        return isUserTypeMatch && isDateMatch;
+    });
+
     return (
         <div className="user-activity-table">
             <h3>
@@ -71,7 +93,7 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {activities.map((activity, index) => (
+                    {filteredActivities.map((activity, index) => (
                         <tr key={activity.id}>
                             <td>{index + 1}</td>
                             {tableType === 'email' ? (
