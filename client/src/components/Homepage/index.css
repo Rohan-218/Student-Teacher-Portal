@@ -13,18 +13,30 @@
   flex: 1;  /* Take up one portion of the width */
   text-align: left;
   padding: 60px 20px;
+
 }
 
 .large-text {
+  font-family: 'DM Sans', sans-serif; /* Apply DM Sans font */
   font-size: 4rem;
   font-weight: bold;
+  margin-bottom: 0%;
 }
 
 .text {
+  font-family: 'DM Sans', sans-serif; /* Apply DM Sans font */
   font-size: 3rem;
   font-weight: bolder;
-}
+  margin-top: 0%;
+  margin-bottom: 1%;
 
+}  
+.motto {
+  font-size: 1.5rem; /* Adjust size as needed */
+  font-style: italic; /* Italic style for emphasis */
+  color: #555; /* A softer color for the motto */
+  margin-top: 10px; /* Space above the motto */
+}
 .button {
   padding: 10px 20px;
   margin-top: 20px;
@@ -34,6 +46,7 @@
   color: white;
   border: none;
   border-radius: 5px;
+  width: 95%;
 }
 
 .button:hover {
