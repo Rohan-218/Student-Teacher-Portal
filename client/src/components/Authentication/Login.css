@@ -44,21 +44,21 @@
 
 .login-h1 {
   font-size: 2rem;
-  margin-bottom: 30px;
   color: #4d87c1;
-  margin-top: 0%;
+  margin: 0%;
   text-align: center;
+  padding: 0px;
 }
 
  .input-group {
-   margin-bottom: 15px;
+   /* margin-bottom: 15px; */
    width: 100%;
   padding: 7px;
 } 
 
 .slabel {
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .sform {
@@ -71,10 +71,16 @@
   width: 50%; /* Full width on larger screens */
   max-width: 400px; /* Set a maximum width for the form */
 }
-
+.sform p{
+   font-size: 12px;
+   /* padding-top: 0%;
+   padding-left: 20%; */
+   text-align: center;
+   color:#899198;
+}
 .input {
   padding: 10px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   height: 30px;
   width: 100%;
   border: 1px solid #ccc;
@@ -129,6 +135,7 @@
     height: auto; /* Allow height to adjust */
     justify-content: center;
     align-items: center;
+    
   }
 
   .ssidebar-section {
@@ -149,8 +156,9 @@
 
   .login-container {
     width: 100%; /* Full width for mobile */
+    height: 100vh;
     padding: 20px;
-    background-color: transparent; /* Background transparent to show image */
+    background-color: #c4dcf3;
     position: absolute; /* Position over the image */
     top: 50%; /* Center vertically */
     left: 50%; /* Center horizontally */

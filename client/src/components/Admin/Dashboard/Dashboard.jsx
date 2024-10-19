@@ -142,7 +142,7 @@ const Dashboard = () => {
         <div className="adcards-container">
           <div className="adcard">Students<br />{studentCount || 'Loading...'}</div>
           <div className="adcard">Teachers<br />{teacherCount || 'Loading...'}</div>
-          <div className="adcard">Branches<br />{branchCount || 'Loading...'}</div>
+          <div className="adcard">Branches<br />{branchCount  || 'Loading...'}</div>
           <div className="adcard">Subjects<br />{subjectCount || 'Loading...'}</div>
         </div>
         <div className="adgraph-container">

@@ -109,6 +109,7 @@ const Login = () => {
       <div className="login-container">
         <div className='sform'>
           <h1 className='login-h1'>Login</h1>
+          <p>Welcome! Please enter your details.</p>
           <form onSubmit={onSubmitForm}>
             <div className="input-group">
               <label className='slabel'>Email:</label>

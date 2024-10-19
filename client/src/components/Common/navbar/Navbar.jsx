@@ -15,6 +15,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate(); // For navigation after logout
 
   const isHomePage = location.pathname === '/';
+  const isLoginPage = location.pathname === '/login';
 
   const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState); // Toggle the dropdown box
@@ -104,14 +105,14 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           <img src={profile} alt="Profile" className="snavprofile-img" />
           {showDropdown && (
             <div className="profile-dropdown">
-              <p>Hello User!</p>
-              {isLoggedIn ? (
-                <button onClick={handleLogout} className="snavbutton slogout-button">Logout</button>
-              ) : (
-                <RouterLink to="/login">
-                  <button className="snavbutton slogin-button">Login</button>
-                </RouterLink>
-              )}
+                <p>Hello User!</p>
+                {isLoggedIn ? (
+                <button onClick={handleLogout}>Logout</button>
+               ) : (
+                 <RouterLink to="/login">
+                  <button className="Snavbutton">Login</button>
+                 </RouterLink>
+               )}
             </div>
           )}
         </div>
