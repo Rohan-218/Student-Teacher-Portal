@@ -15,7 +15,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate(); // For navigation after logout
 
   const isHomePage = location.pathname === '/';
-  const isLoginPage = location.pathname === '/login';
+  // const isLoginPage = location.pathname === '/login';
 
   const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState); // Toggle the dropdown box

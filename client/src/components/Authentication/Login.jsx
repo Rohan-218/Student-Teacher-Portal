@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; 
 import './Login.css';
 import loginLogo from '/src/assets/Portal/Login/login-logo.jpg';
@@ -133,6 +133,9 @@ const Login = () => {
                   {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />} {/* Eye icon */}
                 </button>
               </div>
+               <p className="password">
+                <RouterLink to= "/reset-password">Reset password?</RouterLink>
+                </p>
             </div>
             <button type="submit" className="auth-login-button">Login</button>
           </form>

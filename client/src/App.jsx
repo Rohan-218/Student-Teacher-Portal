@@ -5,6 +5,7 @@ import Index from './components/Homepage/index.jsx';
 import AboutUs from './components/Homepage/about-us/AboutUs.jsx';
 import Contact from './components/Homepage/contact-us/Contact.jsx';
 import Login from './components/Authentication/Login.jsx';
+import ResetPassword from './components/Authentication/reset-password.jsx';
 import StudentDashboard from './components/Student/StudentDashboard/StudentDashboard.jsx';
 import DailyAttendance from './components/Student/DailyAttendance/DailyAtt.jsx';
 import TeacherDashboard from './components/Teacher/TeacherDashboard/TeacherDashboard.jsx';
@@ -51,6 +52,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
           
