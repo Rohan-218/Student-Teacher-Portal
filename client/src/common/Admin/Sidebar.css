@@ -3,10 +3,11 @@
   position: fixed;
   top: 50px;  /* Adjusted for header height */
   left: 0;
-  width: 20%;
-  background-color: #9bbace;
+  background-color: #14617d;
   height: 100dvh; /* Full height minus header */
   padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 5px;
   z-index: 999; /* Ensure it stays below the header but on top of other content */
   overflow-y: auto; /* Allow scrolling if content overflows */
   transition: transform 0.3s ease, width 0.3s ease; /* Smooth slide-in and width changes */
@@ -51,7 +52,7 @@
 .sidebar h3 {
   text-align: center;
   font-size: 22px;
-  color: #333;
+  color: white;
   margin-bottom: 20px;
 }
 
@@ -62,6 +63,7 @@
 
 .sidebar ul li {
   padding: 10px 20px;
+  color: white;
   font-size: 16px;
 }
 
@@ -71,11 +73,11 @@
 
 .sidebar ul li a {
   text-decoration: none;
-  color: #000;
+  color: white;
 }
 
 .sidebar ul li a:hover {
-  color: #000000;
+  color: #cddadf;
   font-weight: bold;
 }
 

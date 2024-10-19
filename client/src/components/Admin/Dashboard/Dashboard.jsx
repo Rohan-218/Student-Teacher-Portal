@@ -83,7 +83,7 @@ const Dashboard = () => {
             {
               label: 'Number of Students',
               data: studentCounts,
-              backgroundColor: 'rgba(75, 192, 192, 0.6)', // Bar color
+              backgroundColor: '#a2c9da', // Bar color
               borderColor: 'rgba(75, 192, 192, 1)', // Bar border color
               borderWidth: 1,
               borderRadius: 8, // Rounded bar corners
@@ -145,11 +145,14 @@ const Dashboard = () => {
           <div className="adcard">Branches<br />{branchCount  || 'Loading...'}</div>
           <div className="adcard">Subjects<br />{subjectCount || 'Loading...'}</div>
         </div>
+        {/*         
         <div className="adgraph-container">
           <div className="adgraph-wrapper">
-            <Bar data={chartData} options={options} /> {/* Render the bar chart */}
+            <Bar data={chartData} options={options} />
           </div>
-        </div>
+        </div> 
+        */}
+
       </main>
     </div>
   );

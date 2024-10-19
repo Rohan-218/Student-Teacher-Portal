@@ -106,7 +106,7 @@ const AdminLogin = () => {
             />
           </div>
           <div className="adsidebar-title">
-            <h2>ADMIN PANEL</h2>
+            <h2>Admin Panel</h2>
           </div>
         </div>
         

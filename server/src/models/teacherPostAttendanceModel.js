@@ -58,7 +58,6 @@ const getStudentIdByEnrollmentNo = async (enrollmentNo) => {
   return result.length ? result[0].student_id : null;
 };
 
-
 // Insert attendance record for a student
 const insertAttendanceRecord = async (studentId, attendanceRecordId, attendance, subjectId) => {
   console.log('Inserting attendance for student:', studentId, 'with record ID:', attendanceRecordId);
@@ -100,10 +99,86 @@ const getAttendanceDataBySubjectId = async (subjectId, date, lecture) => {
 
   return result;
 };
+
+// Get total lectures for a subject
+const getTotalLectures = async (subjectCode) => {
+  const query = `
+    SELECT COUNT(ar.*) AS total 
+    FROM attendance_record ar
+    JOIN subject s ON ar.subject_id = s.subject_id
+    WHERE s.subject_code = :subjectCode;
+  `;
+
+  const result = await sequelize.query(query, {
+    replacements: { subjectCode },
+    type: sequelize.QueryTypes.SELECT,
+  });
+
+  return result.length ? result[0].total : 0;
+};
+
+const getAttendedLectures = async (studentIds, subjectCode) => {
+  try {
+    console.log('Input:', studentIds, subjectCode);
+
+    // Query to fetch subject_id from subject table
+    const subjectQuery = `
+      SELECT subject_id FROM subject
+      WHERE subject_code = :subjectCode
+      LIMIT 1;
+    `;
+
+    const subjectResult = await sequelize.query(subjectQuery, {
+      replacements: { subjectCode },
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    if (!subjectResult.length) {
+      throw new Error(`Subject with code ${subjectCode} not found`);
+    }
+
+    const subjectId = subjectResult[0].subject_id;
+    console.log('Subject ID:', subjectId);
+
+    // Query to get attended lectures count for each student
+    const attendanceQuery = `
+      SELECT student_id, COUNT(*) AS attended FROM attendance
+      WHERE student_id IN (:studentIds)
+        AND subject_id = :subjectId
+        AND attendance = TRUE
+      GROUP BY student_id;
+    `;
+
+    const attendanceResult = await sequelize.query(attendanceQuery, {
+      replacements: { studentIds: studentIds, subjectId },
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    console.log('Attendance Query Result:', attendanceResult);
+
+    // Convert the result to an array with student IDs and their attended counts
+    const attendedLectures = studentIds.map(id => {
+      const studentAttendance = attendanceResult.find(result => result.student_id === id);
+      return {
+        studentId: id,
+        attended: studentAttendance ? studentAttendance.attended : 0,
+      };
+    });
+
+    return attendedLectures;
+  } catch (error) {
+    console.error('Error fetching attended lectures:', error);
+    throw error;
+  }
+};
+
+
 module.exports = {
   getSubjectIdByCode,
   createAttendanceRecord,
   getStudentIdByEnrollmentNo,
   insertAttendanceRecord,
   getAttendanceDataBySubjectId,
+  getTotalLectures, // New function
+  getAttendedLectures // New function
 };
