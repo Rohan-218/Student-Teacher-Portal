@@ -5,7 +5,7 @@ import Contact from './contact-us/Contact.jsx';
 // import Navbar from '../Common/navbar/Navbar.jsx';   Import the Navbar component
 import {jwtDecode} from 'jwt-decode'; // Import jwtDecode
 import './index.css';
-import profile from '/src/assets/Portal/home.jpg';
+import profile from '/src/assets/Portal/home2.png';
 
 const Index = () => {
   const aboutRef = useRef(null);  // Ref for About Us section

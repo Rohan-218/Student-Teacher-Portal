@@ -65,6 +65,7 @@
   height: auto;
   max-width: 800px;  /* Limit the image size */
   border-radius: 8px;
+  margin-top: 100px;
 }
 
 /* Add padding for About Us and Contact sections */
@@ -116,6 +117,7 @@
 
   .background-image {
     max-width: 90%; /* Make the image more fluid */
+    margin-top: 0px;
   }
 }
 
