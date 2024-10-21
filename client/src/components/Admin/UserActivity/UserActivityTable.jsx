@@ -64,6 +64,19 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
         return isUserTypeMatch && isDateMatch;
     });
 
+    const getNextTableName = (direction) => {
+        const tableTypes = ['log', 'activity', 'email'];
+        const currentIndex = tableTypes.indexOf(tableType);
+    
+        if (direction === 'next') {
+            return tableTypes[(currentIndex + 1) % tableTypes.length];
+        }
+        if (direction === 'prev') {
+            return tableTypes[(currentIndex - 1 + tableTypes.length) % tableTypes.length];
+        }
+        return '';
+    };
+
     return (
         <div className="user-activity-table">
             <h3>
@@ -74,16 +87,22 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
 
             {/* Arrow buttons above the table headers */}
             <div className="arrow-container">
-                <button className="prev-arrow" onClick={onPrev}>
-                    &#9664;
-                </button>
-                <button className="next-arrow" onClick={onNext}>
-                    &#9654;
-                </button>
+                <div className='tooltip1'>
+                    <button className="prev-arrow" onClick={onPrev} >
+                        &#9664;
+                    </button>
+                    <span className="tooltiptext1">{`${getNextTableName('prev')} `}</span>
+                </div>
+                <div className='tooltip2'>
+                    <button className="next-arrow" onClick={onNext} >
+                        &#9654;
+                    </button>
+                    <span className="tooltiptext2">{`${getNextTableName('next')} `}</span>
+                </div>
             </div>
 
             <table>
-                <thead>
+                <thead> 
                     <tr>
                         <th>S. No</th>
                         {tableType === 'email' ? <th>Email</th> : <th>Name</th>}

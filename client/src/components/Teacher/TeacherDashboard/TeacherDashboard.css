@@ -6,6 +6,9 @@
   --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color */
     /* border: 2px solid purple; */
 }
+/* .teacher-section h1{
+  margin:1%;
+} */
 
 .teacher-dashboard {
   width: 77%;
@@ -30,20 +33,21 @@
 }
 
 .teacher-section {
-  background-color: var(--main-bg-color);
+  background-color: #4d87c14a;
   border-radius: 5px;
-  padding: 20px;
+  /* padding: 20px; */
   width: 100%; /* Full width for all sections */
   box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
+  padding-left:2%;
 }
 
 .teacher-profile-section {
   padding: 2%;
   max-width: 800px; /* Max width for profile section */
   margin: 0 15% 3% 15%; /* Center align the profile section */
-  background-color: var(--section-bg-color);
+  background-color: white;
   border-radius: 8px; 
-  box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
+ 
 }
 
 .teacher-main-content {
