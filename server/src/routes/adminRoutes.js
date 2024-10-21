@@ -1,7 +1,7 @@
 const express = require('express');
 const {getAdmins, createAdmin, updateAdminIsActive} = require('../controllers/adminController');
 const {getUserLogs, getUserActivity, getEmailActivity} = require('../controllers/activityController');
-const {updatepasswordAdmin} = require('../controllers/updatePasswordAdminController');
+const {updatePasswordAdmin} = require('../controllers/updatePasswordAdminController');
 const router = express.Router();
 
 // Define the route to get manage admins
@@ -10,7 +10,7 @@ router.post('/create', createAdmin);
 router.put('/update', updateAdminIsActive);
 
 // Define the route to reset user password
-router.put('/reset-password', updatepasswordAdmin)
+router.put('/reset-password', updatePasswordAdmin)
 
 // Define the route to get user activity
 router.get('/user-logs', getUserLogs);

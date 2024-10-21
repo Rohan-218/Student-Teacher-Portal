@@ -1,9 +1,9 @@
-const { updatePasswordAdmin }= require('../services/updatePasswordAdminService');
+const userService = require('../services/userService');
 const { insertActivity ,insertEmailActivity } = require('../utils/activityService');
 const userModel = require('../models/userModel');
 
 // Login Controller
-exports.updatePasswordAdmin = async (req, res) => {
+exports.updateUserPassword = async (req, res) => {
     const { email, oldPassword, newPassword } = req.body;
 
     if ( oldPassword === newPassword ) {
@@ -11,22 +11,17 @@ exports.updatePasswordAdmin = async (req, res) => {
     }
 
     try {
-
-        const { user_id, user_type } = req.user;
-        if (user_type !== 0 && user_type !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins can update password.' });
-        }
-
-        const result = await updatePasswordAdmin(email, oldPassword, newPassword);
+        
+        const result = await userService.updateUserPassword(email, oldPassword, newPassword);
         const userId = result.data;
-
+        
         const userData = await userModel.getUserData(userId);
         const name = userData.map(user => user.name);
         
         try {
             const text = `Dear user,\n\nYour password hass been successfully updated.\n\nRegards,\nXYZ University`;
             const subject = `Password updated Successfully!`;
-            insertActivity( user_id, 'Password Updated', `${name} have updated his/her password.`);
+            insertActivity( userId, 'Password Updated', `${name} have updated his/her password.`);
             const emailResponse = await sendEmailNotification(email, text, subject);
             insertEmailActivity(email, subject, `Password of ${name} updated Successfully!`);
             if (emailResponse) {
@@ -35,9 +30,9 @@ exports.updatePasswordAdmin = async (req, res) => {
           } catch (error) {
             // Log detailed error from SendGrid
             console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
-            return res.status(200).json({ message: 'Password updated- Unable to send email.'});
+            return res.status(200).json({ message: 'Password updated- Unable to send email.' });
           }
-
+       
         if (result) {
             res.status(200).json({ result });
         } else {

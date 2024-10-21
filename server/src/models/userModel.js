@@ -131,11 +131,39 @@ const getUserData = async (userIds) => {
   }
 };
 
+
+const updateUserPassword = async (user_id, newPassword) => {
+  try {
+    const query = `
+      UPDATE users
+      SET password = pgp_sym_encrypt(:newPassword, :secretKey), updated_at = NOW()
+      WHERE user_id = :user_id AND user_type IN (1, 2);
+    `;
+    
+    const [result, metadata] = await sequelize.query(query, {
+      replacements: {
+        user_id,
+        newPassword,
+        secretKey,
+      },
+      type: sequelize.QueryTypes.UPDATE,
+    });
+    console.log(result, metadata);
+    if (metadata === 0) {
+      throw new Error("only Student and Teachers can update password.");
+    }
+    
+    return true;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
   
 
 module.exports = {
     getUserByEmail,
     blacklistToken,
     storeToken,
+    updateUserPassword,
     getUserData
 };

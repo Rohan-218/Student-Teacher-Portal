@@ -1,5 +1,5 @@
 const createTeacherService = require('../services/createTeacherService');
-const { insertActivity } = require('../utils/activityService');
+const { insertActivity, insertEmailActivity } = require('../utils/activityService');
 
 exports.createTeacher = async (req, res) => {
   try {
@@ -16,7 +16,22 @@ exports.createTeacher = async (req, res) => {
 
     // Call service function to create the teacher
     const result = await createTeacherService.createTeacher(name, email, password, designation, contactNo, subjects);
-    insertActivity( user_id, 'New teacher Created', `New teacher - ( ${name} ) have been added.`);
+    
+    try {
+      const text = `Dear ${name},\n\nYour Teacher account has been successfully created.\nEmail: ${email} \nPassword: ${password} \n\nRegards,\nXYZ University`;
+      const subject = `Account created successfully`;
+      insertActivity( user_id, 'New Teacher Added', `New teacher - ${name} have been added.`);
+      const emailResponse = await sendEmailNotification(email, text, subject);
+      insertEmailActivity(email, subject, `Password of ${name} updated Successfully!`);
+      if (emailResponse) {
+        console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
+      }
+    } catch (error) {
+      // Log detailed error from SendGrid
+      console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
+      return res.status(200).json({ message: 'Account created - Unable to send email.' });
+    }
+    
     return res.status(201).json(result);  // Return success response
   } catch (error) {
     console.error('Error creating teacher:', error);

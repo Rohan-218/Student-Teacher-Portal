@@ -17,7 +17,7 @@ exports.updatePasswordAdmin = async (email, oldPassword, newPassword) => {
     // Step 3: Encrypt new password and update 
     await updatePasswordAdmin(user.user_id, newPassword);
 
-    return { success: true, message: 'Password updated successfully' };
+    return { success: true, data:user.user_id, message: 'Password updated successfully' };
   } catch (error) {
     console.error('Update Password Service Error:', error.message);
     throw new Error(error.message);

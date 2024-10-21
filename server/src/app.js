@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
 
 // Import routes
 const authRoutes = require('./routes/authRoutes.js');
+const userRoutes = require('./routes/userRoutes.js');
 const studentRoutes = require('./routes/studentRoutes.js');
 const teacherRoutes = require('./routes/teacherRoutes.js');
 const adminRoutes = require('./routes/adminRoutes.js');
@@ -32,6 +33,7 @@ app.get('/', (req, res) => res.send('Server is Running'));
 app.use('/api/auth', authRoutes);
 app.use(authenticate);
 // Authenticate middleware;
+app.use('/api/users', userRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/teachers', teacherRoutes); 
 app.use('/api/admin', adminRoutes);
