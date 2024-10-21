@@ -1,7 +1,7 @@
 .contact-container {
-  padding: 20px;
+  padding: 0px 20px 50px 20px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-bottom: 40px;
   
 }
 
@@ -63,6 +63,10 @@
 
 /* Media query for phones */
 @media (max-width: 600px) {
+  .contact-container{
+    padding: 40px 20px 20px 20px;
+  }
+
   .contact-info {
     flex-direction: column; /* Change to row for smaller screens */
     font-size: 16px;

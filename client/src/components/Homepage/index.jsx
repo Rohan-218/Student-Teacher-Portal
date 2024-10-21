@@ -5,7 +5,11 @@ import Contact from './contact-us/Contact.jsx';
 // import Navbar from '../Common/navbar/Navbar.jsx';   Import the Navbar component
 import {jwtDecode} from 'jwt-decode'; // Import jwtDecode
 import './index.css';
+
 import profile from '/src/assets/Portal/HomePage/home2.png';
+import linkedIn from '/src/assets/Portal/HomePage/linkedin.png';
+import insta from '/src/assets/Portal/HomePage/instagram.png';
+import twitter from '/src/assets/Portal/HomePage/twitter.png';
 
 const Index = () => {
   const aboutRef = useRef(null);  // Ref for About Us section
@@ -90,6 +94,33 @@ const Index = () => {
 
       <div ref={contactRef} id="contact">
         <Contact />
+      </div>
+      <hr />
+      <div className='footer'>
+        
+        {/* <a href="#top">Back to Top</a> */}
+        <div>
+          <p className="copyright">Copyright © 2022 XYZ University. All rights reserved.</p> {/* Copyright notice */}
+        </div>
+        <div className='footer-logo'>
+            <div className="footer-icon" ><img 
+            src={linkedIn}
+            alt="linkedIn"         
+            />
+            </div>
+            <div className="footer-icon" >
+            <img 
+            src={insta}
+            alt="instagram"             
+            />
+            </div>
+            <div className="footer-icon" >
+            <img 
+            src={twitter}
+            alt="twitter" 
+            />
+            </div>
+        </div>
       </div>
     </div>
   );
