@@ -1,9 +1,9 @@
 import React from 'react';
 import './Sidebar.css';
-import dashboard from '/src/assets/TeacherSidebar_icon/dashboard.png'
-import scoreboard from  '/src/assets/TeacherSidebar_icon/scoreboard.png' 
-import attendance from  '/src/assets/TeacherSidebar_icon/attendant.png'
-import studentrecoard from  '/src/assets/TeacherSidebar_icon/student_recoard.png'
+import dashboard from '/src/assets/TeacherSidebar_icon/dashboard1.png'
+import scoreboard from  '/src/assets/TeacherSidebar_icon/marks.png' 
+import attendance from  '/src/assets/TeacherSidebar_icon/attendance.png'
+import studentrecoard from  '/src/assets/TeacherSidebar_icon/recode.png'
 
 
 
