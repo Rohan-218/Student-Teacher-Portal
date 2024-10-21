@@ -10,12 +10,7 @@ exports.updateUserPassword = async (req, res) => {
     }
 
     try {
-
-        const userType = req.user.user_type;
-        if (userType !== 1 && userType !== 2) {
-            return res.status(403).json({ message: 'Access denied. Only student and teacher can update password.' });
-        }
-
+        
         const token = await userService.updateUserPassword(email, oldPassword, newPassword);
         if (token) {
             res.status(200).json({ token });
