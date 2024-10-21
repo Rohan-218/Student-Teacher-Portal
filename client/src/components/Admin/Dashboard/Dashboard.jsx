@@ -12,6 +12,7 @@ import {
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
 import './Dashboard.css';
+import photo from '/src/assets/Admin/Dashboard/team1.png';
 
 // Register the components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -145,13 +146,14 @@ const Dashboard = () => {
           <div className="adcard">Branches<br />{branchCount  || 'Loading...'}</div>
           <div className="adcard">Subjects<br />{subjectCount || 'Loading...'}</div>
         </div>
-        {/*         
-        <div className="adgraph-container">
-          <div className="adgraph-wrapper">
-            <Bar data={chartData} options={options} />
-          </div>
+                
+        <div className="photo">
+          <img 
+            src={photo}
+            alt="image"         
+            />
         </div> 
-        */}
+       
 
       </main>
     </div>

@@ -5,6 +5,8 @@ import { jwtDecode } from 'jwt-decode';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Importing eye icons
 import './Login.css';
 
+import photo from '/src/assets/Admin/Login/login.jpeg';
+
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -100,7 +102,7 @@ const AdminLogin = () => {
         <div className="adsidebar-section">
           <div className="adprofile-image-container">
             <img
-              src="https://media.licdn.com/dms/image/C4E03AQGO448nAOrvfw/profile-displayphoto-shrink_200_200/0/1516929476180?e=2147483647&v=beta&t=u56K1TETkVUMImyKVck5Fg8V1tNKX2LX50F5144oTkw"
+              src= {photo}
               alt="Profile"
               className="adprofile-image"
             />
