@@ -5,7 +5,7 @@ import './Navbar.css'; // Import the CSS file
 import profile from '/src/assets/AdminHeader/profileadmin.jpg';
 import account from '/src/assets/Navbar_icon/admin.png';
 import contact from '/src/assets/Navbar_icon/contact.png';
-import home from '/src/assets/Navbar_icon/home-page-white-icon.webp';
+//import home from '/src/assets/Navbar_icon/home-page-white-icon.webp';
 import info from '/src/assets/Navbar_icon/informationicon.webp';
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
@@ -15,10 +15,13 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate(); // For navigation after logout
 
   const isHomePage = location.pathname === '/';
-  // const isLoginPage = location.pathname === '/login';
+  const isLoginPage = location.pathname === '/login';
 
   const toggleDropdown = () => {
-    setShowDropdown((prevState) => !prevState); // Toggle the dropdown box
+    // dropdown if user is logged in
+    if (isLoggedIn) {
+      setShowDropdown((prevState) => !prevState);
+    }
   };
 
   const handleLogout = () => {
@@ -101,18 +104,14 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
         </div>
 
         {/* Profile Image */}
-        <div className="snavprofile-container" onClick={toggleDropdown} ref={profileRef}>
-          <img src={profile} alt="Profile" className="snavprofile-img" />
-          {showDropdown && (
+        <div
+         className={`snavprofile-container ${!isLoggedIn || isHomePage || isLoginPage ? 'disabled' : ''}`} 
+        onClick={toggleDropdown} ref={profileRef}>
+          <img src={profile} alt="Profile" className={`snavprofile-img ${!isLoggedIn || isHomePage || isLoginPage ? 'unclickable' : ''}`}/>
+          {showDropdown  && isLoggedIn && (
             <div className="profile-dropdown">
                 <p>Hello User!</p>
-                {isLoggedIn ? (
                 <button onClick={handleLogout}>Logout</button>
-               ) : (
-                 <RouterLink to="/login">
-                  <button className="Snavbutton">Login</button>
-                 </RouterLink>
-               )}
             </div>
           )}
         </div>
