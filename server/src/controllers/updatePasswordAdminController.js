@@ -18,8 +18,8 @@ exports.updatePasswordAdmin = async (req, res) => {
         }
 
         const result = await updatePasswordAdmin(email, oldPassword, newPassword);
-
         const userId = result.data;
+
         const userData = await userModel.getUserData(userId);
         const name = userData.map(user => user.name);
         

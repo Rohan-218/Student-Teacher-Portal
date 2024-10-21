@@ -1,5 +1,6 @@
 const userService = require('../services/userService');
-const { insertActivity } = require('../utils/activityService');
+const { insertActivity ,insertEmailActivity } = require('../utils/activityService');
+const userModel = require('../models/userModel');
 
 // Login Controller
 exports.updateUserPassword = async (req, res) => {
@@ -11,9 +12,29 @@ exports.updateUserPassword = async (req, res) => {
 
     try {
         
-        const token = await userService.updateUserPassword(email, oldPassword, newPassword);
-        if (token) {
-            res.status(200).json({ token });
+        const result = await userService.updateUserPassword(email, oldPassword, newPassword);
+        const userId = result.data;
+        
+        const userData = await userModel.getUserData(userId);
+        const name = userData.map(user => user.name);
+        
+        try {
+            const text = `Dear user,\n\nYour password hass been successfully updated.\n\nRegards,\nXYZ University`;
+            const subject = `Password updated Successfully!`;
+            insertActivity( userId, 'Password Updated', `${name} have updated his/her password.`);
+            const emailResponse = await sendEmailNotification(email, text, subject);
+            insertEmailActivity(email, subject, `Password of ${name} updated Successfully!`);
+            if (emailResponse) {
+              console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
+            }
+          } catch (error) {
+            // Log detailed error from SendGrid
+            console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
+            return res.status(200).json({ message: 'Password updated- Error sending email notifications' });
+          }
+       
+        if (result) {
+            res.status(200).json({ result });
         } else {
             res.status(401).json({ message: 'Invalid email or password' });
         }
