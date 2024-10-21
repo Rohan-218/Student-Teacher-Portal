@@ -65,7 +65,7 @@ const ResetPassword = () => {
                         <label>Confirm Password:</label>
                         <div className="password-input-container">
                             <input
-                                type={showPassword ? "text" : "password"}
+                                // type={showPassword ? "text" : "password"}
                                 value={confirmPassword}
                                 onChange={e => setConfirmPassword(e.target.value)}
                                 required
