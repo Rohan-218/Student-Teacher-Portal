@@ -8,16 +8,18 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const AttendanceTrendChart = () => {
     const [chartData, setChartData] = useState({
         labels: [],
-        datasets: [
-            {
-                label: 'Attendance Percentage',
-                data: [],
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-            },
-        ],
+        datasets: [], // Start with an empty datasets array
     });
+
+    // Define an array of colors for subjects
+    const colors = [
+    '#005A9C', // Light Blue
+    '#00008B', // Medium Blue
+    '#007fff', // Darker Blue
+    '#00bfff', // Lighter Blue
+     
+        // Add more colors if needed
+    ];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,19 +41,20 @@ const AttendanceTrendChart = () => {
                 console.log(subjects); // Log the fetched data to check its structure
 
                 const labels = subjects.map(subject => subject.sub_initials);
-                const data = subjects.map(subject => parseFloat(subject.percentage));
+                const data = subjects.map((subject, index) => parseFloat(subject.percentage));
+
+                // Prepare the datasets with different colors for each subject
+                const datasets = labels.map((label, index) => ({
+                    label: label,
+                    data: [data[index]], // Make sure to wrap it in an array for each subject
+                    backgroundColor: colors[index % colors.length], // Use modulo for colors array
+                    borderColor: colors[index % colors.length].replace('0.6', '1'), // Set border color
+                    borderWidth: 1,
+                }));
 
                 setChartData({
                     labels,
-                    datasets: [
-                        {
-                            label: 'Attendance Percentage',
-                            data,
-                            backgroundColor: '#13385e',
-                            borderColor: '#6600cc',
-                            borderWidth: 1,
-                        },
-                    ],
+                    datasets,
                 });
             } catch (error) {
                 console.error('Error fetching attendance trend data:', error);

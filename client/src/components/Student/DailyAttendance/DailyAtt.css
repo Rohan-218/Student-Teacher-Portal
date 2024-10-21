@@ -18,11 +18,16 @@
   padding: 3%;
 }
 
-.Back-button {
+.Back-button1 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 40px;
   background: none;
   border: none;
-  font-size: 2rem; /* Adjusted for responsiveness */
   cursor: pointer;
+  margin-top: 40%;
+  margin-left: 20%;
 }
 
 /* Attendance details container */
@@ -60,7 +65,7 @@
 }
 
 .Attendance-Table th {
-  background-color: #363b36; /* Dark header background */
+  background-color: #4d87c1; /* Dark header background */
   color: white;
   font-size: 1rem;
 }
