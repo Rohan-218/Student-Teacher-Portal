@@ -1,5 +1,6 @@
 const createTeacherService = require('../services/createTeacherService');
 const { insertActivity, insertEmailActivity } = require('../utils/activityService');
+const sendEmailNotification = require('../utils/emailservice');
 
 exports.createTeacher = async (req, res) => {
   try {
