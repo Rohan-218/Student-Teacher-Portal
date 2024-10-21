@@ -11,6 +11,15 @@ const BarChart = () => {
   const [exams, setExams] = useState([]); // State for exams
   const [selectedExam, setSelectedExam] = useState(''); // State for selected exam
 
+  // Define different shades of blue
+  const blueShades = [
+    '#0b1d78', // Light Blue
+    '#0045a5', // Medium Blue
+    '00a9b5', // Darker Blue
+    '#1fe074', // Lighter Blue
+    // Add more shades if needed
+  ];
+
   // Function to fetch exams from the API
   const fetchExams = async () => {
     const token = localStorage.getItem('token'); // Retrieve token from local storage
@@ -65,14 +74,14 @@ const BarChart = () => {
 
       // Prepare data for chart
       const labels = Object.keys(subjectsMap); // Exam names as labels
-      const datasets = Object.keys(subjectsMap).map(examName => {
+      const datasets = Object.keys(subjectsMap).map((examName, index) => {
         const examSubjects = subjectsMap[examName];
         const subjectNames = Object.keys(examSubjects);
         const percentages = subjectNames.map(subject => examSubjects[subject] || 0);
         return {
           label: examName,
           data: percentages,
-          backgroundColor: 'rgba(75, 192, 192, 0.6)', // Customize this color for different exams if needed
+          backgroundColor: blueShades[index % blueShades.length], // Use index to pick color
         };
       });
 

@@ -3,6 +3,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; 
 import './Login.css';
 import loginLogo from '/src/assets/Portal/Login/login-logo.jpg';
+import CryptoJS from 'crypto-js';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye icons
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
   const [alertMessage, setAlertMessage] = useState(''); // New state for alert message
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
   const navigate = useNavigate();
+  const secretKey = import.meta.env.VITE_SECRET_KEY;
 
   useEffect(() => {
     const expirationTime = localStorage.getItem('tokenExpiration');
@@ -34,10 +36,13 @@ const Login = () => {
     setMessage(''); // Reset message on new attempt
 
     try {
+
+      const encryptedPassword = CryptoJS.AES.encrypt(password, secretKey).toString();
+
       const response = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password: encryptedPassword })
       });
 
       const result = await response.json();

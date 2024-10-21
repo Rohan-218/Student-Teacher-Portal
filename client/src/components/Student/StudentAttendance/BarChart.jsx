@@ -47,8 +47,8 @@ const AttendanceTrendChart = () => {
                         {
                             label: 'Attendance Percentage',
                             data,
-                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: '#13385e',
+                            borderColor: '#6600cc',
                             borderWidth: 1,
                         },
                     ],
