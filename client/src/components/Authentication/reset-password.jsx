@@ -4,6 +4,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye ic
 
 const ResetPassword = () => {
     const [email, setEmail] = useState('');
+    const [oldPassword, setOldPassword] = useState(''); 
     const [newPassword, setNewPassword] = useState(''); // State for new password
     const [confirmPassword, setConfirmPassword] = useState(''); // State for confirm password
     const [showPassword, setShowPassword] = useState(false); // State for password visibility
@@ -12,8 +13,12 @@ const ResetPassword = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // Check if new password and confirm password match
+         // if the old password is correct
+         if (oldPassword !== "1234") {
+            setError("Old password is incorrect!");
+            return;
+        }
+        // if new password and confirm password match
         if (newPassword !== confirmPassword) {
             setError("Passwords do not match!");
             return;
@@ -44,7 +49,15 @@ const ResetPassword = () => {
                             onChange={e => setEmail(e.target.value)}
                             required
                         />
-                        
+                        <label>Old Password:</label>
+                        <div className="password-input-container">
+                            <input
+                             type={showPassword ? "text" : "password"}
+                                value={oldPassword}
+                                onChange={e => setOldPassword(e.target.value)}
+                                required
+                            />
+                        </div>
                         <label>Set New Password:</label>
                         <div className="password-input-container">
                             <input

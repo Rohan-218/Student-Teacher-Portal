@@ -1,7 +1,7 @@
 const { getUserByEmail } = require('../models/userModel');
-const { updateUserPassword } = require('../models/updatePasswordModel');
+const { updatePasswordAdmin } = require('../models/updatePasswordAdminModel');
 
-exports.updateUserPassword = async (email, oldPassword, newPassword) => {
+exports.updatePasswordAdmin = async (email, oldPassword, newPassword) => {
   try {
     // Step 1: Fetch user by email
     const user = await getUserByEmail(email);
@@ -15,11 +15,11 @@ exports.updateUserPassword = async (email, oldPassword, newPassword) => {
     }
 
     // Step 3: Encrypt new password and update 
-    await updateUserPassword(user.user_id, newPassword);
+    await updatePasswordAdmin(user.user_id, newPassword);
 
     return { success: true, message: 'Password updated successfully' };
   } catch (error) {
     console.error('Update Password Service Error:', error.message);
-    throw new Error('Error updating password: ' + error.message);
+    throw new Error(error.message);
   }
 };
