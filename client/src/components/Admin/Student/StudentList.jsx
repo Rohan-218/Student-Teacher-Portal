@@ -36,7 +36,6 @@ const StudentList = () => {
         name: student.student_name,
         enrollmentNumber: student.enrollment_no,
         email: student.email,
-        password: student.decrypted_password,
         userId: student.user_id,
         is_active: student.is_active // Include is_active status
       }));

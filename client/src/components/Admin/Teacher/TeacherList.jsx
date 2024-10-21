@@ -36,7 +36,6 @@ const TeacherList = () => {
       const formattedData = data.map(teacher => ({
         name: teacher.teacher_name,
         email: teacher.email,
-        password: teacher.decrypted_password,
         user_id: teacher.user_id,
         is_active: teacher.is_active
       }));

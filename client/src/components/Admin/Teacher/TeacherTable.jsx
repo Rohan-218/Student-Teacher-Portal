@@ -40,7 +40,6 @@ const TeacherTable = ({ teachers, setTeachers }) => {
             <th>S. No.</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Password</th>
             <th className="hide">User ID</th>
             <th>View</th>
             <th>Action</th>
@@ -55,7 +54,6 @@ const TeacherTable = ({ teachers, setTeachers }) => {
                 <td>{index + 1}</td>
                 <td>{teacher.name}</td>
                 <td>{teacher.email}</td>
-                <td>{teacher.password}</td>
                 <td className="hide">{teacher.user_id}</td>
                 <td>
                   <Link to={`/admin/teacher-profile/${teacher.user_id}`}>

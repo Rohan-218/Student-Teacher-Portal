@@ -28,7 +28,7 @@ const Contact = () => {
             dangerouslySetInnerHTML={{
               __html: `<iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1001.9848428368007!2d75.74478120294455!3d26.887808289948463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db4ecf86825bd%3A0x820916352aa479a4!2s246%2C%20Rani%20Path%2C%20Rani%20Sati%20Nagar%2C%20Nirman%20Nagar%2C%20Brijlalpura%2C%20Jaipur%2C%20Rajasthan%20302019!5e1!3m2!1sen!2sin!4v1729489271795!5m2!1sen!2sin"
-                        width="600" 
+                        width="800" 
                         height="300" 
                         style="border:0;" 
                         allowfullscreen="" 
