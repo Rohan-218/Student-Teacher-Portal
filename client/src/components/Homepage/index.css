@@ -50,7 +50,8 @@
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #3f6e9d;
+  border: 0.5px solid black;
 }
 
 .right-section {
