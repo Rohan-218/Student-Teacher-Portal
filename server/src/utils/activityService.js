@@ -27,7 +27,10 @@ const insertEmailActivity = async (emails, email_subject, message) => {
   `;
 
   try {
-    for (const email of emails) {
+    // Ensure emails is always an array
+    const recipients = Array.isArray(emails) ? emails : [emails];
+
+    for (const email of recipients) {
       await sequelize.query(query, {
         replacements: {
           email: email,
@@ -41,5 +44,6 @@ const insertEmailActivity = async (emails, email_subject, message) => {
     console.error('Error inserting email activities:', error);
   }
 };
+
 
 module.exports = { insertActivity , insertEmailActivity};
