@@ -127,11 +127,9 @@
   /* margin-bottom: 12px; */
 }
 .profile-dropdown button{
- 
-}
-.Snavbutton{
-  margin-top: 20%;
-  margin-right: 38%;
+  /* margin-top: 0%;
+  margin-right: 38%; */
+  margin-top: auto;
     background-color: #4d87c1;
     color: white;
     border: none;
@@ -140,20 +138,7 @@
     font-size: 0.9rem;
     border-radius: 4px;
 }
-
-.snavbutton {
-  margin-right: 28%;
-  background-color: rgb(92, 120, 238);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.snavbutton:hover {
+.profile-dropdown button:hover {
   background-color: #0056b3; /* Darken the button on hover */
 }
 

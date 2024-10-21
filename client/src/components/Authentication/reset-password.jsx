@@ -35,7 +35,7 @@ const ResetPassword = () => {
 
         // If passwords match, reset the error and continue with the reset logic
         setError("");
-        setMessage(`Password changed successfully and sent to ${formData.email}`);
+        // setMessage(`Password changed successfully and sent to ${formData.email}`);
 
         try {
             const token = localStorage.getItem('token');
