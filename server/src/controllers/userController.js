@@ -20,7 +20,7 @@ exports.updateUserPassword = async (req, res) => {
         const name = userData.map(user => user.name);
         
         try {
-            const text = `Dear user,\n\nYour password hass been successfully updated.\n\nRegards,\nXYZ University`;
+            const text = `Dear ${name},\n\nYour password has been successfully updated.\n\nRegards,\nXYZ University`;
             const subject = `Password updated Successfully!`;
             insertActivity( userId, 'Password Updated', `${name} have updated his/her password.`);
             const emailResponse = await sendEmailNotification(email, text, subject);
