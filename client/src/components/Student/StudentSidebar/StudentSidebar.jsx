@@ -1,9 +1,9 @@
 // src/components/Student/StudentSidebar/StudentSidebar.jsx
 import React, { useState, useEffect } from 'react';
 import './StudentSidebar.css';
-import dashboard from '/src/assets/TeacherSidebar_icon/dashboard.png'
-import scoreboad from '/src/assets/TeacherSidebar_icon/scoreboard.png'
-import attendace from '/src/assets/TeacherSidebar_icon/attendant.png'
+import dashboard from '/src/assets/TeacherSidebar_icon/dashboard1.png'
+import scoreboad from '/src/assets/TeacherSidebar_icon/marks.png'
+import attendace from '/src/assets/TeacherSidebar_icon/attendance.png'
 
 const StudentSidebar = ({ onScroll }) => {
   const [isOpen, setIsOpen] = useState(true);

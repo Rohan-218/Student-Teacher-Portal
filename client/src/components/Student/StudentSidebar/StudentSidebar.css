@@ -5,7 +5,7 @@
   left: 0;
   width: 260px; /* Reduce width to prevent overlapping */
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #4d87c1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,17 +24,18 @@
   margin-bottom: 20px;
   padding: 15px 40px; /* Adjust padding for a better look */
   cursor: pointer;
-  background-color: rgb(92, 84, 84);
+  background-color:#F9F9F9 ;
   border-radius: 20px;
-  color: white;
+  color: black;
   font-size: 18px;
   font-weight: bold;
   border: none;
-  transition: background-color 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+  transition: .3s ease;
 }
 
 .Sidebar1 button:hover {
-  background-color: rgb(70, 64, 64);
+  background-color: #b0cce8;
 }
 
 /* Hamburger Icon Styles for Mobile */
