@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ExamTable = () => {
+const ExamTable = ({ refresh }) => {
   const [exams, setExams] = useState([]);
 
   // Fetch exams from the API
@@ -36,7 +36,7 @@ const ExamTable = () => {
     };
 
     fetchExams();
-  }, []);
+  }, [refresh]);
 
   // Handle delete toggle (API call for deleting/restoring)
   const handleDelete = async (index) => {

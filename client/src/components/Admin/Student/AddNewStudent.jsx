@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
+import { Link } from 'react-router-dom';
 import './AddNewStudent.css';
 
 const AddNewStudent = () => {
@@ -111,6 +112,9 @@ const AddNewStudent = () => {
     <div className="add-student-container">
       <main className="stuform-container">
         <h2>Add New Student</h2>
+        <Link to="/admin/students">
+        <span className='close'> &times; </span>
+        </Link>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Name:</label>
