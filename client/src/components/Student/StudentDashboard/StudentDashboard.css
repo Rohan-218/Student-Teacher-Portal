@@ -24,6 +24,7 @@
   background-color: #4d87c14a;
   border-radius: 5px;
   text-align: left;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .student-details {
@@ -36,6 +37,7 @@
   align-self: center;
   border-radius: 8px;
   background-color: white;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .student-profile {
