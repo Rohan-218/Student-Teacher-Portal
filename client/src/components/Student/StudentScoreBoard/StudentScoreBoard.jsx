@@ -85,8 +85,8 @@ const StudentScoreboard = () => {
       datasets: [
         {
           data: [marksObtained, maxMarks - marksObtained],
-          backgroundColor: ['#a8a8a8', '#d9d9d9'],
-          hoverBackgroundColor: ['#a8a8a8', '#d9d9d9'],
+          backgroundColor: ['#4d87c1', '#13385e'],
+          hoverBackgroundColor: ['#03C04A', 'red'],
         },
       ],
     };

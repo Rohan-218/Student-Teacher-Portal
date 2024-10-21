@@ -31,11 +31,11 @@
   font-weight: bold;
   border: none;
   font-family: 'DM Sans', sans-serif;
-  transition: background-color 0.3s ease;
+  transition: .3s ease;
 }
 
 .Sidebar1 button:hover {
-  background-color: rgb(70, 64, 64);
+  background-color: #b0cce8;
 }
 
 /* Hamburger Icon Styles for Mobile */
