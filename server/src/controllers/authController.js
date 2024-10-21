@@ -1,11 +1,13 @@
 const { login, logout }= require('../services/authService');
+require('dotenv').config();
+const CryptoJS = require('crypto-js');
 
 // Login Controller
 exports.login = async (req, res) => {
     const { email, password } = req.body;
-
     try {
-        const token = await login(email, password);
+        const decryptedPassword =  CryptoJS.AES.decrypt(password, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
+        const token = await login(email, decryptedPassword);
         if (token) {
             res.status(200).json({ token });
         } else {
