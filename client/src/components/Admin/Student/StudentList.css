@@ -1,7 +1,7 @@
 
 /* Make sure content doesn’t overlap with the fixed sidebar and header */
 .main-content {
-    margin-left: 20%;  /* Sidebar width */
+    margin-left: 210px;  /* Sidebar width */
     margin-top: 60px;  /* Navbar height */
     padding: 20px;
   }
