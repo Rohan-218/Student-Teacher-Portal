@@ -42,7 +42,6 @@ const StudentTable = ({ students, setStudents }) => {
           <th>Name</th>
           <th>Enrollment No.</th>
           <th className="email">Email</th>
-          <th>Password</th>
           <th className="hide">UserId</th>
           <th>View</th>
           <th>Action</th>
@@ -58,7 +57,6 @@ const StudentTable = ({ students, setStudents }) => {
               <td>{student.name}</td>
               <td>{student.enrollmentNumber}</td>
               <td>{student.email}</td>
-              <td>{student.password}</td>
               <td className="hide">{student.userId}</td>
               <td>
                 <Link to={`/admin/student-profile/${student.userId}`}>

@@ -23,7 +23,7 @@ exports.createTeacher = async (req, res) => {
       const subject = `Account created successfully`;
       insertActivity( user_id, 'New Teacher Added', `New teacher - ${name} have been added.`);
       const emailResponse = await sendEmailNotification(email, text, subject);
-      insertEmailActivity(email, subject, `Password of ${name} updated Successfully!`);
+      insertEmailActivity(email, subject, `New Teacher account - ${name} has been Successfully created!`);
       if (emailResponse) {
         console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
       }
