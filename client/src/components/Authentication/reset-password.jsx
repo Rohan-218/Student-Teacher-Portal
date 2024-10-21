@@ -3,36 +3,82 @@ import './reset-password.css';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye icons
 
 const ResetPassword = () => {
-    const [email, setEmail] = useState('');
-    const [oldPassword, setOldPassword] = useState(''); 
-    const [newPassword, setNewPassword] = useState(''); // State for new password
-    const [confirmPassword, setConfirmPassword] = useState(''); // State for confirm password
     const [showPassword, setShowPassword] = useState(false); // State for password visibility
     const [message, setMessage] = useState('');
     const [error, setError] = useState(''); // State for error messages
 
+    const [formData, setFormData] = useState({
+        email: '',         // Email state
+        oldPassword: '',   // Old password state
+        newPassword: '',   // New password state
+        confirmPassword: '', // Confirm password state
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-         // if the old password is correct
-         if (oldPassword !== "1234") {
-            setError("Old password is incorrect!");
-            return;
-        }
-        // if new password and confirm password match
-        if (newPassword !== confirmPassword) {
+
+        // if the old password is incorrect
+        // if (formData.oldPassword !== "1234") {
+        //     setError("Old password is incorrect!");
+        //     return;
+        // }
+        // if new password and confirm password don't match
+        if (formData.newPassword !== formData.confirmPassword) {
             setError("Passwords do not match!");
             return;
         }
-        
+
         // If passwords match, reset the error and continue with the reset logic
         setError("");
-        setMessage(`Password changed successfully and sent to ${email}`);
-        
-        // API
+        setMessage(`Password changed successfully and sent to ${formData.email}`);
+
+        try {
+            const token = localStorage.getItem('token');
+
+            const response = await fetch('http://localhost:3000/api/users/reset-password', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: formData.email,
+                    oldPassword: formData.oldPassword,
+                    newPassword: formData.newPassword,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to change password');
+            }
+
+            const data = await response.json();
+            setMessage(data.message || 'Password changed successfully');
+            setError('');
+            window.alert(data.message || 'Password changed successfully');
+            handleCancel();
+        } catch (err) {
+            setError(err.message);
+            window.alert(err.message);
+        }
+    };
+
+    const handleCancel = () => {
+        setFormData({
+            email: '',
+            oldPassword: '',
+            newPassword: '',
+            confirmPassword: '',
+        });
     };
 
     const togglePasswordVisibility = () => {
-        setShowPassword(prev => !prev); 
+        setShowPassword(prev => !prev);
     };
 
     return (
@@ -45,16 +91,18 @@ const ResetPassword = () => {
                         <label>Email:</label>
                         <input
                             type="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
                             required
                         />
                         <label>Old Password:</label>
                         <div className="password-input-container">
                             <input
-                             type={showPassword ? "text" : "password"}
-                                value={oldPassword}
-                                onChange={e => setOldPassword(e.target.value)}
+                                type={showPassword ? "text" : "password"}
+                                name="oldPassword"
+                                value={formData.oldPassword}
+                                onChange={handleChange}
                                 required
                             />
                         </div>
@@ -62,8 +110,9 @@ const ResetPassword = () => {
                         <div className="password-input-container">
                             <input
                                 type={showPassword ? "text" : "password"}
-                                value={newPassword}
-                                onChange={e => setNewPassword(e.target.value)}
+                                name="newPassword"
+                                value={formData.newPassword}
+                                onChange={handleChange}
                                 required
                             />
                             <button
@@ -78,20 +127,20 @@ const ResetPassword = () => {
                         <label>Confirm Password:</label>
                         <div className="password-input-container">
                             <input
-                                // type={showPassword ? "text" : "password"}
-                                value={confirmPassword}
-                                onChange={e => setConfirmPassword(e.target.value)}
+                                type="password"
+                                name="confirmPassword"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
                                 required
                             />
                         </div>
                     </div>
                     <button className="pass-button">Send</button>
-                      {/* Display error message if passwords do not match */}
-                      {error && <p className="error-message">{error}</p>}
-                         {/* Display success message */}
-                {message && <p className="success-message">{message}</p>}
+
+                    {error && <p className="error-message">{error}</p>}
+                    {message && <p className="success-message">{message}</p>}
                 </form>
-              </div>
+            </div>
         </div>
     );
 };

@@ -11,7 +11,9 @@
   top: 0;
   z-index: 1000;
 }
-
+.disabled {
+  pointer-events: none; /* Disables click events */
+}
 .snavlogo-sli {
   font-size: 18px;
   font-weight: bold;
@@ -123,6 +125,9 @@
   font-weight: bold;
   color:#4d87c1; /* Make the text stand out */
   /* margin-bottom: 12px; */
+}
+.profile-dropdown button{
+ 
 }
 .Snavbutton{
   margin-top: 20%;
