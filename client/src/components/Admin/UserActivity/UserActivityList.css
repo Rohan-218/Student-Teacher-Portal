@@ -16,6 +16,12 @@
     justify-content: space-between;
     margin-bottom: 20px;
   }
+
+  .date-filter{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
   
   .user-type-dropdown {
     padding: 8px;
@@ -41,20 +47,6 @@
     align-items: center;
 }
 
-.arrow-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.arrow-left, .arrow-right {
-  background-color: #ddd;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 18px;
-}
 
 .table-container {
     width: 100%;

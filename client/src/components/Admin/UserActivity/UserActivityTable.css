@@ -28,6 +28,20 @@
   .user-activity-table tr:hover {
     background-color: #f1f1f1;
   }
+  .arrow-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .arrow-left, .arrow-right {
+    background-color: #ddd;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
   
   /* Responsive Design */
   @media (max-width: 768px) {
@@ -35,4 +49,54 @@
       font-size: 14px;
     }
   }
+
+  .tooltip1 {
+    position: relative;
+    display: inline-block;
+  }
   
+  .tooltip1 .tooltiptext1 {
+    visibility: hidden;
+    background-color: rgb(171, 171, 171);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    width: 80px;
+    text-wrap: nowrap;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+  }
+  
+  .tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+  }
+
+  .tooltip2 {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip2 .tooltiptext2 {
+    visibility: hidden;
+    text-wrap: nowrap;
+    width: 80px;
+    background-color: rgb(171, 171, 171);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 105%;
+  }
+  
+  .tooltip2:hover .tooltiptext2 {
+    visibility: visible;
+  }
