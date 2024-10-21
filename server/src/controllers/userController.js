@@ -1,8 +1,8 @@
-const { updatePasswordAdmin }= require('../services/updatePasswordAdminService');
+const userService = require('../services/userService');
 const { insertActivity } = require('../utils/activityService');
 
 // Login Controller
-exports.updatePasswordAdmin = async (req, res) => {
+exports.updateUserPassword = async (req, res) => {
     const { email, oldPassword, newPassword } = req.body;
 
     if ( oldPassword === newPassword ) {
@@ -12,11 +12,11 @@ exports.updatePasswordAdmin = async (req, res) => {
     try {
 
         const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins can update password.' });
+        if (userType !== 1 && userType !== 2) {
+            return res.status(403).json({ message: 'Access denied. Only student and teacher can update password.' });
         }
 
-        const token = await updatePasswordAdmin(email, oldPassword, newPassword);
+        const token = await userService.updateUserPassword(email, oldPassword, newPassword);
         if (token) {
             res.status(200).json({ token });
         } else {
