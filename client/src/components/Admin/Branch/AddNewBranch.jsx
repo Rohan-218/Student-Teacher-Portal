@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
+import { Link } from 'react-router-dom';
 import './AddNewBranch.css';
 
 const AddNewBranch = () => {
@@ -66,6 +67,9 @@ const AddNewBranch = () => {
     <div className="add-branch-container">  
       <main className="form-container-b">
         <h2>Add New Branch</h2>
+        <Link to="/admin/branches">
+        <span className='close'> &times; </span>
+        </Link>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Branch Name:</label>
