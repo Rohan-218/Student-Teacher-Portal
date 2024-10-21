@@ -31,9 +31,10 @@ const branchSemSubRoutes = require('./routes/branchSemSubRoutes');
 // // Use routes
 app.get('/', (req, res) => res.send('Server is Running'));
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 app.use(authenticate);
 // Authenticate middleware;
-app.use('/api/users', userRoutes);
+
 app.use('/api/students', studentRoutes);
 app.use('/api/teachers', teacherRoutes); 
 app.use('/api/admin', adminRoutes);

@@ -1,5 +1,6 @@
 const createStudentService = require('../services/createStudentService');
 const { insertActivity, insertEmailActivity } = require('../utils/activityService');
+const sendEmailNotification = require('../utils/emailservice');
 
 exports.createStudent = async (req, res) => {
   try {

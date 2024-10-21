@@ -1,5 +1,6 @@
 const userService = require('../services/userService');
 const { insertActivity ,insertEmailActivity } = require('../utils/activityService');
+const sendEmailNotification = require('../utils/emailservice');
 const userModel = require('../models/userModel');
 
 // Login Controller
