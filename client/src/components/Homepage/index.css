@@ -50,7 +50,8 @@
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #3f6e9d;
+  border: 0.5px solid black;
 }
 
 .right-section {
@@ -94,9 +95,11 @@
 
 @media screen and (max-width: 768px) {
   .homepage-content {
-    flex-direction: column; /* Stack the left and right sections vertically */
+    flex-direction: column-reverse; /* Stack the left and right sections vertically */
     height: auto; /* Adjust height to fit content */
     text-align: center; /* Center-align the text */
+    margin-top: 70px;
+    margin-bottom: 60px;
   }
 
   .left-section {
@@ -116,18 +119,21 @@
   }
 
   .background-image {
-    max-width: 90%; /* Make the image more fluid */
-    margin-top: 0px;
+    max-width: 100%; /* Make the image more fluid */
+    margin-top: 30px;
+    margin-bottom: 0px;
+    padding: 0px;
+    /* border: 2px solid black; */
   }
 }
 
 @media screen and (max-width: 480px) {
   .large-text {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .text {
-    font-size: 1.5rem;
+    font-size: 2 rem;
   }
 
   .button {
@@ -136,6 +142,7 @@
 
   .left-section {
     padding: 20px;
+    text-align: center;
   }
 
   .background-image {

@@ -2,6 +2,12 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  
+}
+
+.info-map{
+  display: flex;
+  flex-direction: row;
 }
 
 .contact-sh1 {
@@ -11,18 +17,11 @@
 
 .contact-info {
   display: flex;
-  flex-direction: row; /* Default to column for larger screens */
+  flex-direction: column; /* Default to column for larger screens */
   justify-content: space-around;
   margin-bottom: 20px;
+  width: 50%;
 }
-
-/* Media query for phones */
-@media (max-width: 600px) {
-  .contact-info {
-    flex-direction: column; /* Change to row for smaller screens */
-  }
-}
-
 
 .info-item {
   flex: 1;
@@ -43,6 +42,7 @@
 .map {
   text-align: center;
   margin-top: 40px;
+  width: 50%;
 }
 
 .map-placeholder {
@@ -54,4 +54,40 @@
   align-items: center;
   color: white;
   font-size: 20px;
+}
+
+.map h2{
+  display : none;
+}
+
+
+/* Media query for phones */
+@media (max-width: 600px) {
+  .contact-info {
+    flex-direction: column; /* Change to row for smaller screens */
+    font-size: 16px;
+  }
+
+.sh3{
+  font-size: 16px;
+}
+.info-map{
+  display: flex;
+  flex-direction: column;
+}
+
+.map {
+  width: 100%;
+  margin-top: 0;
+}
+
+.contact-info {
+  width: 100%;
+}
+
+.map h2{
+  display : block;
+  font-size: 20px;
+}
+
 }
