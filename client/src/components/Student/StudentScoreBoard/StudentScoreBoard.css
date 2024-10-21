@@ -19,7 +19,7 @@
   cursor: pointer;
 }
 #student-exam-select{
-  background-color: #3f423f; 
+  background-color: #4d87c1; 
   color: white;
   border-radius: 3px;
   padding: 5px;
@@ -36,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f4f4f4;
+  background-color: #4d87c121;
   padding: 15px;
   cursor: pointer;
   font-weight: bold;
