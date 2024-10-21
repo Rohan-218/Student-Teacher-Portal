@@ -74,6 +74,26 @@
   padding: 80px 20px;
 }
 
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer-logo{
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+}
+
+.footer-logo{
+  margin-top: 10px;
+}
+
+.footer-icon img{
+  width: 30px;
+  height: 30px;
+}
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
   .large-text {
