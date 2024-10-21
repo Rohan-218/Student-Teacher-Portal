@@ -35,7 +35,7 @@ exports.updatePasswordAdmin = async (req, res) => {
           } catch (error) {
             // Log detailed error from SendGrid
             console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
-            return res.status(200).json({ message: 'Password updated- Error sending email notifications' });
+            return res.status(200).json({ message: 'Password updated- Unable to send email.'});
           }
 
         if (result) {
