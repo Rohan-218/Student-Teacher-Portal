@@ -61,7 +61,7 @@ const AttendanceTable = ({ students = [], attendanceList = [], onSave, isUpdatin
       </table>
       </div>
       <div className="teacher-bottom-buttons">
-        <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>
+        <button className="daily-att-btn" onClick={() => navigate('/daily-attendance-record')}>
           Daily Attendance Record
         </button>
 

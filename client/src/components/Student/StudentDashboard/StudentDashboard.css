@@ -8,44 +8,6 @@
   justify-content: center; /* Center content vertically */
   align-items: center; /* Center content horizontally */
 }
-
-.student-container-section {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 20px;
-  
-}
-
-.sh1 {
-  display: flex;
-  scroll-margin-top: var(--navbar-height);
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #4d87c14a;
-  border-radius: 5px;
-  text-align: left;
-  font-family: 'DM Sans', sans-serif;
-}
-
-.student-details {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: 4%;
-  min-width: 50%;
-  max-width: 90%;
-  align-self: center;
-  border-radius: 8px;
-  background-color: white;
-  font-family: 'DM Sans', sans-serif;
-}
-
-.student-profile {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px; /* Add margin between profile and other details */
-}
-
 .profile-photo {
   width: 150px; 
   height: 150px;
@@ -56,14 +18,14 @@
   margin-right: 20px; 
 }
 
-.student-profile p {
+.profile p {
   margin: 10px 0; 
   font-size: 2rem!important; /* Adjust this value as needed */
   font-weight: bold; /* Optional: makes the text bold */
 }
 
 
-.student-details p {
+.details p {
   margin: 10px 0; /* Add some margin between details */
   font-size: 1.3rem; /* Original font size */
 }
@@ -73,24 +35,19 @@
   height: auto;    /* Maintain the aspect ratio */
   margin: 0 auto;  /* Center the chart */
 }
-
+/* 
 .student-logo-circle {
-  width: 95px; /* Adjust size as needed */
+  width: 95px; 
   height: 95px;
   border-radius: 50%;
-  background-color: #4d87c1; /* Change color as needed */
+  background-color: #4d87c1;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px; /* Adjust font size as needed */
-  margin: 20px; /* Space between logo and welcome message */
- 
-}
-.student-name{
-  font-size: 27px;
-  margin: 0px 0px;
-}
+  font-size: 40px; 
+  margin: 20px;
+} */
 
 .student-welcome{
   margin: 0px;
@@ -116,7 +73,7 @@
     height: 100px;
   }
 
-  .sh1 {
+  .sh {
     font-size: 20px; /* Adjust font size */
     padding: 10px;
     width: 100%; /* Full width for mobile */

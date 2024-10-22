@@ -76,31 +76,31 @@ const StudentDashboard = () => {
     <div className="student-dashboard">
       <StudentSidebar onScroll={scrollToSection} />
       <div className="content">
-        <section ref={dashboardRef} className="student-container-section">
-          <h1 className='sh1'> Dashboard</h1>
-          <div className="student-details">
-            <div className="student-profile">
-                <span className="student-logo-circle">
-                  {studentData.student_name.charAt(0).toUpperCase()}
-                </span>
-                <div className='student-name'>
-              <h1 className='student-welcome'>WELCOME</h1>
-              <h1 className='student-welcome'>{studentData.student_name}</h1>
+         <section ref={dashboardRef} className="container-section">
+              <h2 className='sh'> Dashboard</h2>
+           <div className="details">
+             <div className="profile">
+                    <span className="logo-circle">
+                       {studentData.student_name.charAt(0).toUpperCase()}
+                     </span>
+                 <div  className='welcome'>
+                   <h2>WELCOME</h2>
+                   <h2>{studentData.student_name}</h2>
+                 </div>
               </div>
-            </div>
-            <p><strong>Enrollment No: </strong>{studentData.enrollment_no}</p>
-            <p><strong>Branch: </strong>{studentData.branch_name}</p>
-            <p><strong>Semester: </strong>{studentData.semester}</p>
-            <p><strong>Contact No: </strong>{studentData.contact_no}</p>
-          </div>
+              <p><strong>Enrollment No: </strong>{studentData.enrollment_no}</p>
+              <p><strong>Branch: </strong>{studentData.branch_name}</p>
+              <p><strong>Semester: </strong>{studentData.semester}</p>
+              <p><strong>Contact No: </strong>{studentData.contact_no}</p>
+           </div>
         </section>
         <section ref={scoreboardRef} className="student-container-section">
-        <h1 className='sh1'>Scoreboard</h1>
+        <h2 className='sh'>Scoreboard</h2>
           <StudentScoreboard />
           <Barchart />
         </section>
         <section ref={attendanceRef} className="student-container-section">
-        <h1 className='sh1'>Attendance</h1>
+        <h2 className='sh'>Attendance</h2>
           <StudentAttendance />
           <AttendanceTrendChart />
         </section>
