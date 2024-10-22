@@ -13,15 +13,8 @@ const SearchBar = ({ onFilter }) => {
     };
     setFilters(updatedFilters);
 
-    // Automatically trigger filtering when the dropdown changes
-    if (e.target.name === 'semester') {
-      onFilter(updatedFilters); // Trigger filtering immediately for dropdown change
-    }
-  };
-
-  // Handle search button click
-  const handleSearch = () => {
-    onFilter(filters); // Trigger filtering with current filters
+    // Automatically trigger filtering when the input or dropdown changes
+    onFilter(updatedFilters);
   };
 
   return (
@@ -29,13 +22,12 @@ const SearchBar = ({ onFilter }) => {
       <div className="search-input-container">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="&#128269;  Search..."
           name="branch_name"
           value={filters.branch_name}
-          onChange={handleChange}
+          onChange={handleChange} // Trigger filtering as soon as input changes
           aria-label="Search Branch Name"
         />
-        <button onClick={handleSearch}>Search</button> {/* Search button */}
         <Link to="/admin/add-branch">
           <button className="add-branch-btn">Add New Branch</button>
         </Link>
@@ -45,7 +37,7 @@ const SearchBar = ({ onFilter }) => {
         <select
           name="semester"
           value={filters.semester}
-          onChange={handleChange}
+          onChange={handleChange} // Trigger filtering when semester changes
           aria-label="Select Semester"
         >
           <option value="">Semester</option>

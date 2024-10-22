@@ -1,6 +1,8 @@
 import React from 'react';
 import './StudentTable.css';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt , faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const StudentTable = ({ students, setStudents }) => {
   const toggleStudentStatus = async (user_id, currentStatus, index) => {
@@ -63,7 +65,7 @@ const StudentTable = ({ students, setStudents }) => {
                   <button 
                     className="view-btn" 
                     disabled={isDeleted} 
-                    style={{ backgroundColor: isDeleted ? 'grey' : '#007bff', cursor: isDeleted ? 'not-allowed' : 'pointer' }}
+                    style={{ backgroundColor: isDeleted ? 'grey' : 'rgb(20 97 125)', cursor: isDeleted ? 'not-allowed' : 'pointer' }}
                   >
                     View
                   </button>
@@ -73,8 +75,9 @@ const StudentTable = ({ students, setStudents }) => {
                 <button 
                   className={`delete-btn ${isDeleted ? 'add-btn' : ''}`} 
                   onClick={() => toggleStudentStatus(student.userId, student.is_active, index)} // Pass is_active state
+                  style={{ backgroundColor: 'transparent' }}
                 >
-                  {isDeleted ? '✓' : '✗'}
+                  {isDeleted ? <FontAwesomeIcon icon={faCheck} style={{ color: 'black', fontSize: '16px' }}/> : <FontAwesomeIcon icon={faTrashAlt} style={{ color: 'red', fontSize: '16px' }} />}
                 </button>
               </td>
             </tr>
