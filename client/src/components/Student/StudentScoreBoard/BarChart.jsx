@@ -29,7 +29,7 @@ const BarChart = () => {
   const fetchExams = async () => {
     const token = localStorage.getItem('token'); // Retrieve token from local storage
     try {
-      const response = await fetch('http://localhost:3000/api/admin/exams', {
+      const response = await fetch('http://192.168.1.17:3000/api/admin/exams', {
         headers: {
           Authorization: `Bearer ${token}`, // Use the token in the headers
         },
@@ -51,7 +51,7 @@ const BarChart = () => {
   const fetchData = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:3000/api/students/marksPerformance', {
+      const response = await fetch('http://192.168.1.17:3000/api/students/marksPerformance', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

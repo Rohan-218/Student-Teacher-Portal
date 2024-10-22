@@ -41,7 +41,7 @@ const AdminLogin = () => {
       const encryptedPassword = CryptoJS.AES.encrypt(password, secretKey).toString();
 
       const body = { email, password: encryptedPassword };
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch("http://192.168.1.17:3000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)

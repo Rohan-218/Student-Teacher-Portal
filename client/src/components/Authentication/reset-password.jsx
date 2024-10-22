@@ -40,7 +40,7 @@ const ResetPassword = () => {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await fetch('http://localhost:3000/api/users/reset-password', {
+            const response = await fetch('http://192.168.1.17:3000/api/users/reset-password', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

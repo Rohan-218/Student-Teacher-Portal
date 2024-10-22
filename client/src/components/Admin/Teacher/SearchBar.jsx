@@ -12,7 +12,7 @@ const SearchBar = ({ onSearch, fetchInitialTeachers }) => {
     const fetchBranches = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch('http://localhost:3000/api/admin/branches', {
+        const res = await fetch('http://192.168.1.17:3000/api/admin/branches', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -43,7 +43,7 @@ const SearchBar = ({ onSearch, fetchInitialTeachers }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:3000/api/admin/teachers/search?name=${searchName}`, {
+      const res = await fetch(`http://192.168.1.17:3000/api/admin/teachers/search?name=${searchName}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -84,7 +84,7 @@ const SearchBar = ({ onSearch, fetchInitialTeachers }) => {
     if (branch && semester) {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`http://localhost:3000/api/admin/teachers/branch-semester?branchName=${branch}&semester=${semester}`, {
+        const res = await fetch(`http://192.168.1.17:3000/api/admin/teachers/branch-semester?branchName=${branch}&semester=${semester}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

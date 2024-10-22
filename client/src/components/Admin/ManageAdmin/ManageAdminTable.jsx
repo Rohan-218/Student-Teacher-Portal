@@ -8,7 +8,7 @@ const AdminTable = () => {
     const fetchAdmins = async () => {
       try {
         const token = localStorage.getItem('token');  // Assuming token is stored in localStorage
-        const response = await fetch('http://localhost:3000/api/admin/admins', {
+        const response = await fetch('http://192.168.1.17:3000/api/admin/admins', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,  // Pass token if required
@@ -46,7 +46,7 @@ const AdminTable = () => {
   
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/admin/update', {
+      const response = await fetch('http://192.168.1.17:3000/api/admin/update', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

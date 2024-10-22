@@ -25,7 +25,7 @@ const ChangePassword = () => {
             // Retrieve the token from local storage
             const token = localStorage.getItem('token');
 
-            const response = await fetch('http://localhost:3000/api/admin/reset-password', {
+            const response = await fetch('http://192.168.1.17:3000/api/admin/reset-password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

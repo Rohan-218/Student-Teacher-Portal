@@ -9,7 +9,7 @@ const StudentTable = ({ students, setStudents }) => {
   
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/admin/students/update', {
+      const response = await fetch('http://192.168.1.17:3000/api/admin/students/update', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

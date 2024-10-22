@@ -19,7 +19,7 @@ const StudentAttendance = () => {
     const fetchAttendanceData = async () => {
       try {
         const token = localStorage.getItem('token'); // Get the token from local storage
-        const response = await fetch(`http://localhost:3000/api/admin/students/attendance/${userId}`, {
+        const response = await fetch(`http://192.168.1.17:3000/api/admin/students/attendance/${userId}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // Include the token in the request headers

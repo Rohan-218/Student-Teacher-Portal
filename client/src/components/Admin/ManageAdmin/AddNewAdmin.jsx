@@ -16,7 +16,7 @@ const AddNewAdmin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/admin/create', {
+      const response = await fetch('http://192.168.1.17:3000/api/admin/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
