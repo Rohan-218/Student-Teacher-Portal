@@ -1,5 +1,5 @@
-const { login, logout }= require('../services/authService');
 require('dotenv').config();
+const { login, logout }= require('../services/authService');
 const CryptoJS = require('crypto-js');
 
 // Login Controller

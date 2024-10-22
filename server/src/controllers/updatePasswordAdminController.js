@@ -1,13 +1,18 @@
+require('dotenv').config();
 const { updatePasswordAdmin }= require('../services/updatePasswordAdminService');
 const { insertActivity ,insertEmailActivity } = require('../utils/activityService');
 const sendEmailNotification = require('../utils/emailservice');
 const userModel = require('../models/userModel');
+const CryptoJS = require('crypto-js');
 
 // Login Controller
 exports.updatePasswordAdmin = async (req, res) => {
     const { email, oldPassword, newPassword } = req.body;
+    
+    const decryptedOldPassword =  CryptoJS.AES.decrypt(oldPassword, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
+    const decryptedNewPassword =  CryptoJS.AES.decrypt(newPassword, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
 
-    if ( oldPassword === newPassword ) {
+    if (decryptedOldPassword === decryptedNewPassword ) {
         return res.status(400).json({ message: 'New password same as old password' });
     }
 
@@ -18,7 +23,7 @@ exports.updatePasswordAdmin = async (req, res) => {
             return res.status(403).json({ message: 'Access denied. Only admins can update password.' });
         }
 
-        const result = await updatePasswordAdmin(email, oldPassword, newPassword);
+        const result = await updatePasswordAdmin(email, decryptedOldPassword, decryptedNewPassword);
         const userId = result.data;
 
         const userData = await userModel.getUserData(userId);
