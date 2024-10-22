@@ -11,6 +11,7 @@ import DailyAttendance from './components/Student/DailyAttendance/DailyAtt.jsx';
 import TeacherDashboard from './components/Teacher/TeacherDashboard/TeacherDashboard.jsx';
 import DailyAttendanceRecord from './components/Teacher/DailyAttendanceRecord/DailyAttendanceRecord.jsx';
 import ProtectedRoute from './components/Common/ProtectedRoute.jsx'; // Import the ProtectedRoute;
+import Dashboard from './components/dashboard.jsx';
 
 function App() {
   const location = useLocation();
@@ -44,7 +45,7 @@ function App() {
   }, [location]);
   return (
     <div>
-      {!isAdminRoute && (
+       {!isAdminRoute && (
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       )} 
       <div>
@@ -54,7 +55,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
-          
+          <Route path="/Dashboard" element={<Dashboard />} />
           {/* Protecting student and teacher routes */}
           <Route path="/student-dashboard" element={<ProtectedRoute element={<StudentDashboard />} />} />
           <Route path="/daily-attendance" element={<ProtectedRoute element={<DailyAttendance />} />} />

@@ -1,6 +1,6 @@
 // src/components/Student/StudentSidebar/StudentSidebar.jsx
 import React, { useState, useEffect } from 'react';
-import './StudentSidebar.css';
+// import './StudentSidebar.css';
 import dashboard from '/src/assets/TeacherSidebar_icon/dashboard1.png'
 import scoreboad from '/src/assets/TeacherSidebar_icon/marks.png'
 import attendace from '/src/assets/TeacherSidebar_icon/attendance.png'
@@ -33,7 +33,7 @@ const StudentSidebar = ({ onScroll }) => {
         </div>
       )}
       {(isOpen || !isMobile) && (
-        <div className={`Sidebar1 ${isMobile && !isOpen ? 'collapsed' : ''}`}>
+        <div className={`Sidebar ${isMobile && !isOpen ? 'collapsed' : ''}`}>
          <button onClick={() => onScroll('dashboard')}>
         <img src={dashboard} alt="Dashboard Icon" className="icon" />
         Dashboard

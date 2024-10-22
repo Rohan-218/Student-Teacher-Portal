@@ -1,5 +1,5 @@
 import React from 'react';
-import './Sidebar.css';
+import '../../common/Sidebar.css';
 import dashboard from '/src/assets/TeacherSidebar_icon/dashboard1.png'
 import scoreboard from  '/src/assets/TeacherSidebar_icon/marks.png' 
 import attendance from  '/src/assets/TeacherSidebar_icon/attendance.png'
@@ -9,7 +9,7 @@ import studentrecoard from  '/src/assets/TeacherSidebar_icon/recode.png'
 
 const Sidebar = ({ handleScrollToSection }) => {
   return (
-    <div className="teacher-sidebar">
+    <div className="Sidebar">
       <button onClick={() => handleScrollToSection('teacher-dashboard')}>
         <img src={dashboard} alt="Dashboard Icon" className="icon" />
         Dashboard

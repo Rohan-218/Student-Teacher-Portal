@@ -43,7 +43,7 @@ function TeacherDashboard() {
 
   return (
     <div className="teacher-dashboard">
-        <Sidebar handleScrollToSection={handleScrollToSection} /> 
+      <Sidebar handleScrollToSection={handleScrollToSection} />  
       <div className="container-section">
           <h2 className="sh">Dashboard</h2>
         <div className="teacher-profile-section">
