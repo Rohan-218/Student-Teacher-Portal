@@ -4,16 +4,16 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye ic
 import CryptoJS from 'crypto-js';
 
 const ResetPassword = () => {
-    const [showPassword, setShowPassword] = useState(false); // State for password visibility
+    const [showPassword, setShowPassword] = useState(false); 
     const [message, setMessage] = useState('');
-    const [error, setError] = useState(''); // State for error messages
+    const [error, setError] = useState(''); 
     const secretKey = import.meta.env.VITE_SECRET_KEY;
 
     const [formData, setFormData] = useState({
-        email: '',         // Email state
-        oldPassword: '',   // Old password state
-        newPassword: '',   // New password state
-        confirmPassword: '', // Confirm password state
+        email: '',     
+        oldPassword: '',   
+        newPassword: '',   
+        confirmPassword: '', 
     });
 
     const handleChange = (e) => {
