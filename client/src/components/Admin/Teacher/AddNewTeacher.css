@@ -16,6 +16,7 @@
     width: 60%;
     background-color: rgb(224, 227, 227);
     border-radius: 5px;
+    position: relative;
   }
   
   .form-group {
@@ -50,6 +51,15 @@
     border-radius: 10px;
     margin-top: 8px;
   }
+    /* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+}
 
   /* css for subjects multi select option */
 .basic-multi-select {

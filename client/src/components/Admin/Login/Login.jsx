@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import CryptoJS from 'crypto-js';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Importing eye icons
 import './Login.css';
 
@@ -14,6 +15,7 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [alertMessage, setAlertMessage] = useState(''); // New state for session expiration alert
   const navigate = useNavigate();
+  const secretKey = import.meta.env.VITE_SECRET_KEY;
 
   useEffect(() => {
     const expirationTime = localStorage.getItem('tokenExpiration');
@@ -36,7 +38,9 @@ const AdminLogin = () => {
     setMessage('');
 
     try {
-      const body = { email, password };
+      const encryptedPassword = CryptoJS.AES.encrypt(password, secretKey).toString();
+
+      const body = { email, password: encryptedPassword };
       const response = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
- import './AddNewExam.css';
+import './AddNewExam.css';
 
-const AddNewExam = () => {
+const AddNewExam = ({ closePopup, refreshTable  }) => {
   const [formData, setFormData] = useState({
     Examname: '',
     MaxMarks: '',
   });
+  const [loading, setLoading] = useState(false);  // New loading state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,10 +15,11 @@ const AddNewExam = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Disable submit button once the API call starts
   
     const payload = {
       examName: formData.Examname,
-      maximumMarks: formData.MaxMarks
+      maximumMarks: formData.MaxMarks,
     };
   
     try {
@@ -26,28 +28,35 @@ const AddNewExam = () => {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
   
       if (!res.ok) {
-        throw new Error('Failed to create exam');
+        throw new Error('Failed to create exam'); // Throw error if the response is not ok
       }
   
       const data = await res.json();
   
       // Show success message in an alert box
-      alert("Successfully exam created.");
+      alert('Successfully created exam.');
   
-      // Optionally, reset form data after success
+      // Reset form data after success
       setFormData({
         Examname: '',
         MaxMarks: '',
       });
   
+      // Refresh the exam table
+      refreshTable();
+  
+      // Close the popup after successful submission
+      closePopup();
+  
     } catch (error) {
       console.error('Error creating exam:', error);
+      // Show error message only if there's an actual error
       alert('An error occurred while creating the exam.');
     }
   };
@@ -59,6 +68,7 @@ const AddNewExam = () => {
       Examname: '',
       MaxMarks: '',
     });
+    setLoading(false);
   };
 
   return (
@@ -82,7 +92,7 @@ const AddNewExam = () => {
             <input
               className="input"
               type="number"
-              name="MaxMarks"  
+              name="MaxMarks"
               value={formData.MaxMarks}
               onChange={handleChange}
               required
@@ -90,7 +100,9 @@ const AddNewExam = () => {
           </div>
           <div className="form-buttons">
             <button className="btn-e" type="button" onClick={handleCancel}>Clear</button>
-            <button className="btn-e" type="submit">Submit</button>
+            <button className="btn-e" type="submit" disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit'}  {/* Disable and change text during loading */}
+            </button>
           </div>
         </form>
       </main>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
+import { Link } from 'react-router-dom';
 import './AddNewSubject.css';
 
 const AddNewSubject = () => {
@@ -121,6 +122,9 @@ const AddNewSubject = () => {
     <div className="add-Subject-container">
       <main className="subform-container">
         <h2>Add New Subject</h2>
+        <Link to="/admin/subjects">
+        <span className='close'> &times; </span>
+        </Link>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Subject Name:</label>

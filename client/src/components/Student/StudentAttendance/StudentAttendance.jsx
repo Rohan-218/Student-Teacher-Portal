@@ -30,8 +30,8 @@ const StudentAttendance = () => {
       datasets: [
         {
           data: [attendedLectures, totalClasses - attendedLectures],
-          backgroundColor: ['#555555', '#cccccc'],
-          hoverBackgroundColor: ['#444444', '#bbbbbb'],
+          backgroundColor: ['#4d87c1', '#13385e'],
+          hoverBackgroundColor: ['#03C04A', 'red'],
         },
       ],
     };

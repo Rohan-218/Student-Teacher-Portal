@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
+import { Link } from 'react-router-dom';
 import './AddNewTeacher.css';
 
 const AddNewTeacher = () => {
@@ -123,6 +124,9 @@ const AddNewTeacher = () => {
     <div className="add-teacher-container">
      <main className="teaform-container">
         <h2>Add New Teacher</h2>
+        <Link to="/admin/teachers">
+        <span className='close'> &times; </span>
+        </Link>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Name:</label>

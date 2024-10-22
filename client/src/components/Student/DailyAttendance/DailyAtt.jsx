@@ -151,7 +151,7 @@ const DailyAttendance = () => {
       {/* Back button */}
       <div className="Backbtn">
         <Link to="/Student-dashboard">
-          <button className="Back-button">←</button>
+          <button className="Back-button1">←</button>
         </Link>
       </div>
     </div>
