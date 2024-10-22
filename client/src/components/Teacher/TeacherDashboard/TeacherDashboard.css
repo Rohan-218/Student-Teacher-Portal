@@ -1,6 +1,6 @@
 :root {
   --navbar-height: 30%;  /* Height of the navbar */
-  --sidebar-width: 0;   /* Sidebar width */
+  --sidebar-width: 18%;   /* Sidebar width */
   --main-bg-color: #e9ecef; /* Main background color */
   --section-bg-color: #f9f9f9; /* Section background color */
   --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color */
@@ -11,25 +11,25 @@
 } */
 
 .teacher-dashboard {
-  width: 77%;
-  padding-top: 5%;
+  width: 81%;
+  padding-top: 4.5%;
   display: flex;
   height: 100vh; /* Full viewport height */
   /* border: 1px solid red; */
-  overflow: visible !important;
-  margin-left: 20%;
+  /* overflow: visible !important; */
+   margin-left: 19%;
   transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
 }
 
 .teacher-content {
   display: flex;
   flex-direction: column; /* Stack sections vertically */
-  width:100%;
+  width:97%;
   gap: 5%; /* Space between sections */
   box-sizing: border-box;
   /* border: 2px solid blue; */
-  overflow: auto;
-  overflow-x: hidden;
+   /* overflow: auto; */
+  /* overflow-x: hidden; */
 }
 
 .teacher-section {
@@ -37,8 +37,9 @@
   border-radius: 5px;
   /* padding: 20px; */
   width: 100%; /* Full width for all sections */
-  box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
-  padding-left:2%;
+  /* box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
+  padding-left:2%; 
+  
 }
 
 .teacher-profile-section {
