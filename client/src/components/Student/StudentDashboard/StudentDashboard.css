@@ -8,13 +8,6 @@
   justify-content: center; /* Center content vertically */
   align-items: center; /* Center content horizontally */
 }
-
-.container-section {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 20px;
-  
-}
 .profile-photo {
   width: 150px; 
   height: 150px;
