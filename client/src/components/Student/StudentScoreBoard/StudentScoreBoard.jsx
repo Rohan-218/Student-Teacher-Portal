@@ -9,7 +9,7 @@ const StudentScoreboard = () => {
   const [subjects, setSubjects] = useState([]);
   const [openSubjects, setOpenSubjects] = useState({});
   const [examId, setExamId] = useState(0);
-  const [exam, setExam] = useState(''); // Initially no exam selected
+  const [exam, setExam] = useState('Exam'); // Initially no exam selected
   const [exams, setExams] = useState([]); // State to hold fetched exams
 
   // Function to fetch exams from the API
@@ -22,10 +22,9 @@ const StudentScoreboard = () => {
         },
       });
       const data = await response.json();
-      setExams(data); // Set exams in state
+      setExams(data); 
       if (data.length > 0) {
-        setExam(data[0].exam_name); // Set the first exam name by default
-        setExamId(data[0].exam_id); // Set the first exam ID by default
+        setExamId(data[0].exam_id);
       }
     } catch (error) {
       console.error('Error fetching exams:', error);
@@ -59,10 +58,12 @@ const StudentScoreboard = () => {
 
   // Fetch marks when the examId changes
   useEffect(() => {
-    if (examId) {
+    if (examId && exam !== 'Exam') {
       fetchMarks();
+    } else {
+      setSubjects([]); // Clear subjects if "Exam" is selected
     }
-  }, [examId]);
+  }, [examId, exam]);
 
   const toggleSubject = (code) => {
     setOpenSubjects((prevState) => ({
@@ -72,10 +73,16 @@ const StudentScoreboard = () => {
   };
 
   const handleExamChange = (e) => {
-    const selectedExam = exams.find((exam) => exam.exam_name === e.target.value);
-    if (selectedExam) {
-      setExamId(selectedExam.exam_id); // Update examId based on selection
-      setExam(selectedExam.exam_name); // Update exam name
+    const selectedExamName = e.target.value;
+    setExam(selectedExamName);
+
+    if (selectedExamName === 'Exam') {
+      setExamId(0); // Reset examId when "Exam" option is selected
+    } else {
+      const selectedExam = exams.find((exam) => exam.exam_name === selectedExamName);
+      if (selectedExam) {
+        setExamId(selectedExam.exam_id); // Update examId based on selection
+      }
     }
   };
 
@@ -98,7 +105,7 @@ const StudentScoreboard = () => {
         {/* Exam Dropdown */}
         <div className="student-exam-dropdown">
           <select id="student-exam-select" value={exam} onChange={handleExamChange}>
-            <option value=""> Exam</option>
+            <option value="Exam">Exam</option>
             {exams.map((examOption) => (
               <option key={examOption.exam_id} value={examOption.exam_name}>
                 {examOption.exam_name}
@@ -107,7 +114,12 @@ const StudentScoreboard = () => {
           </select>
         </div>
       </div>
-      {Array.isArray(subjects) && subjects.length > 0 ? (
+      {/* Show an empty card when no exam is selected */}
+      {exam === 'Exam' ? (
+        <div className="empty-card">
+          <p>Please select an exam to view the marks.</p>
+        </div>
+      ) : Array.isArray(subjects) && subjects.length > 0 ? (
         subjects.map((subject) => (
           <div key={subject.subject_code} className="student-subject-bar">
             <div className="student-subject-header" onClick={() => toggleSubject(subject.subject_code)}>
