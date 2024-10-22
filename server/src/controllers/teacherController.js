@@ -14,7 +14,7 @@ const { insertActivity ,insertEmailActivity } = require('../utils/activityServic
 exports.getTeacherProfile = async (req, res) => {
   try {
       
-    const {user_id, user_type} = req.user.user_type;
+    const {user_id, user_type} = req.user;
 
       if (user_type !== 2) { // Assuming user_type 2 is for teachers
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
