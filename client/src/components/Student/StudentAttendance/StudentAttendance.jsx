@@ -31,7 +31,7 @@ const StudentAttendance = () => {
         {
           data: [attendedLectures, totalClasses - attendedLectures],
           backgroundColor: ['#4d87c1', '#13385e'],
-          hoverBackgroundColor: ['#03C04A', 'red'],
+          hoverBackgroundColor: ['#acd8a7', '#f94449'],
         },
       ],
     };

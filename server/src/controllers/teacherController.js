@@ -9,16 +9,18 @@ const {
 } = require('../services/teacherService');
 const sendEmailNotification = require('../utils/emailservice');
 const userService = require('../services/userService');
+const { insertActivity ,insertEmailActivity } = require('../utils/activityService');
 
 exports.getTeacherProfile = async (req, res) => {
   try {
-      const usertype = req.user.user_type;
+      
+    const {user_id, user_type} = req.user;
 
-      if (usertype !== 2) { // Assuming user_type 2 is for teachers
+      if (user_type !== 2) { // Assuming user_type 2 is for teachers
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
       }
 
-      const teacher = await getTeacherProfile(req.user.user_id);
+      const teacher = await getTeacherProfile(user_id);
 
       if (!teacher) {
           return res.status(404).json({ message: 'Teacher not found' });
@@ -34,6 +36,12 @@ exports.uploadAttendance = async (req, res) => {
   try {
       const { subjectCode, lecture, attendanceDate, attendanceList } = req.body;
 
+      const {user_id, user_type} = req.user.user_type;
+
+      if (user_type !== 2) { // Assuming user_type 2 is for teachers
+          return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
+      }
+
       // Validate attendance list
       if (!Array.isArray(attendanceList) || attendanceList.length === 0) {
           return res.status(400).json({ message: 'Attendance list is required and must be an array.' });
@@ -46,6 +54,7 @@ exports.uploadAttendance = async (req, res) => {
 
       // Call service to upload attendance
       const uploadResult = await uploadAttendance(subjectCode, lecture, attendanceDate, attendanceList);
+     
 
       if (uploadResult.success) {
           const studentIds = await getStudentId(attendanceList);
@@ -54,7 +63,8 @@ exports.uploadAttendance = async (req, res) => {
           const subjectName = await getSubjectNameByCode(subjectCode);
           const studentData = await userService.getUserId(extractedStudentIds);
           const emailList = studentData.map(student => student.email);
-          const studentNames = studentData.map(student => student.student_name);
+
+          insertActivity( user_id, 'Attendance uploaded', `Marks for ${subjectName} have been added.`);
 
           const totalLectures = await getTotalLecturesForSubject(subjectCode);
 
@@ -68,11 +78,12 @@ exports.uploadAttendance = async (req, res) => {
                   // Send email notifications to students with low attendance
                   await Promise.all(studentsWithLowAttendance.map(async (studentId, idx) => {
                       const email = emailList[idx];
-                      const text = `Dear student, your attendance for ${subjectName} has fallen below 75%.`;
+                      const text = `Dear student,\n\nyour attendance for ${subjectName} has fallen below 75%.\n\nRegards,\nXYZ University`;
                       const subject = 'Low Attendance Warning';
 
                       try {
                           const emailResponse = await sendEmailNotification([email], text, subject);
+                          insertEmailActivity(emailList, subject, `Marks for ${subjectName[0]} have been added.`);
                           if (emailResponse) {
                               console.log('Email sent successfully to:', studentId);
                           }
@@ -97,6 +108,11 @@ exports.uploadAttendance = async (req, res) => {
 exports.getUploadedAttendance = async (req, res) => {
   try {
       const { subjectCode, date, lecture } = req.query;
+      const { user_type } = req.user.user_type;
+      if (user_type !== 2) { // Assuming user_type 2 is for teachers
+          return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
+      }
+
       const attendanceData = await getUploadedAttendance(subjectCode, date, lecture);
       res.status(200).json(attendanceData);
   } catch (error) {

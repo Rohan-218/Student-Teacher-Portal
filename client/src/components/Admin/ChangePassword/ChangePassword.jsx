@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
-import './ChangePassword.css';  
+import './ChangePassword.css';
+import CryptoJS from 'crypto-js';  
 
 const ChangePassword = () => {
     const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const ChangePassword = () => {
 
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const secretKey = import.meta.env.VITE_SECRET_KEY;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,6 +26,8 @@ const ChangePassword = () => {
         try {
             // Retrieve the token from local storage
             const token = localStorage.getItem('token');
+            const encryptedOldPassword = CryptoJS.AES.encrypt(formData.oldPassword, secretKey).toString();
+            const encryptedNewPassword = CryptoJS.AES.encrypt(formData.newPassword, secretKey).toString();
 
             const response = await fetch('http://localhost:3000/api/admin/reset-password', {
                 method: 'PUT',
@@ -33,8 +37,8 @@ const ChangePassword = () => {
                 },
                 body: JSON.stringify({
                     email: formData.email,           // Use lowercase email
-                    oldPassword: formData.oldPassword, // Use lowercase oldPassword
-                    newPassword: formData.newPassword, // Use lowercase newPassword
+                    oldPassword: encryptedOldPassword,
+                    newPassword: encryptedNewPassword
                 }),
             });
 

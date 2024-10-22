@@ -8,13 +8,13 @@
   }
     
   .stuform-container {
-    margin-left: 23%; 
+    margin-left: 30%; 
     margin-top: 40px;
     margin-right: 15%;
-    padding: 20px;
+    padding: 20px 20px 20px 40px;
     flex-grow: 1;
     border: 0.5px solid;
-    width: 60%;
+    width: 50%;
     background-color: rgb(224, 227, 227);
     border-radius: 5px;
     position: relative;
@@ -42,12 +42,17 @@
   .select{
     padding: 3px;
     width: 96%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
   }
-
+  .option{
+    width: 70px;
+  }
   .btn{
     background-color: black;
     color: white;
-    width: 25%;
+    max-width: 150px;
     padding: 8px;
     border-radius: 10px;
     margin-top: 8px;
@@ -81,10 +86,9 @@
 @media only screen and (max-width: 480px) {
   .stuform-container {
     margin-top: 25%;
-    padding-top: 0%;
-    margin-left: 0%;
-   width: 93%;
-
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 78%;
   }
   .add-student-container{
     margin-left: 0%;

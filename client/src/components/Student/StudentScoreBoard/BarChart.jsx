@@ -13,14 +13,14 @@ const BarChart = () => {
 
   // Define different shades of blue
   const blueShades = [
-    '#005A9C', // Light Blue
-    '#00008B', // Medium Blue
-    '#007fff', // Darker Blue
-    '#00bfff', // Lighter Blue
-    '#005A9C', // Light Blue
-    '#00008B', // Medium Blue
-    '#007fff', // Darker Blue
-    '#00bfff', // Lighter Blue
+    '#57A0D2', // Light Blue
+    '#48CAE4', // Medium Blue
+    '#0077B6', // Darker Blue
+    '#ADE8F4', // Lighter Blue
+    '#57A0D2', // Light Blue
+    '#48CAE4', // Medium Blue
+    '#0077B6', // Darker Blue
+    '#ADE8F4', // Lighter Blue
     
     // Add more shades if needed
   ];
