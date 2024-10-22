@@ -3,7 +3,7 @@ import './TeacherScoreboard.css';
 import StudentTable from './Table'; // Import StudentTable component
 
 const TeacherScoreboard = () => {
-  const [examDropdown, setExamDropdown] = useState(false);
+  // const [examDropdown, setExamDropdown] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [selectedExam, setSelectedExam] = useState('');
   const [examList, setExamList] = useState([]);

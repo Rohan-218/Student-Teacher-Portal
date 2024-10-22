@@ -10,7 +10,7 @@ import StudentDashboard from './components/Student/StudentDashboard/StudentDashb
 import DailyAttendance from './components/Student/DailyAttendance/DailyAtt.jsx';
 import TeacherDashboard from './components/Teacher/TeacherDashboard/TeacherDashboard.jsx';
 import DailyAttendanceRecord from './components/Teacher/DailyAttendanceRecord/DailyAttendanceRecord.jsx';
-import ProtectedRoute from './components/Common/ProtectedRoute.jsx'; // Import the ProtectedRoute
+import ProtectedRoute from './components/Common/ProtectedRoute.jsx'; // Import the ProtectedRoute;
 
 function App() {
   const location = useLocation();
@@ -42,7 +42,6 @@ function App() {
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, [location]);
-
   return (
     <div>
       {!isAdminRoute && (

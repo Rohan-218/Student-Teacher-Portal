@@ -76,7 +76,7 @@ const StudentAttendance = () => {
   return (
     <div className="Attendance-Section">
       <div className="Attendance-Header">
-        <button className="Daily-Attendance-Button" onClick={handleViewDailyAttendance}>View Daily Attendance</button>
+        <button className="daily-att-btn"onClick={handleViewDailyAttendance}>View Daily Attendance</button>
       </div>
 
       {subjects.map((subject) => (
