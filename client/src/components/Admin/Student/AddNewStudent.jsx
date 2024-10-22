@@ -135,9 +135,9 @@ const AddNewStudent = () => {
           <div className="form-group">
             <label>Branch:</label>
             <select className="select" name="branch" value={formData.branch} onChange={handleChange} required>
-              <option value="">Branch</option>
+              <option className="option" value="">Branch</option>
               {branches.map((branch, index) => (
-                <option key={index} value={branch}>
+                <option className="option"  key={index} value={branch}>
                   {branch}
                 </option>
               ))}
