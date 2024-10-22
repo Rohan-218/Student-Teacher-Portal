@@ -38,7 +38,6 @@ const AttendanceTrendChart = () => {
                 }
 
                 const subjects = await response.json();
-                console.log(subjects); // Log the fetched data to check its structure
 
                 const labels = subjects.map(subject => subject.sub_initials);
                 const data = subjects.map((subject, index) => parseFloat(subject.percentage));
