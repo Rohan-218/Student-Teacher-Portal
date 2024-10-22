@@ -13,12 +13,10 @@ const AttendanceTrendChart = () => {
 
     // Define an array of colors for subjects
     const colors = [
-    '#57A0D2', // Light Blue
-    '#48CAE4', // Medium Blue
-    '#0077B6', // Darker Blue
-    '#ADE8F4', // Lighter Blue
-     
-        // Add more colors if needed
+    '#57A0D2',
+    '#48CAE4',
+    '#0077B6',
+    '#ADE8F4', 
     ];
 
     useEffect(() => {
@@ -38,7 +36,6 @@ const AttendanceTrendChart = () => {
                 }
 
                 const subjects = await response.json();
-                console.log(subjects); // Log the fetched data to check its structure
 
                 const labels = subjects.map(subject => subject.sub_initials);
                 const data = subjects.map((subject, index) => parseFloat(subject.percentage));

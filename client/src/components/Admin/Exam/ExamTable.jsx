@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+
 
 const ExamTable = ({ refresh }) => {
   const [exams, setExams] = useState([]);
@@ -93,8 +96,9 @@ const ExamTable = ({ refresh }) => {
                 <button 
                   className={`delete-btn ${!exam.is_active ? 'add-btn' : ''}`}
                   onClick={() => handleDelete(index)}
+                  style={{ backgroundColor: 'transparent' }}
                 >
-                  {!exam.is_active ? '✓' : '✗'}
+                  {!exam.is_active ? <FontAwesomeIcon icon={faCheck} style={{ color: 'black', fontSize: '16px' }}/>  : <FontAwesomeIcon icon={faTrashAlt} style={{ color: 'red', fontSize: '16px' }} />}
                 </button>
               </td>
             </tr>

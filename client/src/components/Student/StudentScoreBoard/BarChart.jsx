@@ -55,52 +55,49 @@ const BarChart = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+          'Authorization': `Bearer ${token}`,
         },
       });
       if (!response.ok) {
         throw new Error('Failed to fetch performance data');
       }
       const rawData = await response.json();
-
-      // Create a map of all subjects and set percentage to 0 for exams with no marks data
+  
+      // Create a subjectsMap with subject initials as keys
       const subjectsMap = {};
-      exams.forEach(exam => {
-        subjectsMap[exam.exam_name] = {};
-      });
-      
       rawData.forEach(item => {
         const { exam_name, sub_initials, percentage } = item;
-        if (!subjectsMap[exam_name][sub_initials]) {
-          subjectsMap[exam_name][sub_initials] = 0;
+        if (!subjectsMap[sub_initials]) {
+          subjectsMap[sub_initials] = {}; // Initialize subject if not already in the map
         }
-        subjectsMap[exam_name][sub_initials] = parseFloat(percentage);
+        subjectsMap[sub_initials][exam_name] = parseFloat(percentage); // Map exam to percentage
       });
-
-      // Prepare data for chart
-      const labels = Object.keys(subjectsMap); // Exam names as labels
-      const datasets = Object.keys(subjectsMap).map((examName, index) => {
-        const examSubjects = subjectsMap[examName];
-        const subjectNames = Object.keys(examSubjects);
-        const percentages = subjectNames.map(subject => examSubjects[subject] || 0);
+  
+      // Extract subject initials for the x-axis
+      const labels = Object.keys(subjectsMap);
+  
+      // Create datasets for each exam
+      const datasets = exams.map((exam, index) => {
         return {
-          label: examName,
-          data: percentages,
-          backgroundColor: blueShades[index % blueShades.length], // Use index to pick color
+          label: exam.exam_name,
+          data: labels.map(label => subjectsMap[label][exam.exam_name] || 0), // Get percentage for each exam, or 0 if missing
+          backgroundColor: blueShades[index % blueShades.length],
         };
       });
-
+  
+      // Set chart data with labels (subject initials) and datasets
       setChartData({
-        labels: Object.keys(subjectsMap[Object.keys(subjectsMap)[0]]), // Subject names as x-axis labels
-        datasets: datasets
+        labels, // Subject initials as labels
+        datasets, // Data for each exam
       });
-
+  
       setLoading(false);
     } catch (error) {
       console.error("Error fetching performance data:", error);
       setLoading(false);
     }
   };
+  
 
   // Fetch exams when the component mounts
   useEffect(() => {

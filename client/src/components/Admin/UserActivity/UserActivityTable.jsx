@@ -88,13 +88,13 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
             {/* Arrow buttons above the table headers */}
             <div className="arrow-container">
                 <div className='tooltip1'>
-                    <button className="prev-arrow" onClick={onPrev} >
+                    <button className="prev-arrow" onClick={onPrev} style={{ backgroundColor: 'white' }} >
                         &#9664;
                     </button>
                     <span className="tooltiptext1">{`${getNextTableName('prev')} `}</span>
                 </div>
                 <div className='tooltip2'>
-                    <button className="next-arrow" onClick={onNext} >
+                    <button className="next-arrow" onClick={onNext} style={{ backgroundColor: 'white' }} >
                         &#9654;
                     </button>
                     <span className="tooltiptext2">{`${getNextTableName('next')} `}</span>

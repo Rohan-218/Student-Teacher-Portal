@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const BranchTable = ({ branches, setBranches }) => {
   const handleDelete = async (index) => {
@@ -61,8 +63,9 @@ const BranchTable = ({ branches, setBranches }) => {
                     className={`delete-btn ${!branch.is_active ? 'add-btn' : 'delete-btn'}`}
                     onClick={() => handleDelete(index)}
                     aria-label={branch.is_active ? 'Delete Branch' : 'Restore Branch'}
+                    style={{ backgroundColor: 'transparent' }}
                   >
-                    {branch.is_active ?  '✗' : '✓' }
+                    {branch.is_active ?  <FontAwesomeIcon icon={faTrashAlt} style={{ color: 'red', fontSize: '16px' }} /> :<FontAwesomeIcon icon={faCheck} style={{ color: 'black', fontSize: '16px' }}/> }
                   </button>
                 </td>
               </tr>

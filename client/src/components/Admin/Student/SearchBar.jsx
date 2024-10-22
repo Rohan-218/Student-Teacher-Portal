@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './SearchBar.css';
-import { Link } from 'react-router-dom'; // Import the styles for the search bar
+import { Link } from 'react-router-dom';
 
 const SearchBar = ({ onSearch, fetchInitialStudents }) => {
   const [branches, setBranches] = useState([]);
@@ -16,11 +16,10 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         });
 
-        
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
@@ -42,21 +41,28 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
     fetchBranches();
   }, []);
 
-  const handleSearch = async () => {
-    if (searchName.trim() === '') {
-      fetchInitialStudents(); // Fetch initial students if no search name
-      return;
-    }
+  // Debounce logic
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchName.trim() === '') {
+        fetchInitialStudents(); // Fetch initial students if search is cleared
+      } else {
+        handleSearch(); // Trigger search when user stops typing
+      }
+    }, 500); // 500ms debounce delay
 
-    // Search logic for names
+    return () => clearTimeout(delayDebounceFn); // Cleanup debounce timeout on component unmount
+  }, [searchName]); // Trigger effect when searchName changes
+
+  const handleSearch = async () => {
     try {
       const token = localStorage.getItem('token');
       const res = await fetch(`http://localhost:3000/api/admin/students/search?name=${searchName}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
 
       if (!res.ok) {
@@ -70,7 +76,7 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
         email: student.email,
         password: student.decrypted_password,
         userId: student.user_id,
-        is_active: student.is_active
+        is_active: student.is_active,
       }));
 
       onSearch(formattedData);
@@ -97,8 +103,8 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         });
 
         if (!res.ok) {
@@ -112,7 +118,7 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
           email: student.email,
           password: student.decrypted_password,
           userId: student.user_id,
-          is_active: student.is_active
+          is_active: student.is_active,
         }));
 
         onSearch(formattedData); // Pass the new student list to the parent
@@ -127,13 +133,12 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
   return (
     <div className="search-bar">
       <div className="search-input-container">
-        <input 
-          type="text" 
-          placeholder="Search " 
-          value={searchName} 
-          onChange={(e) => setSearchName(e.target.value)} 
+        <input
+          type="text"
+          placeholder="&#128269;  Search..."
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)} // Update search term on input
         />
-        <button className="stu-sea"onClick={handleSearch}>Search</button>
         <Link to="/admin/add-student">
           <button className="add-student-btn">Add New Student</button>
         </Link>
@@ -148,7 +153,7 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
             </option>
           ))}
         </select>
-        
+
         <select className="sem" value={selectedSemester} onChange={handleSemesterChange}>
           <option value="">Semester</option>
           {[...Array(8).keys()].map(sem => (

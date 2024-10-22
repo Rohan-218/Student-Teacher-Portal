@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+
 // import './SubjectTable.css';
 const SubjectTable = ({ subjects, setSubjects }) => {
   const handleDelete = async (index) => {
@@ -63,8 +66,9 @@ const SubjectTable = ({ subjects, setSubjects }) => {
                 <button
                   className={`delete-btn ${!subject.is_active ? 'add-btn' : ''}`}
                   onClick={() => handleDelete(index)}
+                  style={{ backgroundColor: 'transparent' }}
                 >
-                  {subject.is_active ? '✗' : '✓'}
+                  {subject.is_active ?<FontAwesomeIcon icon={faTrashAlt} style={{ color: 'red', fontSize: '16px' }} /> :<FontAwesomeIcon icon={faCheck} style={{ color: 'black', fontSize: '16px' }}/> }
                 </button>
               </td>
             </tr>

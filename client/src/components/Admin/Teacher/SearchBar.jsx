@@ -35,40 +35,48 @@ const SearchBar = ({ onSearch, fetchInitialTeachers }) => {
     fetchBranches();
   }, []);
 
-  const handleSearch = async () => {
-    if (searchName.trim() === '') {
-      fetchInitialTeachers(); // Fetch all teachers if search is empty
-      return;
-    }
-
-    try {
-      const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:3000/api/admin/teachers/search?name=${searchName}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error('Network response was not ok');
+  useEffect(() => {
+    const handleSearch = async () => {
+      if (searchName.trim() === '') {
+        fetchInitialTeachers(); // Fetch all teachers if search is empty
+        return;
       }
 
-      const data = await res.json();
-      const formattedData = data.map(teacher => ({
-        name: teacher.teacher_name,
-        email: teacher.email,
-        password: teacher.decrypted_password,
-        user_id: teacher.user_id,
-        is_active: teacher.is_active
-      }));
+      try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`http://localhost:3000/api/admin/teachers/search?name=${searchName}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
 
-      onSearch(formattedData);
-    } catch (error) {
-      console.error('Error fetching teacher by name:', error);
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await res.json();
+        const formattedData = data.map(teacher => ({
+          name: teacher.teacher_name,
+          email: teacher.email,
+          password: teacher.decrypted_password,
+          user_id: teacher.user_id,
+          is_active: teacher.is_active
+        }));
+
+        onSearch(formattedData);
+      } catch (error) {
+        console.error('Error fetching teacher by name:', error);
+      }
+    };
+
+    if (searchName !== '') {
+      handleSearch(); // Call the API when searchName changes
+    } else {
+      fetchInitialTeachers(); // If searchName is cleared, fetch all teachers
     }
-  };
+  }, [searchName, fetchInitialTeachers, onSearch]);
 
   const handleBranchChange = (e) => {
     setSelectedBranch(e.target.value);
@@ -119,11 +127,10 @@ const SearchBar = ({ onSearch, fetchInitialTeachers }) => {
       <div className="search-input-container">
         <input 
           type="text" 
-          placeholder="Search" 
+          placeholder="&#128269;  Search..." 
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)} 
         />
-        <button className='search' onClick={handleSearch}>Search</button>
         <Link to="/admin/add-teacher">
           <button className="add-teacher-btn">Add New Teacher</button>
         </Link>
