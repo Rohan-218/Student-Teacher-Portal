@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './AddNewAdmin.css';
 
-const AddNewAdmin = () => {
+const AddNewAdmin = ({ onClose ,refreshTable  }) => {  // Receive onClose prop
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
   });
+
+  const [loading, setLoading] = useState(false); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,13 +17,14 @@ const AddNewAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Disable submit button once the API call starts
+
     try {
       const response = await fetch('http://localhost:3000/api/admin/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // Include token if needed for authentication
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Uncomment if using token for auth
+          Authorization: `Bearer ${localStorage.getItem('token')}`, 
         },
         body: JSON.stringify(formData),
       });
@@ -31,26 +34,23 @@ const AddNewAdmin = () => {
       }
 
       const data = await response.json();
-      console.log('Admin created successfully:', data);
-
-      // Show alert with success message
-      alert(data.message); // Show success message from API
-
-      // Optionally reset form or redirect to another page
-      handleCancel(); // Reset form after successful submission
+      alert(data.message);  // Show success message
+      handleCancel();       // Reset the form
+      // Refresh the exam table
+      refreshTable();
+      onClose();            // Close the popup after successful submission
     } catch (error) {
-      console.error('Error creating admin:', error);
-      alert('Error creating admin: ' + error.message); // Show error message
+      alert('Error creating admin: ' + error.message);
     }
   };
 
   const handleCancel = () => {
-    // Reset form
     setFormData({
       name: '',
       email: '',
       password: '',
     });
+    setLoading(false);
   };
 
   return (
@@ -93,7 +93,9 @@ const AddNewAdmin = () => {
           </div>
           <div className="form-buttons">
             <button className="btn-new" type="button" onClick={handleCancel}>Clear</button>
-            <button className="btn-new" type="submit">Submit</button>
+            <button className="btn-new" type="submit" disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit'}  {/* Disable and change text during loading */}
+            </button>
           </div>
         </form>
       </main>
