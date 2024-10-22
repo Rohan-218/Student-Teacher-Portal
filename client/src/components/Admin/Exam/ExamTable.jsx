@@ -8,7 +8,7 @@ const ExamTable = ({ refresh }) => {
     const fetchExams = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://192.168.1.17:3000/api/admin/exams', {
+        const response = await fetch('http://localhost:3000/api/admin/exams', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,  // Include token in headers
@@ -47,7 +47,7 @@ const ExamTable = ({ refresh }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://192.168.1.17:3000/api/admin/exams/update', {
+      const response = await fetch('http://localhost:3000/api/admin/exams/update', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,  // Include token in headers

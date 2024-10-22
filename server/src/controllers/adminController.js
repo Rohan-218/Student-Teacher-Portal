@@ -1,6 +1,7 @@
 const adminService = require('../services/adminService');
 const userModel = require('../models/userModel');
-const { insertActivity } = require('../utils/activityService');
+const { insertActivity, insertEmailActivity } = require('../utils/activityService');
+const sendEmailNotification = require('../utils/emailservice');
 
 // Controller to handle fetching all admins
 const getAdmins = async (req, res) => {
@@ -35,9 +36,22 @@ const createAdmin = async (req, res) => {
       return res.status(403).json({ message: 'Access denied. Only super admins can create admins.' });
     }
 
-    // Call the service to create the user and admin
     const result = await adminService.registerAdmin(name, email, password);
-    insertActivity( user_id, 'New Admin Created', `New Admin - ( ${name} ) have been created.`);
+
+    try {
+      const text = `Dear ${name},\n\nYour Admin account has been successfully created.\nEmail: ${email} \nPassword: ${password} \n\nRegards,\nXYZ University`;
+      const subject = `Account created successfully`;
+      insertActivity( user_id, 'New Admin Created', `New Admin Account - ${name} have been created.`);
+      const emailResponse = await sendEmailNotification(email, text, subject);
+      insertEmailActivity(email, subject, `New Student Account- ${name} has been Successfully added!`);
+      if (emailResponse) {
+        console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
+      }
+    } catch (error) {
+      // Log detailed error from SendGrid
+      console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
+      return res.status(200).json({ message: 'Account created - Unable to send email.' });
+    }
     // Return success response
     return res.status(201).json({
       message: 'Admin created successfully',

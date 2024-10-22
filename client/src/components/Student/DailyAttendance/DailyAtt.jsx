@@ -10,7 +10,7 @@ const DailyAttendance = () => {
   const fetchStudentData = async () => {
     try {
       const token = localStorage.getItem('token'); // Get token from local storage
-      const response = await fetch('http://192.168.1.17:3000/api/students/profile', {
+      const response = await fetch('http://localhost:3000/api/students/profile', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -33,7 +33,7 @@ const DailyAttendance = () => {
   const fetchAttendanceData = async () => {
     try {
       const token = localStorage.getItem('token'); // Get token from local storage
-      const response = await fetch('http://192.168.1.17:3000/api/students/attendance-daily-record', {
+      const response = await fetch('http://localhost:3000/api/students/attendance-daily-record', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

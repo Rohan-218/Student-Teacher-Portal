@@ -25,7 +25,7 @@ const AttendanceTrendChart = () => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('token'); // Get token from local storage
-                const response = await fetch('http://192.168.1.17:3000/api/students/attendance-trend', {
+                const response = await fetch('http://localhost:3000/api/students/attendance-trend', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

@@ -24,7 +24,7 @@ const BranchList = () => {
         params.append('semester', filters.semester);
       }
 
-      const apiUrl = `http://192.168.1.17:3000/api/admin/branches?${params.toString()}`;
+      const apiUrl = `http://localhost:3000/api/admin/branches?${params.toString()}`;
       const res = await fetch(apiUrl, {
         method: 'GET',
         headers: {

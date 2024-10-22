@@ -10,7 +10,7 @@ const SearchBar = ({ onFilter }) => {
     const fetchBranches = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch('http://192.168.1.17:3000/api/admin/branches', {
+        const res = await fetch('http://localhost:3000/api/admin/branches', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

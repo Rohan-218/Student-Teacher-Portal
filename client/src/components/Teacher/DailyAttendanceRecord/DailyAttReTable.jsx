@@ -22,7 +22,7 @@ const DailyAttendanceRecordTable = ({ subjectID, attendanceFilter }) => {
 
     try {
       // API call to get attendance records
-      const response = await axios.get(`http://192.168.1.17:3000/api/teachers/attendance/range`, {
+      const response = await axios.get(`http://localhost:3000/api/teachers/attendance/range`, {
         params: { fromDate, toDate, subjectID },
         headers: {
           'Authorization': `Bearer ${token}`,

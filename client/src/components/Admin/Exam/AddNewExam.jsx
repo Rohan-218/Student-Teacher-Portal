@@ -24,7 +24,7 @@ const AddNewExam = ({ closePopup, refreshTable  }) => {
   
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://192.168.1.17:3000/api/admin/exams/create', {
+      const res = await fetch('http://localhost:3000/api/admin/exams/create', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -46,7 +46,7 @@ const StudentAttendance = () => {
   useEffect(() => {
     const fetchAttendanceData = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://192.168.1.17:3000/api/students/attendance', {
+      const response = await fetch('http://localhost:3000/api/students/attendance', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

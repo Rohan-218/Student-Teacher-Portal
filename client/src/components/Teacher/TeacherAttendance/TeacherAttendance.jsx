@@ -24,7 +24,7 @@ const TeacherAttendance = () => {
     if (token) {
       const fetchSubjects = async () => {
         try {
-          const subjectResponse = await axios.get('http://192.168.1.17:3000/api/teachers/subjects', {
+          const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const TeacherAttendance = () => {
 
     try {
       const studentResponse = await axios.get(
-        `http://192.168.1.17:3000/api/teachers/subject-students?subjectCode=${subject}`,
+        `http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ const TeacherAttendance = () => {
       if (selectedSubject && date && lecture && !dataFetched) {
         try {
           const response = await axios.get(
-            `http://192.168.1.17:3000/api/teachers/attendance/get?subjectCode=${selectedSubject}&date=${date}&lecture=${lecture}`,
+            `http://localhost:3000/api/teachers/attendance/get?subjectCode=${selectedSubject}&date=${date}&lecture=${lecture}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -156,8 +156,8 @@ const handleAttendanceSubmit = async () => {
   }
 
   const url = isUpdating
-    ? 'http://192.168.1.17:3000/api/teachers/attendance/update'
-    : 'http://192.168.1.17:3000/api/teachers/attendance/upload';
+    ? 'http://localhost:3000/api/teachers/attendance/update'
+    : 'http://localhost:3000/api/teachers/attendance/upload';
 
   const body = {
     subjectCode: selectedSubject, // The selected subject
