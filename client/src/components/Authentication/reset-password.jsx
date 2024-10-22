@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import './reset-password.css';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye icons
+import CryptoJS from 'crypto-js';
 
 const ResetPassword = () => {
     const [showPassword, setShowPassword] = useState(false); // State for password visibility
     const [message, setMessage] = useState('');
     const [error, setError] = useState(''); // State for error messages
+    const secretKey = import.meta.env.VITE_SECRET_KEY;
 
     const [formData, setFormData] = useState({
         email: '',         // Email state
@@ -22,23 +24,16 @@ const ResetPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // if the old password is incorrect
-        // if (formData.oldPassword !== "1234") {
-        //     setError("Old password is incorrect!");
-        //     return;
-        // }
-        // if new password and confirm password don't match
         if (formData.newPassword !== formData.confirmPassword) {
             setError("Passwords do not match!");
             return;
         }
 
-        // If passwords match, reset the error and continue with the reset logic
         setError("");
-        // setMessage(`Password changed successfully and sent to ${formData.email}`);
 
         try {
-            const token = localStorage.getItem('token');
+            const encryptedOldPassword = CryptoJS.AES.encrypt(formData.oldPassword, secretKey).toString();
+            const encryptedNewPassword = CryptoJS.AES.encrypt(formData.newPassword, secretKey).toString();
 
             const response = await fetch('http://192.168.1.17:3000/api/users/reset-password', {
                 method: 'PATCH',
@@ -47,8 +42,8 @@ const ResetPassword = () => {
                 },
                 body: JSON.stringify({
                     email: formData.email,
-                    oldPassword: formData.oldPassword,
-                    newPassword: formData.newPassword,
+                    oldPassword: encryptedOldPassword,
+                    newPassword: encryptedNewPassword
                 }),
             });
 
