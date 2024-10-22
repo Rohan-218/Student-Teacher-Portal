@@ -43,7 +43,7 @@ const createAdmin = async (req, res) => {
       const subject = `Account created successfully`;
       insertActivity( user_id, 'New Admin Created', `New Admin Account - ${name} have been created.`);
       const emailResponse = await sendEmailNotification(email, text, subject);
-      insertEmailActivity(email, subject, `New Student Account- ${name} has been Successfully added!`);
+      insertEmailActivity(email, subject, `New Admin Account- ${name} has been Successfully added!`);
       if (emailResponse) {
         console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
       }
