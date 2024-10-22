@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const AdminTable = () => {
+const AdminTable = ({ refresh }) => {
   const [admins, setAdmins] = useState([]);
 
   // Fetch admin data from the API
@@ -37,7 +37,7 @@ const AdminTable = () => {
     };
 
     fetchAdmins();
-  }, []);
+  }, [refresh]);
 
   // Handle toggle delete (active/inactive) and update in the backend
   const handleDelete = async (user_id, currentStatus, index) => {

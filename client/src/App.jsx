@@ -47,7 +47,7 @@ function App() {
     <div>
       {!isAdminRoute && (
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      )}
+      )} 
       <div>
         <Routes>
           <Route path="/" element={<Index />} />

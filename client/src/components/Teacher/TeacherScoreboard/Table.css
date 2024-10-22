@@ -71,16 +71,16 @@
   }
   
   .teacher-marks-save-btn {
-    padding: 4% 6%;
+    padding: 3% 5%;
     background-color:  #4d87c1; /* Green background */
     color: white;
     border: none;
-    border-radius:10px;
+    border-radius:5px;
     cursor: pointer;
-    font-size: 1.3rem;
+    font-size: 1rem;
     margin-left: 50%;
     margin-top: 2%;
-    width: 50%;
+    /* width: 50%; */
   }
   .teacher-marks-save-btn:hover{
   background-color:#47864a;

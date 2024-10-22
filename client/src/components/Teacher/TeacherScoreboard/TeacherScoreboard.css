@@ -42,7 +42,7 @@
     background-color: #4d87c1; /* Dark gray background for the dropdown */
     color: white; /* White text color */
     font-size: 16px; /* Adjust font size */
-    border-radius: 12px; /* Adds rounded corners */
+    border-radius: 5px; /* Adds rounded corners */
     outline: none; /* Removes the default border on focus */
     cursor: pointer;
     transition: background-color 0.3s ease; /* Smooth transition effect */

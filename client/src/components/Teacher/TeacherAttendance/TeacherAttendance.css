@@ -13,7 +13,7 @@
     background-color: #4d87c1; /* Dark gray background for the dropdown */
     color: white; /* White text color */
     font-size: 16px; /* Adjust font size */
-    border-radius: 12px; /* Adds rounded corners */
+    border-radius: 5px; /* Adds rounded corners */
     outline: none; /* Removes the default border on focus */
     cursor: pointer;
     transition: background-color 0.3s ease; /* Smooth transition effect */
@@ -45,19 +45,21 @@
 .teacher-input-row label {
   margin-right: 10px;
   font-weight: bold;
-  font-size: larger;
+  font-size: 1rem;
 }
 
 /* Input field styling */
 .teacher-input-row input {
-  padding: 7px;
+  padding: 5px;
   width: 169px;
-  font-size: 14px;
+  font-size: 12px;
+  border-radius: 5px;
 }
 
 /* Add spacing between inputs */
 .teacher-input-row input:not(:first-child) {
-  margin-left: 10px;
+  margin-left: 0px;
+
 }
 
 @media (max-width : 760px) {
