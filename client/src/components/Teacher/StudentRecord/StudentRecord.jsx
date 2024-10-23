@@ -107,34 +107,54 @@ const StudentRecord = () => {
 
   return (
     <div className="teacher-attendanceContainer">
-      <div className="teacher-TopButtons">
-        {/* Subject Dropdown */}
-        <div className="teacherSub-Dropdown">
-          <select
-            className='PortalSelect'
-            value={selectedSubject}
-            onChange={(e) => {
-              const selectedOption = e.target.options[e.target.selectedIndex];
-              const subjectId = selectedOption.getAttribute('data-id'); // Get subject ID from data attribute
+  <div className="teacher-TopButtons">
+    {/* Subject Dropdown */}
+    <div className="teacherSub-Dropdown">
+      <select
+        className='PortalSelect'
+        value={selectedSubject}
+        onChange={(e) => {
+          const selectedOption = e.target.options[e.target.selectedIndex];
+          const subjectId = selectedOption.getAttribute('data-id'); // Get subject ID from data attribute
+
+          if (!selectedOption.value) {
+            // Reset state when no subject is selected
+            setSelectedSubject(''); // Reset the selected subject
+            setStudentList([]);
+            setShowDetails(false);
+          } else {
+            // If the same subject is selected, force re-selection by resetting
+            if (selectedOption.value === selectedSubject) {
+              setSelectedSubject(''); // Reset to trigger change
+              setTimeout(() => {
+                handleSubjectChange(selectedOption.value, subjectId); // Delay re-selecting
+              }, 0);
+            } else {
+              // Handle subject change as usual
               handleSubjectChange(selectedOption.value, subjectId);
-            }}
-          >
-            <option value="">Subject</option>
-            {subjectList.length > 0 ? (
-              subjectList.map((subject, index) => (
-                <option 
-                  key={index} 
-                  value={subject.subject_code} 
-                  data-id={subject.subject_id} 
-                >
-                  {`${subject.sub_initials} (${subject.subject_code})`}
-                </option>
-              ))
-            ) : (
-              <option value="">No subjects available</option>
-            )}
-          </select>
-        </div>
+            }
+          }
+        }}
+      >
+        <option value="">Subject</option>
+        {subjectList.length > 0 ? (
+          subjectList.map((subject, index) => (
+            <option 
+              key={index} 
+              value={subject.subject_code} 
+              data-id={subject.subject_id}
+            >
+              {`${subject.sub_initials} (${subject.subject_code})`}
+            </option>
+          ))
+        ) : (
+          <option value="">No subjects available</option>
+        )}
+      </select>
+    </div>
+  
+
+
       </div>
 
       {/* Record details below buttons */}
