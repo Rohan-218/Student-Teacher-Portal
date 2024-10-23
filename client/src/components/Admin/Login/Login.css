@@ -1,6 +1,6 @@
 .adlogin-page-container {
   display: grid;
-  grid-template-rows: 7dvh 93dvh;
+  grid-template-rows: 44px 94dvh;
   height: 100dvh;
   margin:0%;
   overflow-y:hidden;
@@ -8,10 +8,12 @@
 
  .adnavbar-container {
   background-color: #14617d;
-  padding: 7px 20px;
+  padding-left: 20.5px;
+  height: 44px;
   color: white;
-  text-align: left;
-  font-size: 18px;
+  align-content: center;
+  justify-content: center;
+  font-size: 1.1rem;
   font-weight: bold;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 } 
@@ -25,7 +27,7 @@
 
 /* Sidebar styling */
 .adsidebar-section {
-  background-color: #14617db0;
+  background-color: #72acc2b0;
   place-items: center;
   display: grid;
   height: 95dvh;
@@ -176,7 +178,7 @@
   .adcontent-wrapper {
     display: flex;
     flex-direction: column;
-    height: 92dvh;
+    height: 92dvh;                                                                  
   }
 
   .adsidebar-section {
@@ -184,12 +186,19 @@
   }
 
   .adlogin-form-container {
-    background-color: #14617db0;
+    background-color: #72acc2b0;
   }
 
   .login-form-container {
     padding: 4%;
+    width: 80%;
     border-radius: 8px;
-    background-color: white;
+    background-color: #f3fcff;
+  }
+}
+
+@media (min-width: 1080px) {
+  .login-form-container {
+    width: 40%;
   }
 }
