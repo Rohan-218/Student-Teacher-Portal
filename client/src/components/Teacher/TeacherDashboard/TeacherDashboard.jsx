@@ -43,12 +43,9 @@ function TeacherDashboard() {
 
   return (
     <div className="teacher-dashboard">
-        <Sidebar handleScrollToSection={handleScrollToSection} /> 
-      <div className="teacher-content">
-        <div id="teacher-dashboard" className="teacher-section">
-          <h2>Dashboard</h2>
-          {/* Add dashboard content here */}
-        </div>
+      <Sidebar handleScrollToSection={handleScrollToSection} />  
+      <div className="container-section">
+          <h2 className="sh" id='teacher-dashboard'>Dashboard</h2>
         <div className="teacher-profile-section">
           {teacherData ? (
             <TeacherProfile data={teacherData} />
@@ -56,23 +53,16 @@ function TeacherDashboard() {
             <p>Loading teacher profile...</p>
           )}
         </div>
-        
-        <div id="teacher-scoreboard" className="teacher-section">
-          <h2>Scoreboard</h2>
-        </div>
+          <h2 className="sh" id='teacher-scoreboard'>Scoreboard</h2>
         <div className='teacher-table-container'>
           <TeacherScoreboard />
         </div>
-        <div id="teacher-attendance" className="teacher-section">
-          <h2>Attendance</h2>
-        </div>
+          <h2 className="sh" id='teacher-attendance'>Attendance</h2>
         <div className='teacher-table-container'>
           <TeacherAttendance />
         </div>
-        <div id="teacher-student-record" className="teacher-section">
-          <h2>Student Record</h2>
-        </div>
-        <div className='teacher-table-container'>
+          <h2 className="sh" id='teacher-student-record'>Student Record</h2>
+         <div className='teacher-table-container'>
           <StudentRecord />
         </div>
       </div>

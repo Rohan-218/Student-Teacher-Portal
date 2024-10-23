@@ -1,37 +1,35 @@
 /* Basic styling for the table */
-.table-container {
-  width: 100%; /* Increase the box width to ensure the table fits */
-  max-width: 100%; /* Prevent it from exceeding the container */
-  overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the width */
-  padding: 20px; /* Add some padding around the table */
-  box-sizing: border-box; /* Ensure padding doesn't overflow the box */
-}
+/* student Table Styles */
 .student-table {
+  margin-top: 20px;
+  overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the width */
+}
+
+.student-table table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 2%;
+}
+.student-table th, .student-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align:center;
 }
 
 .student-table th {
-  background-color: #f2f2f2;
+  background-color: #8db4c2;
   font-weight: bold;
   font-size: 0.9rem;
 }
 .student-table td {
   font-size: 0.7rem;
 }
-.student-table th, .student-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
 
 .student-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-/* Optional Hover Effect */
-.student-table tr:hover {
+ /* Optional Hover Effect */
+ .student-table tr:hover {
   background-color: #f1f1f1;
 }
 
@@ -71,7 +69,6 @@
   border: none;
   color: white;
   border-radius: 4px;
-  background-color: rgb(41, 117, 238);
   cursor: pointer;
 }
 

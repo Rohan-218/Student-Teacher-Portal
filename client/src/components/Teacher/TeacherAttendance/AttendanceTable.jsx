@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AttendanceTable.css';
 
-const AttendanceTable = ({ students = [], attendanceList = [], onSave, isUpdating, onToggleAttendance }) => {
+const AttendanceTable = ({ students = [], attendanceList = [], onSave, isUpdating,buttonText, isSaving, onToggleAttendance }) => {
   const buttonRefs = useRef([]);
   const navigate = useNavigate();
 
@@ -61,12 +61,12 @@ const AttendanceTable = ({ students = [], attendanceList = [], onSave, isUpdatin
       </table>
       </div>
       <div className="teacher-bottom-buttons">
-        <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>
+        <button className="daily-att-btn" onClick={() => navigate('/daily-attendance-record')}>
           Daily Attendance Record
         </button>
 
-        <button className="teacher-save-btn" onClick={onSave}>
-          {isUpdating ? 'Update' : 'Save'}
+        <button className="teacher-save-btn" onClick={onSave} disabled={isSaving}>
+        {buttonText}
         </button>
       </div>
     </div>

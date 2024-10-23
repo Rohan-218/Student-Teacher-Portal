@@ -1,4 +1,4 @@
-.teacher-sidebar {
+.Sidebar {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
   z-index: 999;
 }
 
-.teacher-sidebar button {
+.Sidebar button {
   display: flex;
   align-items: left;
   gap: 10px; /* Space between icon and text */
@@ -22,34 +22,36 @@
   margin-bottom: 20px;
   border-radius: 15px;
   background-color: #f9f9f9;
-  color: black;
+  color: #494949;
   cursor: pointer;
   font-size: 0.8rem; /* Responsive font size */
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
  border: none;
+ align-items: center;
 }
 
-.teacher-sidebar button:hover {
+.Sidebar button:hover {
   background-color: #eaf1f9;
 }
 
-.teacher-sidebar .icon {
+.Sidebar .icons {
   width: 20px;
   height: 20px; /* Icon size remains the same */
   color:black;
+  
 }
 
 /* Media query for smaller desktop screens */
 @media (max-width: 1024px) {
-  .teacher-sidebar {
+  .Sidebar {
     width: 25vw; /* Increase the width for smaller screens */
     padding-top: 150px; /* Adjust padding */
   }
 
-  .teacher-sidebar button {
-    font-size: 2vw; /* Adjust button text size */
+  .Sidebar button {
+    font-size: 14px; /* Adjust button text size */
     padding: 12px; /* Smaller padding for buttons */
   }
 }

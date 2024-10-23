@@ -14,9 +14,8 @@
   text-align:center;
 }
 
-
 .teacher-table th {
-  background-color: #f2f2f2;
+  background-color: #8db4c2;
   font-weight: bold;
   font-size: 0.9rem;
 }
@@ -32,25 +31,14 @@
  .teacher-table tr:hover {
   background-color: #f1f1f1;
 }
-/* .teacher-table .view-btn {
-  background-color: #2a81dd;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}  */
 
-  .teacher-table .delete-btn {
-  background-color: rgb(250, 67, 67);
+.teacher-table .delete-btn {
+  
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }  
-
-.teacher-table .add-btn {
-  background-color:rgb(41, 117, 238);  /* Blue color for Add button */
-}
 
 .teacher-table .view-btn:disabled {
   background-color: grey;

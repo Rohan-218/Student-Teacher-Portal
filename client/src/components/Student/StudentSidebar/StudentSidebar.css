@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 260px; /* Reduce width to prevent overlapping */
+  width: 18%; /* Reduce width to prevent overlapping */
   height: 100vh;
   background-color: #4d87c1;
   display: flex;

@@ -1,9 +1,6 @@
-import  { useState } from 'react';
-import './StudentRecordTable.css'; // Link to the CSS file
+import './StudentRecordTable.css'; 
 
-
-const StudentRecordTable = ({ students }) => {
-
+const StudentRecordTable = ({ students, examColumns }) => {
   return (
     <div className="teacher-student-record-table">
       <table>
@@ -14,9 +11,9 @@ const StudentRecordTable = ({ students }) => {
             <th>Enrollment No.</th>
             <th>Classes Attended</th>
             <th>Attendance %</th>
-            <th>Midterm-1</th>
-            <th>Midterm-2</th>
-            <th>Finals</th>
+            {examColumns.map((exam, index) => (
+              <th key={index}>{exam.replace('_', ' ')}</th> // Display dynamic exam columns
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -26,19 +23,19 @@ const StudentRecordTable = ({ students }) => {
                 <td>{index + 1}</td>
                 <td>{student.student_name || 'N/A'}</td>
                 <td>{student.enrollment_no || 'N/A'}</td>
-              <td>{student.attended_lecture}</td>
-              <td>{Math.round(student.attendance_percentage*100)/100}</td>
-              <td>{student.midterm1_marks}</td>
-              <td>{student.midterm2_marks}</td>
-              <td>{student.finals_marks}</td>
+                <td>{student.attended_lecture}</td>
+                <td>{Math.round(student.attendance_percentage * 100) / 100}</td>
+                {examColumns.map((exam, examIndex) => (
+                  <td key={examIndex}>{student[exam]}</td> 
+                ))}
               </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="5">No students available</td>
-          </tr>
-        )}
-      </tbody>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5">No students available</td>
+            </tr>
+          )}
+        </tbody>
       </table>
     </div>
   );

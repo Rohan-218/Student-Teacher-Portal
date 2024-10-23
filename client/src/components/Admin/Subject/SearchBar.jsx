@@ -39,10 +39,6 @@ const SearchBar = ({ onFilter }) => {
     fetchBranches();
   }, []);
 
-  const handleSearch = () => {
-    onFilter(filters);  // Trigger filtering with all current filters, including subject_name
-  };
-
   const handleDropdownChange = (e) => {
     const updatedFilters = {
       ...filters,
@@ -56,17 +52,27 @@ const SearchBar = ({ onFilter }) => {
     }
   };
 
+  const handleInputChange = (e) => {
+    const updatedFilters = {
+      ...filters,
+      subject_name: e.target.value,
+    };
+    setFilters(updatedFilters);
+    
+    // Trigger filtering as soon as the user types
+    onFilter(updatedFilters);
+  };
+
   return (
     <div className="search-bar">
       <div className="search-input-container">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="&#128269;  Search..."
           name="subject_name"
           value={filters.subject_name}
-          onChange={(e) => setFilters({ ...filters, subject_name: e.target.value })}  // Handle subject name input
+          onChange={handleInputChange}  // Trigger filtering as soon as input changes
         />
-        <button onClick={handleSearch}>Search</button>
         <Link to="/admin/add-subject">
           <button className="add-subject-btn">Add New Subject</button>
         </Link>

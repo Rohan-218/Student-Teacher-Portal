@@ -14,9 +14,9 @@ const { insertActivity ,insertEmailActivity } = require('../utils/activityServic
 exports.getTeacherProfile = async (req, res) => {
   try {
       
-    const {user_id, user_type} = req.user.user_type;
+    const {user_id, user_type} = req.user;
 
-      if (user_type !== 2) { // Assuming user_type 2 is for teachers
+      if (user_type !== 2) { 
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
       }
 
@@ -36,9 +36,9 @@ exports.uploadAttendance = async (req, res) => {
   try {
       const { subjectCode, lecture, attendanceDate, attendanceList } = req.body;
 
-      const {user_id, user_type} = req.user.user_type;
+      const {user_id, user_type} = req.user;
 
-      if (user_type !== 2) { // Assuming user_type 2 is for teachers
+      if (user_type !== 2) { 
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
       }
 
@@ -108,8 +108,8 @@ exports.uploadAttendance = async (req, res) => {
 exports.getUploadedAttendance = async (req, res) => {
   try {
       const { subjectCode, date, lecture } = req.query;
-      const { user_type } = req.user.user_type;
-      if (user_type !== 2) { // Assuming user_type 2 is for teachers
+      const  user_type  = req.user.user_type;
+      if (user_type !== 2) { 
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
       }
 

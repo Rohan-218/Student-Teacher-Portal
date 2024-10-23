@@ -99,7 +99,7 @@
   }
   
   
-  /* Student table styling */
+  /* Student table styling
   .student-table {
     width: 100%;
     border-collapse: collapse;
@@ -112,7 +112,7 @@
   }
   
   .student-table th {
-    background-color: #e6f0ff;
+    background-color: #8db4c2;
     font-weight: bold;
   }
   
@@ -123,7 +123,7 @@
   .student-table td:nth-child(5) {
     font-weight: bold;
   }
-  
+   */
   /* Expand attendance button */
   .expand-attendance {
     margin-top: 20px;

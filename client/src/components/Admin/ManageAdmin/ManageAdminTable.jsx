@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const AdminTable = ({ refresh }) => {
   const [admins, setAdmins] = useState([]);
@@ -94,8 +96,9 @@ const AdminTable = ({ refresh }) => {
                 <button
                   className={`delete-btn ${!admin.is_active ? 'add-btn' : ''}`}
                   onClick={() => handleDelete(admin.user_id, admin.is_active, index)}  // Pass user_id and is_active
+                  style={{ backgroundColor: 'transparent' }}
                 >
-                  {admin.is_active ? '✗' : '✓'}
+                  {admin.is_active ? <FontAwesomeIcon icon={faTrashAlt} style={{ color: 'red', fontSize: '16px' }} /> :<FontAwesomeIcon icon={faCheck} style={{ color: 'black', fontSize: '16px' }}/>}
                 </button>
               </td>
             </tr>

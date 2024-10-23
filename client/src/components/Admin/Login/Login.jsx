@@ -98,65 +98,69 @@ const AdminLogin = () => {
   return (
     <div className="adlogin-page-container">
       <nav className="adnavbar-container">
-        <NavLink to="/" className="adnavbar-link">
+         <NavLink to="/" className="adnavbar-link">
           XYZ UNIVERSITY
-        </NavLink>
+         </NavLink>
       </nav>
       <div className="adcontent-wrapper">
         <div className="adsidebar-section">
           <div className="adprofile-image-container">
-            <img
-              src= {photo}
-              alt="Profile"
-              className="adprofile-image"
-            />
+            <div className='adimage-container'>
+              <img
+                src= {photo}
+                alt="Profile"
+                className="adprofile-image"
+              />
+            </div>
+            
+            <div className="adsidebar-title">
+              <h2>Admin Panel</h2>
+            </div>
           </div>
-          <div className="adsidebar-title">
-            <h2>Admin Panel</h2>
-          </div>
+          
         </div>
         
         <div className="adlogin-form-container">
-          <h1 className="adlogin-heading">Login</h1>
-          <form onSubmit={onSubmitForm}>
-            <div className="adinput-group">
-              <label className="adinput-label">Email:</label>
-              <input
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-                className="adinput-field"
-              />
-            </div>
-            <div className="adinput-group">
-              <label className="adinput-label">Password:</label>
-              <div className="Password-Input-Container">
+          <div className='login-form-container'>
+            <h1>Login</h1>
+            <form onSubmit={onSubmitForm}>
+              <div className="adinput-group">
+                <label>Email:</label>
                 <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   required
-                  className="adinput-field"
                 />
-                <span
-                  className="Password-Icon"
-                  onClick={togglePasswordVisibility} // Toggle password visibility
-                >
-                  {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-                </span>
               </div>
-            </div>
-            <button type="submit" className="adlogin-button">Login</button>
-          </form>
-          {message && <p className={message.includes('successful') ? 'adsuccess-message' : 'aderror-message'}>{message}</p>}
-          
-          {/* Alert box for session expiration */}
-          {alertMessage && (
-            <div className="alert-box">
-              {alertMessage}
-            </div>
-          )}
+              <div className="adinput-group">
+                <label>Password:</label>
+                <div className="Password-Input-Container">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <span
+                    className="Password-Icon"
+                    onClick={togglePasswordVisibility} // Toggle password visibility
+                  >
+                    {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                  </span>
+                </div>
+              </div>
+              <button type="submit">Login</button>
+            </form>
+            {message && <p className={message.includes('successful') ? 'adsuccess-message' : 'aderror-message'}>{message}</p>}
+            
+            {/* Alert box for session expiration */}
+            {alertMessage && (
+              <div className="alert-box">
+                {alertMessage}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

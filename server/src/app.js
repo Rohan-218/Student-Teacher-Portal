@@ -10,9 +10,9 @@ const app = express();
 
 // Middleware
 app.use(cors()); // Enable CORS
-app.use(morgan('dev')); // Logging middleware for dev environment
-app.use(bodyParser.json()); // Parse JSON request bodies
-app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
+app.use(morgan('dev')); 
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 // Import routes
 const authRoutes = require('./routes/authRoutes.js');

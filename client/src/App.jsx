@@ -10,7 +10,8 @@ import StudentDashboard from './components/Student/StudentDashboard/StudentDashb
 import DailyAttendance from './components/Student/DailyAttendance/DailyAtt.jsx';
 import TeacherDashboard from './components/Teacher/TeacherDashboard/TeacherDashboard.jsx';
 import DailyAttendanceRecord from './components/Teacher/DailyAttendanceRecord/DailyAttendanceRecord.jsx';
-import ProtectedRoute from './components/Common/ProtectedRoute.jsx'; // Import the ProtectedRoute
+import ProtectedRoute from './components/Common/ProtectedRoute.jsx'; // Import the ProtectedRoute;
+
 
 function App() {
   const location = useLocation();
@@ -42,28 +43,27 @@ function App() {
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, [location]);
-
   return (
-    <div>
-      {!isAdminRoute && (
+    <>
+       {!isAdminRoute && (
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       )} 
-      <div>
+      
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
-          
+
           {/* Protecting student and teacher routes */}
           <Route path="/student-dashboard" element={<ProtectedRoute element={<StudentDashboard />} />} />
           <Route path="/daily-attendance" element={<ProtectedRoute element={<DailyAttendance />} />} />
           <Route path="/teacher-dashboard" element={<ProtectedRoute element={<TeacherDashboard />} />} />
           <Route path="/daily-attendance-record" element={<ProtectedRoute element={<DailyAttendanceRecord />} />} />
         </Routes>
-      </div>
-    </div>
+      
+    </>
   );
 }
 
