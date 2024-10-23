@@ -36,7 +36,7 @@ exports.uploadAttendance = async (req, res) => {
   try {
       const { subjectCode, lecture, attendanceDate, attendanceList } = req.body;
 
-      const {user_id, user_type} = req.user.user_type;
+      const {user_id, user_type} = req.user;
 
       if (user_type !== 2) { 
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
