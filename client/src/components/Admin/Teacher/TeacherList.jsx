@@ -14,7 +14,7 @@ const TeacherList = () => {
   const fetchInitialTeachers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/admin/teachers', {
+      const response = await fetch('http://192.168.29.80:3000/api/admin/teachers', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

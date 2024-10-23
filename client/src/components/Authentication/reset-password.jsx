@@ -35,7 +35,7 @@ const ResetPassword = () => {
             const encryptedOldPassword = CryptoJS.AES.encrypt(formData.oldPassword, secretKey).toString();
             const encryptedNewPassword = CryptoJS.AES.encrypt(formData.newPassword, secretKey).toString();
 
-            const response = await fetch('http://localhost:3000/api/users/reset-password', {
+            const response = await fetch('http://192.168.29.80:3000/api/users/reset-password', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

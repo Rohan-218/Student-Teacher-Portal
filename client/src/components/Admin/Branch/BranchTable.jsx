@@ -10,7 +10,7 @@ const BranchTable = ({ branches, setBranches }) => {
     const newStatus = !branch.is_active;  // Toggle the is_active status
 
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/branches/update`, {
+      const res = await fetch(`http://192.168.29.80:3000/api/admin/branches/update`, {
         method: 'PUT', // Assuming it's a PUT request
         headers: {
           'Authorization': `Bearer ${token}`,

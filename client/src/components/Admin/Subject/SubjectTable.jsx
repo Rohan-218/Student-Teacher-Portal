@@ -11,7 +11,7 @@ const SubjectTable = ({ subjects, setSubjects }) => {
     const newStatus = !subject.is_active;  // Toggle the is_active status
 
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/subjects/update`, {
+      const res = await fetch(`http://192.168.29.80:3000/api/admin/subjects/update`, {
         method: 'PUT', // Assuming it's a PUT request
         headers: {
           'Authorization': `Bearer ${token}`,

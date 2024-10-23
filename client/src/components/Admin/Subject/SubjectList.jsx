@@ -36,7 +36,7 @@ const SubjectList = () => {
         params.append('subject_name', filters.subject_name); // Ensure 'name' is being set
       }
 
-      const apiUrl = `http://localhost:3000/api/admin/subjects?${params.toString()}`;
+      const apiUrl = `http://192.168.29.80:3000/api/admin/subjects?${params.toString()}`;
       const res = await fetch(apiUrl, {
         method: 'GET',
         headers: {

@@ -39,7 +39,7 @@ const Login = () => {
 
       const encryptedPassword = CryptoJS.AES.encrypt(password, secretKey).toString();
 
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch("http://192.168.29.80:3000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password: encryptedPassword })

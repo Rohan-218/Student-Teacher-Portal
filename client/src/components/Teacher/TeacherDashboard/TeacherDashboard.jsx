@@ -12,7 +12,7 @@ function TeacherDashboard() {
   useEffect(() => {
     const token = localStorage.getItem('token'); // Get token from localStorage
     if (token) {
-      fetch('http://localhost:3000/api/teachers/profile', {
+      fetch('http://192.168.29.80:3000/api/teachers/profile', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
