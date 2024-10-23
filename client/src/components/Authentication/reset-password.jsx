@@ -94,7 +94,7 @@ const ResetPassword = () => {
                         <label>Old Password:</label>
                         <div className="password-input-container">
                             <input
-                                type={showPassword ? "text" : "password"}
+                                 type="password"
                                 name="oldPassword"
                                 value={formData.oldPassword}
                                 onChange={handleChange}
