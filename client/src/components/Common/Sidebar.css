@@ -29,6 +29,7 @@
   text-overflow: ellipsis;
   font-weight: bold;
  border: none;
+ align-items: center;
 }
 
 .Sidebar button:hover {
