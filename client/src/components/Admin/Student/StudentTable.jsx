@@ -36,8 +36,8 @@ const StudentTable = ({ students, setStudents }) => {
   };
   
   return (
-    <div class="table-container">
-      <table className="student-table">
+    <div class="student-table">
+      <table >
       <thead>
         <tr>
           <th>S. No.</th>
