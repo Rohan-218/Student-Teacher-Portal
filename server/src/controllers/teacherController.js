@@ -16,7 +16,7 @@ exports.getTeacherProfile = async (req, res) => {
       
     const {user_id, user_type} = req.user;
 
-      if (user_type !== 2) { // Assuming user_type 2 is for teachers
+      if (user_type !== 2) { 
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
       }
 
@@ -38,7 +38,7 @@ exports.uploadAttendance = async (req, res) => {
 
       const {user_id, user_type} = req.user.user_type;
 
-      if (user_type !== 2) { // Assuming user_type 2 is for teachers
+      if (user_type !== 2) { 
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
       }
 
@@ -109,7 +109,7 @@ exports.getUploadedAttendance = async (req, res) => {
   try {
       const { subjectCode, date, lecture } = req.query;
       const  user_type  = req.user.user_type;
-      if (user_type !== 2) { // Assuming user_type 2 is for teachers
+      if (user_type !== 2) { 
           return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
       }
 
