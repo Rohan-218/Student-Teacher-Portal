@@ -1,47 +1,32 @@
-/* Global styling */
- /* body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #258d9b; 
-}  */
-/* Page layout */
 .adlogin-page-container {
-  /* display: flex;
-  flex-direction: column; Stack navbar on top of content */
   display: grid;
-  grid-template-rows: 7fr 93fr ;
+  grid-template-rows: 7dvh 93dvh;
   height: 100dvh;
   margin:0%;
   overflow-y:hidden;
 }
-/* Navbar styling */
+
  .adnavbar-container {
-   background-color: #14617d; 
+  background-color: #14617d;
   padding: 7px 20px;
   color: white;
   text-align: left;
   font-size: 18px;
   font-weight: bold;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  /* width: 96.1%; */
 } 
 
 /* Layout for content container */
 .adcontent-wrapper {
   display: grid;
-  grid-template-columns: 5fr 6fr;
+  grid-template-columns: 1fr 1fr;
   height: 92dvh;
 }
 
 /* Sidebar styling */
 .adsidebar-section {
   background-color: #14617db0;
-  /* width: 50%; Set sidebar width 
-  padding: 70px 20px;
-  justify-content: center;
-  align-items: center; */
-  /* display: flex;
-  flex-direction: column; */
+  place-items: center;
   display: grid;
   height: 95dvh;
 }
@@ -55,71 +40,103 @@
 
 /* Image styling */
 .adprofile-image-container {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: 200px 50px ;
+  justify-items: center;
   align-items: center;
-  padding: 0px;
-  margin-top: 7%;
+}
+
+.adimage-container {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
 }
 
 .adprofile-image {
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   border-radius: 100%;
   object-fit: cover; /* Ensure the image is not distorted */
 }
 
 /* Login form styling */
 .adlogin-form-container {
-  display: grid; 
-  grid-template-rows: 10% 90%;
-  /* flex-direction: column; */
-    justify-content: center; 
-   align-items: center;
-  /* background-color: #ffffff;
-  padding: 30px;
-  margin-bottom: 7%; */
-  /* width: 50%; */
+  display: grid;
+  height: 100%;
+  place-items: center;
 }
-/* Form input styling */
+
+.login-form-container {
+  width: 50%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  flex: 1;
+}
+
+.login-form-container h1 {
+  display: grid;
+  text-align: center;
+  color: #333; 
+  font-size: 2.2rem;
+}
+
 .adinput-group {
-  margin-top: 5%;
-  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%; 
 }
 
-.adinput-label {
-  display: block; /* Block for better spacing */
-  margin-bottom: 5px; /* Spacing below label */
-  font-size: 14px;
+.adinput-group label {
+  display: block; 
+  margin-bottom: 5px;
+  font-size: 1rem;
 }
 
-.adinput-field {
-  width: 250px; /* Full width */
-  padding: 10px; /* Padding inside input */
-  border: 1px solid #ccc; /* Light border */
-  border-radius: 5px; /* Rounded corners */
+.adinput-group input {
+  display: flex;
+  flex-shrink: 1;
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px;
 }
 
-/* Button styling */
-.adlogin-button {
-  background-color: #14617d; /* Button color same as navbar */
+.Password-Input-Container {
+  display: flex;
+  position: relative;
+}
+
+.Password-Input-Container input {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px;
+}
+
+
+.login-form-container button {
+  background-color: #14617d; 
   color: white;
   border: none;
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s; /* Transition effect */
+  transition: background-color 0.3s;
   height: 40px;
-  width: 270px;
+  width: 100%;
   font-size: 20px;
   margin-top: 8%;
 }
 
-.adlogin-button:hover {
-  background-color: #0277bd; /* Darker blue on hover */
+.login-form-container button:hover {
+  background-color: #327c97;
 }
 
-/* Message styling */
+
 .adsuccess-message {
   color: green;
 }
@@ -128,21 +145,12 @@
   color: red;
 }
 
-/* Heading styling */
-.adlogin-heading {
-  display: grid;
-  margin-top: 90%;
-  text-align: center;
-  color: #333; /* Darker text for contrast */
-  font-size: 2rem;
-}
-/* Styling for the link */
+
 .adnavbar-link {
-  text-decoration: none; /* Removes the underline */
-  color: white; /* Changes the text color to white */
+  text-decoration: none; 
+  color: white; 
 }
 
-/* Ensure the text stays white on hover and active states */
 .adnavbar-link:hover,
 .adnavbar-link:active {
   color: white;
@@ -151,35 +159,37 @@
 .adnavbar-title{
   width: fit-content;
 }
-.Password-Input-Container {
-  position: relative; /* Position relative for absolute child */
-  width: 250px; /* Match the input field width */
-}
+
 
 .Password-Icon {
-  position: absolute; /* Position absolute within the container */
-  right: -7%; /* Position it at the right side */
-  top: 55%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust to center */
-  cursor: pointer; /* Pointer cursor for clickable icon */
-  font-size: 20px; /* Adjust icon size as needed */
-  color: #333; /* Icon color */
+  position: absolute; 
+  right: 6px; 
+  top: 55%; 
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #333; 
 }
-@media (max-width:750px){
-    
-  .adsidebar-title {
-    font-size: 20px;
-    white-space: nowrap; /* Prevent wrapping */
-    font-weight: bold; /* Bold text */
-    text-align: center;
+
+@media (max-width: 768px) {
+
+  .adcontent-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 92dvh;
   }
 
-}
-@media (max-width: 600px) {
   .adsidebar-section {
-    display: none; /* This hides the sidebar */
+    display: none;
   }
-  .adlogin-form-container{
-  margin: 0%;
+
+  .adlogin-form-container {
+    background-color: #14617db0;
+  }
+
+  .login-form-container {
+    padding: 4%;
+    border-radius: 8px;
+    background-color: white;
   }
 }
