@@ -44,11 +44,11 @@ function App() {
     return () => clearInterval(intervalId);
   }, [location]);
   return (
-    <div>
+    <>
        {!isAdminRoute && (
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       )} 
-      <div>
+      
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
@@ -62,8 +62,8 @@ function App() {
           <Route path="/teacher-dashboard" element={<ProtectedRoute element={<TeacherDashboard />} />} />
           <Route path="/daily-attendance-record" element={<ProtectedRoute element={<DailyAttendanceRecord />} />} />
         </Routes>
-      </div>
-    </div>
+      
+    </>
   );
 }
 
