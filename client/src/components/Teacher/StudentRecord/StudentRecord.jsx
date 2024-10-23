@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import './StudentRecord.css';
 import axios from 'axios';
-import StudentRecordTable from './StudentRecordTable'; 
+import StudentRecordTable from './StudentRecordTable';
 
 const StudentRecord = () => {
   const [selectedSubject, setSelectedSubject] = useState('');
   const [subjectList, setSubjectList] = useState([]);
-  const [studentList, setStudentList] = useState([]); 
-  const [updatedLast, setUpdatedLast] = useState(''); // State for updated last
-  const [totalLectures, setTotalLectures] = useState(0); // State for total lectures
+  const [studentList, setStudentList] = useState([]);
+  const [updatedLast, setUpdatedLast] = useState('');
+  const [totalLectures, setTotalLectures] = useState(0);
+  const [examColumns, setExamColumns] = useState([]); 
   const token = localStorage.getItem('token');
 
   // Fetch subjects on mount
@@ -31,7 +32,7 @@ const StudentRecord = () => {
     }
   }, [token]);
 
-  // Handle subject change and fetch students and attendance/marks for the selected subject
+  // Handle subject change and fetch students, attendance, marks, and exams for the selected subject
   const handleSubjectChange = async (subject, subjectId) => {
     setSelectedSubject(subject);
     try {
@@ -55,6 +56,12 @@ const StudentRecord = () => {
         }
       );
 
+    
+      console.log('Attendance and marks response:', attenMarksResponse.data);
+
+      
+      const { result, examNames } = attenMarksResponse.data;
+
       // Fetch updated last and total lectures for the selected subject
       const updatedLastResponse = await axios.get(
         `http://localhost:3000/api/teachers/updated-last?subjectId=${subjectId}`,
@@ -76,28 +83,25 @@ const StudentRecord = () => {
 
       // Combine student data with attendance and marks data
       const combinedData = studentResponse.data.map(student => {
-        const attenMarks = attenMarksResponse.data.find(item => item.student_id === student.student_id) || {};
+        const attenMarks = result.find(item => item.student_id === student.student_id) || {};
         return {
           ...student,
           attended_lecture: attenMarks.attended_lecture || 0,
           attendance_percentage: attenMarks.attendance_percentage || 0,
-          midterm1_marks: attenMarks.midterm1_marks || 0,
-          midterm2_marks: attenMarks.midterm2_marks || 0,
-          finals_marks: attenMarks.finals_marks || 0,
+          ...examNames.reduce((acc, exam) => {
+            acc[exam] = attenMarks[exam] || 0; // Add dynamic exams marks
+            return acc;
+          }, {})
         };
       });
 
-      // Set the updated last and total lectures state
+      // Set updated last and total lectures state
       setUpdatedLast(updatedLastResponse.data.updatedLast || 'No updates found');
       setTotalLectures(totalLecturesResponse.data.totalLectures || 0);
-
-      console.log('Combined data:', combinedData);
-
-      setStudentList(combinedData); // Update student list with combined data
+      setExamColumns(examNames); 
+      setStudentList(combinedData); 
     } catch (error) {
       console.error('Error fetching students or attendance/marks:', error);
-      // Log the error details to the console for better debugging
-      console.error('Error details:', error.response.data);
     }
   };
 
@@ -120,8 +124,8 @@ const StudentRecord = () => {
               subjectList.map((subject, index) => (
                 <option 
                   key={index} 
-                  value={subject.subject_code} // Display subject code
-                  data-id={subject.subject_id} // Store subject ID as data attribute
+                  value={subject.subject_code} 
+                  data-id={subject.subject_id} 
                 >
                   {`${subject.sub_initials} (${subject.subject_code})`}
                 </option>
@@ -135,17 +139,17 @@ const StudentRecord = () => {
 
       {/* Record details below buttons */}
       <div className="teacher-RecordDetails">
-  <span className="teacher-UpdatedLast">
-    <strong>Updated Last: </strong>
-    <span >{updatedLast}</span>
-  </span>
-  <span className="teacher-TotalLecture">
-    <strong>Total Lecture: </strong>
-    <span>{totalLectures}</span>
-  </span>
-</div>
+        <span className="teacher-UpdatedLast">
+          <strong>Updated Last: </strong>
+          <span>{updatedLast}</span>
+        </span>
+        <span className="teacher-TotalLecture">
+          <strong>Total Lecture: </strong>
+          <span>{totalLectures}</span>
+        </span>
+      </div>
       {/* Student Record Table */}
-      <StudentRecordTable students={studentList} />
+      <StudentRecordTable students={studentList} examColumns={examColumns} /> {/* Pass dynamic exam columns */}
     </div>
   );
 };
