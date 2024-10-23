@@ -22,7 +22,7 @@
 
 .Sidebar1 button {
   margin-bottom: 20px;
-  padding: 10px 20px; /* Adjust padding for a better look */
+  padding: 11px 16px; /* Adjust padding for a better look */
   cursor: pointer;
   background-color:#F9F9F9 ;
   border-radius: 20px;
@@ -57,7 +57,7 @@
 }
 
 /* Media Query for Mobile View */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .Sidebar1 {
     width: 80%; /* Adjust width for mobile */
     height: auto;
@@ -77,14 +77,17 @@
     display: block; /* Always show hamburger on mobile */
   }
 }
-@media (max-width: 868px){
+@media (max-width: 898px){
+  .Sidebar1 {
+    width:15%;
+  }
   .Sidebar1 button{
-    padding: 10px 10px;
+    font-size: 12px;
   }
 }
 @media (max-width: 989px){
   .Sidebar1 button{
-    padding: 10px 10px;
+    padding: 9px 9px;
   }
   .Sidebar1{
     width: 15%;
