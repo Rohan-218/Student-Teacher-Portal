@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 18%; /* Use viewport width to adjust the sidebar size according to screen size */
+  width: 15%; /* Use viewport width to adjust the sidebar size according to screen size */
   max-width: 300px; /* Set a maximum width */
   height: 100%;
   background-color: #4d87c1;
