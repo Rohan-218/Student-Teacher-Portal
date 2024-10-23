@@ -1,6 +1,6 @@
 /* Default Styles for Desktop */
 .content {
-  margin-left: 200px; /* Adjust the margin to match the sidebar width */
+  margin-left: 15%; /* Adjust the margin to match the sidebar width */
   padding-top: 3%;
   padding-left: 1%;
   text-align: center;
@@ -59,9 +59,15 @@
 } */
 
 /* Media Queries for Mobile Responsiveness */
+/* @media (max-width: 769px) {
+  .content {
+    margin: 0%; 
+    padding: 15px;
+  }
+} */
 @media (max-width: 800px) {
   .content {
-    margin-left: 0; /* Remove the sidebar margin on smaller screens */
+    margin-left: 0%; /* Remove the sidebar margin on smaller screens */
     padding: 15px;
   }
 
@@ -87,4 +93,9 @@
     padding: 10px;  /* Add some padding for small screens */
   }
   
+}
+@media (max-width: 400px){
+.profile h2{
+ font-size: 1.5rem;
+}
 }

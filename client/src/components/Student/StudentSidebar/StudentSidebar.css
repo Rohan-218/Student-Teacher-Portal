@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 18%; /* Reduce width to prevent overlapping */
+  width: 15%; /* Reduce width to prevent overlapping */
   height: 100vh;
   background-color: #4d87c1;
   display: flex;
@@ -27,7 +27,7 @@
   background-color:#F9F9F9 ;
   border-radius: 20px;
   color: black;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   border: none;
   font-family: 'DM Sans', sans-serif;
@@ -75,5 +75,18 @@
 
   .Hamburger1{
     display: block; /* Always show hamburger on mobile */
+  }
+}
+@media (max-width: 868px){
+  .Sidebar1 button{
+    padding: 10px 10px;
+  }
+}
+@media (max-width: 989px){
+  .Sidebar1 button{
+    padding: 10px 10px;
+  }
+  .Sidebar1{
+    width: 15%;
   }
 }
