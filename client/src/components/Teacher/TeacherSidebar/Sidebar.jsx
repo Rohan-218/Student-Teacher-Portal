@@ -11,19 +11,19 @@ const Sidebar = ({ handleScrollToSection }) => {
   return (
     <div className="Sidebar">
       <button onClick={() => handleScrollToSection('teacher-dashboard')}>
-        <img src={dashboard} alt="Dashboard Icon" className="icon" />
+        <img src={dashboard} alt="Dashboard Icon" className="icons" />
         Dashboard
       </button>
       <button onClick={() => handleScrollToSection('teacher-scoreboard')}>
-        <img src={scoreboard} alt="Scoreboard Icon" className="icon" />
+        <img src={scoreboard} alt="Scoreboard Icon" className="icons" />
         Scoreboard
       </button>
       <button onClick={() => handleScrollToSection('teacher-attendance')}>
-        <img src={attendance} alt="Attendance Icon" className="icon" />
+        <img src={attendance} alt="Attendance Icon" className="icons" />
         Attendance
       </button>
       <button onClick={() => handleScrollToSection('teacher-student-record')}>
-        <img src={studentrecoard} alt="Student Record Icon" className="icon" />
+        <img src={studentrecoard} alt="Student Record Icon" className="icons" />
         Student Record
       </button>
     </div>
