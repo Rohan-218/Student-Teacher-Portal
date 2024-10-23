@@ -18,7 +18,7 @@ const BranchList = () => {
       const params = new URLSearchParams();
 
       if (filters.branch_name) {
-        params.append('branch_name', filters.branch_name);
+        params.append('branchName', filters.branch_name);
       }
       if (filters.semester) {
         params.append('semester', filters.semester);

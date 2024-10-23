@@ -7,8 +7,7 @@ exports.getAllTeachers = async () => {
       u.user_id,
       t.teacher_name,
       u.email,
-      u.is_active,
-      pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
+      u.is_active
     FROM teacher t
     JOIN users u ON t.user_id = u.user_id
   `;
@@ -26,8 +25,7 @@ exports.getAllTeachers = async () => {
 // Fetch teachers by branch and semester
 exports.getTeachersByBranchAndSemester = async (branchName, semester) => {
   const query = `
-    SELECT t.teacher_name, u.email,  u.is_active, u.user_id,
-           pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
+    SELECT t.teacher_name, u.email,  u.is_active, u.user_id
     FROM teacher t
     JOIN users u ON t.user_id = u.user_id
     WHERE t.teacher_id IN (
@@ -56,8 +54,7 @@ exports.getTeachersByBranchAndSemester = async (branchName, semester) => {
 // Search teachers by name
 exports.searchTeachersByName = async (name) => {
   const query = `
-    SELECT t.teacher_name, u.email,  u.is_active, u.user_id,
-           pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
+    SELECT t.teacher_name, u.email,  u.is_active, u.user_id
     FROM teacher t
     JOIN users u ON t.user_id = u.user_id
     WHERE t.teacher_name ILIKE :name

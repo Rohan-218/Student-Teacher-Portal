@@ -1,7 +1,5 @@
-// userLogController.js
 const { fetchUserLogs, fetchUserActivity, fetchEmailActivity } = require('../services/activityService');
 
-// Controller to handle fetching all user logs
 exports.getUserLogs = async (req, res) => {
     try {
 
@@ -9,7 +7,7 @@ exports.getUserLogs = async (req, res) => {
         if (userType !== 0 && userType !== 3) {
             return res.status(403).json({ message: 'Access denied. Only admins access user log data.'});
         }
-        // Call service to fetch all logs
+        
         const logs = await fetchUserLogs();
 
         // Send the logs in response

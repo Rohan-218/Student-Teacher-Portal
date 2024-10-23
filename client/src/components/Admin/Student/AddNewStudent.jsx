@@ -14,6 +14,7 @@ const AddNewStudent = () => {
     semester: '',
     contactNo: '',
   });
+  const [loading, setLoading] = useState(false);  // New loading state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +23,7 @@ const AddNewStudent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       // Retrieve the token from local storage
       const token = localStorage.getItem('token');
@@ -67,6 +69,7 @@ const AddNewStudent = () => {
       semester: '',
       contactNo: '',
     });
+    setLoading(false);
   };
 
   const [branches, setBranches] = useState([]);
@@ -153,7 +156,9 @@ const AddNewStudent = () => {
           </div>
           <div className="form-buttons">
             <button className="btn" type="button" onClick={handleCancel}>Clear</button>
-            <button className="btn" type="submit">Submit</button>
+            <button className="btn" type="submit" disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit'} 
+            </button>
           </div>
         </form>
       </main>

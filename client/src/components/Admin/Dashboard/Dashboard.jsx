@@ -153,8 +153,6 @@ const Dashboard = () => {
             alt="image"         
             />
         </div> 
-       
-
       </main>
     </div>
   );
