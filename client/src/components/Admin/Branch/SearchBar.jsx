@@ -7,7 +7,6 @@ const SearchBar = ({ onFilter }) => {
 
   // Handle input change for both the text input and the dropdown
   const handleChange = (e) => {
-    console.log(e.target.value)
     const updatedFilters = {
       ...filters,
       [e.target.name]: e.target.value,
