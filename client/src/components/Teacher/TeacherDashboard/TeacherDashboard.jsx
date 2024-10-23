@@ -45,7 +45,7 @@ function TeacherDashboard() {
     <div className="teacher-dashboard">
       <Sidebar handleScrollToSection={handleScrollToSection} />  
       <div className="container-section">
-          <h2 className="sh">Dashboard</h2>
+          <h2 className="sh" id='teacher-dashboard'>Dashboard</h2>
         <div className="teacher-profile-section">
           {teacherData ? (
             <TeacherProfile data={teacherData} />
@@ -53,15 +53,15 @@ function TeacherDashboard() {
             <p>Loading teacher profile...</p>
           )}
         </div>
-          <h2 className="sh">Scoreboard</h2>
+          <h2 className="sh" id='teacher-scoreboard'>Scoreboard</h2>
         <div className='teacher-table-container'>
           <TeacherScoreboard />
         </div>
-          <h2 className="sh">Attendance</h2>
+          <h2 className="sh" id='teacher-attendance'>Attendance</h2>
         <div className='teacher-table-container'>
           <TeacherAttendance />
         </div>
-          <h2 className="sh">Student Record</h2>
+          <h2 className="sh" id='teacher-student-record'>Student Record</h2>
          <div className='teacher-table-container'>
           <StudentRecord />
         </div>
