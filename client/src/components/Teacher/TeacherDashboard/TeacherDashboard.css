@@ -1,6 +1,6 @@
 :root {
   --navbar-height: 30%;  /* Height of the navbar */
-  --sidebar-width: 18%;   /* Sidebar width */
+  --sidebar-width: 15%;   /* Sidebar width */
   --main-bg-color: #e9ecef; /* Main background color */
   --section-bg-color: #f9f9f9; /* Section background color */
   --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color */
@@ -17,7 +17,7 @@
   height: 100vh; /* Full viewport height */
   /* border: 1px solid red; */
   /* overflow: visible !important; */
-   margin-left: 19%;
+   margin-left: 16%;
   transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
 }
 
