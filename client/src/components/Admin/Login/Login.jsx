@@ -98,9 +98,9 @@ const AdminLogin = () => {
   return (
     <div className="adlogin-page-container">
       <nav className="adnavbar-container">
-        <NavLink to="/" className="adnavbar-link">
+         <NavLink to="/" className="adnavbar-link">
           XYZ UNIVERSITY
-        </NavLink>
+         </NavLink>
       </nav>
       <div className="adcontent-wrapper">
         <div className="adsidebar-section">
@@ -118,7 +118,7 @@ const AdminLogin = () => {
         
         <div className="adlogin-form-container">
           <h1 className="adlogin-heading">Login</h1>
-          <form onSubmit={onSubmitForm}>
+          <form className="form"onSubmit={onSubmitForm}>
             <div className="adinput-group">
               <label className="adinput-label">Email:</label>
               <input

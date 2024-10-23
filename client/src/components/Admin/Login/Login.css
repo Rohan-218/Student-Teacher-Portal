@@ -4,41 +4,46 @@
   font-family: Arial, sans-serif;
   background-color: #258d9b; 
 }  */
-
 /* Page layout */
 .adlogin-page-container {
-  display: flex;
-  flex-direction: column; /* Stack navbar on top of content */
-  height: 100vh;
+  /* display: flex;
+  flex-direction: column; Stack navbar on top of content */
+  display: grid;
+  grid-template-rows: 7fr 93fr ;
+  height: 100dvh;
+  margin:0%;
+  overflow-y:hidden;
 }
-
-
 /* Navbar styling */
-.adnavbar-container {
-  background-color: #14617d; /* Darker blue */
+ .adnavbar-container {
+   background-color: #14617d; 
+  padding: 7px 20px;
   color: white;
-  padding: 15px;
   text-align: left;
-  font-size: 24px; /* Larger font size for the title */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-  width: 110%;
-}
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* width: 96.1%; */
+} 
 
 /* Layout for content container */
 .adcontent-wrapper {
-  display: flex; /* Sidebar and login container side by side */
-  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  height: 92dvh;
 }
 
 /* Sidebar styling */
 .adsidebar-section {
   background-color: #14617db0;
-  width: 50%; /* Set sidebar width */
+  /* width: 50%; Set sidebar width 
   padding: 70px 20px;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  align-items: center; */
+  /* display: flex;
+  flex-direction: column; */
+  display: grid;
+  height: 95dvh;
 }
 
 .adsidebar-title {
@@ -53,7 +58,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 20px;
+  padding: 0px;
+  margin-top: 7%;
 }
 
 .adprofile-image {
@@ -65,27 +71,26 @@
 
 /* Login form styling */
 .adlogin-form-container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #ffffff;
+  display: grid; 
+  grid-template-rows: 10% 90%;
+  /* flex-direction: column; */
+    justify-content: center; 
+   align-items: center;
+  /* background-color: #ffffff;
   padding: 30px;
-  margin-bottom: 100px;
-  width: 50%;
+  margin-bottom: 7%; */
+  /* width: 50%; */
 }
-
 /* Form input styling */
 .adinput-group {
-  margin-bottom: 15px;
+  margin-top: 5%;
   width: 100%; 
 }
 
 .adinput-label {
   display: block; /* Block for better spacing */
   margin-bottom: 5px; /* Spacing below label */
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .adinput-field {
@@ -107,7 +112,7 @@
   height: 40px;
   width: 270px;
   font-size: 20px;
-  margin-top: 8px;
+  margin-top: 8%;
 }
 
 .adlogin-button:hover {
@@ -125,17 +130,12 @@
 
 /* Heading styling */
 .adlogin-heading {
-  margin-bottom: 30px; /* Space between heading and form */
+  display: grid;
+  margin-top: 90%;
+  text-align: center;
   color: #333; /* Darker text for contrast */
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
-
-/* Navbar title styling */
-.adnavbar-container {
-  background-color: #14617d; /* Add your preferred background color */
-  padding: 10px;
-}
-
 /* Styling for the link */
 .adnavbar-link {
   text-decoration: none; /* Removes the underline */
@@ -175,8 +175,11 @@
   }
 
 }
-@media (max-width: 626px) {
+@media (max-width: 600px) {
   .adsidebar-section {
     display: none; /* This hides the sidebar */
+  }
+  .adlogin-form-container{
+  margin: 0%;
   }
 }

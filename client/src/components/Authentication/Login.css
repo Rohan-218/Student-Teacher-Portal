@@ -213,7 +213,7 @@
 
 .toggle-password {
   position: absolute; /* Position absolute to the right */
-  right: 2.2%; /* Space from the right */
+  right: 4%; /* Space from the right */
   top: 67%; /* Center vertically */
   transform: translateY(-50%); /* Adjust for exact centering */
   background: none; /* No background */
