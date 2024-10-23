@@ -36,10 +36,11 @@
   background-color: #eaf1f9;
 }
 
-.Sidebar .icon {
+.Sidebar .icons {
   width: 20px;
   height: 20px; /* Icon size remains the same */
   color:black;
+  
 }
 
 /* Media query for smaller desktop screens */
@@ -50,7 +51,7 @@
   }
 
   .Sidebar button {
-    font-size: 2vw; /* Adjust button text size */
+    font-size: 14px; /* Adjust button text size */
     padding: 12px; /* Smaller padding for buttons */
   }
 }
