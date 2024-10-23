@@ -14,6 +14,7 @@ const TeacherAttendance = () => {
   const [attendanceList, setAttendanceList] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
   const [buttonText, setButtonText] = useState('Save');
+  const [isSaving, setIsSaving] = useState(false);
   const [dataFetched, setDataFetched] = useState(false);
   
  
@@ -98,13 +99,14 @@ const TeacherAttendance = () => {
             // Initialize attendance records based on student list
             const freshAttendanceList = studentList.map((student) => ({
               enrollment_no: student.enrollment_no,
-              status: '', // Mark attendance status as empty for fresh entry
+              status: 'MARK', // Mark attendance status as empty for fresh entry
             }));
   
+            setStudentList(freshAttendanceList); // Update student list to show default 'MARK' status
             setAttendanceList(freshAttendanceList); // Initialize attendance list
             setIsUpdating(false); // Not in update mode
             setButtonText('Save'); // Reset button text to 'Save'
-            alert('No attendance data found. You can now mark attendance.');
+            // alert('No attendance data found. You can now mark attendance.');
           }
           setDataFetched(true); // Mark data as fetched to prevent continuous alert
         } catch (error) {
@@ -141,6 +143,8 @@ const handleAttendanceSubmit = async () => {
     return;
   }
 
+  setIsSaving(true); // Disable button
+
   // Ensure the attendance list contains both enrollment_no and status for each student
   // Only include modified students for the update
   const formattedAttendanceList = attendanceList
@@ -152,6 +156,7 @@ const handleAttendanceSubmit = async () => {
 
   if (isUpdating && formattedAttendanceList.length === 0) {
     alert("No changes to update.");
+    setIsSaving(false); // Re-enable button if no changes
     return;
   }
 
@@ -191,6 +196,9 @@ const handleAttendanceSubmit = async () => {
     setDataFetched(false); // Reset the data fetched flag for new data fetch
   } catch (error) {
     alert(`Failed to ${isUpdating ? 'update' : 'upload'} attendance: ${error.message}`);
+  }
+  finally {
+    setIsSaving(false); // Re-enable button after the request completes
   }
 };
 
@@ -250,6 +258,8 @@ const handleAttendanceSubmit = async () => {
           attendanceList={attendanceList}
           onSave={handleAttendanceSubmit}
           isUpdating={isUpdating}
+          buttonText={isSaving ? (isUpdating ? 'Updating...' : 'Saving...') : buttonText} // Update button text dynamically
+          isSaving={isSaving} // Disable the button while saving or updating
           onToggleAttendance={toggleStudentAttendance} // Pass the toggle function
         />
       </div>

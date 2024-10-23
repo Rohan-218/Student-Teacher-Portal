@@ -3,7 +3,7 @@ import '../../common/Sidebar.css';
 import dashboard from '/src/assets/TeacherSidebar_icon/dashboard.png'
 import scoreboard from  '/src/assets/TeacherSidebar_icon/exam.png' 
 import attendance from  '/src/assets/TeacherSidebar_icon/checking-attendance.png'
-import studentrecoard from  '/src/assets/TeacherSidebar_icon/cabinet.png'
+import studentrecoard from  '/src/assets/TeacherSidebar_icon/srecode.png'
 
 
 
