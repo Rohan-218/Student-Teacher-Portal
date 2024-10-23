@@ -58,6 +58,7 @@ button{
   margin: 20px; /* Space between logo and welcome message */
  
 }
+
 .welcome{
   font-size: 27px;
   margin: 0px 0px;
@@ -84,5 +85,4 @@ button{
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
-  
 }

@@ -17,3 +17,12 @@
   font-size: 26px;
   margin: 2% 1%;
 }
+@media(max-width:550px){
+  .logo-circle{
+    margin: 0%;
+    min-width: 90px;
+  }
+  .teacher-profile-section{
+    margin:0%;
+  }
+}

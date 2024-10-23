@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../common/Sidebar.css';
+import './Sidebar.css';
 import dashboard from '/src/assets/TeacherSidebar_icon/dashboard.png'
 import scoreboard from  '/src/assets/TeacherSidebar_icon/exam.png' 
 import attendance from  '/src/assets/TeacherSidebar_icon/checking-attendance.png'

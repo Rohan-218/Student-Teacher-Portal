@@ -1,6 +1,6 @@
 /* Default Styles for Desktop */
 .content {
-  margin-left: 260px; /* Adjust the margin to match the sidebar width */
+  margin-left: 200px; /* Adjust the margin to match the sidebar width */
   padding-top: 3%;
   padding-left: 1%;
   text-align: center;
@@ -52,6 +52,11 @@
 .student-welcome{
   margin: 0px;
 }
+/* .Container-section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+} */
 
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 800px) {

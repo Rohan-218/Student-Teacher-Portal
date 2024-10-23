@@ -73,7 +73,8 @@
     width: 100%; /* Make the dashboard full width */
   }
   .container-section {
-      margin-left: 25%;
+      /* margin-left: 25%; */
+      margin-top: 2%;
       width: 100%;
   }
 
@@ -97,13 +98,19 @@
 }
 /* Media Query for mobile devices (below 768px) */
 @media (max-width: 768px) {
-  .teacher-sidebar {
+  /* .teacher-sidebar {
     display: none;
-  }
+  } */
 
   .teacher-dashboard {
     width: 100%;
     margin: 0; /* Remove any margin */
+  }
+  .container-section{
+    margin: 0%;
+    /* margin-left: 7%; */
+    margin-top: 1%;
+    padding: 0%;
   }
 
   .teacher-content {
