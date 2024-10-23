@@ -20,6 +20,16 @@
    margin-left: 19%;
   transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
 }
+
+
+
+.container-section {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    width: 100%;
+}
+
 .teacher-content {
   display: flex;
   flex-direction: column; /* Stack sections vertically */
