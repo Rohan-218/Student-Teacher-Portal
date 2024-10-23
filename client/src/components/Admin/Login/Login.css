@@ -202,3 +202,16 @@
     width: 40%;
   }
 }
+
+@media (max-height: 350px) {
+  .login-form-container {
+    width: 60%;
+    margin: 2% 0;
+  }
+
+  .adlogin-form-container {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+}
