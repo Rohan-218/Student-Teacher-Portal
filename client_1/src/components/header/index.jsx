@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
-import './Navbar.css'; // Import the CSS file
-import profile from '/src/assets/AdminHeader/profileadmin.jpg';
+import './index.css'; // Import the CSS file
+import profile from '/src/assets/Navbar/profileadmin.jpg';
 import account from '/src/assets/Navbar/admin.png';
 import contact from '/src/assets/Navbar/contact.png';
-import info from '/src/assets/Navbar_icon/informationicon.webp';
+import info from '/src/assets/Navbar/information.png';
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const location = useLocation(); // Get the current path
