@@ -59,6 +59,7 @@
   .Sidebar button {
     font-size: 10px;
     padding: 7px;
+    border-radius: 11px;
   }
   .Sidebar {
     width: 16%; /* Increase the width for smaller screens */
