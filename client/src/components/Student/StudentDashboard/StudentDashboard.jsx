@@ -76,7 +76,7 @@ const StudentDashboard = () => {
     <div className="student-dashboard">
       <StudentSidebar onScroll={scrollToSection} />
       <div className="content">
-         <section ref={dashboardRef} className="container-section">
+         <section ref={dashboardRef} className="Container-section">
               <h2 className='sh'> Dashboard</h2>
            <div className="details">
              <div className="profile">

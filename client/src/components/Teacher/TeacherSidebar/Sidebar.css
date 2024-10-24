@@ -36,22 +36,33 @@
 }
 
 .Sidebar .icons {
-  width: 20px;
-  height: 20px; /* Icon size remains the same */
+  width: 18px;
+  height: 18px; /* Icon size remains the same */
   color:black;
   
 }
 
-/* Media query for smaller desktop screens */
-@media (max-width: 1024px) {
+/* Media query for desktop screens and mobile */
+@media (max-width: 1066px) {
   .Sidebar {
-    width: 25vw; /* Increase the width for smaller screens */
+    width: 15%; /* Increase the width for smaller screens */
     padding-top: 150px; /* Adjust padding */
   }
 
   .Sidebar button {
-    font-size: 14px; /* Adjust button text size */
-    padding: 12px; /* Smaller padding for buttons */
+    font-size: 12px; /* Adjust button text size */
+    padding: 10px; /* Smaller padding for buttons */
+    gap:5px;
+  }
+}
+@media (max-width: 1000px){
+  .Sidebar button {
+    font-size: 10px;
+    padding: 7px;
+  }
+  .Sidebar {
+    width: 16%; /* Increase the width for smaller screens */
+    padding-top: 150px; /* Adjust padding */
   }
 }
 @media(max-width: 768px){
@@ -64,6 +75,7 @@
     font-size: 0px;
     background-color: transparent;
     padding: 0%;
+    padding-bottom: 20px;
     border-radius:0;
 
   }
@@ -74,5 +86,11 @@
   .icons{
     height: 10px;
     width: 10px;
+  }
+}
+@media(max-width: 768px){
+  .Sidebar{
+    width: 8%;
+    padding:15% 0% 0% 2%;
   }
 }

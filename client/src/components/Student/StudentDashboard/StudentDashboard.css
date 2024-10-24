@@ -94,8 +94,13 @@
   }
   
 }
-@media (max-width: 400px){
+@media (max-width: 450px){
 .profile h2{
  font-size: 1.5rem;
 }
+}
+.Container-section {
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px 20px; */
 }

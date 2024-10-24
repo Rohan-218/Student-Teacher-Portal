@@ -81,8 +81,3 @@ button{
   align-items: center;
   margin-bottom: 20px; /* Add margin between profile and other details */
 }
-.container-section {
-  display: flex;
-  flex-direction: column;
-  /* padding: 10px 20px; */
-}
