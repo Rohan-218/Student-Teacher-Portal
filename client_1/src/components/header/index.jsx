@@ -1,23 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './index.css'; // Import the CSS file
 import profile from '/src/assets/Navbar/profileadmin.jpg';
 import account from '/src/assets/Navbar/admin.png';
 import contact from '/src/assets/Navbar/contact.png';
-import info from '/src/assets/Navbar/information.png';
+import info from '/src/assets/Navbar/informationicon.webp';
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
-  const location = useLocation(); // Get the current path
-  const [showDropdown, setShowDropdown] = useState(false); // State to show/hide dropdown box
-  const profileRef = useRef(null); // Reference to profile container
-  const navigate = useNavigate(); // For navigation after logout
+  const location = useLocation(); 
+  const [showDropdown, setShowDropdown] = useState(false);
+  const profileRef = useRef(null);
+  const navigate = useNavigate(); 
 
   const isHomePage = location.pathname === '/';
   const isLoginPage = location.pathname === '/login';
 
   const toggleDropdown = () => {
-    // dropdown if user is logged in
     if (isLoggedIn) {
       setShowDropdown((prevState) => !prevState);
     }
@@ -31,14 +29,14 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     if (!isHomePage) {
       navigate('/login');
     }
-    setShowDropdown(false); // Hide dropdown after logout
+    setShowDropdown(false);
   };
 
-  // Close the dropdown when clicking outside the profile container
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
-        setShowDropdown(false); // Close the dropdown if clicked outside
+        setShowDropdown(false);
       }
     };
 
@@ -51,12 +49,11 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token); // Set login status based on token presence
+    setIsLoggedIn(!!token); 
   }, [location, setIsLoggedIn]);
 
   const handleNavigateAndScroll = (section) => {
     if (!isHomePage) {
-      // Navigate back to the homepage and scroll to the section
       navigate('/');
       setTimeout(() => {
         document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
@@ -81,13 +78,6 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             </RouterLink>
           </div>
         )}
-
-        {/* <div className='sli'>
-          <span className="snav-link" onClick={() => handleNavigateAndScroll('top')}>
-            <img src={home} alt="Home Icon" className="icon1" />
-            Home
-          </span>
-        </div> */}
 
         <div className='sli'>
           <span className="snav-link" onClick={() => handleNavigateAndScroll('about-us')}>
