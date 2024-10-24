@@ -154,7 +154,6 @@ const StudentRecord = () => {
     </div>
   
 
-
       </div>
 
       {/* Record details below buttons */}

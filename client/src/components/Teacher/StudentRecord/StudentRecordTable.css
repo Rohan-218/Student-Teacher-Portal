@@ -7,7 +7,7 @@
 }
 
 .teacher-student-record-table table {
-    width: 87%;
+    /* width: 87%; */
     border-collapse: collapse;
     border: 1px solid #ddd;
 }
@@ -105,3 +105,7 @@
         width: 100%;
     }
 }
+
+.exam-hide {
+    width: 1000px;
+} 
