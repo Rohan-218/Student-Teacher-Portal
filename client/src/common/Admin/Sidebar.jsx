@@ -1,14 +1,14 @@
 import React, { useState,useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';  // Import specific styles for Sidebar
-import dashboard from '/src/assets/AdminSiderbar_icons/dashboard.png'
-import user from '/src/assets/AdminSiderbar_icons/user.webp'
-import student from '/src/assets/AdminSiderbar_icons/student.webp'
-import teacher from '/src/assets/AdminSiderbar_icons/teacher.webp'
-import subject from'/src/assets/AdminSiderbar_icons/subject.png'
-import branch from'/src/assets/AdminSiderbar_icons/branch.webp'
-import exam from '/src/assets/AdminSiderbar_icons/exam.webp'
-import useractivity from '/src/assets/AdminSiderbar_icons/UserActivity.webp'
+import dashboard from '/src/assets/AdminSiderbar_icons/dashboard8.png'
+import user from '/src/assets/AdminSiderbar_icons/user.png'
+import student from '/src/assets/AdminSiderbar_icons/student.png'
+import teacher from '/src/assets/AdminSiderbar_icons/teacher.png'
+import subject from'/src/assets/AdminSiderbar_icons/sub.png'
+import branch from'/src/assets/AdminSiderbar_icons/branchs.png'
+import exam from '/src/assets/AdminSiderbar_icons/exam.png'
+import useractivity from '/src/assets/AdminSiderbar_icons/user0ac.png'
 
 
 const Sidebar = () => {
