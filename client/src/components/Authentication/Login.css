@@ -195,16 +195,6 @@
   }
 }
 
-.alert-box {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
 .password-container {
   position: relative; /* Position relative to allow absolute positioning */
   width: 100%; /* Full width */
