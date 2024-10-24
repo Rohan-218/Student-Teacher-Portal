@@ -35,12 +35,18 @@
   background-color: #eaf1f9;
 }
 
-.Sidebar .icons {
+.Sidebar .icon12 {
   width: 18px;
   height: 18px; /* Icon size remains the same */
   color:black;
+ 
   
 }
+.mobile-icon {
+ 
+  display: none; /* Hide mobile icon by default */
+}
+
 
 /* Media query for desktop screens and mobile */
 @media (max-width: 1066px) {
@@ -68,7 +74,7 @@
 }
 @media(max-width: 768px){
   .Sidebar{
-    width: 7%;
+    width: 8%;
     padding:15% 0% 0% 2%;
   }
   .Sidebar button {
@@ -80,18 +86,41 @@
     border-radius:0;
 
   }
+  .icon12{
+    display: none;
+  }
+  
+  .mobile-icon {
+    display: inline; /* Show mobile icon on mobile */
+    height: 20px;
+    width: 20px;     }
+
   .Sidebar button:hover {
     background-color:transparent;
   }
   
-  .icons{
-    height: 10px;
-    width: 10px;
-  }
+ 
 }
 @media(max-width: 768px){
   .Sidebar{
     width: 8%;
     padding:15% 0% 0% 2%;
+  }
+}
+@media(max-width:540px)
+{
+  .Sidebar {
+    display:none;
+    /* width: 7%;
+    padding: 15% 0% 0% 2%; */
+}
+   .mobile-icon {
+    display:none;
+    /* height: 15px;
+    width: 15px; */
+   }
+   .container-section {
+    margin: 0%;
+    margin-left: 5%;
   }
 }

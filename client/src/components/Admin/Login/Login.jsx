@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
@@ -13,25 +13,8 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-  const [alertMessage, setAlertMessage] = useState(''); // New state for session expiration alert
   const navigate = useNavigate();
   const secretKey = import.meta.env.VITE_SECRET_KEY;
-
-  useEffect(() => {
-    const expirationTime = localStorage.getItem('tokenExpiration');
-    const currentTime = new Date().getTime();
-
-    if (expirationTime && currentTime < expirationTime) {
-      const timeRemaining = expirationTime - currentTime;
-      const timeoutId = setTimeout(() => {
-        checkTokenExpiration();
-      }, timeRemaining);
-
-      return () => clearTimeout(timeoutId); // Cleanup on unmount
-    } else {
-      checkTokenExpiration(); // Immediately check if token is expired
-    }
-  }, []);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -54,8 +37,14 @@ const AdminLogin = () => {
 
         if (token) {
           localStorage.setItem('token', token);
-          const expirationTime = new Date().getTime() + 60 * 60 * 1000; // Token expiration in 1 hour
+          const expirationTime = new Date().getTime() +  3 * 60 * 60 * 1000; // Token expiration in 1 hour
           localStorage.setItem('tokenExpiration', expirationTime);
+          const intervalId = setInterval(() => {
+            const result = checkTokenExpiration();
+            if (result) {
+              clearInterval(intervalId);
+            }
+          } , 5 * 60 * 1000);
 
           const decodedToken = jwtDecode(token);
 
@@ -82,13 +71,21 @@ const AdminLogin = () => {
   const checkTokenExpiration = () => {
     const expirationTime = localStorage.getItem('tokenExpiration');
     const currentTime = new Date().getTime();
-
-    if (expirationTime && currentTime > expirationTime) {
+    console.log('Checking token expiration');
+    
+    if (currentTime > expirationTime) {
       localStorage.removeItem('token');
       localStorage.removeItem('tokenExpiration');
-      setAlertMessage('Session expired. Please log in again.');
-      setTimeout(() => navigate('/'), 1000); // Redirect after 1 second
+      
+      alert('Session expired. Please log in again');
+      
+      setTimeout(() => { 
+        navigate('admin/admin-login');
+      }, 500); 
+
+      return true;
     }
+
   };
 
   const togglePasswordVisibility = () => {
@@ -153,13 +150,6 @@ const AdminLogin = () => {
               <button type="submit">Login</button>
             </form>
             {message && <p className={message.includes('successful') ? 'adsuccess-message' : 'aderror-message'}>{message}</p>}
-            
-            {/* Alert box for session expiration */}
-            {alertMessage && (
-              <div className="alert-box">
-                {alertMessage}
-              </div>
-            )}
           </div>
         </div>
       </div>
