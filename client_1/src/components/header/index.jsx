@@ -5,7 +5,6 @@ import './Navbar.css'; // Import the CSS file
 import profile from '/src/assets/AdminHeader/profileadmin.jpg';
 import account from '/src/assets/Navbar/admin.png';
 import contact from '/src/assets/Navbar/contact.png';
-//import home from '/src/assets/Navbar_icon/home-page-white-icon.webp';
 import info from '/src/assets/Navbar_icon/informationicon.webp';
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
