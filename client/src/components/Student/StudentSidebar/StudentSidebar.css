@@ -24,7 +24,7 @@
   padding: 11px 16px; /* Adjust padding for a better look */
   cursor: pointer;
   background-color:#F9F9F9 ;
-  border-radius: 20px;
+  border-radius: 15px;
   color: black;
   font-size: 14px;
   font-weight: bold;
@@ -53,6 +53,27 @@
 
 .Hamburger1.hide {
   display: none; /* Hide hamburger when sidebar is open */
+}
+@media (max-width: 2000px){
+  .Sidebar1 button{
+    padding: 20px 30px;
+    font-size: 17px;
+    margin:20px;
+  }
+}
+@media (max-width: 1500px){
+  .Sidebar1 button{
+    padding: 15px 20px;
+    font-size: 14px;
+    margin:20px;
+  }
+}
+@media (max-width: 1250px){
+  .Sidebar1 button{
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
 }
 
 /* Media Query for Mobile View */
@@ -87,6 +108,7 @@
 @media (max-width: 989px){
   .Sidebar1 button{
     padding: 9px 9px;
+    border-radius: 11px;
   }
   .Sidebar1{
     width: 15%;
