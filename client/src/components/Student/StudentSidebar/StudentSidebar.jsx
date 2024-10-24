@@ -35,15 +35,15 @@ const StudentSidebar = ({ onScroll }) => {
       {(isOpen || !isMobile) && (
         <div className={`Sidebar1 ${isMobile && !isOpen ? 'collapsed' : ''}`}>
          <button onClick={() => onScroll('dashboard')}>
-        <img src={dashboard} alt="Dashboard Icon" className="icon" />
+        <img src={dashboard} alt="Dashboard Icon" className="icon1" />
         Dashboard
       </button>
       <button onClick={() => onScroll('scoreboard')}>
-        <img src={scoreboad} alt="Scoreboard Icon" className="icon" />
+        <img src={scoreboad} alt="Scoreboard Icon" className="icon1" />
         Scoreboard
       </button>
       <button onClick={() => onScroll('attendance')}>
-        <img src={attendace} alt="Attendance Icon" className="icon" />
+        <img src={attendace} alt="Attendance Icon" className="icon1" />
         Attendance
       </button>
         </div>
