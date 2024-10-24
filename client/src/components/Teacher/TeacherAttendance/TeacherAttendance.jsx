@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './TeacherAttendance.css';
 import axios from 'axios';
 import AttendanceTable from './AttendanceTable';
 
 const TeacherAttendance = () => {
-  const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState('');
   const [date, setDate] = useState('');
   const [lecture, setLecture] = useState('');
@@ -184,8 +182,11 @@ const TeacherAttendance = () => {
       // Clear state for fresh entries
       setDate('');
       setLecture('');
-      setAttendanceList([]);
-      setSelectedSubject('');
+      setAttendanceList(studentList.map(student => ({
+        enrollment_no: student.enrollment_no,
+        status: 'MARK',
+      })));
+
       setDataFetched(false);
     } catch (error) {
       alert(`Failed to ${isUpdating ? 'update' : 'upload'} attendance: ${error.message}`);
@@ -249,7 +250,7 @@ const TeacherAttendance = () => {
           onSave={handleAttendanceSubmit}
           isUpdating={isUpdating}
           buttonText={isSaving ? (isUpdating ? 'Updating...' : 'Saving...') : buttonText}
-          toggleStudentAttendance={toggleStudentAttendance}
+          onToggleAttendance={toggleStudentAttendance}
           isSaving={isSaving}
         />
       </div>
