@@ -69,6 +69,7 @@
   .contact-info {
     flex-direction: column; /* Change to row for smaller screens */
     font-size: 16px;
+    padding-left: 0;
   }
 
 .sh3{
@@ -90,6 +91,7 @@
 
 .map h2{
   display : block;
+  margin-bottom: 10px;
   font-size: 20px;
 }
 

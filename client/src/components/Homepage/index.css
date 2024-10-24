@@ -168,4 +168,12 @@
   .background-image {
     max-width: 100%; /* Ensure the image takes the full width */
   }
+
+  .copyright{
+    font-size: 14px;
+  }
+  .footer-icon img{
+    width: 20px;
+    height: 20px;
+  }
 }
