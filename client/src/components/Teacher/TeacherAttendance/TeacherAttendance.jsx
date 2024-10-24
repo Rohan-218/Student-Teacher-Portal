@@ -100,7 +100,6 @@ const TeacherAttendance = () => {
               status: 'MARK',
             }));
 
-            setStudentList(freshAttendanceList);
             setAttendanceList(freshAttendanceList);
             setIsUpdating(false);
             setButtonText('Save');
