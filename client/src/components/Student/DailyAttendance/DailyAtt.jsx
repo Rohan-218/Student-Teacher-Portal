@@ -4,12 +4,12 @@ import './DailyAtt.css';
 
 const DailyAttendance = () => {
   const [attendanceData, setAttendanceData] = useState([]);
-  const [studentData, setStudentData] = useState(null); // State for student data
+  const [studentData, setStudentData] = useState(null);
 
   // Fetch student data from the API
   const fetchStudentData = async () => {
     try {
-      const token = localStorage.getItem('token'); // Get token from local storage
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:3000/api/students/profile', {
         method: 'GET',
         headers: {
@@ -32,7 +32,7 @@ const DailyAttendance = () => {
   // Fetch attendance data from the API
   const fetchAttendanceData = async () => {
     try {
-      const token = localStorage.getItem('token'); // Get token from local storage
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:3000/api/students/attendance-daily-record', {
         method: 'GET',
         headers: {
@@ -53,21 +53,21 @@ const DailyAttendance = () => {
   };
 
   useEffect(() => {
-    fetchStudentData(); // Fetch student data when the component mounts
-    fetchAttendanceData(); // Fetch attendance data when the component mounts
+    fetchStudentData();
+    fetchAttendanceData();
   }, []);
 
   // Group attendance data by subject for rendering
   const groupedData = attendanceData.reduce((acc, record) => {
     const { subject_code, subject_name, attendance_record_id, date, total_lectures, percentage, status } = record;
 
-    if (!subject_code) return acc; // Skip if subject_code is not defined
+    if (!subject_code) return acc;
 
     // Initialize subject data if not already present
     if (!acc[subject_code]) {
       acc[subject_code] = {
         subject_name,
-        records: [] // Store all records for each subject
+        records: []
       };
     }
 
@@ -86,9 +86,9 @@ const DailyAttendance = () => {
   // Prepare attendance entries for rendering
   const attendanceEntries = Object.values(groupedData);
 
-  // Sort records within each subject by total lectures in ascending order
+  // Sort records within each subject by date in descending order
   attendanceEntries.forEach(entry => {
-    entry.records.sort((a, b) => (a.total_lectures || 0) - (b.total_lectures || 0));
+    entry.records.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date descending
   });
 
   return (
@@ -97,7 +97,7 @@ const DailyAttendance = () => {
 
       {/* Attendance details section */}
       <div className="Attendance-Details">
-        {studentData && ( // Render student data if available
+        {studentData && (
           <>
             <span>Name: {studentData.student_name}</span>
             <span>Enrollment No.: {studentData.enrollment_no}</span>
@@ -122,7 +122,6 @@ const DailyAttendance = () => {
                   <tr>
                     <th>Date</th>
                     <th>Total Lectures</th>
-                    {/* <th>Percentage (%)</th> */}
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -132,7 +131,6 @@ const DailyAttendance = () => {
                       <tr key={recordIndex}>
                         <td>{record.date || 'N/A'}</td>
                         <td>{record.total_lectures !== null ? record.total_lectures : 'N/A'}</td>
-                        {/* <td>{record.percentage || 'N/A'}</td> */}
                         <td>{record.status || 'N/A'}</td>
                       </tr>
                     ))

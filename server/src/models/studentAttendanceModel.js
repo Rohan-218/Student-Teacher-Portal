@@ -105,45 +105,46 @@ const getAttendanceTrend = async (student_id) => {
 const getDailyAttendanceData = async (student_id) => {
     const query = `
        WITH student_info AS (
-            SELECT branch_id, semester
-            FROM student
-            WHERE student_id = :student_id
-        ),
-        subject_list AS (
-            SELECT s.subject_id, s.subject_code, s.subject_name
-            FROM branch_sem_sub bss
-            JOIN subject s ON bss.subject_id = s.subject_id
-            JOIN student_info si ON bss.branch_id = si.branch_id AND bss.semester = si.semester
-        ),
-        daily_attendance AS (
-            SELECT
-                a.subject_id,
-                ar.date, -- Fetching the date from attendance_record table
-                ar.total_lectures,
-                ar.lecture,
-                a.attendance, -- This field represents the present/absent status
-                a.percentage,
-                a.attendance_record_id,
-                CASE
-                    WHEN a.attendance = true THEN 'Present'
-                    ELSE 'Absent'
-                END AS status
-            FROM attendance a
-            JOIN attendance_record ar ON a.attendance_record_id = ar.attendance_record_id -- Joining attendance_record to get the date
-            WHERE a.student_id = :student_id
-        )
-        SELECT
-            sl.subject_code,
-            sl.subject_name,
-            da.attendance_record_id,
-            da.date,
-            da.total_lectures,
-            da.percentage,
-            da.lecture,
-            da.status
-        FROM subject_list sl
-        LEFT JOIN daily_attendance da ON sl.subject_id = da.subject_id
-        ORDER BY da.date ASC;
+    SELECT branch_id, semester
+    FROM student
+    WHERE student_id = :student_id
+),
+subject_list AS (
+    SELECT s.subject_id, s.subject_code, s.subject_name
+    FROM branch_sem_sub bss
+    JOIN subject s ON bss.subject_id = s.subject_id
+    JOIN student_info si ON bss.branch_id = si.branch_id AND bss.semester = si.semester
+),
+daily_attendance AS (
+    SELECT
+        a.subject_id,
+        ar.date, -- Fetching the date from attendance_record table
+        ar.total_lectures,
+        ar.lecture,
+        a.attendance, -- This field represents the present/absent status
+        a.percentage,
+        a.attendance_record_id,
+        CASE
+            WHEN a.attendance = true THEN 'Present'
+            ELSE 'Absent'
+        END AS status
+    FROM attendance a
+    JOIN attendance_record ar ON a.attendance_record_id = ar.attendance_record_id -- Joining attendance_record to get the date
+    WHERE a.student_id = :student_id
+)
+SELECT
+    sl.subject_code,
+    sl.subject_name,
+    da.attendance_record_id,
+    da.date,
+    da.total_lectures,
+    da.percentage,
+    da.lecture,
+    da.status
+FROM subject_list sl
+LEFT JOIN daily_attendance da ON sl.subject_id = da.subject_id
+ORDER BY da.date DESC;  
+
     `;
 
     const result = await sequelize.query(query, {
