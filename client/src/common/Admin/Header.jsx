@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';  // Use useNavigate for redirection
 import './Header.css';  // Import specific styles for Header
-import mange_admin from '/src/assets/AdminHeader/mange_admin.png';
-import logout from '/src/assets/AdminHeader/logout.png'; 
-import password from '/src/assets/AdminHeader/Change_password.png';
+import mange_admin from '/src/assets/AdminHeader/human.png';
+import logout from '/src/assets/AdminHeader/logout1.png'; 
+import password from '/src/assets/AdminHeader/password.png';
 import profile from '/src/assets/AdminHeader/profileadmin.jpg';
 
 const Header = () => {
