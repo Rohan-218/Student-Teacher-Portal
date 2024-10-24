@@ -150,12 +150,8 @@
   }
 
   .ssidebar-section {
-    width: 100%; /* Full width for sidebar on mobile */
-    height: auto; /* Auto height for mobile */
-    padding: 20px; /* Adjust padding for mobile */
-    display: none; /* Hide sidebar on mobile */
+    display: none; 
   }
-
   .sprofile-image-container {
     position: relative;
     height: 50vh; /* Set image container height */
@@ -166,8 +162,8 @@
   }
 
   .login-container {
-    width: 100%; /* Full width for mobile */
-    height: 100vh;
+    width: 93.4%; /* Full width for mobile */
+    height: 93%;
     padding: 20px;
     background-color: #c4dcf3;
     position: absolute; /* Position over the image */
@@ -227,3 +223,11 @@
   color: rgb(56, 56, 59); /* Change color if desired */
 }
 
+@media (max-width: 438px) {
+  .sform {
+      width: 80%;
+      height:fit-content;
+      margin-top: 7%;
+      background-color: rgba(255, 255, 255, 0.9);
+  }
+}

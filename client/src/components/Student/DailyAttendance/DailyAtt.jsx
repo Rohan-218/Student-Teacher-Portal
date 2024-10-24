@@ -5,6 +5,8 @@ import './DailyAtt.css';
 const DailyAttendance = () => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [studentData, setStudentData] = useState(null);
+  const [currentPage, setCurrentPage] = useState({}); // Store current page for each subject
+  const recordsPerPage = 5;
 
   // Fetch student data from the API
   const fetchStudentData = async () => {
@@ -91,6 +93,14 @@ const DailyAttendance = () => {
     entry.records.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date descending
   });
 
+  // Handle page change for specific subject
+  const handlePageChange = (subjectCode, direction) => {
+    setCurrentPage(prevState => ({
+      ...prevState,
+      [subjectCode]: Math.max(1, (prevState[subjectCode] || 1) + direction)
+    }));
+  };
+
   return (
     <div className="Daily">
       <h1>Daily Attendance Record</h1>
@@ -110,39 +120,62 @@ const DailyAttendance = () => {
         {attendanceEntries.length === 0 ? (
           <div>No attendance data available.</div>
         ) : (
-          attendanceEntries.map((entry, index) => (
-            <div key={index}>
-              <div className="Sub1">
-                <span>Subject: {entry.subject_name}</span>
-              </div>
+          attendanceEntries.map((entry, index) => {
+            const totalPages = Math.ceil(entry.records.length / recordsPerPage);
+            const currentSubjectPage = currentPage[entry.subject_code] || 1;
+            const indexOfLastRecord = currentSubjectPage * recordsPerPage;
+            const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+            const currentRecords = entry.records.slice(indexOfFirstRecord, indexOfLastRecord);
 
-              {/* Attendance table for each subject */}
-              <table className="Attendance-Table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Total Lectures</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {entry.records.length > 0 ? (
-                    entry.records.map((record, recordIndex) => (
-                      <tr key={recordIndex}>
-                        <td>{record.date || 'N/A'}</td>
-                        <td>{record.total_lectures !== null ? record.total_lectures : 'N/A'}</td>
-                        <td>{record.status || 'N/A'}</td>
-                      </tr>
-                    ))
-                  ) : (
+            return (
+              <div key={index}>
+                <div className="Sub1">
+                  <span>Subject: {entry.subject_name}</span>
+                </div>
+
+                {/* Attendance table for each subject */}
+                <table className="Attendance-Table">
+                  <thead>
                     <tr>
-                      <td colSpan="4">No records available</td>
+                      <th>Date</th>
+                      <th>Total lectures </th>
+                      <th>Status</th>
                     </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          ))
+                  </thead>
+                  <tbody>
+                    {currentRecords.length > 0 ? (
+                      currentRecords.map((record, recordIndex) => (
+                        <tr key={recordIndex}>
+                          <td>{record.date || 'N/A'}</td>
+                          <td>{record.total_lectures !== null ? record.total_lectures : 'N/A'}</td>
+                          <td>{record.status || 'N/A'}</td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="4">No records available</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+                <div className="Pagination-Controls">
+                  <button
+                    onClick={() => handlePageChange(entry.subject_code, -1)}
+                    disabled={currentSubjectPage === 1}
+                  >
+                    &laquo;
+                  </button>
+                  <span> {currentSubjectPage} of {totalPages}</span>
+                  <button
+                    onClick={() => handlePageChange(entry.subject_code, 1)}
+                    disabled={currentSubjectPage === totalPages}
+                  >
+                    &raquo;
+                  </button>
+                </div>
+              </div>
+            );
+          })
         )}
       </div>
 

@@ -97,6 +97,25 @@
     font-size: 0.9rem;
   }
 }
+.Pagination-Controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.Pagination-Controls button {
+  /* padding: 0px 0px; */
+  margin: 0px 5px;
+  font-size: 2rem;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.Pagination-Controls span {
+  margin: 0 2px;
+}
+
 
 /* Media query for tablets and smaller laptops */
 @media (max-width: 1024px) {
