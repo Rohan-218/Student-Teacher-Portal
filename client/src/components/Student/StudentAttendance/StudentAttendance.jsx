@@ -106,10 +106,14 @@ const StudentAttendance = () => {
                 </div>
                 <div className="Info-Right">
                   <div className="Pie-Chart-Container">
+                  {subject.totalClasses === 0 || subject.classesAttended === 0 ? (
+                    <p>No data available.</p>
+                   ) : (
                     <Pie
                       data={getPieChartData(subject.classesAttended, subject.totalClasses)}
                       options={pieChartOptions}
                     />
+                   )}
                   </div>
                 </div>
               </div>
