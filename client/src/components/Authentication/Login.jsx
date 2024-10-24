@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState  } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; 
 import './Login.css';
@@ -10,26 +10,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [alertMessage, setAlertMessage] = useState(''); // New state for alert message
-  const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const secretKey = import.meta.env.VITE_SECRET_KEY;
-
-  useEffect(() => {
-    const expirationTime = localStorage.getItem('tokenExpiration');
-    const currentTime = new Date().getTime();
-
-    if (expirationTime && currentTime < expirationTime) {
-      const timeRemaining = expirationTime - currentTime;
-      const timeoutId = setTimeout(() => {
-        checkTokenExpiration();
-      }, timeRemaining);
-      
-      return () => clearTimeout(timeoutId); // Cleanup on unmount or token change
-    } else {
-      checkTokenExpiration(); // Immediately check if token is expired
-    }
-  }, []);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -61,13 +44,19 @@ const Login = () => {
   const handleLoginSuccess = (token) => {
     if (token) {
       localStorage.setItem('token', token);
-      const expirationTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour in milliseconds
+      const expirationTime = new Date().getTime() + 3* 60 * 60 * 1000; 
       localStorage.setItem('tokenExpiration', expirationTime);
+      const intervalId = setInterval(() => {
+        const result = checkTokenExpiration();
+        if (result) {
+          clearInterval(intervalId);
+        }
+      } , 5 * 60 * 1000);
 
       const decodedToken = jwtDecode(token);
       
       if (decodedToken.user_type === 1) {
-        setMessage('Login successful!'); // Student
+        setMessage('Login successful!');
         setTimeout(() => navigate('/student-dashboard'), 1000);
       } else if (decodedToken.user_type === 2) {
         setMessage('Login successful!'); // Teacher
@@ -87,14 +76,24 @@ const Login = () => {
   const checkTokenExpiration = () => {
     const expirationTime = localStorage.getItem('tokenExpiration');
     const currentTime = new Date().getTime();
+    console.log('Checking token expiration');
     
-    if (expirationTime && currentTime > expirationTime) {
+    if (currentTime > expirationTime) {
       localStorage.removeItem('token');
       localStorage.removeItem('tokenExpiration');
-      setMessage('Session expired. Please log in again.'); // Set alert message
-      setTimeout(() => navigate('/login'), 1000); // Redirect user after 1 second
+      
+      alert('Session expired. Please log in again');
+      
+      setTimeout(() => { 
+        navigate('/login');
+      }, 500); 
+
+      return true;
     }
+
   };
+  
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(prev => !prev); // Toggle password visibility
@@ -148,12 +147,6 @@ const Login = () => {
             <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>
               {message}
             </p>
-          )}
-          {/* Alert box for session expiration */}
-          {alertMessage && (
-            <div className="alert-box">
-              {alertMessage}
-            </div>
           )}
         </div>
       </div>

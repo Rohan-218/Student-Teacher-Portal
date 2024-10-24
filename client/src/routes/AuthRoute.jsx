@@ -21,7 +21,7 @@ const AuthRoute = ({ children }) => {
   // Check if userType is 0 or 3
   if (!token || (userType !== 0 && userType !== 3)) {
     alert('Access denied. Only admins are allowed to view this page.'); // Alert for unauthorized access
-    return <Navigate to="/admin/admin-login" replace />;
+    return <Navigate to="/admin/admin-login" />;
   }
 
   return children;
