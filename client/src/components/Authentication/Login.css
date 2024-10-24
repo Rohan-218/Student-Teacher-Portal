@@ -196,16 +196,15 @@
 }
 
 .alert-box {
-  margin-top: 20px; /* Space above the alert */
-  padding: 15px; /* Inner padding */
-  background-color: #ffcccc; /* Light red background */
-  color: #c00; /* Dark red text */
-  border: 1px solid #c00; /* Dark red border */
-  border-radius: 5px; /* Rounded corners */
-  text-align: center; /* Centered text */
-  font-weight: bold; /* Bold text */
-  transition: opacity 0.5s ease; /* Fade-in effect */
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
 }
+
 .password-container {
   position: relative; /* Position relative to allow absolute positioning */
   width: 100%; /* Full width */

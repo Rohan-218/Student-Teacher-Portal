@@ -22,12 +22,12 @@ exports.login = async (email, password) => {
       const token = jwt.sign(
           { user_id: user.user_id, user_type: user.user_type }, 
           process.env.JWT_SECRET, 
-          { expiresIn: '1h' }
+          { expiresIn: '3h' }
       );
 
       // Get the current time in Asia/Kolkata timezone
       const createdAt = moment.tz(Date.now(), 'Asia/Kolkata').toDate(); // Current time for created_at
-      const expiresAt = moment.tz(Date.now(), 'Asia/Kolkata').add(1, 'hour').toDate(); // Expiration time
+      const expiresAt = moment.tz(Date.now(), 'Asia/Kolkata').add(3, 'hour').toDate(); // Expiration time
 
       // Store the generated token in the token_blacklist table with Asia/Kolkata times
       await storeToken(user.user_id, token, expiresAt, createdAt, false); // Store token with created_at and is_blacklisted = false

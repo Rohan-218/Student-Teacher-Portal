@@ -26,7 +26,8 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setIsLoggedIn(false); // Update state
+    localStorage.removeItem('expirationTime');
+    setIsLoggedIn(false); 
 
     if (!isHomePage) {
       navigate('/login');
