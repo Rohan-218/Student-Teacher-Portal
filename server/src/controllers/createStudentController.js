@@ -5,11 +5,7 @@ const sendEmailNotification = require('../utils/emailservice');
 exports.createStudent = async (req, res) => {
   try {
     const studentData = req.body;
-    const  { user_id, user_type } = req.user;
-
-    if (user_type !== 0 && user_type !== 3) {
-      return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
-    }
+    const user_id = req.user.user_id;
     const result = await createStudentService.createStudent(studentData);
     const { name, email, password } = studentData;
 
@@ -20,10 +16,9 @@ exports.createStudent = async (req, res) => {
       const emailResponse = await sendEmailNotification(email, text, subject);
       insertEmailActivity(email, subject, `New Student Account- ${name} has been Successfully added!`);
       if (emailResponse) {
-        console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
+        console.log('Emails sent successfully:', emailResponse);
       }
     } catch (error) {
-      // Log detailed error from SendGrid
       console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
       return res.status(200).json({ message: 'Account created - Unable to send email.' });
     }

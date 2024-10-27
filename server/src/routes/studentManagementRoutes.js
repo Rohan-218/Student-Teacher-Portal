@@ -4,28 +4,21 @@ const { getStudentCount, getStudentProfile, updateStudentIsActive } = require('.
 const { getAllStudents, getStudentsByBranchAndSemester, searchStudentsByName } = require('../controllers/adminStudentListController');
 const {createStudent} = require('../controllers/createStudentController');
 const  {updateStudentDetails} = require('../controllers/updateStudentDetailsController');
-const { getStudentAttendance, getStudentAttendanceTrend, getStudentDailyAttendance} = require('../controllers/adminStuAttenController');
-
-
+const { getStudentAttendance, getStudentAttendanceTrend } = require('../controllers/adminStuAttenController');
+const { admin } = require('../middleware/isAllowed');
 const router = express.Router();
 
-router.get('/count', getStudentCount);
-
-router.get('/', getAllStudents);
-router.get('/branch-semester', getStudentsByBranchAndSemester);
-router.get('/search', searchStudentsByName);
-router.put('/update', updateStudentIsActive);
-
-router.get('/profile/:userId', getStudentProfile);
-router.put('/edit', updateStudentDetails);
-router.get('/Marks/:userId/:examId' , getStudentMarks);
-router.get('/marksPerformance/:userId', getStudentPerformance);
-
-// Route to get student attendance
-router.get('/attendance/:userId', getStudentAttendance);
-// Define the route for fetching attendance trend
-router.get('/attendance-trend', getStudentAttendanceTrend);
-
-router.post('/create', createStudent);
+router.get('/count', admin, getStudentCount);
+router.get('/', admin, getAllStudents);
+router.get('/branch-semester', admin, getStudentsByBranchAndSemester);
+router.get('/search', admin, searchStudentsByName);
+router.put('/update', admin, updateStudentIsActive);
+router.get('/profile/:userId', admin, getStudentProfile);
+router.put('/edit', admin, updateStudentDetails);
+router.get('/Marks/:userId/:examId', admin,  getStudentMarks);
+router.get('/marksPerformance/:userId', admin, getStudentPerformance);
+router.get('/attendance/:userId', admin, getStudentAttendance);
+router.get('/attendance-trend', admin, getStudentAttendanceTrend);
+router.post('/create', admin, createStudent);
 
 module.exports = router;
