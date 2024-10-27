@@ -8,17 +8,18 @@ const { getStudentAttendance, getStudentAttendanceTrend } = require('../controll
 const { admin } = require('../middleware/isAllowed');
 const router = express.Router();
 
-router.get('/count', admin, getStudentCount);
-router.get('/', admin, getAllStudents);
-router.get('/branch-semester', admin, getStudentsByBranchAndSemester);
-router.get('/search', admin, searchStudentsByName);
-router.put('/update', admin, updateStudentIsActive);
-router.get('/profile/:userId', admin, getStudentProfile);
-router.put('/edit', admin, updateStudentDetails);
-router.get('/Marks/:userId/:examId', admin,  getStudentMarks);
-router.get('/marksPerformance/:userId', admin, getStudentPerformance);
-router.get('/attendance/:userId', admin, getStudentAttendance);
-router.get('/attendance-trend', admin, getStudentAttendanceTrend);
-router.post('/create', admin, createStudent);
+router.use(admin);
+router.get('/count',  getStudentCount);
+router.get('/',  getAllStudents);
+router.get('/branch-semester',  getStudentsByBranchAndSemester);
+router.get('/search',  searchStudentsByName);
+router.put('/update',  updateStudentIsActive);
+router.get('/profile/:userId',  getStudentProfile);
+router.put('/edit',  updateStudentDetails);
+router.get('/Marks/:userId/:examId',   getStudentMarks);
+router.get('/marksPerformance/:userId',  getStudentPerformance);
+router.get('/attendance/:userId',  getStudentAttendance);
+router.get('/attendance-trend',  getStudentAttendanceTrend);
+router.post('/create',  createStudent);
 
 module.exports = router;

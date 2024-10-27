@@ -9,7 +9,7 @@ const scheduler = require('./scheduler/scheduler');
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable CORS
+app.use(cors());
 app.use(morgan('dev')); 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -28,12 +28,11 @@ const examRoutes = require('./routes/examRoutes.js');
 const marksRoutes = require('./routes/marksBelowRoutes');
 const branchSemSubRoutes = require('./routes/branchSemSubRoutes');
 
-// // Use routes
 app.get('/', (req, res) => res.send('Server is Running'));
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use(authenticate);
-// Authenticate middleware;
+
+app.use(authenticate); //Authenticate Middleware
 
 app.use('/api/students', studentRoutes);
 app.use('/api/teachers', teacherRoutes); 

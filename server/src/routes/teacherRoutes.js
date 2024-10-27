@@ -13,20 +13,21 @@ const { getTotalLectures, getUpdatedLast } = require('../controllers/totalLectur
 const attendanceController = require('../controllers/attendanceBelowController');
 const { teacher } = require('../middleware/isAllowed');
 
-router.get('/attendance/below-threshold', teacher, attendanceController.getStudentsBelowAttendanceThreshold);
-router.get('/atten/marks', teacher, fetchAttendanceAndMarks);
-router.get('/total-lectures', teacher, getTotalLectures);
-router.get('/updated-last', teacher, getUpdatedLast);
-router.get('/profile', teacher, getTeacherProfile);
-router.get('/subjects', teacher, teacherSubController.getSubjectsByTeacher);
-router.get('/subject-students', teacher, teacherSubStudentController.getStudentsBySubject);
-router.post('/attendance/upload', teacher, uploadAttendance);
-router.get('/attendance/get', teacher, getUploadedAttendance);
-router.put('/attendance/update', teacher, teachUpdateAttendanceController.updateAttendance);
-router.get('/attendance/range', teacher, getAttendanceByDateRange);
-router.post('/marks/upload', teacher, teacherMarksController.uploadMarks);
-router.get('/marks', teacher, teacherMarksController.getMarks);
-router.put('/marks/update', teacher, teacherUpdateMarksController.updateMarks);
-router.get('/students/below-threshold', teacher, marksController.getStudentsBelowThreshold);
+router.use(teacher);
+router.get('/attendance/below-threshold', attendanceController.getStudentsBelowAttendanceThreshold);
+router.get('/atten/marks', fetchAttendanceAndMarks);
+router.get('/total-lectures', getTotalLectures);
+router.get('/updated-last', getUpdatedLast);
+router.get('/profile', getTeacherProfile);
+router.get('/subjects', teacherSubController.getSubjectsByTeacher);
+router.get('/subject-students', teacherSubStudentController.getStudentsBySubject);
+router.post('/attendance/upload', uploadAttendance);
+router.get('/attendance/get', getUploadedAttendance);
+router.put('/attendance/update', teachUpdateAttendanceController.updateAttendance);
+router.get('/attendance/range', getAttendanceByDateRange);
+router.post('/marks/upload', teacherMarksController.uploadMarks);
+router.get('/marks', teacherMarksController.getMarks);
+router.put('/marks/update', teacherUpdateMarksController.updateMarks);
+router.get('/students/below-threshold', marksController.getStudentsBelowThreshold);
 
 module.exports = router;

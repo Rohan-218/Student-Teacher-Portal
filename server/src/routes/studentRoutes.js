@@ -5,11 +5,12 @@ const {getStudentProfile } = require('../controllers/studentController');
 const { getStudentAttendance, getStudentAttendanceTrend, getStudentDailyAttendance} = require('../controllers/studentAttendanceController');
 const { student } = require('../middleware/isAllowed');
 
-router.get('/profile', student, getStudentProfile);
-router.get('/marks/:examId', student, getStudentMarks);
-router.get('/marksPerformance', student, getStudentPerformance);
-router.get('/attendance', student, getStudentAttendance);
-router.get('/attendance-trend', student, getStudentAttendanceTrend);
-router.get('/attendance-daily-record', student, getStudentDailyAttendance);
+router.use(student);
+router.get('/profile', getStudentProfile);
+router.get('/marks/:examId', getStudentMarks);
+router.get('/marksPerformance', getStudentPerformance);
+router.get('/attendance', getStudentAttendance);
+router.get('/attendance-trend', getStudentAttendanceTrend);
+router.get('/attendance-daily-record', getStudentDailyAttendance);
 
 module.exports = router;

@@ -5,16 +5,13 @@ const {updatePasswordAdmin} = require('../controllers/updatePasswordAdminControl
 const { admin, superAdmin } = require('../middleware/isAllowed');
 const router = express.Router();
 
-// Define the route to get manage admins
-router.get('/admins', admin, getAdmins);
+router.use(admin);
+router.get('/admins', getAdmins);
+router.put('/reset-password', updatePasswordAdmin)
+router.get('/user-logs', getUserLogs);
+router.get('/user-activity', getUserActivity);
+router.get('/user-email', getEmailActivity);
 router.post('/create', superAdmin, createAdmin);
 router.put('/update', superAdmin, updateAdminIsActive);
-
-router.put('/reset-password', admin, updatePasswordAdmin)
-
-// Define the route to get user activity
-router.get('/user-logs', admin, getUserLogs);
-router.get('/user-activity', admin, getUserActivity);
-router.get('/user-email', admin, getEmailActivity);
 
 module.exports = router;

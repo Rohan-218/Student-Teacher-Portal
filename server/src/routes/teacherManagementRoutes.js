@@ -6,13 +6,14 @@ const  {updateTeacherDetails} = require('../controllers/updateTeacherDetailsCont
 const { admin } = require('../middleware/isAllowed');
 const router = express.Router();
 
-router.get('/count', admin, getTeacherCount);
-router.put('/update', admin, updateTeacherIsActive);
-router.get('/profile/:userId', admin, getTeacherProfile);
-router.get('/', admin, getAllTeachers);
-router.put('/edit', admin, updateTeacherDetails);
-router.get('/branch-semester', admin, getTeachersByBranchAndSemester);
-router.get('/search', admin, searchTeachersByName);
-router.post('/create', admin, createTeacherController.createTeacher);
+router.use(admin);
+router.get('/count', getTeacherCount);
+router.put('/update', updateTeacherIsActive);
+router.get('/profile/:userId', getTeacherProfile);
+router.get('/', getAllTeachers);
+router.put('/edit', updateTeacherDetails);
+router.get('/branch-semester', getTeachersByBranchAndSemester);
+router.get('/search', searchTeachersByName);
+router.post('/create', createTeacherController.createTeacher);
 
 module.exports = router;
