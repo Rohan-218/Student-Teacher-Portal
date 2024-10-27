@@ -27,6 +27,7 @@ const UserActivityList = () => {
             <Sidebar />
             <div className="main-content">
                 <div className="container">
+                    <span>User Type</span>
                     <div className={activeTable === 2 ? 'date-filter' : 'filter-section'}>
                         {/* Only show User Type dropdown for User Logs and User Activity */}
                         {activeTable !== 2 && (

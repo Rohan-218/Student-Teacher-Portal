@@ -79,11 +79,11 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
 
     return (
         <div className="user-activity-table">
-            <h3>
+            <h5>
                 {tableType === 'log' && 'User Logs'}
                 {tableType === 'activity' && 'User Activity'}
                 {tableType === 'email' && 'Email Activity'}
-            </h3>
+            </h5>
 
             {/* Arrow buttons above the table headers */}
             <div className="arrow-container">

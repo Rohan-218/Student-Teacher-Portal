@@ -60,6 +60,7 @@ const StudentList = () => {
       <Sidebar />
       <div className="main-content">
         <div className="container">
+        <span>Students</span>
           <SearchBar onSearch={handleSearch} fetchInitialStudents={fetchInitialStudents} />
           <StudentTable students={students} setStudents={setStudents} />
         </div>

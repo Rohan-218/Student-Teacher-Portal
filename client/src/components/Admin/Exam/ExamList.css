@@ -62,14 +62,6 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .exam-table {
-      margin-top: 2%;
-      }
-  }
-
  /* Modal overlay */
 .modal {
   position: fixed;
@@ -106,11 +98,17 @@
 
 /* Button for adding new exam */
 .add-exam-button-container {
-  text-align: right;
-  margin-bottom: 10px;
+   display: flex;
+   justify-content: space-between;
+}
+.add-exam-button-container span{
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .add-exam-btn {
+  display: flex;
   padding: 8px 16px;
   background-color: #14617d;
   color: white;
@@ -121,6 +119,12 @@
 
 .add-exam-btn:hover {
   background-color: rgba(56, 108, 163, 0.796);
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+  .exam-table {
+    margin-top: 2%;
+    }
 }
 
  

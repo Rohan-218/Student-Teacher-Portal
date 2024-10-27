@@ -81,6 +81,7 @@ const SubjectList = () => {
       <Sidebar />
       <div className="main-content">
         <div className="container">
+          <span>Subject</span>
           <SearchBar onFilter={handleFilter} />
           {loading && <p>Loading subjects...</p>}
           {error && <p className="error-message">{error}</p>}

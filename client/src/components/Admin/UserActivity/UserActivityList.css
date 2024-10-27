@@ -24,6 +24,7 @@
   }
   
   .user-type-dropdown {
+    margin-top: 2%;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
