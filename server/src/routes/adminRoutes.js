@@ -10,7 +10,6 @@ router.get('/admins', admin, getAdmins);
 router.post('/create', superAdmin, createAdmin);
 router.put('/update', superAdmin, updateAdminIsActive);
 
-// Define the route to reset user password
 router.put('/reset-password', admin, updatePasswordAdmin)
 
 // Define the route to get user activity
