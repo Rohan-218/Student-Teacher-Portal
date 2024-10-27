@@ -1,6 +1,6 @@
-import { Navbar } from './navbar.jsx';
-import { Sidebar } from './sidebar.jsx';
-import { Container, ChildContainer, Holder } from './container.jsx';
+import { Navbar } from '../header/styles.jsx';
+import { Sidebar } from '../sidebar/styles.jsx';
+import { Container, ChildContainer, Holder } from './styles.jsx';
 
 const Page = () => {
     return (
