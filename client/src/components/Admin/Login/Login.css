@@ -82,7 +82,7 @@
   display: grid;
   text-align: center;
   color: #333; 
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .adinput-group {
@@ -130,7 +130,7 @@
   transition: background-color 0.3s;
   height: 40px;
   width: 100%;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 8%;
 }
 
@@ -191,7 +191,7 @@
 
   .login-form-container {
     padding: 4%;
-    width: 80%;
+    width: 50%;
     border-radius: 8px;
     background-color: #f3fcff;
   }

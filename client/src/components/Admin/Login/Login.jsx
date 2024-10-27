@@ -119,7 +119,7 @@ const AdminLogin = () => {
         
         <div className="adlogin-form-container">
           <div className='login-form-container'>
-            <h1>Login</h1>
+            <h2>Login</h2>
             <form onSubmit={onSubmitForm}>
               <div className="adinput-group">
                 <label>Email:</label>

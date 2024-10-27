@@ -12,22 +12,6 @@
   overflow-y: auto; /* Allow scrolling if content overflows */
   transition: transform 0.3s ease, width 0.3s ease; /* Smooth slide-in and width changes */
 }
-
-@media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%); /* Hide sidebar */
-    width: 0; /* Collapse width when hidden */
-    display: none;
-  }
-
-  .sidebar.open {
-    transform: translateX(0); /* Show sidebar when open */
-    width: 100%; /* Sidebar width when visible */
-    display: block;
-     /* position: absolute;  */
-  }
-}
-
 /* Hamburger button for mobile */
 .adhamburger {
   display: none;
@@ -41,17 +25,10 @@
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .adhamburger {
-    display: block; /* Show hamburger button on mobile */
-  }
-}
-
-
 /* Sidebar Styles */
 .sidebar h3 {
-  text-align: center;
-  font-size: 22px;
+  text-align: left;
+  font-size: 16px;
   color: white;
   margin-bottom: 20px;
 }
@@ -85,3 +62,22 @@
 .sidebar .active-link {
   font-weight: bolder;
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%); /* Hide sidebar */
+    width: 0; /* Collapse width when hidden */
+    display: none;
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Show sidebar when open */
+    width: 100%; /* Sidebar width when visible */
+    display: block;
+     /* position: absolute;  */
+  }
+  .adhamburger {
+    display: block; /* Show hamburger button on mobile */
+  }
+}
+

@@ -9,7 +9,7 @@ const Contact = () => {
         <div className="contact-info">
           <div className="info-item">
             <h3 className='sh3'>Address:</h3>
-            <p className='sp'>XYZ University, 123 College Road, Jaipur, Rajasthan, 302001</p>
+            <p className='sp'>XYZ University, 246, Rani Path, Rani Sati Nagar, Nirman Nagar, Brijlalpura, Jaipur, Rajasthan 302019</p>
           </div>
           <div className="info-item">
             <h3 className='sh3'>Phone:</h3>

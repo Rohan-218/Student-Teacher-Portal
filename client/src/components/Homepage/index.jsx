@@ -6,7 +6,7 @@ import Contact from './contact-us/Contact.jsx';
 import {jwtDecode} from 'jwt-decode'; // Import jwtDecode
 import './index.css';
 
-import profile from '/src/assets/Portal/HomePage/home2.png';
+import profile from '/src/assets/Portal/HomePage/home project image.png';
 import linkedIn from '/src/assets/Portal/HomePage/linkedin.png';
 import insta from '/src/assets/Portal/HomePage/instagram.png';
 import twitter from '/src/assets/Portal/HomePage/twitter.png';
@@ -29,20 +29,20 @@ const Index = () => {
 
         // If user_type is 1 or 2, show "GO TO PROFILE" button
         if (user_type === 1 || user_type === 2) {
-          setButton('GO TO PROFILE');
+          setButton('Go To Profile');
           setIsLoggedIn(true);
         } else {
           // If user_type is not 1 or 2, show "LOGIN" button
-          setButton('LOGIN');
+          setButton('Login');
           setIsLoggedIn(false);
         }
       } catch (error) {
         console.error("Invalid token", error);
-        setButton('LOGIN');  // Set to LOGIN in case of any error
+        setButton('Login');  // Set to LOGIN in case of any error
         setIsLoggedIn(false);
       }
     } else {
-      setButton('LOGIN');
+      setButton('Login');
       setIsLoggedIn(false);
     }
   }, [isLoggedIn]);
