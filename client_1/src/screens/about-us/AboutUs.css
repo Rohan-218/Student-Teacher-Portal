@@ -1,0 +1,76 @@
+.about {
+    padding: 65px 65px 20px 65px;
+  }
+  
+  .home-h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 30px;
+  }
+  
+  .section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .photo-space {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 16px;
+    color: white;
+  }
+  
+  .description {
+    flex: 1;
+  }
+  
+  .description h2 {
+    margin-bottom: 10px;
+  }
+  
+  .description p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .section img {
+    width: 150px;  /* Set a fixed width */
+    height: 150px; /* Set a fixed height */
+    object-fit: cover; /* Ensure the image scales correctly */
+    border-radius: 10px; /* Optional: Add rounded corners */
+  }
+  
+  /* Media query for phones */
+  @media (max-width: 600px) {
+    .about {
+      padding: 30px;
+    }
+    .home-h1 {
+      font-size: 20px;
+      margin-bottom: 50px;
+    }
+    .section {
+      flex-direction: column;
+    }
+  
+    .photo-space {
+      /* width: 100%; */
+      margin-bottom: 10px;
+    }
+  
+    .description {
+      margin-bottom: 0px;
+    }
+  
+    .description h2 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
