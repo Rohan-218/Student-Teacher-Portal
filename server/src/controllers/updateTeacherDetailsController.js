@@ -4,7 +4,6 @@ exports.updateTeacherDetails = async (req, res) => {
   try {
     const { teacher_name, user_id, designation, contact_no, email } = req.body;
     const userId  = req.user.user_id;
-    // Call the service to update teacher details
     const result = await updateTeacher(user_id, {
       teacher_name,
       designation,
