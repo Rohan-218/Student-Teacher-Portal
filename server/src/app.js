@@ -25,7 +25,6 @@ const teacherManagementRoutes = require('./routes/teacherManagementRoutes.js');
 const subjectRoutes = require('./routes/subjectRoutes.js');
 const branchRoutes = require('./routes/branchRoutes.js');
 const examRoutes = require('./routes/examRoutes.js');
-const marksRoutes = require('./routes/marksBelowRoutes');
 const branchSemSubRoutes = require('./routes/branchSemSubRoutes');
 
 app.get('/', (req, res) => res.send('Server is Running'));
@@ -42,7 +41,6 @@ app.use('/api/admin/teachers', teacherManagementRoutes);
 app.use('/api/admin/subjects', subjectRoutes);
 app.use('/api/admin/branches', branchRoutes);
 app.use('/api/admin/exams', examRoutes);
-app.use('/api/marks', marksRoutes);
 app.use('/api', branchSemSubRoutes);
 
 // Error handling middleware
