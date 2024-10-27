@@ -69,7 +69,8 @@ const DailyAttendance = () => {
     if (!acc[subject_code]) {
       acc[subject_code] = {
         subject_name,
-        records: []
+        records: [],
+        currentPage: 1, // Store current page for each subject independently
       };
     }
 
@@ -122,7 +123,7 @@ const DailyAttendance = () => {
         ) : (
           attendanceEntries.map((entry, index) => {
             const totalPages = Math.ceil(entry.records.length / recordsPerPage);
-            const currentSubjectPage = currentPage[entry.subject_code] || 1;
+            const currentSubjectPage = currentPage[entry.subject_name] || 1;
             const indexOfLastRecord = currentSubjectPage * recordsPerPage;
             const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
             const currentRecords = entry.records.slice(indexOfFirstRecord, indexOfLastRecord);
@@ -160,14 +161,14 @@ const DailyAttendance = () => {
                 </table>
                 <div className="Pagination-Controls">
                   <button
-                    onClick={() => handlePageChange(entry.subject_code, -1)}
+                    onClick={() => handlePageChange(entry.subject_name, -1)}
                     disabled={currentSubjectPage === 1}
                   >
                     &laquo;
                   </button>
                   <span> {currentSubjectPage} of {totalPages}</span>
                   <button
-                    onClick={() => handlePageChange(entry.subject_code, 1)}
+                    onClick={() => handlePageChange(entry.subject_name, 1)}
                     disabled={currentSubjectPage === totalPages}
                   >
                     &raquo;
