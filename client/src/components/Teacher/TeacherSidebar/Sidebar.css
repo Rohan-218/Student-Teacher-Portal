@@ -27,7 +27,7 @@
   font-weight: bold;
  border: none;
  align-items: center;
- white-space:wrap;
+ white-space:nowrap;
 }
 
 .Sidebar button:hover {
@@ -58,6 +58,11 @@
     font-size: 12px; /* Adjust button text size */
     padding: 10px; /* Smaller padding for buttons */
     gap:5px;
+  }
+}
+@media (max-width: 1200px){
+  .Sidebar button {
+    white-space: wrap;
   }
 }
 @media (max-width: 1000px){
