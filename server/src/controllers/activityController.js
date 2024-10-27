@@ -2,12 +2,6 @@ const { fetchUserLogs, fetchUserActivity, fetchEmailActivity } = require('../ser
 
 exports.getUserLogs = async (req, res) => {
     try {
-
-        const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins access user log data.'});
-        }
-        
         const logs = await fetchUserLogs();
 
         // Send the logs in response
@@ -20,11 +14,6 @@ exports.getUserLogs = async (req, res) => {
 
 exports.getUserActivity = async (req, res) => {
     try {
-
-        const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins access user activity data.'});
-        }
         const activity = await fetchUserActivity();
 
         return res.status(200).json({ success: true, data: activity });
@@ -36,11 +25,6 @@ exports.getUserActivity = async (req, res) => {
 
 exports.getEmailActivity = async (req, res) => {
     try {
-
-        const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
-            return res.status(403).json({ message: 'Access denied.'});
-        }
         const emailActivity = await fetchEmailActivity();
 
         return res.status(200).json({ success: true, data: emailActivity });

@@ -32,7 +32,7 @@ const TeacherScoreboard = () => {
           setSubjectList(subjectData);
 
           // Fetch exams
-          const examResponse = await fetch('http://localhost:3000/api/admin/exams', {
+          const examResponse = await fetch('http://localhost:3000/api/teachers/exams', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'

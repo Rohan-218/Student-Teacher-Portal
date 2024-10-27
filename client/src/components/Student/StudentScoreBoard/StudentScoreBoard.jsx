@@ -16,7 +16,7 @@ const StudentScoreboard = () => {
   const fetchExams = async () => {
     const token = localStorage.getItem('token'); // Retrieve token from local storage
     try {
-      const response = await fetch('http://localhost:3000/api/admin/exams', {
+      const response = await fetch('http://localhost:3000/api/students/exams', {
         headers: {
           Authorization: `Bearer ${token}`, // Use the token in the headers
         },

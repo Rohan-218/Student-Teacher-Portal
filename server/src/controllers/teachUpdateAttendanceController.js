@@ -1,4 +1,3 @@
-// attendanceController.js
 const sendEmailNotification = require('../utils/emailservice');
 const userService = require('../services/userService');
 const attendanceService = require('../services/teachUpdateAttendanceService');
@@ -7,12 +6,8 @@ const { insertActivity, insertEmailActivity } = require('../utils/activityServic
 const updateAttendance = async (req, res) => {
   try {
     const { subjectCode, attendanceDate, lecture, attendanceList } = req.body;
-    const {user_type, user_id} = req.user;
+    const user_id = req.user.user_id;
 
-    if (user_type !== 2) {
-      return res.status(403).json({ message: 'Unauthorized: Not a teacher!' });
-    }
-    // Validate the request body
     if (!subjectCode || !attendanceDate || !lecture || !attendanceList) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
@@ -23,11 +18,9 @@ const updateAttendance = async (req, res) => {
     const extractedStudentIds = studentIds.map(student => student.student_id);
     const subjectName = await attendanceService.getSubjectNameByCode(subjectCode);
 
-    const studentData = await userService.getUserId(extractedStudentIds); 
-     // Now that we have student emails, we can send them notifications
+    const studentData = await userService.getUserId(extractedStudentIds);
     const emailList = studentData.map(student => student.email);
     const student = studentData.map(student => student.student_name);
-    // Now that we have student emails, we can send them notifications
     try {
       const text = `Dear Student,\n\nAttendance for ${subjectName} have been updated.\n\nRegards,\nXYZ University`;
       const subject = `Attendance Updated!`;
@@ -35,10 +28,9 @@ const updateAttendance = async (req, res) => {
       const emailResponse = await sendEmailNotification(emailList, text, subject);
       insertEmailActivity(emailList, subject, `Attendance for ${subjectName} have been updated.`);
       if (emailResponse) {
-        console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
+        console.log('Emails sent successfully:', emailResponse);
       }
     } catch (error) {
-      // Log detailed error from SendGrid
       console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
       return res.status(500).json({ message: 'Error sending email notifications' });
     }

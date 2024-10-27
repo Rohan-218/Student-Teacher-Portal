@@ -1,7 +1,6 @@
 const sequelize = require('../config/dbConfig');
-const { secretKey } = require('../config/config.js'); // Assuming JWT_SECRET is in config.js
+const { secretKey } = require('../config/config.js');
 
-// Get branch_id by branch_name
 exports.getBranchIdByName = async (branchName) => {
   try {
     const query = 'SELECT branch_id FROM branch WHERE branch_name = :branchName';
@@ -16,10 +15,9 @@ exports.getBranchIdByName = async (branchName) => {
   }
 };
 
-// Create a new user in the users table with user_type set to 1 (Student)
 exports.createUser = async (userData) => {
   const { email, password } = userData;
-  const userType = 1;  // Set user_type to 1 (for student)
+  const userType = 1;
 
   if (!secretKey) {
     throw new Error('Secret key is not defined in the environment variables');
@@ -43,10 +41,8 @@ exports.createUser = async (userData) => {
   }
 };
 
-// Create a new student in the student table
 exports.createStudent = async (studentData) => {
   const { student_name, enrollment_no, user_id, branch_id, semester, contact_no } = studentData;
-
   try {
     const studentQuery = `
       INSERT INTO student (student_name, enrollment_no, user_id, branch_id, semester, contact_no)
@@ -58,7 +54,7 @@ exports.createStudent = async (studentData) => {
       type: sequelize.QueryTypes.INSERT
     });
 
-    return studentResult[0][0]; // Returning the inserted student record
+    return studentResult[0][0];
   } catch (error) {
     console.error('Error creating student:', error);
     throw new Error('Error creating student');

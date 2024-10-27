@@ -17,12 +17,7 @@ exports.updatePasswordAdmin = async (req, res) => {
     }
 
     try {
-
-        const { user_id, user_type } = req.user;
-        if (user_type !== 0 && user_type !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins can update password.' });
-        }
-
+        const user_id = req.user.user_id;
         const result = await updatePasswordAdmin(email, decryptedOldPassword, decryptedNewPassword);
         const userId = result.data;
 
