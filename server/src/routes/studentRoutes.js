@@ -3,9 +3,11 @@ const router = express.Router();
 const { getStudentMarks, getStudentPerformance } = require('../controllers/studentMarksController');
 const {getStudentProfile } = require('../controllers/studentController');
 const { getStudentAttendance, getStudentAttendanceTrend, getStudentDailyAttendance} = require('../controllers/studentAttendanceController');
+const { getExam } = require('../controllers/examController');
 const { student } = require('../middleware/isAllowed');
 
 router.use(student);
+router.get('/exams', student, getExam);
 router.get('/profile', getStudentProfile);
 router.get('/marks/:examId', getStudentMarks);
 router.get('/marksPerformance', getStudentPerformance);

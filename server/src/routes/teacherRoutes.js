@@ -11,9 +11,11 @@ const { getAttendanceByDateRange } = require('../controllers/fromToRangeControll
 const { fetchAttendanceAndMarks } = require('../controllers/attenMarksController');
 const { getTotalLectures, getUpdatedLast } = require('../controllers/totalLectureController');
 const attendanceController = require('../controllers/attendanceBelowController');
+const { getExam } = require('../controllers/examController');
 const { teacher } = require('../middleware/isAllowed');
 
 router.use(teacher);
+router.get('/exams', teacher, getExam);
 router.get('/attendance/below-threshold', attendanceController.getStudentsBelowAttendanceThreshold);
 router.get('/atten/marks', fetchAttendanceAndMarks);
 router.get('/total-lectures', getTotalLectures);

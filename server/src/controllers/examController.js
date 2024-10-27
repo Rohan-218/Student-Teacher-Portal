@@ -4,7 +4,7 @@ const { getExamById } = require('../models/examModel');
 
 exports.getExam = async (req, res) => {
   try {
-
+    console.log('running');
       const exams = await getExam();
       res.status(200).json(exams);
     } catch (error) {
