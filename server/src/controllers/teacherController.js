@@ -14,18 +14,11 @@ const { insertActivity ,insertEmailActivity } = require('../utils/activityServic
 exports.getTeacherProfile = async (req, res) => {
   try {
       
-    const {user_id, user_type} = req.user;
-
-      if (user_type !== 2) { 
-          return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
-      }
-
-      const teacher = await getTeacherProfile(user_id);
-
+    const user_id = req.user.user_id;
+    const teacher = await getTeacherProfile(user_id);
       if (!teacher) {
           return res.status(404).json({ message: 'Teacher not found' });
       }
-
       res.json(teacher);
   } catch (err) {
       res.status(500).json({ message: 'Error in teacher controller: ' + err.message });
@@ -35,31 +28,20 @@ exports.getTeacherProfile = async (req, res) => {
 exports.uploadAttendance = async (req, res) => {
   try {
       const { subjectCode, lecture, attendanceDate, attendanceList } = req.body;
-
-      const {user_id, user_type} = req.user;
-
-      if (user_type !== 2) { 
-          return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
-      }
-
-      // Validate attendance list
+      const user_id= req.user.user_id;
       if (!Array.isArray(attendanceList) || attendanceList.length === 0) {
           return res.status(400).json({ message: 'Attendance list is required and must be an array.' });
       }
 
-      // Validate other parameters
       if (!subjectCode || !lecture || !attendanceDate) {
           return res.status(400).json({ message: 'Subject code, lecture, and attendance date are required.' });
       }
 
-      // Call service to upload attendance
       const uploadResult = await uploadAttendance(subjectCode, lecture, attendanceDate, attendanceList);
-     
-
+      
       if (uploadResult.success) {
           const studentIds = await getStudentId(attendanceList);
           const extractedStudentIds = studentIds.map(student => student.student_id);
-
           const subjectName = await getSubjectNameByCode(subjectCode);
           const studentData = await userService.getUserId(extractedStudentIds);
           const emailList = studentData.map(student => student.email);
@@ -67,15 +49,13 @@ exports.uploadAttendance = async (req, res) => {
           insertActivity( user_id, 'Attendance uploaded', `Marks for ${subjectName} have been added.`);
 
           const totalLectures = await getTotalLecturesForSubject(subjectCode);
-
-          if (totalLectures % 10 === 0) { // Check if total lectures is a multiple of 10
+          if (totalLectures % 10 === 0) {
               const attendedLecturesResult = await getAttendedLecturesForStudent(extractedStudentIds, subjectCode);
               const studentsWithLowAttendance = attendedLecturesResult
                   .filter(({ attended }) => (attended / totalLectures) * 100 < 75)
                   .map(({ studentId }) => studentId);
 
               if (studentsWithLowAttendance.length > 0) {
-                  // Send email notifications to students with low attendance
                   await Promise.all(studentsWithLowAttendance.map(async (studentId, idx) => {
                       const email = emailList[idx];
                       const text = `Dear student,\n\nyour attendance for ${subjectName} has fallen below 75%.\n\nRegards,\nXYZ University`;
@@ -104,15 +84,9 @@ exports.uploadAttendance = async (req, res) => {
   }
 };
 
-// GET to retrieve uploaded attendance by subjectCode, date, and lecture
 exports.getUploadedAttendance = async (req, res) => {
   try {
       const { subjectCode, date, lecture } = req.query;
-      const  user_type  = req.user.user_type;
-      if (user_type !== 2) { 
-          return res.status(403).json({ message: 'Unauthorized: Not a teacher' });
-      }
-
       const attendanceData = await getUploadedAttendance(subjectCode, date, lecture);
       res.status(200).json(attendanceData);
   } catch (error) {
