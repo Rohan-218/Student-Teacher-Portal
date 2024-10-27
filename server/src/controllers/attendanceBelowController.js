@@ -1,8 +1,7 @@
 const attendanceService = require('../services/attendanceBelowService');
 
 const getStudentsBelowAttendanceThreshold = async (req, res) => {
-  const { subjectId, threshold } = req.query; // Accept subjectId and threshold from query parameters
-
+  const { subjectId, threshold } = req.query;
   try {
     const students = await attendanceService.fetchStudentsBelowThreshold(subjectId, threshold);
     res.status(200).json({

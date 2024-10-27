@@ -5,9 +5,9 @@ const sendEmailNotification = require('../utils/emailservice');
 const userModel = require('../models/userModel');
 const CryptoJS = require('crypto-js');
 
-// Login Controller
 exports.updateUserPassword = async (req, res) => {
     const { email, oldPassword, newPassword } = req.body;
+    const { user_id, user_type } = req.user;
 
     const decryptedOldPassword =  CryptoJS.AES.decrypt(oldPassword, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
     const decryptedNewPassword =  CryptoJS.AES.decrypt(newPassword, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
@@ -17,24 +17,25 @@ exports.updateUserPassword = async (req, res) => {
     }
 
     try {
-        
+
+        if (user_type !== 1 && user_type !== 2) {
+            return res.status(403).json({ message: 'Access denied. Only student/teacher can change there password.'});
+        }
         const result = await userService.updateUserPassword(email, decryptedOldPassword, decryptedNewPassword);
         const userId = result.data;
-        
         const userData = await userModel.getUserData(userId);
         const name = userData.map(user => user.name);
         
         try {
             const text = `Dear ${name},\n\nYour password has been successfully updated.\n\nRegards,\nXYZ University`;
             const subject = `Password updated Successfully!`;
-            insertActivity( userId, 'Password Updated', `${name} have updated his/her password.`);
+            insertActivity( user_id, 'Password Updated', `${name} have updated his/her password.`);
             const emailResponse = await sendEmailNotification(email, text, subject);
             insertEmailActivity(email, subject, `Password of ${name} updated Successfully!`);
             if (emailResponse) {
-              console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
+              console.log('Emails sent successfully:', emailResponse);
             }
           } catch (error) {
-            // Log detailed error from SendGrid
             console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
             return res.status(200).json({ message: 'Password updated- Unable to send email.' });
           }
@@ -45,7 +46,7 @@ exports.updateUserPassword = async (req, res) => {
             res.status(401).json({ message: 'Invalid email or password' });
         }
     } catch (error) {
-        console.error('Login Error:', error);  // Log the error
+        console.error('Login Error:', error);
         res.status(500).json({ message: error.message, error });
     }
 };

@@ -1,21 +1,11 @@
 const { getStudentMarks, getStudentPerformance } = require('../services/studentMarksService');
 
-// Controller method to get student marks by student ID, subject ID, and exam ID
 exports.getStudentMarks = async (req, res) => {
   const { userId, examId } = req.params;
-
-  // Validate input parameters
   if (!userId || !examId) {
     return res.status(400).json({ message: 'Missing required parameters: userId, or examId' });
   }
-
   try {
-
-    const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
-        }
-
     const marks = await getStudentMarks(userId, examId);
 
     if (marks) {
@@ -29,22 +19,13 @@ exports.getStudentMarks = async (req, res) => {
   }
 };
 
-// Controller method to get student performance by student ID
 exports.getStudentPerformance = async (req, res) => {
   const { userId } = req.params;
-
-  // Validate input parameters
   if (!userId) {
     return res.status(400).json({ message: 'No reference to this student found!!!' });
   }
 
-  try {
-
-    const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
-        }
-        
+  try {  
     const performance = await getStudentPerformance(userId);
 
     if (performance) {

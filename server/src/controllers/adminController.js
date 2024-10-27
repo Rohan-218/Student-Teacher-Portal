@@ -3,21 +3,11 @@ const userModel = require('../models/userModel');
 const { insertActivity, insertEmailActivity } = require('../utils/activityService');
 const sendEmailNotification = require('../utils/emailservice');
 
-// Controller to handle fetching all admins
 const getAdmins = async (req, res) => {
-  const requesting_user_id = req.user.user_id;  // Extract user_id from req.user
+  const user_id = req.user.user_id;
 
   try {
-
-    const userType = req.user.user_type;
-    if (userType !== 0 && userType !== 3) {
-      return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
-    }
-
-    // Fetch admin data from the service
-    const admins = await adminService.getAdmins(requesting_user_id);
-    
-    // Return the data as a JSON response
+    const admins = await adminService.getAdmins(user_id);
     res.status(200).json(admins);
   } catch (error) {
     console.error('Error fetching admin data:', error.message);
@@ -25,16 +15,11 @@ const getAdmins = async (req, res) => {
   }
 };
 
-// Create new admin account (Only user_type 0 can add new admins)
 const createAdmin = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    // Check if the user is a super admin (user_type 0)
-    const { user_type, user_id } = req.user;
-    if (user_type !== 0) {
-      return res.status(403).json({ message: 'Access denied. Only super admins can create admins.' });
-    }
+    const user_id = req.user.user_id;
 
     const result = await adminService.registerAdmin(name, email, password);
 
@@ -45,14 +30,14 @@ const createAdmin = async (req, res) => {
       const emailResponse = await sendEmailNotification(email, text, subject);
       insertEmailActivity(email, subject, `New Admin Account- ${name} has been Successfully added!`);
       if (emailResponse) {
-        console.log('Emails sent successfully:', emailResponse);  // Log the successful response from SendGrid
+        console.log('Emails sent successfully:', emailResponse); 
       }
     } catch (error) {
-      // Log detailed error from SendGrid
+      
       console.error('Error sending email:', error.response ? error.response.body.errors : error.message);
       return res.status(200).json({ message: 'Account created - Unable to send email.' });
     }
-    // Return success response
+    
     return res.status(201).json({
       message: 'Admin created successfully',
       data: result
@@ -65,20 +50,12 @@ const createAdmin = async (req, res) => {
   }
 };
 
-// Change admin active status (Only user_type 0 can update admin status)
 const updateAdminIsActive = async (req, res) => {
   const { user_id, is_active } = req.body;
 
   try {
-    // Check if the user is a super admin (user_type 0)
-    const userType = req.user.user_type;
     const userId = req.user.user_id;
 
-    if (userType !== 0) {
-      return res.status(403).json({ message: 'Access denied. Only super admins can update admin status.' });
-    }
-
-    // Call the service to update the status
     const result = await adminService.changeAdminStatus(user_id, is_active);
 
     const status = is_active ? 'active' : 'inactive';

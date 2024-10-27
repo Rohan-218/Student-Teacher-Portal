@@ -13,8 +13,6 @@ const fetchAttendanceAndMarks = async (req, res) => {
     if (!data || data.result.length === 0) {
       return res.status(404).json({ message: 'No data found for the given subject' });
     }
-
-    // Return both result and dynamic exam names in the response
     return res.status(200).json({
       examNames: data.examNames,
       result: data.result,

@@ -1,12 +1,9 @@
-// controllers/marksController.js
 const marksService = require('../services/marksBelowService');
 
-// Controller function for marks below threshold
 const getStudentsBelowThreshold = async (req, res) => {
-  // Convert query parameters to numbers
   const subjectId = parseInt(req.query.subjectId, 10);
-  const threshold = parseFloat(req.query.threshold); // Ensure threshold is a number
-
+  const threshold = parseFloat(req.query.threshold);
+4
   try {
       const students = await marksService.fetchStudentsBelowThreshold(subjectId, threshold);
       res.status(200).json({

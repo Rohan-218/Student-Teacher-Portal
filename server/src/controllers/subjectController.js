@@ -4,10 +4,7 @@ const { insertActivity } = require('../utils/activityService');
 
 exports.getSubjects = async (req, res) => {
     try {
-        // Extract filters from query parameters
         const { branchName, semester, subject_name } = req.query;
-
-        // Call service to get subjects with filters
         const subjects = await getSubjects({
             branch_name: branchName || null,
             semester: semester ? parseInt(semester, 10) : null,
@@ -27,10 +24,6 @@ exports.getSubjects = async (req, res) => {
 
 exports.getSubjectCount= async (req, res) => {
     try {
-        const userType = req.user.user_type;
-        if (userType !== 0 && userType !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins can see subject data.' });
-    }
         const count = await getSubjectCount();
         res.status(200).json({ subjectCount: count });
         } catch (error) {
@@ -42,17 +35,10 @@ exports.createSubject = async (req, res) => {
     const { subjectName, subjectCode, subjectInitials, branchName, semester} = req.body;
 
     try {
-        // Check if the user is an admin (user_type 0 or 3)
-        const  { user_id, user_type } = req.user;
-        if (user_type !== 0 && user_type !== 3) {
-            return res.status(403).json({ message: 'Access denied. Only admins can create subjects.' });
-        }
-
-        // Call the service to create the subject
+        const  user_id = req.user.user_id;
         const result = await registerSubject( subjectName, subjectCode, subjectInitials, branchName, semester);
 
         insertActivity( user_id, 'New Subject Added', `New Subject - ( ${subjectName} ) have been added.`);
-        // Return success response
         return res.status(201).json({
             message: 'Subject created successfully',
             data: result
@@ -69,13 +55,7 @@ exports.updateSubjectIsActive = async (req, res) => {
     const { subject_id, is_active } = req.body;
   
     try {
-      // Check if the user is a super admin (user_type 0)
-      const {user_id, user_type} = req.user;
-      if (user_type !== 0 && user_type !== 3) {
-        return res.status(403).json({ message: 'Access denied. Only admins can update subject status.' });
-      }
-  
-      // Call the service to update the status
+      const user_id= req.user.user_id;
       const result = await changeSubjectStatus(subject_id, is_active);
   
       const status = is_active ? 'active' : 'inactive';
