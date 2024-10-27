@@ -17,11 +17,9 @@ const Page = () => {
                     </Sidebar>
                 </div>
                 <div>
-                    <Holder>
-                        {/* <div className='h'></div> */}
-                    </Holder>
-                    {/* <div className='profile' id='2'></div>
-                    <div className='profile' id='3'></div> */}
+                    <Holder />
+                    <Holder />
+                    <Holder />
                 </div>
             </ChildContainer>
         </Container>

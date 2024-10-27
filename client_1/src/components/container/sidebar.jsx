@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Sidebar = styled.div`
-    background-color: #b9bafa;
+    background-color: #4d87c1;
     display: flex;
     position: fixed;
     width: 20dvw;
@@ -20,5 +20,9 @@ export const Sidebar = styled.div`
         width: 10dvw;
         margin: 4% 0;
         border-radius: 8px;
+    }
+
+    button:hover {
+        opacity: 0.8;
     }
 `

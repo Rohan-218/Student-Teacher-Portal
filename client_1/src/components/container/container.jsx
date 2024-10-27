@@ -19,7 +19,7 @@ export const Holder = styled.div`
     height: fit-content;
     min-height : 87dvh;
     margin: 3dvh 2.5dvw 3dvh 1dvw;
-    background-color: #b9bafa;
+    background-color: #ccc;
     border-radius: 8px;
     padding: 0;
 `
