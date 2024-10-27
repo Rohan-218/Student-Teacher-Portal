@@ -4,7 +4,6 @@ const { getTeacherProfile, uploadAttendance, getUploadedAttendance } = require('
 const teacherSubController = require('../controllers/teacherSubController');
 const teacherSubStudentController = require('../controllers/teacherSubStudentController');
 const teacherMarksController = require('../controllers/teacherMarksController.js');
-const marksController = require('../controllers/marksBelowController');
 const teacherUpdateMarksController = require('../controllers/teacherUpdateMarksController');
 const teachUpdateAttendanceController = require('../controllers/teachUpdateAttendanceController');
 const { getAttendanceByDateRange } = require('../controllers/fromToRangeController');
@@ -30,6 +29,5 @@ router.get('/attendance/range', getAttendanceByDateRange);
 router.post('/marks/upload', teacherMarksController.uploadMarks);
 router.get('/marks', teacherMarksController.getMarks);
 router.put('/marks/update', teacherUpdateMarksController.updateMarks);
-router.get('/students/below-threshold', marksController.getStudentsBelowThreshold);
 
 module.exports = router;
