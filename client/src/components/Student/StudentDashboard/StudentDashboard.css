@@ -2,7 +2,7 @@
 .content {
   margin-left: 15%; /* Adjust the margin to match the sidebar width */
   padding-top: 3%;
-  padding-left: 1%;
+  /* padding-left: 1%; */
   text-align: center;
   flex-direction: column;
   justify-content: center; /* Center content vertically */
@@ -34,6 +34,18 @@
   max-width: 100%; /* Ensure the graph doesn't exceed the screen width */
   height: auto;    /* Maintain the aspect ratio */
   margin: 0 auto;  /* Center the chart */
+}
+.sh1{
+  display: flex;
+  scroll-margin-top: var(--navbar-height);
+  margin-bottom: 20px;
+  padding: 20px;
+  margin-left: 10px;
+  width: 95%;
+  background-color: #4d87c14a;
+  border-radius: 5px;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
 }
 /* 
 .student-logo-circle {

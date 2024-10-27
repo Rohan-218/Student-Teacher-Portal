@@ -29,9 +29,7 @@
 /* Subject and Marks Dropdown styling */
 .PortalSelect {
     padding: 10px 15px;
-    border: none;
-    background-color: #4d87c1; /* Dark gray background for the dropdown */
-    color: white; /* White text color */
+    color:black; /* White text color */
     font-size: 16px; /* Adjust font size */
     border-radius: 5px; /* Adds rounded corners */
     outline: none; /* Removes the default border on focus */

@@ -94,12 +94,12 @@ const StudentDashboard = () => {
               <p><strong>Contact No: </strong>{studentData.contact_no}</p>
            </div>
         </section>
-        <section ref={scoreboardRef} className="student-container-section">
+        <section ref={scoreboardRef} className="Container-section">
         <h2 className='sh'>Scoreboard</h2>
           <StudentScoreboard />
           <Barchart />
         </section>
-        <section ref={attendanceRef} className="student-container-section">
+        <section ref={attendanceRef} className="Container-section">
         <h2 className='sh'>Attendance</h2>
           <StudentAttendance />
           <AttendanceTrendChart />

@@ -13,7 +13,7 @@ const AttendanceTrendChart = () => {
 
     // Define an array of colors for subjects
     const colors = [
-    '#57A0D2',
+    '#0077B6',
     '#48CAE4',
     '#0077B6',
     '#ADE8F4', 
@@ -72,6 +72,7 @@ const AttendanceTrendChart = () => {
                     text: 'Percentage',
                 },
                 ticks: {
+                    callback: (value) => `${value}%`,
                     font: {
                         size: window.innerWidth < 800 ? 10 : 14, // Smaller font for mobile
                     },

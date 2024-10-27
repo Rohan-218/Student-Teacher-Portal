@@ -43,7 +43,7 @@ const StudentTable = ({ students = [], setStudents, onSave, buttonText ,maxMarks
             <th>Name</th>
             <th>Enrollment No.</th>
             <th>Marks Obtained</th>
-            <th>Percent(%)</th>
+            <th>Percentage</th>
           </tr>
         </thead>
         <tbody>

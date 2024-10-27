@@ -24,11 +24,10 @@
   color: #494949;
   cursor: pointer;
   font-size: 0.8rem; /* Responsive font size */
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-weight: bold;
  border: none;
  align-items: center;
+ white-space:wrap;
 }
 
 .Sidebar button:hover {

@@ -13,7 +13,7 @@ const BarChart = () => {
 
   // Define different shades of blue
   const blueShades = [
-    '#57A0D2', // Light Blue
+    '#7AB2D3', // Light Blue
     '#48CAE4', // Medium Blue
     '#0077B6', // Darker Blue
     '#ADE8F4', // Lighter Blue
@@ -118,6 +118,10 @@ const BarChart = () => {
       y: {
         min: 0,
         max: 100,
+        title: {
+          display: true,
+          text: 'Percentage',
+      },
         ticks: {
           stepSize: 10,
           callback: (value) => `${value}%`, // Show percentages
@@ -127,6 +131,10 @@ const BarChart = () => {
         },
       },
       x: {
+        title: {
+          display: true,
+          text: 'Subjects',
+      },
         ticks: {
           font: {
             size: window.innerWidth < 800 ? 10 : 14 // Adjust font size for mobile

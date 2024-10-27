@@ -40,10 +40,11 @@
 
 .teacher-date-selection input {
     margin-left: 9px; /* Space between label and input */
-    font-size: 15px;
+    font-size: 12px;
     width: 180px;
     height: 34px;
     border-radius: 5px;
+    padding: 0px 2px;
     
 }
 
@@ -90,7 +91,6 @@
 .teacher-daily-attendance-record-table th {
     font-size: 1rem;
     letter-spacing: 1px;
-    text-transform: uppercase;
 }
 
 .teacher-daily-attendance-record-table td {
@@ -108,7 +108,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding:2px 20px ;
   white-space:nowrap;
   width:150px;

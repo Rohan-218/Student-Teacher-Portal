@@ -17,7 +17,7 @@
   height: 100vh; /* Full viewport height */
   /* border: 1px solid red; */
   /* overflow: visible !important; */
-   margin-left: 16%;
+   margin-left: 17%;
   transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
 }
 

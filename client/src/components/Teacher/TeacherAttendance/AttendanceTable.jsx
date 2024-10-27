@@ -22,7 +22,7 @@ const AttendanceTable = ({ students = [], attendanceList = [], onSave, isUpdatin
             <th>Name</th>
             <th>Enrollment No.</th>
             <th>Attendance Status</th>
-            <th>Attendance %</th>
+            <th>Percentage</th>
           </tr>
         </thead>
         <tbody>
