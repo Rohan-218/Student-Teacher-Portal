@@ -127,3 +127,23 @@
         padding: 2% 0%;
     }
  }
+ @media(max-width:420px){
+    .teacher-date-selection input{
+        width: 120px;
+        font-size: 10px;
+    }
+    .teacher-ShowDates{
+        font-size: 12px ;
+        width: 83px ;
+        padding: 10px 10px;
+    }
+    .teacher-daily-attendance-record-table td {
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .teacher-daily-attendance-record-table th {
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+}

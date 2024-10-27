@@ -7,6 +7,7 @@ import studentrecoard from  '/src/assets/TeacherSidebar_icon/srecode.png'
 import dash1 from '/src/assets/TeacherSidebar_icon/dashboard8.png'
 import score from '/src/assets/TeacherSidebar_icon/exam3.png'
 import atte from '/src/assets/TeacherSidebar_icon/attendnace2.png'
+import stuRec from '/src/assets/TeacherSidebar_icon/stuRec.png'
 
 
 
@@ -30,6 +31,7 @@ const Sidebar = ({ handleScrollToSection }) => {
       </button>
       <button onClick={() => handleScrollToSection('teacher-student-record')}>
         <img src={studentrecoard} alt="Student Record Icon" className="icon12" />
+        <img src={stuRec} alt="Mobile Attendance Icon" className="icon mobile-icon" />
         Student Record
       </button>
     </div>

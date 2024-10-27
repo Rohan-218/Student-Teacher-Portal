@@ -97,6 +97,7 @@
   }
   .teacher-save-btn:hover{
   background-color:#397a3c;
+  font-family: 'DM Sans', sans-serif; 
   }
   @media (max-width:1000px){
     .teacher-attendance-table{

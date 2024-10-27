@@ -147,9 +147,26 @@
 @media(max-width:420px){
     .Daily-att{
         margin-top: 20%;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     .Teacher-back-button{
         top: 4%;
+    }
+    .PortalSelect {
+        font-size: 12px;  
+    }   
+    .daily-teacher-RecordDetails{
+        font-size: 14px;
+    }
+    .teacher-date-selection label{
+        font-size: 14px;
+    }
+    .teacher-date-selection input{
+        width: 120px;
+        font-size: 10px;
+    }
+    .teacher-ShowDates{
+        font-size: 12px ;
+        width: 70px ;
     }
 }
