@@ -37,12 +37,13 @@ const AttenMarksModel = {
         LastAttendance AS (
           SELECT 
             a.student_id,
-            a.attended_lecture,
-            ROW_NUMBER() OVER (PARTITION BY a.student_id ORDER BY a.updated_at DESC) AS rn
+            COUNT(CASE WHEN a.attendance = true THEN 1 END) AS attended_lecture
           FROM 
             attendance AS a
           WHERE 
             a.subject_id = :subjectId
+          GROUP BY 
+            a.student_id
         )
         SELECT 
           s.student_id,
@@ -54,7 +55,6 @@ const AttenMarksModel = {
           student AS s
         LEFT JOIN LastAttendance AS la 
           ON s.student_id = la.student_id 
-          AND la.rn = 1
         LEFT JOIN TotalLectures AS tl
           ON la.student_id = s.student_id
         LEFT JOIN marks AS m 
