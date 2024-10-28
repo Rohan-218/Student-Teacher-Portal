@@ -60,6 +60,7 @@
   font-weight: normal;
   color: white;  /* Default link color */
   text-decoration: none;
+  display: flex;
 }
 
 .menu-options a.active-link {

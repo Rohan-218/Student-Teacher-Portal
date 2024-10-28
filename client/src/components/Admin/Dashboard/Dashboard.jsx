@@ -148,10 +148,7 @@ const Dashboard = () => {
         </div>
                 
         <div className="photo">
-          <img 
-            src={photo}
-            alt="image"         
-            />
+          
         </div> 
       </main>
     </div>

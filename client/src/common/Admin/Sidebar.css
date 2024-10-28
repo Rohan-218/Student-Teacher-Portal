@@ -54,6 +54,7 @@
   text-decoration: none;
   font-size: 14px;
   color: white;
+  display: flex;
 }
 
 .sidebar ul li a:hover {
