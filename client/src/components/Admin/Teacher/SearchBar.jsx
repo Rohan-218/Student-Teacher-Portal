@@ -76,7 +76,7 @@ const SearchBar = ({ onSearch, fetchInitialTeachers }) => {
     } else {
       fetchInitialTeachers(); // If searchName is cleared, fetch all teachers
     }
-  }, [searchName, fetchInitialTeachers, onSearch]);
+  }, [searchName]);
 
   const handleBranchChange = (e) => {
     setSelectedBranch(e.target.value);
