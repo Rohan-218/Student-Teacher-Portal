@@ -104,7 +104,7 @@
   .edit-button {
     margin-top: 10px;
     padding: 8px 16px;
-    background-color: #ffcccc;
+    background-color: #8facbf;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -121,7 +121,7 @@
   
   .staction-button {
     padding: 12px 24px;
-    background-color: #fddedd;
+    background-color: #8facbf;
     border: none;
     border-radius: 4px;
     cursor: pointer;
