@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Index from './screens/homepage/homepage.jsx';
 import AboutUs from './screens//about-us/AboutUs.jsx';
 import Contact from './screens/contact-us/Contact.jsx';
+import Header from './components/header/index.jsx'
 // import Login from './screens/login/Login.jsx';
 // import ResetPassword from './components/Authentication/reset-password.jsx';
 
