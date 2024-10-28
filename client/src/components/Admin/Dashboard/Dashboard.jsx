@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -103,10 +104,11 @@ const Dashboard = () => {
               </div>
               <div><a>{studentCount || 'Loading...'}</a></div>
               <div className='viewbb'>
-                  <p>view page
-                  <img src={rightbutton} alt="view button" className="vb" /></p>
+                     <RouterLink to= "/admin/students"> 
+                      <img src={rightbutton} alt="view button" className="vb" />
+                    </RouterLink>
               </div>
-          </div>
+              </div>
 
 
           <div className="adcard">
@@ -116,8 +118,9 @@ const Dashboard = () => {
               </div>
              <div><a>{teacherCount || 'Loading...'}</a></div>
              <div className='viewbb'>
-                  <p>view page
-                  <img src={rightbutton} alt="view button" className="vb" /></p>
+                  <RouterLink to= "/admin/teachers"> 
+                   <img src={rightbutton} alt="view button" className="vb" />
+                   </RouterLink>
               </div>
            </div>
 
@@ -129,8 +132,9 @@ const Dashboard = () => {
               </div>
                <div><a>{branchCount  || 'Loading...'}</a></div>
                <div className='viewbb'>
-                  <p>view page
-                  <img src={rightbutton} alt="view button" className="vb" /></p>
+                 <RouterLink to= "/admin/branches">
+                 <img src={rightbutton} alt="view button" className="vb" />
+                 </RouterLink>
               </div>
            </div>
 
@@ -142,8 +146,10 @@ const Dashboard = () => {
             </div>
           <div><a> {subjectCount || 'Loading...'}</a></div> 
           <div className='viewbb'>
-                  <p>view page
-                  <img src={rightbutton} alt="view button" className="vb" /></p>
+                <RouterLink to= "/admin/subjects">
+                <img src={rightbutton} alt="view button" className="vb" />
+                </RouterLink>
+                
               </div>
             </div>
         </div>
