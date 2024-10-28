@@ -12,11 +12,11 @@ const StudentRecordTable = ({ students, examColumns }) => {
             <th>Classes Attended</th>
             <th>Attendance %</th>
 
-            {/* Conditionally render the new column if no exam columns are available */}
+            
             {examColumns.length === 0 && <th className="exam-hide">Exams</th>}
 
             {examColumns.map((exam, index) => (
-              <th key={index}>{exam.replace('_', ' ')}</th> // Display dynamic exam columns
+              <th key={index}>{exam.replace('_', ' ')}</th> 
             ))}
           </tr>
         </thead>
@@ -30,7 +30,6 @@ const StudentRecordTable = ({ students, examColumns }) => {
                 <td>{student.attended_lecture}</td>
                 <td>{Math.round(student.attendance_percentage * 100) / 100}</td>
 
-                {/* Conditionally render the new column data if no exam columns are available */}
                 {examColumns.length === 0 && <td>New Data</td>}
 
                 {examColumns.map((exam, examIndex) => (
