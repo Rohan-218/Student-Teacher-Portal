@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Bar } from 'react-chartjs-2'; 
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,7 +11,11 @@ import {
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
 import './Dashboard.css';
-import photo from '/src/assets/Admin/Dashboard/team1.png';
+import student from '/src/assets/AdminSiderbar_icons/student.png';
+import teacher from '/src/assets/AdminSiderbar_icons/teacher.png';
+import subject from'/src/assets/AdminSiderbar_icons/sub.png';
+import branch from'/src/assets/AdminSiderbar_icons/branchs.png';
+import rightbutton  from'/src/assets/Admin/Dashboard/back-button-right.png';
 
 // Register the components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -23,7 +26,6 @@ const Dashboard = () => {
   const [teacherCount, setTeacherCount] = useState(0);
   const [branchCount, setBranchCount] = useState(0);
   const [subjectCount, setSubjectCount] = useState(0);
-  const [chartData, setChartData] = useState({ labels: [], datasets: [] }); 
 
    // Fetch the counts from APIs
    useEffect(() => {
@@ -78,21 +80,7 @@ const Dashboard = () => {
         const labels = data.branchStudentCount.map(branch => branch.branch_name);
         const studentCounts = data.branchStudentCount.map(branch => parseInt(branch.student_count, 10));
 
-        setChartData({
-          labels,
-          datasets: [
-            {
-              label: 'Number of Students',
-              data: studentCounts,
-              backgroundColor: '#a2c9da', // Bar color
-              borderColor: 'rgba(75, 192, 192, 1)', // Bar border color
-              borderWidth: 1,
-              borderRadius: 8, // Rounded bar corners
-              barThickness: 'flex', // Automatically adjust bar thickness
-            },
-          ],
-        });
-      } catch (error) {
+     } catch (error) {
         console.error('Error fetching branch student counts:', error);
       }
     };
@@ -101,39 +89,6 @@ const Dashboard = () => {
     fetchBranchStudentCounts();
   }, []);
 
-  // Options for the bar chart
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false, // Disable aspect ratio for better resizing
-    scales: {
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Number of Students', // Y-axis title
-          font: {
-            size: 14,
-          },
-        },
-      },
-      x: {
-        title: {
-          display: true,
-          text: 'Branches', // X-axis title
-          font: {
-            size: 14,
-          },
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top', // Position legend on top
-      },
-    },
-  };
-
   return (
     <div className="addashboard-container">
       <Header />
@@ -141,10 +96,56 @@ const Dashboard = () => {
       <main className="addashboard">
         <h1 className="adwelcome">Welcome <span className="adadmin-highlight">Admin!</span></h1>
         <div className="adcards-container">
-          <div className="adcard">Students<br />{studentCount || 'Loading...'}</div>
-          <div className="adcard">Teachers<br />{teacherCount || 'Loading...'}</div>
-          <div className="adcard">Branches<br />{branchCount  || 'Loading...'}</div>
-          <div className="adcard">Subjects<br />{subjectCount || 'Loading...'}</div>
+          <div className="adcard">
+             <span>Students<br/></span>
+              <div className='divi'>
+                <img src={student} alt="Student Icon" className="Icon"></img>
+              </div>
+              <div><a>{studentCount || 'Loading...'}</a></div>
+              <div className='viewbb'>
+                  <p>view page
+                  <img src={rightbutton} alt="view button" className="vb" /></p>
+              </div>
+          </div>
+
+
+          <div className="adcard">
+            <span>Teachers<br/></span>
+             <div className='divi'>
+                  <img src={teacher} alt="Teacher Icon" className="Icon" />
+              </div>
+             <div><a>{teacherCount || 'Loading...'}</a></div>
+             <div className='viewbb'>
+                  <p>view page
+                  <img src={rightbutton} alt="view button" className="vb" /></p>
+              </div>
+           </div>
+
+
+          <div className="adcard">
+          <span>Branches<br/></span>
+              <div className='divi'>
+                 <img src={branch} alt="Branch Icon" className="Icon" />
+              </div>
+               <div><a>{branchCount  || 'Loading...'}</a></div>
+               <div className='viewbb'>
+                  <p>view page
+                  <img src={rightbutton} alt="view button" className="vb" /></p>
+              </div>
+           </div>
+
+
+          <div className="adcard">
+          <span>Subjects<br/></span>
+          <div className='divi'>
+            <img src={subject} alt="Subject Icon" className="Icon" />
+            </div>
+          <div><a> {subjectCount || 'Loading...'}</a></div> 
+          <div className='viewbb'>
+                  <p>view page
+                  <img src={rightbutton} alt="view button" className="vb" /></p>
+              </div>
+            </div>
         </div>
                 
         <div className="photo">
