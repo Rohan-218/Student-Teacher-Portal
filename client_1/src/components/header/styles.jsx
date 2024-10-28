@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Navbar = styled.nav`
     background-color: #4d87c1;
     position: fixed;
-    width: 100%;
+    width: 100dvw;
     height: 7dvh;
     z-index: 9999;
     justify-content: space-between;

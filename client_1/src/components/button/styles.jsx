@@ -1,0 +1,18 @@
+import styled from 'styled-components'
+
+export const LoginButton = styled.button`
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #4d87c1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 95%;
+
+    &:hover {
+        background-color: #3f6e9d;
+        border: 0.5px solid black;
+    }
+`

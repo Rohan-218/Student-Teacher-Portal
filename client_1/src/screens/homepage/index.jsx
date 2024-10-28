@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AboutUs from '../about-us/AboutUs.jsx';
 import Contact from '../contact-us/Contact.jsx';
 import Header from '../../components/header/index.jsx';
-import { Sidebar }  from '../../components/sidebar/styles'
+import {LoginButton} from '../../components/button/styles.jsx';
 import {jwtDecode} from 'jwt-decode';
 import './index.css';
 import profile from '/src/assets/Portal/HomePage/home project image.png';
@@ -71,8 +71,8 @@ const Index = () => {
                 <div className="left-section">
                 <h1 className="large-text">Welcome to</h1>
                 <h1 className="text">XYZ UNIVERSITY</h1>
-                    <p className="motto">"Together We Learn, Together We Succeed."</p> {/* Motto example */}
-                <button className="button" onClick={handleLoginClick}>{button}</button>
+                    <p className="motto">"Together We Learn, Together We Succeed."</p>
+                <LoginButton onClick={handleLoginClick}>{button}</LoginButton>
                 </div>
 
                 <div className="right-section">
@@ -94,7 +94,7 @@ const Index = () => {
             <hr />
             <div className='footer'>
                 <div>
-                <p className="copyright">Copyright © 2022 XYZ University. All rights reserved.</p> {/* Copyright notice */}
+                <p className="copyright">Copyright © 2022 XYZ University. All rights reserved.</p>
                 </div>
                 <div className='footer-logo'>
                     <div className="footer-icon" ><img 
