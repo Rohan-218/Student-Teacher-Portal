@@ -7,29 +7,13 @@
   }
   
   .container {
-    padding: 20px;
+    padding: 30px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(21, 0, 0, 0.1);
   }
-
-  /* @media (max-width: 768px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    
-    .main-content {
-      margin-left: 0;
-    }
-  
-    .search-bar {
-      flex-direction: column;
-    }
-  
-    .search-bar input, .search-bar select, .search-bar button {
-      width: 90%;
-      margin-bottom: 10px;
+  @media (max-width: 2000px) {
+    .container {
+     margin-left: 0%;
+      
     }
   }
-     */
