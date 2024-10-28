@@ -128,12 +128,13 @@ const StudentScoreboard = () => {
                   <div className="staccordion-chart">
                     <PieChart width={120} height={120}>
                       <Pie
-                        data={getPieChartData(item.marks_obtained, item.maximum_marks)}
+                        data={getPieChartData(Number(item.marks_obtained), Number(item.maximum_marks))}
                         dataKey="value"
                         outerRadius={40}
                         fill="#eac6ff"
+                        label
                       >
-                        {getPieChartData(item.marks_obtained, item.maximum_marks).map((entry, index) => (
+                        {getPieChartData(Number(item.marks_obtained), Number(item.maximum_marks)).map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
