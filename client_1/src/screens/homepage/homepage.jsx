@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AboutUs from './about-us/AboutUs.jsx';
-import Contact from './contact-us/Contact.jsx';
-import {Navbar} from '../components/header/styles.jsx';
+import AboutUs from '../about-us/AboutUs.jsx';
+import Contact from '../contact-us/Contact.jsx';
+import {Navbar} from '../../components/header/styles.jsx';
 import {jwtDecode} from 'jwt-decode';
 import './index.css';
 import profile from '/src/assets/Portal/HomePage/home project image.png';

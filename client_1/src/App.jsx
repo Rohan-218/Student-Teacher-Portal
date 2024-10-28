@@ -1,15 +1,10 @@
-
-
-
 import { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Index from './screens/homepage.jsx';
+import Index from './screens/homepage/homepage.jsx';
 import AboutUs from './screens//about-us/AboutUs.jsx';
 import Contact from './screens/contact-us/Contact.jsx';
-// import Login from './components/Authentication/Login.jsx';
+// import Login from './screens/login/Login.jsx';
 // import ResetPassword from './components/Authentication/reset-password.jsx';
-
-
 
 function App() {
   const location = useLocation();
@@ -24,19 +19,17 @@ function App() {
       const currentTime = new Date().getTime();
   
       if (token && tokenExpiration && currentTime <= tokenExpiration) {
-        setIsLoggedIn(true);  // Token is valid
+        setIsLoggedIn(true); 
       } else {
-        setIsLoggedIn(false); // Token is missing or expired
+        setIsLoggedIn(false);
         localStorage.removeItem('token');
         localStorage.removeItem('tokenExpiration');
       }
     };
-  
-    // Check token on component mount
+
     checkToken();
-    
-    // Set interval to check token every 2 minutes
-    const intervalId = setInterval(checkToken, 2 * 60 * 1000); // 2 minutes in milliseconds
+   
+    const intervalId = setInterval(checkToken, 2 * 60 * 1000);
   
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
