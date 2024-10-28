@@ -72,7 +72,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
     <div className='snav'>
       <div className="snavlogo-sli"  onClick={() => handleNavigateAndScroll('top')}>
         XYZ UNIVERSITY
-        </div>
+      </div>
       <div className='sul'>
         {isHomePage && (
           <div className="sli">
