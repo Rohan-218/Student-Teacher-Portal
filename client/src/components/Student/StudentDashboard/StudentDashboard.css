@@ -35,19 +35,11 @@
   height: auto;    /* Maintain the aspect ratio */
   margin: 0 auto;  /* Center the chart */
 }
-.sh1{
+.Container-section {
   display: flex;
-  scroll-margin-top: var(--navbar-height);
-  margin-bottom: 20px;
-  padding: 20px;
-  margin-left: 10px;
-  width: 95%;
-  background-color: #4d87c14a;
-  border-radius: 5px;
-  text-align: left;
-  font-family: 'DM Sans', sans-serif;
+  flex-direction: column;
+  padding: 30px 10px;
 }
-/* 
 .student-logo-circle {
   width: 95px; 
   height: 95px;
@@ -80,9 +72,9 @@
 @media (max-width: 800px) {
   .content {
     margin-left: 0%; /* Remove the sidebar margin on smaller screens */
-    padding: 15px;
+    padding-top: 20px;
+    padding-right: 5%;
   }
-
   .student-details {
     width: 90%; /* Full width on smaller screens */
     height: auto; /* Adjust height to fit content */
@@ -104,15 +96,14 @@
   .chart-container {
     padding: 10px;  /* Add some padding for small screens */
   }
-  
 }
 @media (max-width: 480px){
 .profile h2{
  font-size: 1.5rem;
 }
-}
 .Container-section {
   display: flex;
   flex-direction: column;
-  padding: 30px 10px;
+  padding: 30px 0px;
+}
 }

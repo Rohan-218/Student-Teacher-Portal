@@ -5,8 +5,7 @@
   left: 0;
   background-color: #14617d;
   height: 100dvh; /* Full height minus header */
-  max-width:15%;
-  min-width:15%;
+  width:15%;
   padding-top: 20px;
   padding-left: 5px;
   padding-right: 5px;
@@ -84,4 +83,3 @@
     display: block; /* Show hamburger button on mobile */
   }
 }
-

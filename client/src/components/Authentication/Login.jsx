@@ -138,7 +138,7 @@ const Login = () => {
                 </button>
               </div>
                <p className="password">
-                <RouterLink to= "/reset-password">Reset password?</RouterLink>
+                <RouterLink to= "/change-password">Change password?</RouterLink>
                 </p>
             </div>
             <button type="submit" className="auth-login-button">Login</button>
