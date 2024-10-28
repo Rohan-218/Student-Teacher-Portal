@@ -63,6 +63,7 @@ const BranchList = () => {
     <div className="branch-list">
       <div className="main-content">
         <div className="container">
+        <span>Branch</span>
           <SearchBar onFilter={handleFilter} />
           {loading && <div className="loading-message">Loading branches...</div>}
           {error && <div className="error-message">{error}</div>}

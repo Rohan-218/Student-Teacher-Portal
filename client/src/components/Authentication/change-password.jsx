@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import './reset-password.css';
+import './change-password.css';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye icons
 import CryptoJS from 'crypto-js';
 
-const ResetPassword = () => {
+const ChangePassword = () => {
     const [showPassword, setShowPassword] = useState(false); 
     const [message, setMessage] = useState('');
     const [error, setError] = useState(''); 
@@ -79,7 +79,7 @@ const ResetPassword = () => {
     return (
         <div className="pass-page">
             <div className="pass-form">
-                <strong>Reset Password</strong>
+                <strong>Change Password</strong>
                 <p>Please provide the following details.</p>
                 <form onSubmit={handleSubmit}>
                     <div className="pass-container">
@@ -130,7 +130,7 @@ const ResetPassword = () => {
                             />
                         </div>
                     </div>
-                    <button className="pass-button">Send</button>
+                    <button className="pass-button">Update Password</button>
 
                     {error && <p className="error-message">{error}</p>}
                     {message && <p className="success-message">{message}</p>}
@@ -140,4 +140,4 @@ const ResetPassword = () => {
     );
 };
 
-export default ResetPassword;
+export default ChangePassword;

@@ -29,7 +29,7 @@
   }
   
   .teacher-student-table thead {
-    background-color: #4d87c1; /* Blue background for header */
+    background-color:#3f73a8bd; /* Blue background for header */
     color: white;
   }
   
@@ -77,13 +77,12 @@
     border-radius:5px;
     cursor: pointer;
     font-size: 1rem;
-    margin-left: 70%;
+    margin-left: 50%;
     margin-top: 2%;
     /* width: 50%; */
   }
   .teacher-marks-save-btn:hover{
-  background-color:#3f77ae;
-  font-family: 'DM Sans', sans-serif;
+  background-color:#47864a;
   }
   @media (max-width:1000px){
     .teacher-student-table{

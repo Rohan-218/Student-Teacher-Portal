@@ -25,8 +25,8 @@ const Exam = () => {
       <Sidebar />
       <div className="main-content">
         <div className="container">
-          {/* Button to add new exam */}
           <div className="add-exam-button-container">
+          <span>Exam</span>
             <button className="add-exam-btn" onClick={toggleAddExam}>
               Add New Exam
             </button>

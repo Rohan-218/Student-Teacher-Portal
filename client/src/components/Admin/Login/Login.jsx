@@ -37,7 +37,7 @@ const AdminLogin = () => {
 
         if (token) {
           localStorage.setItem('token', token);
-          const expirationTime = new Date().getTime() +  3 * 60 * 60 * 1000; // Token expiration in 1 hour
+          const expirationTime = new Date().getTime() +  3 * 60 * 60 * 1000;
           localStorage.setItem('tokenExpiration', expirationTime);
           const intervalId = setInterval(() => {
             const result = checkTokenExpiration();

@@ -53,18 +53,19 @@
 
 .menu-options a.navbar-btn:hover {
   font-weight: bold;
-  color: #000;
+  color: #ffffff;
 }
 
 .menu-options a.navbar-btn {
   font-weight: normal;
   color: white;  /* Default link color */
   text-decoration: none;
+  display: flex;
 }
 
 .menu-options a.active-link {
   font-weight: bold;
-  color: #000;  /* Active link color (can be the same or different) */
+  color: #ffffff;  /* Active link color (can be the same or different) */
 }
 
 /* Hide menu options on mobile screens */
