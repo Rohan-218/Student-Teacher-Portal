@@ -99,18 +99,19 @@ const StudentAttendance = () => {
                   <p><strong>Updated Till:</strong> {item.updated_at || 'Not updated'}</p>
                 </div>
                 <div className="stattendance-chart">
-                  <PieChart width={120} height={120}>
-                    <Pie
-                      data={getPieChartData(item.attended_lecture, item.total_lectures)}
-                      dataKey="value"
-                      outerRadius={40}
-                      fill="#8884d8"
-                    >
-                      {getPieChartData(item.attended_lecture, item.total_lectures).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                  </PieChart>
+                <PieChart width={120} height={120}>
+                  <Pie
+                    data={getPieChartData(Number(item.attended_lecture), Number(item.total_lectures))}
+                    dataKey="value"
+                    outerRadius={40}
+                    fill="#8884d8"
+                    label // This adds labels directly on the chart for verification
+                  >
+                    {getPieChartData(Number(item.attended_lecture), Number(item.total_lectures)).map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                </PieChart>
                   <div className="stattendance-percentage">
                     <p>{calculateAttendancePercentage(item.attended_lecture, item.total_lectures)}%</p>
                   </div>

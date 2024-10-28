@@ -94,4 +94,14 @@
   font-weight: bold;
   margin-top: 20px;
 }
+@media (max-width: 2084px) {
+    .main-content {
+      margin-left: 17%!important;
+  }
+  }
+  @media (max-width: 855px) {
+    .main-content {
+      margin-left: 2% !important;
+  }
+  }
 
