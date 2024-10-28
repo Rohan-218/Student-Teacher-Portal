@@ -63,8 +63,8 @@ const getUserData = async (userIds) => {
       throw new Error('No User IDs provided');
     }
 
-    const allResults = []; // Array to hold results for all user IDs
-
+    const allResults = [];
+    
     for (const obj of userIds) {
       const { user_id } = obj;
 
@@ -84,10 +84,8 @@ const getUserData = async (userIds) => {
 
       const user_type = userTypeResult[0].user_type;
 
-      // Step 2: Run different queries based on user_type
       let query = '';
       if (user_type === 0 || user_type === 3) {
-        // Fetch from admin table
         query = `
           SELECT u.email, a.name FROM users u
           JOIN admin a ON u.user_id = a.user_id

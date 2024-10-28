@@ -19,16 +19,16 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Function to check token and update isLoggedIn state
+  
     const checkToken = () => {
       const token = localStorage.getItem('token');
       const tokenExpiration = localStorage.getItem('tokenExpiration');
       const currentTime = new Date().getTime();
   
       if (token && tokenExpiration && currentTime <= tokenExpiration) {
-        setIsLoggedIn(true);  // Token is valid
+        setIsLoggedIn(true);
       } else {
-        setIsLoggedIn(false); // Token is missing or expired
+        setIsLoggedIn(false);
         localStorage.removeItem('token');
         localStorage.removeItem('tokenExpiration');
       }
