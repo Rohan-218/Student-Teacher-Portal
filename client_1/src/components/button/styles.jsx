@@ -12,7 +12,9 @@ export const LoginButton = styled.button`
     width: 95%;
 
     &:hover {
-        background-color: #3f6e9d;
-        border: 0.5px solid black;
+        background-color: white;
+        border: 0.5px solid #4d87c1;
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        color: #4d87c1;
     }
 `
