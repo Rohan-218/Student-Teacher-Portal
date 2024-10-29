@@ -1,24 +1,18 @@
 :root {
-  --navbar-height: 30%;  /* Height of the navbar */
-  --sidebar-width: 15%;   /* Sidebar width */
-  --main-bg-color: #e9ecef; /* Main background color */
-  --section-bg-color: #f9f9f9; /* Section background color */
-  --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color */
-    /* border: 2px solid purple; */
+  --navbar-height: 51px;
+  --sidebar-width: 15%;
+  --main-bg-color: #e9ecef;
+  --section-bg-color: #f9f9f9;
+  --shadow-color: rgba(0, 0, 0, 0.1);
 }
-/* .teacher-section h1{
-  margin:1%;
-} */
 
 .teacher-dashboard {
   width: 81%;
   padding-top: 4.5%;
   display: flex;
-  height: 100vh; /* Full viewport height */
-  /* border: 1px solid red; */
-  /* overflow: visible !important; */
+  height: 100vh;
    margin-left: 17%;
-  transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
+  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
 
@@ -26,40 +20,29 @@
 .container-section {
     display: flex;
     flex-direction: column;
-    /* padding: 10px 20px; */
      width: 100%; 
 }
-/* .Container-section {
-  display: flex;
-  flex-direction: column;
-  /* padding: 10px 20px; 
-} */
 
 .teacher-content {
   display: flex;
-  flex-direction: column; /* Stack sections vertically */
+  flex-direction: column;
   width:97%;
-  gap: 5%; /* Space between sections */
+  gap: 5%;
   box-sizing: border-box;
-  /* border: 2px solid blue; */
-   /* overflow: auto; */
-  /* overflow-x: hidden; */
 }
 
 .teacher-section {
   background-color: #4d87c14a;
   border-radius: 5px;
-  /* padding: 20px; */
-  width: 100%; /* Full width for all sections */
-  /* box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
+  width: 100%;
   padding-left:2%; 
   
 }
 
 .teacher-profile-section {
   padding: 2%;
-  max-width: 800px; /* Max width for profile section */
-  margin: 0 15% 3% 15%; /* Center align the profile section */
+  max-width: 800px;
+  margin: 0 15% 3% 15%;
   background-color: white;
   border-radius: 8px;
  
@@ -67,16 +50,16 @@
 
 .teacher-main-content {
   display: flex;
-  flex-direction: column; /* Stack sections vertically */
-  gap: 20px; /* Space between main sections */
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Media Query for tablets (between 768px and 1024px) */
 @media (max-width: 1024px) {
   .teacher-dashboard {
-    margin-left: 0; /* Remove margin to fill the space when sidebar is hidden */
-    width: 100%; /* Make the dashboard full width */
+    margin-left: 0;
+    width: 100%; 
   }
+
   .container-section {
       margin-left: 17%; 
       margin-top: 2%;
@@ -89,27 +72,20 @@
 
   .teacher-content {
     margin-left: 0;
-    width: 100%; /* Fill the width */
+    width: 100%;
   }
 }
 @media (max-width: 1070px) {
   .teacher-section{
     width:109%;
   }
-  /* .teacher-dashboard {
-    padding-left: 2%;
-    width:85%;
-  } */
 }
-/* Media Query for mobile devices (below 768px) */
+
 @media (max-width: 768px) {
-  /* .teacher-sidebar {
-    display: none;
-  } */
 
   .teacher-dashboard {
     width: 100%;
-    margin: 0; /* Remove any margin */
+    margin: 0;
   }
   .container-section{
     margin: 0%;
@@ -119,14 +95,13 @@
   }
 
   .teacher-content {
-    width: 100%; /* Full width for mobile */
+    width: 100%;
   }
 
   .teacher-profile-section {
     padding: 1%;
-    /* margin: 0 2% 3% 10%;  */
     border-radius: 10%; 
-    box-shadow: 0 3px 4px 20%; /* Light shadow for depth */
+    box-shadow: 0 3px 4px 20%;
   }
 }
 @media(max-width:650px){
