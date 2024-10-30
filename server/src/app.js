@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { authenticate } = require('./middleware/authMiddleware.js');
 const scheduler = require('./scheduler/scheduler');
+require('dotenv').config();
 
 // Initialize Express app
 const app = express();
@@ -58,6 +59,9 @@ app.use((req, res, next) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-scheduler;
+if (process.env.NODE_ENV === 'production') 
+{
+  scheduler;
+}
 
 module.exports = app;
