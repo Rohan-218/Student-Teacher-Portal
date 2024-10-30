@@ -1,6 +1,6 @@
 const cron = require('node-cron');
 const { getAllTokens, blacklistExpiredTokens } = require('../models/tokenBlacklistModel');
-require('dotenv').config({ path: 'src/.env' });
+require('dotenv').config();
 
 const runTask = async () => {
     console.log('Running task to blacklist expired tokens...');
@@ -26,6 +26,8 @@ const runTask = async () => {
     }
 };
 
-cron.schedule('*/5 * * * *', runTask);
+if (process.env.NODE_ENV === 'production') {
+    cron.schedule('*/5 * * * *', runTask);
+}
 
 console.log('Cron job scheduled to run every 5 minutes.');
