@@ -46,7 +46,7 @@ const StudentAttendance = () => {
   useEffect(() => {
     const fetchAttendanceData = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/students/attendance', {
+      const response = await fetch('http://student-teacher-portal-server.onrender.com/api/students/attendance', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

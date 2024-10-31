@@ -17,7 +17,7 @@ const StudentRecord = () => {
     if (token) {
       const fetchSubjects = async () => {
         try {
-          const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
+          const subjectResponse = await axios.get('http://student-teacher-portal-server.onrender.com/api/teachers/subjects', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ const StudentRecord = () => {
     try {
       // Fetch students for the selected subject
       const studentResponse = await axios.get(
-        `http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`,
+        `http://student-teacher-portal-server.onrender.com/api/teachers/subject-students?subjectCode=${subject}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ const StudentRecord = () => {
 
       // Fetch attendance and marks for the selected subject using subjectId
       const attenMarksResponse = await axios.get(
-        `http://localhost:3000/api/teachers/atten/marks?subjectId=${subjectId}`,
+        `http://student-teacher-portal-server.onrender.com/api/teachers/atten/marks?subjectId=${subjectId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -64,7 +64,7 @@ const StudentRecord = () => {
 
       // Fetch updated last and total lectures for the selected subject
       const updatedLastResponse = await axios.get(
-        `http://localhost:3000/api/teachers/updated-last?subjectId=${subjectId}`,
+        `http://student-teacher-portal-server.onrender.com/api/teachers/updated-last?subjectId=${subjectId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ const StudentRecord = () => {
       );
 
       const totalLecturesResponse = await axios.get(
-        `http://localhost:3000/api/teachers/total-lectures?subjectId=${subjectId}`,
+        `http://student-teacher-portal-server.onrender.com/api/teachers/total-lectures?subjectId=${subjectId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
