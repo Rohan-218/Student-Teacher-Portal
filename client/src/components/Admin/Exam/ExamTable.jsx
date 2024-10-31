@@ -11,7 +11,7 @@ const ExamTable = ({ refresh }) => {
     const fetchExams = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://student-teacher-portal-server.onrender.com/api/admin/exams', {
+        const response = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/exams', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,  // Include token in headers
@@ -50,7 +50,7 @@ const ExamTable = ({ refresh }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://student-teacher-portal-server.onrender.com/api/admin/exams/update', {
+      const response = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/exams/update', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,  // Include token in headers

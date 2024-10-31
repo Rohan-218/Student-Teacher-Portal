@@ -11,7 +11,7 @@ const StudentTable = ({ students, setStudents }) => {
   
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://student-teacher-portal-server.onrender.com/api/admin/students/update', {
+      const response = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/students/update', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

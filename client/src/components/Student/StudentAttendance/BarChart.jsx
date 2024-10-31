@@ -23,7 +23,7 @@ const AttendanceTrendChart = () => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('token'); // Get token from local storage
-                const response = await fetch('http://student-teacher-portal-server.onrender.com/api/students/attendance-trend', {
+                const response = await fetch('https://student-teacher-portal-server.onrender.com/api/students/attendance-trend', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

@@ -11,7 +11,7 @@ const SubjectTable = ({ subjects, setSubjects }) => {
     const newStatus = !subject.is_active;  // Toggle the is_active status
 
     try {
-      const res = await fetch(`http://student-teacher-portal-server.onrender.com/api/admin/subjects/update`, {
+      const res = await fetch(`https://student-teacher-portal-server.onrender.com/api/admin/subjects/update`, {
         method: 'PUT', // Assuming it's a PUT request
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -12,7 +12,7 @@ const DailyAttendance = () => {
   const fetchStudentData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://student-teacher-portal-server.onrender.com/api/students/profile', {
+      const response = await fetch('https://student-teacher-portal-server.onrender.com/api/students/profile', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -35,7 +35,7 @@ const DailyAttendance = () => {
   const fetchAttendanceData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://student-teacher-portal-server.onrender.com/api/students/attendance-daily-record', {
+      const response = await fetch('https://student-teacher-portal-server.onrender.com/api/students/attendance-daily-record', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

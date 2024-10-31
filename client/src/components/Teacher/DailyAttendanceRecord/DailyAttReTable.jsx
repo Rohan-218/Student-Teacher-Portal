@@ -22,7 +22,7 @@ const DailyAttendanceRecordTable = ({ subjectID, attendanceFilter }) => {
 
     try {
       // API call to get attendance records
-      const response = await axios.get(`http://student-teacher-portal-server.onrender.com/api/teachers/attendance/range`, {
+      const response = await axios.get(`https://student-teacher-portal-server.onrender.com/api/teachers/attendance/range`, {
         params: { fromDate, toDate, subjectID },
         headers: {
           'Authorization': `Bearer ${token}`,

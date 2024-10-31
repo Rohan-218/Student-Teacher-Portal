@@ -24,7 +24,7 @@ const AddNewExam = ({ closePopup, refreshTable  }) => {
   
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://student-teacher-portal-server.onrender.com/api/admin/exams/create', {
+      const res = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/exams/create', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

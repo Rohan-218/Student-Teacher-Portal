@@ -21,7 +21,7 @@ const AddNewTeacher = () => {
   const fetchSubjects = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://student-teacher-portal-server.onrender.com/api/admin/subjects', {
+      const res = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/subjects', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -76,7 +76,7 @@ const AddNewTeacher = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://student-teacher-portal-server.onrender.com/api/admin/teachers/create', {
+      const res = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/teachers/create', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
