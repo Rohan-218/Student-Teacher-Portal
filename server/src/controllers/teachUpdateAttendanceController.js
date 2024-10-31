@@ -24,7 +24,7 @@ const updateAttendance = async (req, res) => {
     try {
       const text = `Dear Student,\n\nAttendance for ${subjectName} have been updated.\n\nRegards,\nXYZ University`;
       const subject = `Attendance Updated!`;
-      insertActivity( user_id, 'Attendance updated', `Attendance of ${student} in ${subjectName} for ${attendanceDate} lecture- ${lecture} have been updated.`);
+      insertActivity( user_id, 'Attendance updated', `Attendance in ${subjectName} for ${attendanceDate} lecture- ${lecture} have been updated.`);
       const emailResponse = await sendEmailNotification(emailList, text, subject);
       insertEmailActivity(emailList, subject, `Attendance for ${subjectName} have been updated.`);
       if (emailResponse) {
