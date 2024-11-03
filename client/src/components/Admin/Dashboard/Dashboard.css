@@ -58,9 +58,9 @@
 .adcard a{
     display:grid;
     justify-content:center;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
-    padding-right: 50%;
+    padding-right: 30%;
 }
 .adgraph-container {
     padding-top: 2%;
