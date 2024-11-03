@@ -20,7 +20,7 @@ const AddNewAdmin = ({ onClose ,refreshTable  }) => {  // Receive onClose prop
     setLoading(true); // Disable submit button once the API call starts
 
     try {
-      const response = await fetch('http://localhost:3000/api/admin/create', {
+      const response = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

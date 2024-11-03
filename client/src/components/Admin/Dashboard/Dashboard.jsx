@@ -39,22 +39,22 @@ const Dashboard = () => {
           'Cache-Control': 'no-cache'
         };
   
-        const studentRes = await fetch('http://localhost:3000/api/admin/students/count', { headers });
+        const studentRes = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/students/count', { headers });
         if (!studentRes.ok) throw new Error(`Failed to fetch: ${studentRes.statusText}`);
         const studentData = await studentRes.json();
         setStudentCount(studentData.studentCount);
   
-        const teacherRes = await fetch('http://localhost:3000/api/admin/teachers/count', { headers });
+        const teacherRes = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/teachers/count', { headers });
         if (!teacherRes.ok) throw new Error(`Failed to fetch: ${teacherRes.statusText}`);
         const teacherData = await teacherRes.json();
         setTeacherCount(teacherData.teacherCount);
   
-        const branchRes = await fetch('http://localhost:3000/api/admin/branches/count', { headers });
+        const branchRes = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/branches/count', { headers });
         if (!branchRes.ok) throw new Error(`Failed to fetch: ${branchRes.statusText}`);
         const branchData = await branchRes.json();
         setBranchCount(branchData.branchCount);
   
-        const subjectRes = await fetch('http://localhost:3000/api/admin/subjects/count', { headers });
+        const subjectRes = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/subjects/count', { headers });
         if (!subjectRes.ok) throw new Error(`Failed to fetch: ${subjectRes.statusText}`);
         const subjectData = await subjectRes.json();
         setSubjectCount(subjectData.subjectCount);
@@ -65,7 +65,7 @@ const Dashboard = () => {
     const fetchBranchStudentCounts = async () => {
       try {
         const token = localStorage.getItem('token'); 
-        const res = await fetch('http://localhost:3000/api/admin/branches/student-count', {
+        const res = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/branches/student-count', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // Add your token here
