@@ -24,7 +24,7 @@ const AdminLogin = () => {
       const encryptedPassword = CryptoJS.AES.encrypt(password, secretKey).toString();
 
       const body = { email, password: encryptedPassword };
-      const response = await fetch("https://student-teacher-portal-server.onrender.com/api/auth/login", {
+      const response = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)

@@ -36,7 +36,7 @@ const SubjectList = () => {
         params.append('subject_name', filters.subject_name); // Ensure 'name' is being set
       }
 
-      const apiUrl = `https://student-teacher-portal-server.onrender.com/api/admin/subjects?${params.toString()}`;
+      const apiUrl = `http://localhost:3000/api/admin/subjects?${params.toString()}`;
       const res = await fetch(apiUrl, {
         method: 'GET',
         headers: {

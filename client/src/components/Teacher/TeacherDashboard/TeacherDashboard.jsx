@@ -12,7 +12,7 @@ function TeacherDashboard() {
   useEffect(() => {
     const token = localStorage.getItem('token'); // Get token from localStorage
     if (token) {
-      fetch('https://student-teacher-portal-server.onrender.com/api/teachers/profile', {
+      fetch('http://localhost:3000/api/teachers/profile', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

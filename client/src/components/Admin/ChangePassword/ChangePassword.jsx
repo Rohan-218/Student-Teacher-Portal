@@ -29,7 +29,7 @@ const ChangePassword = () => {
             const encryptedOldPassword = CryptoJS.AES.encrypt(formData.oldPassword, secretKey).toString();
             const encryptedNewPassword = CryptoJS.AES.encrypt(formData.newPassword, secretKey).toString();
 
-            const response = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/reset-password', {
+            const response = await fetch('http://localhost:3000/api/admin/reset-password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

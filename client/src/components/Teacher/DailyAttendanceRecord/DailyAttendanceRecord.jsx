@@ -21,7 +21,7 @@ const DailyAttendanceRecord = () => {
     if (token) {
       const fetchSubjects = async () => {
         try {
-          const subjectResponse = await axios.get('https://student-teacher-portal-server.onrender.com/api/teachers/subjects', {
+          const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
             headers: {
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const DailyAttendanceRecord = () => {
   
     try {
       const studentResponse = await axios.get(
-        `https://student-teacher-portal-server.onrender.com/api/teachers/subject-students?subjectCode=${subjectCode}&subjectId=${subjectId}`,
+        `http://localhost:3000/api/teachers/subject-students?subjectCode=${subjectCode}&subjectId=${subjectId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ const DailyAttendanceRecord = () => {
       );
 
       const updatedLastResponse = await axios.get(
-        `https://student-teacher-portal-server.onrender.com/api/teachers/updated-last?subjectId=${subjectId}`,
+        `http://localhost:3000/api/teachers/updated-last?subjectId=${subjectId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ const DailyAttendanceRecord = () => {
       );
 
       const totalLecturesResponse = await axios.get(
-        `https://student-teacher-portal-server.onrender.com/api/teachers/total-lectures?subjectId=${subjectId}`,
+        `http://localhost:3000/api/teachers/total-lectures?subjectId=${subjectId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

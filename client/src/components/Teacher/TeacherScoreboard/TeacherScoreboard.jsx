@@ -22,7 +22,7 @@ const TeacherScoreboard = () => {
       const fetchSubjectsAndExams = async () => {
         try {
           // Fetch subjects based on teacherId
-          const subjectResponse = await fetch('https://student-teacher-portal-server.onrender.com/api/teachers/subjects', {
+          const subjectResponse = await fetch('http://localhost:3000/api/teachers/subjects', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ const TeacherScoreboard = () => {
           setSubjectList(subjectData);
 
           // Fetch exams
-          const examResponse = await fetch('https://student-teacher-portal-server.onrender.com/api/teachers/exams', {
+          const examResponse = await fetch('http://localhost:3000/api/teachers/exams', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ const TeacherScoreboard = () => {
     setStudentList([]); // Clear student list before fetching new data
     try {
       // Fetch students based on the selected subject
-      const studentResponse = await fetch(`https://student-teacher-portal-server.onrender.com/api/teachers/subject-students?subjectCode=${subject}`, {
+      const studentResponse = await fetch(`http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -85,7 +85,7 @@ const TeacherScoreboard = () => {
 
       try {
         const marksResponse = await fetch(
-          `https://student-teacher-portal-server.onrender.com/api/teachers/marks?subjectCode=${selectedSubject}`,
+          `http://localhost:3000/api/teachers/marks?subjectCode=${selectedSubject}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -161,8 +161,8 @@ const TeacherScoreboard = () => {
 
     try {
       const url = isUpdateMode
-        ? 'https://student-teacher-portal-server.onrender.com/api/teachers/marks/update' // Use PUT for updating marks
-        : 'https://student-teacher-portal-server.onrender.com/api/teachers/marks/upload'; // Use POST for saving marks
+        ? 'http://localhost:3000/api/teachers/marks/update' // Use PUT for updating marks
+        : 'http://localhost:3000/api/teachers/marks/upload'; // Use POST for saving marks
 
       const method = isUpdateMode ? 'PUT' : 'POST'; // Change method based on mode
 

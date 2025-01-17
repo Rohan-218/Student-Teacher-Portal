@@ -19,7 +19,7 @@ const StudentAttendance = () => {
     const fetchAttendanceData = async () => {
       try {
         const token = localStorage.getItem('token'); // Get the token from local storage
-        const response = await fetch(`https://student-teacher-portal-server.onrender.com/api/admin/students/attendance/${userId}`, {
+        const response = await fetch(`http://localhost:3000/api/admin/students/attendance/${userId}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // Include the token in the request headers

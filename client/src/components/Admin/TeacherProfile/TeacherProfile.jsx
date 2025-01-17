@@ -22,7 +22,7 @@ const TeacherProfile = () => {
   const fetchTeacherProfile = async () => {
     try {
       const token = localStorage.getItem('token');  // Get token from local storage
-      const response = await axios.get(`https://student-teacher-portal-server.onrender.com/api/admin/teachers/profile/${userId}`, {
+      const response = await axios.get(`http://localhost:3000/api/admin/teachers/profile/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,  // Include the token in the request
         },
@@ -45,7 +45,7 @@ const TeacherProfile = () => {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('token');  // Get token from local storage
-      const response = await axios.put('https://student-teacher-portal-server.onrender.com/api/admin/teachers/edit', {
+      const response = await axios.put('http://localhost:3000/api/admin/teachers/edit', {
         teacher_name: teacher.teacher_name,
         user_id: userId,  // Use userId from URL parameters
         designation: teacher.designation,

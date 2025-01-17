@@ -12,13 +12,13 @@ const UserActivityTable = ({ userType, date, tableType, onPrev, onNext }) => {
                 let url = '';
                 if (tableType === 'log') {
                     // API for User Logs
-                    url = 'https://student-teacher-portal-server.onrender.com/api/admin/user-logs';
+                    url = 'http://localhost:3000/api/admin/user-logs';
                 } else if (tableType === 'activity') {
                     // API for User Activity 
-                    url = 'https://student-teacher-portal-server.onrender.com/api/admin/user-activity'; 
+                    url = 'http://localhost:3000/api/admin/user-activity'; 
                 } else if (tableType === 'email') {
                     // API for Email Activity
-                    url = 'https://student-teacher-portal-server.onrender.com/api/admin/user-email'; 
+                    url = 'http://localhost:3000/api/admin/user-email'; 
                 }
 
                 const response = await fetch(url, {
