@@ -45,7 +45,7 @@ const StudentDashboard = () => {
       const token = localStorage.getItem('token'); // Retrieve the token from local storage
 
       try {
-        const response = await fetch('http://localhost:3000/api/students/profile', {
+        const response = await fetch('https://student-teacher-portal-server.onrender.com/api/students/profile', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

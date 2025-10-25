@@ -22,7 +22,7 @@ const TeacherAttendance = () => {
     if (token) {
       const fetchSubjects = async () => {
         try {
-          const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
+          const subjectResponse = await axios.get('https://student-teacher-portal-server.onrender.com/api/teachers/subjects', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const TeacherAttendance = () => {
 
     try {
       const studentResponse = await axios.get(
-        `http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`,
+        `https://student-teacher-portal-server.onrender.com/api/teachers/subject-students?subjectCode=${subject}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ const TeacherAttendance = () => {
       if (selectedSubject && date && lecture && !dataFetched) {
         try {
           const response = await axios.get(
-            `http://localhost:3000/api/teachers/attendance/get?subjectCode=${selectedSubject}&date=${date}&lecture=${lecture}`,
+            `https://student-teacher-portal-server.onrender.com/api/teachers/attendance/get?subjectCode=${selectedSubject}&date=${date}&lecture=${lecture}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -151,8 +151,8 @@ const TeacherAttendance = () => {
     }
 
     const url = isUpdating
-      ? 'http://localhost:3000/api/teachers/attendance/update'
-      : 'http://localhost:3000/api/teachers/attendance/upload';
+      ? 'https://student-teacher-portal-server.onrender.com/api/teachers/attendance/update'
+      : 'https://student-teacher-portal-server.onrender.com/api/teachers/attendance/upload';
 
     const body = {
       subjectCode: selectedSubject,

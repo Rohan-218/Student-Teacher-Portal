@@ -19,7 +19,7 @@ const StudentScoreboard = () => {
     const fetchExams = async () => {
       try {
         const token = localStorage.getItem('token'); // Retrieve token from local storage
-        const response = await fetch('http://localhost:3000/api/admin/exams', {
+        const response = await fetch('https://student-teacher-portal-server.onrender.com/api/admin/exams', {
           headers: {
             Authorization: `Bearer ${token}`, // Include token in headers
           },
@@ -48,7 +48,7 @@ const StudentScoreboard = () => {
       if (selectedExam) {
         try {
           const token = localStorage.getItem('token'); // Retrieve token from local storage
-          const response = await fetch(`http://localhost:3000/api/admin/students/marks/${userId}/${selectedExam}`, {
+          const response = await fetch(`https://student-teacher-portal-server.onrender.com/api/admin/students/marks/${userId}/${selectedExam}`, {
             headers: {
               Authorization: `Bearer ${token}`, // Include token in headers
             },
